@@ -1,0 +1,157 @@
+/* SPDX-License-Identifier: no SPDX license */
+/**
+ * @file    kns_mac.h
+ * @brief   Main header file for MAC layer of Kineis stack
+ * @author  Kinéis
+ *
+ * @attention
+ *
+ * <h2><center>&copy; Copyright (c) 2022 Kineis. All rights reserved.</center></h2>
+ *
+ * This software component is licensed by Kineis under Ultimate Liberty license, the "License";
+ * You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at:
+ * * kineis.com
+ *
+ */
+
+/**
+ * @addtogroup KNS_MAC
+ * @{
+ */
+
+#ifndef KNS_MAC_EVT_H
+#define KNS_MAC_EVT_H
+
+/* Includes ------------------------------------------------------------------------------------ */
+
+#include <stdbool.h>
+#include <stdint.h>
+#include "kns_types.h"
+
+#pragma GCC visibility push(default)
+
+/* Defines ------------------------------------------------------------------------------------- */
+
+#define KNS_MAC_USRDATA_MAXLEN 25 // 24.5 bytes long as maximum allowed in LDA2L
+
+#define DL_FRM_BITLEN 384 /* maximum bit length of a DL frame */
+#define DL_FRM_SZ  (((DL_FRM_BITLEN-1)/8)+1) /*  max frame len in byte */
+
+/* Enums --------------------------------------------------------------------------------------- */
+
+/**
+ * @enum KNS_MAC_appEvtId_t
+ * @brief List events which could be reported by service layer
+ */
+enum KNS_MAC_appEvtId_t {
+	KNS_MAC_SEND_DATA,  /**< Send data on Kineis UL link */
+	KNS_MAC_STOP_SEND_DATA,  /**< Abort Send data on Kineis UL link */
+	KNS_MAC_RX_START, /**< Start reception on Kineis DL link (e.g. DL_BC or AOP/CS update) */
+	KNS_MAC_RX_STOP,  /**< Stop reception on Kineis DL link */
+};
+
+/**
+ * @enum KNS_MAC_srvcEvtId_t
+ * @brief List events which could be reported by service layer
+ */
+enum KNS_MAC_srvcEvtId_t {
+	KNS_MAC_TX_DONE,       /**< TX completed */
+	KNS_MAC_TX_TIMEOUT,    /**< TX failed, timeout reached */
+	KNS_MAC_TXACK_DONE,    /**< UL-ACK TX completed */
+	KNS_MAC_TXACK_TIMEOUT, /**< UL-ACK TX failed, timeout reached */
+	KNS_MAC_RX_ERROR,      /**< error occurred during RX process */
+	KNS_MAC_RX_RECEIVED,   /**< RX frame received */
+	KNS_MAC_RX_TIMEOUT,    /**< RX window timeout */
+	KNS_MAC_DL_BC,         /**< downlink message received: beacon command */
+	KNS_MAC_DL_ACK,        /**< downlink message received: acknowledge */
+	KNS_MAC_SAT_DETECTED,  /**< SATellite detection complete */
+	KNS_MAC_SAT_LOST,      /**< SATellite lost */
+	KNS_MAC_RF_ABORTED,    /**< RF action fully aborted */
+	KNS_MAC_OK,            /**< generic status telling OK to command */
+	KNS_MAC_ERROR          /**< generic error event */
+};
+
+/* Structures ---------------------------------------------------------------------------------- */
+
+
+/**
+ * @struct KNS_MAC_send_data_ctxt_t
+ * @brief Event context structure containing usefull information for the APPlication to send data
+ * to Kineis
+ */
+struct KNS_MAC_send_data_ctxt_t {
+	uint8_t usrdata[KNS_MAC_USRDATA_MAXLEN];
+	uint16_t usrdata_bitlen;
+	enum  KNS_serviceFlag_t sf;
+};
+
+/**
+ * @struct KNS_MAC_appEvt_t
+ * @brief Generic event structure with ID and context
+ *
+ * Union describing event contexts
+ */
+struct KNS_MAC_appEvt_t {
+	enum KNS_MAC_appEvtId_t id;
+	union {
+		struct KNS_MAC_send_data_ctxt_t data_ctxt;
+	};
+};
+
+/**
+ * @struct KNS_MAC_TX_cplt_ctxt_t
+ * @brief TX-done/TX-timeout event context structure
+ *
+ * All useful parameters needed when reporting TX is complete
+ */
+struct KNS_MAC_TX_cplt_ctxt_t {
+	uint8_t data[KNS_MAC_USRDATA_MAXLEN];
+	uint16_t data_bitlen;
+};
+
+/**
+ * @struct KNS_MAC_RX_frm_ctxt_t
+ * @brief RX-frameè-received event context structure
+ *
+ * All useful parameters needed when some frame is received
+ */
+struct KNS_MAC_RX_frm_ctxt_t {
+	uint8_t data[DL_FRM_SZ];
+	uint16_t data_bitlen;
+};
+
+/**
+ * @struct KNS_MAC_dl_bc_ctxt_t
+ * @brief DL-message-received  event context structure
+ *
+ * All useful parameters needed when some frame is received
+ */
+struct KNS_MAC_RX_dl_msg_ctxt_t {
+	uint8_t data[DL_FRM_SZ];
+	uint16_t data_bitlen;
+	uint16_t bc_mc;
+};
+
+/**
+ * @struct KNS_MAC_srvcEvt_t
+ * @brief Generic event structure
+ *
+ * @todo move it to upper part of MAC, because of KNS_MAC_OK and KNS_MAC_ERROR
+ *
+ * Union describing event reported by this driver
+ */
+struct KNS_MAC_srvcEvt_t {
+	enum KNS_MAC_srvcEvtId_t id;
+	union {
+		struct KNS_MAC_TX_cplt_ctxt_t tx_ctxt; /**< TX-complete notification context */
+		struct KNS_MAC_RX_frm_ctxt_t rx_ctxt; /**< RX-frame-received notification context */
+		struct KNS_MAC_RX_dl_msg_ctxt_t msg_ctxt; /**< decoded DL msg context */
+		enum KNS_MAC_appEvtId_t app_evt; /**< original APP event which triggered this */
+	};
+};
+
+#endif /* KNS_MAC_EVT_H */
+/**
+ * @}
+ */

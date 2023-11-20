@@ -1,0 +1,278 @@
+/* SPDX-License-Identifier: no SPDX license */
+/**
+ * @file    mgr_lpm.c
+ * @brief   low power mode manager is in charge to collect all low power needs from 'clients' and
+ *          setup the corresponding low power mode.
+ *
+ * @date    creation 2023/02/20
+ * @author  Kineis
+ * @version 2.0
+ */
+
+/**
+ * @addtogroup MGR_LPM
+ * @{
+ */
+
+/* Includes ------------------------------------------------------------------------------------ */
+#include "mgr_lpm.h"
+
+
+/* Defines ------------------------------------------------------------------------------------- */
+#ifndef MGR_LPM_CLIENT_NBR_MAX
+#define MGR_LPM_CLIENT_NBR_MAX 5
+#endif
+
+
+/* Enums --------------------------------------------------------------------------------------- */
+
+
+/* Variables ----------------------------------------------------------------------------------- */
+/**< table containing LPM manager client callbacks */
+struct MgrLpmClientCb_t mgrLpmClientTab[MGR_LPM_CLIENT_NBR_MAX];
+uint8_t mgrLpmClientNbr = 0;
+
+
+/* Local functions ----------------------------------------------------------------------------- */
+static enum MgrLpm_LPM_t eMGR_LPM_clientRequest(void);
+static void vMGR_LPM_clientNotifyEnter(enum MgrLpm_LPM_t deepest_lpm);
+static void vMGR_LPM_clientNotifyExit (enum MgrLpm_LPM_t deepest_lpm);
+static void vMGR_LPM_enterSleep       (struct MgrLpm_EnvConfig_t env_config);
+static void vMGR_LPM_enterStop        (struct MgrLpm_EnvConfig_t env_config);
+static void vMGR_LPM_enterStandBy     (struct MgrLpm_EnvConfig_t env_config);
+static void vMGR_LPM_enterShutdown    (struct MgrLpm_EnvConfig_t env_config);
+
+
+/* Functions ----------------------------------------------------------------------------------- */
+enum KNS_status_t MGR_LPM_init(struct MgrLpm_EnvConfig_t env_config)
+{
+	//> Configuration : allowedLPMbitmap should not be equal to 0. It means no LPM is enable.
+	if (env_config.allowedLPMbitmap == 0)
+		return KNS_STATUS_ERROR;
+
+	for (uint8_t i = 0; i < MGR_LPM_CLIENT_NBR_MAX; i++) {
+		mgrLpmClientTab[i].fpMGR_LPM_LpmReqCb        = NULL;
+		mgrLpmClientTab[i].fpMGR_LPM_LpmNotifEnterCb = NULL;
+		mgrLpmClientTab[i].fpMGR_LPM_LpmNotifExitCb  = NULL;
+		mgrLpmClientNbr = 0;
+	}
+	return KNS_STATUS_OK;
+}
+
+enum KNS_status_t MGR_LPM_registerClient(struct MgrLpmClientCb_t mgrLpmClient)
+{
+	for (uint8_t i = 0; i < MGR_LPM_CLIENT_NBR_MAX; i++)
+		if (mgrLpmClientTab[i].fpMGR_LPM_LpmReqCb == mgrLpmClient.fpMGR_LPM_LpmReqCb)
+			return KNS_STATUS_ERROR;
+
+	for (uint8_t i = 0; i < MGR_LPM_CLIENT_NBR_MAX; i++) {
+		if (mgrLpmClientTab[i].fpMGR_LPM_LpmReqCb == NULL) {
+			mgrLpmClientTab[i].fpMGR_LPM_LpmReqCb        = mgrLpmClient.fpMGR_LPM_LpmReqCb;
+			mgrLpmClientTab[i].fpMGR_LPM_LpmNotifEnterCb = mgrLpmClient.fpMGR_LPM_LpmNotifEnterCb;
+			mgrLpmClientTab[i].fpMGR_LPM_LpmNotifExitCb  = mgrLpmClient.fpMGR_LPM_LpmNotifExitCb;
+			mgrLpmClientNbr++;
+			return KNS_STATUS_OK;
+		}
+	}
+	return KNS_STATUS_ERROR;
+}
+
+enum KNS_status_t MGR_LPM_unregisterClient(struct MgrLpmClientCb_t mgrLpmClient)
+{
+	for (uint8_t i = 0; i < MGR_LPM_CLIENT_NBR_MAX; i++) {
+		if (mgrLpmClientTab[i].fpMGR_LPM_LpmReqCb == mgrLpmClient.fpMGR_LPM_LpmReqCb) {
+			mgrLpmClientTab[i].fpMGR_LPM_LpmReqCb        = NULL;
+			mgrLpmClientTab[i].fpMGR_LPM_LpmNotifEnterCb = NULL;
+			mgrLpmClientTab[i].fpMGR_LPM_LpmNotifExitCb  = NULL;
+			mgrLpmClientNbr--;
+			return KNS_STATUS_OK;
+		}
+	}
+	return KNS_STATUS_ERROR;
+}
+
+enum KNS_status_t MGR_LPM_setMode(struct MgrLpm_EnvConfig_t env_config)
+{
+	enum MgrLpm_LPM_t deepest_lpm;
+
+	//> Configuration : allowedLPMbitmap should not be equal to 0. It means no LPM is enable.
+	if (env_config.allowedLPMbitmap == 0)
+		return KNS_STATUS_ERROR;
+
+	//> Get the deepest LPM which clients can accept
+	deepest_lpm = eMGR_LPM_clientRequest();
+	
+	//> Check if the deepest LPM exists
+	while ((deepest_lpm & env_config.allowedLPMbitmap) == 0) {
+		deepest_lpm = deepest_lpm >> 1;
+		if (deepest_lpm == 0)
+			break;
+	}
+
+	//> Notify each client with the deepest chosen LPM
+	vMGR_LPM_clientNotifyEnter(deepest_lpm);
+
+	switch (deepest_lpm) {
+	case LOW_POWER_MODE_NONE:
+		break;
+	case LOW_POWER_MODE_SLEEP:
+		vMGR_LPM_enterSleep(env_config);
+		break;
+	case LOW_POWER_MODE_STOP:
+		vMGR_LPM_enterStop(env_config);
+		break;
+	case LOW_POWER_MODE_STANDBY:
+		vMGR_LPM_enterStandBy(env_config);
+		break;
+	case LOW_POWER_MODE_SHUTDOWN:
+		vMGR_LPM_enterShutdown(env_config);
+		break;
+	default:
+		return KNS_STATUS_ERROR;
+	}
+
+	//> Notify each client after exiting LPM
+	vMGR_LPM_clientNotifyExit(deepest_lpm);
+
+	return KNS_STATUS_OK;
+}
+
+
+/* Local functions ----------------------------------------------------------------------------- */
+/**
+ * @brief internal API used to request client deepest LPM.
+ *
+ * @return The deepest LPM allowed by clients
+ */
+static enum MgrLpm_LPM_t eMGR_LPM_clientRequest(void)
+{
+	uint8_t index;
+	
+	enum MgrLpm_LPM_t client_deepest_lpm;
+	enum MgrLpm_LPM_t deepest_lpm;
+
+	deepest_lpm = LOW_POWER_MODE_SHUTDOWN;
+
+	if (mgrLpmClientNbr == 0)
+		return LOW_POWER_MODE_NONE;
+
+	//> Request the deepest LPM allowed by clients
+	for (index = 0; index < MGR_LPM_CLIENT_NBR_MAX; index++) {
+		if (mgrLpmClientTab[index].fpMGR_LPM_LpmReqCb != NULL) {
+			client_deepest_lpm = mgrLpmClientTab[index].fpMGR_LPM_LpmReqCb();
+			if (client_deepest_lpm < deepest_lpm)
+				deepest_lpm = client_deepest_lpm;
+		}
+	}
+
+	return deepest_lpm;
+}
+
+/**
+ * @brief internal API used to notify clients when entering into LPM
+ *
+ * @note Clients are notified from the client [0] to client [MGR_LPM_CLIENT_NBR_MAX-1]
+ *
+ * @param[in] deepest_lpm Low power mode which was chosen
+ *
+ * @return void
+ */
+static void vMGR_LPM_clientNotifyEnter(enum MgrLpm_LPM_t deepest_lpm)
+{
+	uint8_t index;
+
+	//> Notify clients with the chosen LPM
+	for (index = 0; index < MGR_LPM_CLIENT_NBR_MAX; index++) {
+		if (mgrLpmClientTab[index].fpMGR_LPM_LpmNotifEnterCb != NULL) {
+			if (!mgrLpmClientTab[index].fpMGR_LPM_LpmNotifEnterCb(deepest_lpm))
+				assert_param(0);
+		}
+	}
+}
+
+/**
+ * @brief internal API used to notify clients when exiting LPM
+ *
+ * @note Clients are notified from the client [MGR_LPM_CLIENT_NBR_MAX-1] to client [0]
+ *
+ * @param[in] deepest_lpm Low power mode which was chosen
+ *
+ * @return void
+ */
+static void vMGR_LPM_clientNotifyExit(enum MgrLpm_LPM_t deepest_lpm)
+{
+	uint8_t index;
+
+	//> Notify clients with LPM used
+	for (index = MGR_LPM_CLIENT_NBR_MAX - 1; index != 0; index--) {
+		if (mgrLpmClientTab[index].fpMGR_LPM_LpmNotifExitCb != NULL) {
+			if (!mgrLpmClientTab[index].fpMGR_LPM_LpmNotifExitCb(deepest_lpm))
+				assert_param(0);
+		}
+	}
+}
+
+/**
+ * @brief This is the function to enter in sleep mode
+ */
+static void vMGR_LPM_enterSleep(struct MgrLpm_EnvConfig_t env_config)
+{
+	if (env_config.fp_sleep_enter != NULL)
+		env_config.fp_sleep_enter();
+	
+	HAL_PWR_EnterSLEEPMode(PWR_MAINREGULATOR_ON, PWR_SLEEPENTRY_WFI);
+
+	if (env_config.fp_sleep_exit != NULL)
+		env_config.fp_sleep_exit();
+}
+
+/**
+ * @brief This is the function to enter in stop mode
+ */
+static void vMGR_LPM_enterStop(struct MgrLpm_EnvConfig_t env_config)
+{
+	if (env_config.fp_stop_enter != NULL)
+		env_config.fp_stop_enter();
+
+#if defined(STM32L476xx) || defined(STM32WLE5xx)
+	HAL_PWREx_EnterSTOP1Mode(PWR_STOPENTRY_WFI);
+#elif STM32L071xx
+	HAL_PWR_EnterSTOPMode(PWR_LOWPOWERREGULATOR_ON, PWR_STOPENTRY_WFI);
+#endif
+
+	if (env_config.fp_stop_exit != NULL)
+		env_config.fp_stop_exit();
+}
+
+/**
+ * @brief This is the function to enter in standby mode
+ */
+static void vMGR_LPM_enterStandBy(struct MgrLpm_EnvConfig_t env_config)
+{
+	if (env_config.fp_standby_enter != NULL)
+		env_config.fp_standby_enter();
+
+	__HAL_PWR_CLEAR_FLAG(PWR_FLAG_WU);
+	HAL_PWR_EnterSTANDBYMode();
+
+	/* We should never reach this point as standby exit performs a reset of the uC */
+	assert_param(0);
+}
+
+/**
+ * @brief This is the function to enter in shutdown mode
+ */
+static void vMGR_LPM_enterShutdown(struct MgrLpm_EnvConfig_t env_config)
+{
+	if (env_config.fp_shutdown_enter != NULL)
+		env_config.fp_shutdown_enter();
+
+	__HAL_PWR_CLEAR_FLAG(PWR_FLAG_WU);
+	HAL_PWREx_EnterSHUTDOWNMode();
+	
+	//> We should never reach this point as shutdown exit performs a reset of the uC.
+	assert_param(0);
+}
+/**
+ * @}
+ */

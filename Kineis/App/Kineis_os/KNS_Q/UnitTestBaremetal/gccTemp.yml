@@ -1,0 +1,65 @@
+compiler:
+  path: gcc
+  source_path: './CommonSrcLink/'
+  unit_tests_path: &unit_tests_path 'unitTest/'
+  build_path:      &build_path 'buildDir/'
+  options:
+    - -c
+  includes:
+    prefix: '-I'
+    items:
+      - './CMock/src/'
+      - './CMock/vendor/unity/src/'
+      - 'buildDir/mocks/'
+      - *unit_tests_path
+      - 'Inc_Dir/'
+      - 'Inc_Dir/Internals/'
+      - 'Src_Dir/'
+      - '../fw/kineis_sw/'
+
+#dont forget to add '/' at the ent of the path where there is src to be built-tested
+  defines:
+    prefix: '-D'
+    items:
+      - __monitor
+      - UNIT_TEST
+      - DEBUG
+      - VERBOSE
+      - STM32G491xx
+      - USE_HAL_DRIVER
+      - USE_BAREMETAL
+  object_files:
+    prefix: '-o'
+    extension: '.o'
+    destination: *build_path
+linker:
+  path: gcc
+  options:
+    - -lm
+  includes:
+    prefix: '-I'
+    items:
+  object_files:
+    path: *build_path
+    extension: '.o'
+  bin_files:
+    prefix: '-o'
+    extension: '.exe'
+    destination: *build_path
+:cmock:
+  :plugins:
+     - :array
+     - :callback
+     - :ignore
+     - :return_thru_ptr
+     - :ignore_arg
+     - :expect_any_args
+  :strippables:
+     - ['(.*)_callback(.*)','(.*)_event_handler(.*)']
+  :ignore:
+      :args_only
+  :includes:
+    - <stdlib.h>
+  :mock_path: ./buildDir/mocks
+  :mock_list:
+colour: true
