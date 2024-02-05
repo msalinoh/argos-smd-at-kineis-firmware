@@ -19,7 +19,6 @@
 
 /* Includes ------------------------------------------------------------------------------------ */
 
-#include "kineis_sw_conf.h"
 #include "kns_q_conf.h"
 #include "kns_q.h"
 
@@ -188,6 +187,8 @@ bool KNS_Q_isEvtInHigherPrioQ(enum KNS_Q_handle_t qHandle)
 
 	return false;
 }
+
+#pragma GCC visibility pop
 
 #endif /* KNS_Q_BAREMETAL_C */
 

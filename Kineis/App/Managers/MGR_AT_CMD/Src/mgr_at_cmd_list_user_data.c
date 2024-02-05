@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: no SPDX license
 /**
  * @file mgr_at_cmd_list_user_data.c
- * @author Kinéis
+ * @author Kineis
  * @brief subset of AT commands concerning user data manipulation such as TX
  */
 
@@ -14,12 +14,15 @@
 
 #include <stdio.h>
 #include <string.h>
+
 #include "kns_types.h"
 #include "user_data.h"
-#include "mgr_at_cmd_common.h"
 #include "mgr_at_cmd_list_user_data.h"
 #include "kns_q.h"
 #include "kns_mac.h"
+#include "kineis_sw_conf.h"  // for assert include below
+#include KINEIS_SW_ASSERT_H
+#include "mgr_log.h"
 
 #ifdef USE_TX_LED // Light on a GPIO when TX occurs
 #include "main.h"
@@ -27,15 +30,9 @@
 
 /* Private macro -------------------------------------------------------------*/
 
-// defines used to check compilation flag settings of KNS_TX_MOD (numerical values are dummy)
-#define LDA2 0x22
-#define LDK 0x33
-#define VLDA4 0x44
-#define LDA2L 0x55
-
 /* Private functions ----------------------------------------------------------*/
 
-/** @brief  Set/clear a GPIO aroung transmission
+/** @brief  Set/clear a GPIO around transmission
  *
  * @note It is assumed a GPIO named LED1 is defined. Compile with USE_TX_LED to call STM32 HAL APIs
  *
@@ -53,69 +50,16 @@ static void Set_TX_LED(__attribute__((unused)) uint8_t state)
 #endif
 
 /** @brief  Log array of uint8_t
- * @param[in] data: pointer to table
- * @param[in] len: number of bytes to log from the table
+ * @param[in] data pointer to table
+ * @param[in] len number of bytes to log from the table
  */
-static void MGR_LOG_array(uint8_t *data, uint16_t len)
+static void MGR_LOG_array(__attribute__((unused)) uint8_t *data, uint16_t len)
 {
 	uint16_t i;
 
 	for (i = 0; i < len; i++)
 		MGR_LOG_DEBUG_RAW("%02X", data[i]);
 	MGR_LOG_DEBUG_RAW("\r\n");
-}
-
-/** @brief : convert the input form ASCII to binary.
- *
- * Output data (data after conversion) will be stored in the same buffer.
- *
- * The size of the buffer will be reduced to the half. So 0 will be set onto unused Bytes.
- *
- * Example:
- *           ______________________________________________________________
- * buffer   |  'A' |  'B' |  'C' |  'D' |  'E' |  'F' |  '0' |  '1' |  'F' |
- * before   ---------------------------------------------------------------
- * buffer    ______________________________________________________________
- * after    | 0xAB | 0xCD | 0xEF | 0x01 | 0xF0 | 0x00 | 0x00 | 0x00 | 0x00 |
- *
- * * In this example: u16_charNb is "9 characters" and the return value is "36 bits".
- *
- * @param[in,out] *pu8InputBuffer: pointer to the buffer that contains ASCII data. binary data
- * will be stored into the same buffer.
- * @param[in] u16_charNb: input data buffer length in ASCII char
- *
- * @return data length in bits if everything is OK, 0 otherwise.
- */
-static uint16_t u16MGR_AT_CMD_convertAsciiBinary(uint8_t *pu8InputBuffer, uint16_t u16_charNb)
-{
-	uint16_t u16_index = 0;
-	uint8_t u8_high, u8_low;
-
-	for (u16_index = 0; u16_index < (u16_charNb / 2); u16_index++) {
-		u8_high = u8UTIL_convertCharToHex4bits(pu8InputBuffer[2 * u16_index]);
-		u8_low = u8UTIL_convertCharToHex4bits(pu8InputBuffer[2 * u16_index + 1]);
-		if ((u8_high != 0xFF) && (u8_low != 0xFF))
-			pu8InputBuffer[u16_index] = (u8_high << 4) | u8_low;
-		else
-			return 0;
-	}
-
-	/** Case : characters number is an odd number */
-	if (u16_charNb % 2 != 0) {
-		u8_high = u8UTIL_convertCharToHex4bits(pu8InputBuffer[u16_charNb - 1]);
-		u8_low = 0;
-		if (u8_high != 0xFF)
-			pu8InputBuffer[u16_index++] = (u8_high << 4) | u8_low;
-		else
-			return 0;
-	}
-
-	/** Set other bytes to zero */
-	for (; u16_index < u16_charNb; u16_index++)
-		pu8InputBuffer[u16_index] = 0;
-
-	/** Return data length in bits */
-	return (((u16_charNb / 2) * 8) + ((u16_charNb % 2) ? 4 : 0));
 }
 
 #ifdef KIMX_FW
@@ -211,7 +155,7 @@ static bool bMGR_AT_CMD_handleNewTxData(uint8_t *pu8_cmdParamString, const char 
 		spUserDataMsg->bIsToBeTransmit = false;
 		appEvt.id =  KNS_MAC_STOP_SEND_DATA;
 		status = KNS_Q_push(KNS_Q_DL_APP2MAC, (void *)&appEvt);
-		assert_param(status == KNS_STATUS_OK);
+		kns_assert(status == KNS_STATUS_OK);
 		bMGR_AT_CMD_sendResponse(ATCMD_RSP_TXNOTOK, (void *)spUserDataMsg);
 	}
 
@@ -230,7 +174,7 @@ static bool bMGR_AT_CMD_handleNewTxData(uint8_t *pu8_cmdParamString, const char 
 		/** Assert when the number of characters received from AT command is bigger than
 		 * authorized
 		 */
-		assert_param(u16UserDataCharNb <= (USERDATA_TX_PAYLOAD_MAX_SIZE * 2));
+		kns_assert(u16UserDataCharNb <= (USERDATA_TX_PAYLOAD_MAX_SIZE * 2));
 
 		switch (i16_scan_param_res) {
 		case 1:/** Case ARGOS Message with user data only */
@@ -255,7 +199,7 @@ static bool bMGR_AT_CMD_handleNewTxData(uint8_t *pu8_cmdParamString, const char 
 				/** @note appEvt.send_ctxt already filled-up at declaration */
 				appEvt.id = KNS_MAC_SEND_DATA;
 				status = KNS_Q_push(KNS_Q_DL_APP2MAC, (void *)&appEvt);
-				assert_param(status == KNS_STATUS_OK);
+				kns_assert(status == KNS_STATUS_OK);
 				return true;
 			}
 			MGR_LOG_VERBOSE("[ERROR] User data is badly formatted (check length)\r\n");
@@ -272,6 +216,38 @@ static bool bMGR_AT_CMD_handleNewTxData(uint8_t *pu8_cmdParamString, const char 
 }
 
 /* Public functions ----------------------------------------------------------*/
+
+uint16_t u16MGR_AT_CMD_convertAsciiBinary(uint8_t *pu8InputBuffer, uint16_t u16_charNb)
+{
+	uint16_t u16_index = 0;
+	uint8_t u8_high, u8_low;
+
+	for (u16_index = 0; u16_index < (u16_charNb / 2); u16_index++) {
+		u8_high = u8UTIL_convertCharToHex4bits(pu8InputBuffer[2 * u16_index]);
+		u8_low = u8UTIL_convertCharToHex4bits(pu8InputBuffer[2 * u16_index + 1]);
+		if ((u8_high != 0xFF) && (u8_low != 0xFF))
+			pu8InputBuffer[u16_index] = (u8_high << 4) | u8_low;
+		else
+			return 0;
+	}
+
+	/** Case : characters number is an odd number */
+	if (u16_charNb % 2 != 0) {
+		u8_high = u8UTIL_convertCharToHex4bits(pu8InputBuffer[u16_charNb - 1]);
+		u8_low = 0;
+		if (u8_high != 0xFF)
+			pu8InputBuffer[u16_index++] = (u8_high << 4) | u8_low;
+		else
+			return 0;
+	}
+
+	/** Set other bytes to zero */
+	for (; u16_index < u16_charNb; u16_index++)
+		pu8InputBuffer[u16_index] = 0;
+
+	/** Return data length in bits */
+	return (((u16_charNb / 2) * 8) + ((u16_charNb % 2) ? 4 : 0));
+}
 
 bool bMGR_AT_CMD_TX_cmd(uint8_t *pu8_cmdParamString, enum atcmd_type_t e_exec_mode)
 {
@@ -316,7 +292,7 @@ bool bMGR_AT_CMD_RX_cmd(uint8_t *pu8_cmdParamString, enum atcmd_type_t e_exec_mo
 			MGR_LOG_VERBOSE("stop RX\r\n");
 			appEvt.id = KNS_MAC_RX_STOP;
 			status = KNS_Q_push(KNS_Q_DL_APP2MAC, (void *)&appEvt);
-			assert_param(status == KNS_STATUS_OK);
+			kns_assert(status == KNS_STATUS_OK);
 			return true;
 		break;
 		case 1:
@@ -324,7 +300,7 @@ bool bMGR_AT_CMD_RX_cmd(uint8_t *pu8_cmdParamString, enum atcmd_type_t e_exec_mo
 			MGR_LOG_VERBOSE("start RX\r\n");
 			appEvt.id = KNS_MAC_RX_START;
 			status = KNS_Q_push(KNS_Q_DL_APP2MAC, (void *)&appEvt);
-			assert_param(status == KNS_STATUS_OK);
+			kns_assert(status == KNS_STATUS_OK);
 			return true;
 		}
 		break;
@@ -356,7 +332,7 @@ enum KNS_status_t MGR_AT_CMD_macEvtProcess(void)
 				srvcEvt.tx_ctxt.data_bitlen&0x07);
 			MGR_LOG_array(srvcEvt.tx_ctxt.data, (srvcEvt.tx_ctxt.data_bitlen+7)>>3);
 
-			assert_param(sUserDataTx.bIsToBeTransmit);
+			kns_assert(sUserDataTx.bIsToBeTransmit);
 			/** Upon TX done of a mail request message, it means some DL_BC was received
 			 * Thus, UL ACK of DL_BC will transmitted by lower layer internally just
 			 * after the end of this callback.
@@ -381,7 +357,7 @@ enum KNS_status_t MGR_AT_CMD_macEvtProcess(void)
 		break;
 		case (KNS_MAC_TXACK_DONE):
 			MGR_LOG_DEBUG("MGR_AT_CMD TXACK_DONE callback reached\r\n");
-			assert_param(sUserDataTx.bIsToBeTransmit);
+			kns_assert(sUserDataTx.bIsToBeTransmit);
 			/** Upon TX done of a mail request message, it means some DL_BC was received
 			 * previously and UL ACK of DL_BC was just transmitted.
 			 * Send +TX= instead of +TACK=, meaning this is the real end of TX data
@@ -403,7 +379,7 @@ enum KNS_status_t MGR_AT_CMD_macEvtProcess(void)
 				srvcEvt.tx_ctxt.data_bitlen>>3,
 				srvcEvt.tx_ctxt.data_bitlen&0x07);
 			MGR_LOG_array(srvcEvt.tx_ctxt.data, (srvcEvt.tx_ctxt.data_bitlen+7)>>3);
-			assert_param(sUserDataTx.bIsToBeTransmit);
+			kns_assert(sUserDataTx.bIsToBeTransmit);
 			/** @todo Should check integrity between data reported by event above and
 			 * the one stored in user data buffer
 			 *
@@ -418,7 +394,7 @@ enum KNS_status_t MGR_AT_CMD_macEvtProcess(void)
 		break;
 		case (KNS_MAC_TXACK_TIMEOUT):
 			MGR_LOG_DEBUG("MGR_AT_CMD TXACK_TIMEOUT callback reached\r\n");
-			assert_param(sUserDataTx.bIsToBeTransmit);
+			kns_assert(sUserDataTx.bIsToBeTransmit);
 			bMGR_AT_CMD_sendResponse(ATCMD_RSP_TXACKNOTOK, NULL);
 			sUserDataTx.bIsToBeTransmit = false;
 			Set_TX_LED(0);
@@ -531,7 +507,7 @@ enum KNS_status_t MGR_AT_CMD_macEvtProcess(void)
 			cbStatus = KNS_STATUS_ERROR;
 		break;
 		default:
-			assert_param(0);
+			kns_assert(0);
 			cbStatus = KNS_STATUS_ERROR;
 		break;
 		}

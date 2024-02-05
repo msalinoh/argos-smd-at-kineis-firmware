@@ -185,7 +185,7 @@ static void vMGR_LPM_clientNotifyEnter(enum MgrLpm_LPM_t deepest_lpm)
 	for (index = 0; index < MGR_LPM_CLIENT_NBR_MAX; index++) {
 		if (mgrLpmClientTab[index].fpMGR_LPM_LpmNotifEnterCb != NULL) {
 			if (!mgrLpmClientTab[index].fpMGR_LPM_LpmNotifEnterCb(deepest_lpm))
-				assert_param(0);
+				kns_assert(0);
 		}
 	}
 }
@@ -207,7 +207,7 @@ static void vMGR_LPM_clientNotifyExit(enum MgrLpm_LPM_t deepest_lpm)
 	for (index = MGR_LPM_CLIENT_NBR_MAX - 1; index != 0; index--) {
 		if (mgrLpmClientTab[index].fpMGR_LPM_LpmNotifExitCb != NULL) {
 			if (!mgrLpmClientTab[index].fpMGR_LPM_LpmNotifExitCb(deepest_lpm))
-				assert_param(0);
+				kns_assert(0);
 		}
 	}
 }
@@ -256,7 +256,7 @@ static void vMGR_LPM_enterStandBy(struct MgrLpm_EnvConfig_t env_config)
 	HAL_PWR_EnterSTANDBYMode();
 
 	/* We should never reach this point as standby exit performs a reset of the uC */
-	assert_param(0);
+	kns_assert(0);
 }
 
 /**
@@ -271,7 +271,7 @@ static void vMGR_LPM_enterShutdown(struct MgrLpm_EnvConfig_t env_config)
 	HAL_PWREx_EnterSHUTDOWNMode();
 	
 	//> We should never reach this point as shutdown exit performs a reset of the uC.
-	assert_param(0);
+	kns_assert(0);
 }
 /**
  * @}

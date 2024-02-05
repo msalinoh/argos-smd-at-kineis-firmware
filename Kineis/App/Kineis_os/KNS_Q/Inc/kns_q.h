@@ -144,6 +144,8 @@ enum KNS_status_t KNS_Q_pop(enum KNS_Q_handle_t qHandle, void *qItem);
 bool KNS_Q_isEvtInHigherPrioQ(enum KNS_Q_handle_t qHandle);
 #endif
 
+#pragma GCC visibility pop
+
 #endif /* KNS_Q_H */
 /**
  * @}

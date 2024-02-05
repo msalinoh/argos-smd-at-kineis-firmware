@@ -28,8 +28,8 @@
  cipher state.
  */
 
-#ifndef MCU_AES_H
-#define MCU_AES_H
+#ifndef AES_H
+#define AES_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -167,4 +167,4 @@ void aes_decrypt_256( const uint8_t in[N_BLOCK],
 }
 #endif
 
-#endif
+#endif // end AES_H

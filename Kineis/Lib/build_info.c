@@ -1,3 +1,3 @@
 #include "build_info.h"
 
-const char uc_fw_vers_commit_id[] = "e0a7d4f_A2_0x1_MP";
+const char uc_fw_vers_commit_id[] = "07c790a__0x1";

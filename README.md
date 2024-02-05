@@ -7,14 +7,15 @@ This project aims to port the Kineis stm32 stack on the SMD module developped by
 More information about the hardware are defined inside [stm32wl-dev github repository](https://github.com/arribada/stm32wl-dev).
 
 ## Configuration
-This project is based on krd_2.0.0.0 firmware from Kineis with minor adaptations:
+This project is based on krd_fw_package_v5.0.0 firmware from Kineis with minor adaptations:
  - CLK configuration
- - Change to USART2
+ - IOC updated with correct MCU
  - Adapt GPIO for power amplifier control
- - Timer prescaler adapted
+
 
 
 ### State
+V0.2 : (2024/02/05 : Update to Kineis krd v5.0.0
 V0.1 : (2023/11/20) Working test version
 
 

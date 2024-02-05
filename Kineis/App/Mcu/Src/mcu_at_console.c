@@ -14,12 +14,11 @@
  */
 
 /* Includes ------------------------------------------------------------------*/
-#include <stddef.h>
 #include <stdarg.h>
 #include <string.h>
 #include <stdio.h>
-#include "mcu_at_console.h"
-#include "kineis_sw_conf.h"
+#include "kineis_sw_conf.h" // for STM32 HAL include on UART and assert
+#include KINEIS_SW_ASSERT_H
 #include STM32_HAL_H
 
 /* Defines -------------------------------------------------------------------*/
@@ -38,6 +37,26 @@ static uint8_t uartRxBuf[RXBUF_SIZE];
 static bool (*rxEvtCb)(uint8_t *pu8_RxBuffer, int16_t *pi16_nbRxValidChar);
 
 /* Private function prototypes -----------------------------------------------*/
+
+// Functions that could be used to (potentially) remove string.h :
+//unsigned int strlen(const char *str)
+//{
+//    uint16_t nb_char;
+//
+//    for (nb_char = 0; nb_char < 65535 ; nb_char++)
+//        if (str[nb_char] == '\0')
+//            break;
+//    return nb_char;
+//}
+//
+//void *memset(void *str, int val, unsigned int size)
+//{
+//    unsigned int i;
+//
+//    for(i=0 ; i<size ; i++)
+//        ((char*)str)[i] = val;
+//    return str;
+//}
 
 /** @brief RX interrupt handler for 7 or 8 bits data word length .
  *
@@ -206,7 +225,7 @@ void MCU_AT_CONSOLE_send(const char *format, ...)
 	/** Check buffer is not overflowed, meaning console is not well dimensionned regarding
 	 * AT cmd responses length
 	 */
-	assert_param(strlen(uartTxBuf) < sizeof(uartTxBuf));
+	kns_assert(strlen(uartTxBuf) < sizeof(uartTxBuf));
 
 	/* Send log message via UART */
 	if (huart_handle != NULL)
@@ -215,7 +234,7 @@ void MCU_AT_CONSOLE_send(const char *format, ...)
 		/** Console is said to be correctlu initialized before use
 		 *
 		 */
-		assert_param(0);
+		kns_assert(0);
 	}
 }
 

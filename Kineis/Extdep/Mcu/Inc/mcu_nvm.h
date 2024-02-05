@@ -1,16 +1,16 @@
 /* SPDX-License-Identifier: no SPDX license */
 /**
  * @file    mcu_nvm.h
- * @brief   Implementation of miscellaneous features for a specific design
+ * @brief   MCU wrappers for Non volatile memory management
  * @author  Kineis
  * @date    Creation 2023/07/06
  */
 
 /**
- * @page mcu_nvm_page MCU wrappers concerning non-volatile settings used by Kinéis stack
+ * @page mcu_nvm_page MCU wrappers concerning non-volatile settings used by Kineis stack
  *
  * This is about storing ID and address into some Non-Volatile Memory (NVM).
- * Those settings are part of the credentials (ID, address, DSK) provided by Kinéis operator.
+ * Those settings are part of the credentials (ID, address, DSK) provided by Kineis operator.
  *
  * @note DSK will be managed by the used by the AES wrapper (mcu_aes.h)
  *
@@ -24,14 +24,16 @@
  * @{
  */
 
-#ifndef MCU_NVM_H_
-#define MCU_NVM_H_
+#ifndef MCU_NVM_H
+#define MCU_NVM_H
 
 /* Includes ------------------------------------------------------------------*/
 #include <stdint.h>
-#include "kineis_sw_conf.h"
-#include  STM32_HAL_H
 #include "kns_types.h"
+
+/* Global defines -------------------------------------------------------------------------------*/
+#define DEVICE_ADDR_LENGTH        4
+#define DEVICE_SN_LENGTH          14
 
 /* Function declaration -------------------------------------------------------------*/
 
@@ -40,41 +42,79 @@
  *
  * This is a read-only operation.
  *
+ * @param[out] mc_ptr : 16-bit value to read
+ *
  * @return Status @ref KNS_status_t
  */
-enum KNS_status_t MCU_NVM_getMC(int16_t *mc_ptr);
+enum KNS_status_t MCU_NVM_getMC(uint16_t *mc_ptr);
 
 /**
  * @brief set a 16-bit-long non-volatile value
  *
- * The value may be set for each new user message sent to the Kinéis stack.
+ * The value may be set for each new user message sent to the Kineis stack.
  *
  * @attention Depending the expected lifetime of your device, ensure your non-volatile memory
  * can support enough write/erase cycles.
  *
+ * @param[in] mcTmp : 16-bit value to store
+ *
  * @return Status @ref KNS_status_t
  */
-enum KNS_status_t MCU_NVM_setMC(int16_t mcTmp);
+enum KNS_status_t MCU_NVM_setMC(uint16_t mcTmp);
 
 /**
- * @brief get the Kinéis identifier (32-bits long)
+ * @brief get a pointer to the Kineis radio configuration
  *
  * This is a read-only operation.
  *
+ * @param[out] ConfZonePtr : pointer to the Kineis radio configuration
+ *
  * @return Status @ref KNS_status_t
  */
-enum KNS_status_t MCU_NVM_getID(uint32_t *id);
+enum KNS_status_t MCU_NVM_getRadioConfZonePtr(void **ConfZonePtr);
 
 /**
- * @brief get the Kinéis address (4-bytes long)
+ * @brief set the Kineis radio configuration
+ *
+ * @param[in] ConfZonePtr : pointer to the Kineis radio configuration to write
+ * @param[in] ConfZoneSize : number of bytes to write
+ *
+ * @return Status @ref KNS_status_t
+ */
+enum KNS_status_t MCU_NVM_setRadioConfZone(void *ConfZonePtr, uint16_t ConfZoneSize);
+
+/**
+ * @brief get the Kineis identifier (32-bits long)
  *
  * This is a read-only operation.
  *
+ * @param[out] dev_id : Kineis identifier
+ *
  * @return Status @ref KNS_status_t
  */
-enum KNS_status_t MCU_NVM_getAddr(uint8_t addr[]);
+enum KNS_status_t MCU_NVM_getID(uint32_t *dev_id);
 
-#endif /* MCU_NVM_H_ */
+/**
+ * @brief get the Kineis address (4-bytes long)
+ *
+ * This is a read-only operation.
+ *
+ * @param[out] dev_addr : Kineis address
+ *
+ * @return Status @ref KNS_status_t
+ */
+enum KNS_status_t MCU_NVM_getAddr(uint8_t dev_addr[]);
+
+/**
+ * @brief get the device serial number (14-bytes null terminated ASCII string)
+ *
+ * @param[out] sn : serial number
+ *
+ * @return Status @ref KNS_status_t
+ */
+enum KNS_status_t MCU_NVM_getSN(uint8_t sn[]);
+
+#endif /* MCU_NVM_H */
 
 /**
  * @}

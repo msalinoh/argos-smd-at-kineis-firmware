@@ -19,7 +19,6 @@
 
 /* Includes ------------------------------------------------------------------------------------ */
 
-#include "kineis_sw_conf.h"
 #include "kns_q_conf.h"
 #include "kns_q.h"
 #include "mgr_log.h"
@@ -83,6 +82,8 @@ enum KNS_status_t KNS_Q_pop(enum KNS_Q_handle_t qHandle, void *qItem)
 	MGR_LOG_DEBUG("[KNS_Q][ERROR] pop q %d FAILED\r\n", qHandle);
 	return KNS_STATUS_ERROR;
 }
+
+#pragma GCC visibility pop
 
 #endif /* KNS_Q_FREERTOS_C */
 

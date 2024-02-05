@@ -1,7 +1,7 @@
 /* SPDX-License-Identifier: no SPDX license */
 /**
  * @file mgr_at_cmd_list.h
- * @author  Kinéis
+ * @author  Kineis
  * @brief AT commands list header file
  */
 
@@ -18,16 +18,18 @@
 /* Includes ------------------------------------------------------------------*/
 #include <stdint.h>
 #include <stdbool.h>
-#include "mgr_at_cmd_common.h"
 
 /* Defines -------------------------------------------------------------------*/
 
 /** Indexes for AT commands present in system */
 enum  atcmd_idx_t {
 	// General commands
-	AT_PING,         /**< Ping commands */
-	AT_FW,           /**< get fw version commands */
-	AT_ID,           /**< get ID version commands */
+	AT_PING,         /**< Ping command */
+	AT_FW,           /**< Get fw version command */
+	AT_ADDR,         /**< Get device address command */
+	AT_ID,           /**< Get device ID command */
+	AT_SN,           /**< Get device serial number command */
+	AT_RCONF,        /**< Get radio configuration command */
 
 	// User data commands
 	AT_TX,           /**< Index for TX commands */

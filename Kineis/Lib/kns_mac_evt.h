@@ -151,6 +151,8 @@ struct KNS_MAC_srvcEvt_t {
 	};
 };
 
+#pragma GCC visibility pop
+
 #endif /* KNS_MAC_EVT_H */
 /**
  * @}

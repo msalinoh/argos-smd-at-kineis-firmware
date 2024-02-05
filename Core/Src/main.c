@@ -6,7 +6,7 @@
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2022 STMicroelectronics.
+  * Copyright (c) 2024 STMicroelectronics.
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -19,6 +19,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "dma.h"
+#include "i2c.h"
 #include "usart.h"
 #include "subghz.h"
 #include "tim.h"
@@ -77,17 +78,6 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-static void blink_ERROR_LED()
-{
-#ifdef LED3_Pin
-	HAL_GPIO_WritePin(LED3_GPIO_Port, LED3_Pin, GPIO_PIN_RESET);
-	HAL_Delay(125);
-	HAL_GPIO_WritePin(LED3_GPIO_Port, LED3_Pin, GPIO_PIN_SET);
-	HAL_Delay(250);
-	HAL_GPIO_WritePin(LED3_GPIO_Port, LED3_Pin, GPIO_PIN_RESET);
-	HAL_Delay(125);
-#endif
-}
 
 /* USER CODE END 0 */
 
@@ -120,15 +110,13 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_DMA_Init();
-  MX_USART2_UART_Init();
-  //MX_LPUART1_UART_Init();
+  MX_LPUART1_UART_Init();
+  MX_I2C1_Init();
   MX_SUBGHZ_Init();
   MX_TIM16_Init();
   /* USER CODE BEGIN 2 */
 
-  MGR_LOG_DEBUG("Running build done at %s %s\r\n", __DATE__, __TIME__);
-
- 
+  MGR_LOG_DEBUG("Running build %s done at %s %s\r\n", uc_fw_vers_commit_id, __DATE__, __TIME__);
 
   assert_param(KNS_Q_create(KNS_Q_DL_APP2MAC, KNS_Q_DL_APP2MAC_LEN,
                  KNS_Q_DL_APP2MAC_ITEM_BYTESIZE) == KNS_STATUS_OK);
@@ -140,7 +128,8 @@ int main(void)
   assert_param(KNS_OS_registerTask(KNS_OS_TASK_APP, KNS_APP_stdalone) == KNS_STATUS_OK);
   //assert_param(KNS_OS_registerTask(KNS_OS_TASK_APP, KNS_APP_stdalone_stressTest) == KNS_STATUS_OK);
 #elif defined (USE_GUI_APP)
-  MGR_AT_CMD_start(&huart2);
+  MGR_AT_CMD_start(&hlpuart1);
+  MCU_AT_CONSOLE_send("+FW=%s,%s_%s\r\n", uc_fw_vers_commit_id, __DATE__, __TIME__);
   assert_param(KNS_OS_registerTask(KNS_OS_TASK_APP, KNS_APP_gui) == KNS_STATUS_OK);
 #endif
 
@@ -172,25 +161,19 @@ void SystemClock_Config(void)
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
 
-  /** Configure LSE Drive Capability
-  */
-  HAL_PWR_EnableBkUpAccess();
-  __HAL_RCC_LSEDRIVE_CONFIG(RCC_LSEDRIVE_LOW);
-
   /** Configure the main internal regulator output voltage
   */
   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
 
   /** Initializes the CPU, AHB and APB buses clocks
   */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE|RCC_OSCILLATORTYPE_LSE;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
   RCC_OscInitStruct.HSEState = RCC_HSE_BYPASS_PWR;
-  RCC_OscInitStruct.LSEState = RCC_LSE_ON;
   RCC_OscInitStruct.HSEDiv = RCC_HSE_DIV1;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
   RCC_OscInitStruct.PLL.PLLM = RCC_PLLM_DIV2;
-  RCC_OscInitStruct.PLL.PLLN = 12;
+  RCC_OscInitStruct.PLL.PLLN = 8;
   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
   RCC_OscInitStruct.PLL.PLLR = RCC_PLLR_DIV4;
   RCC_OscInitStruct.PLL.PLLQ = RCC_PLLQ_DIV2;
@@ -210,7 +193,7 @@ void SystemClock_Config(void)
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
   RCC_ClkInitStruct.AHBCLK3Divider = RCC_SYSCLK_DIV1;
 
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_1) != HAL_OK)
   {
     Error_Handler();
   }
@@ -237,7 +220,7 @@ void Error_Handler(void)
   //__disable_irq(); // keep interrupts available as need for HAL_Delau in blink_ERROR_LED
   while (1)
   {
-    blink_ERROR_LED();
+    //blink_ERROR_LED();
   }
 #else // end of DEBUG
 #ifdef USE_GUI_APP

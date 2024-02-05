@@ -48,8 +48,6 @@
 /* Includes ------------------------------------------------------------------------------------ */
 #include <stdbool.h>
 #include <stdint.h>
-#include "kineis_sw_conf.h"
-#include STM32_HAL_H
 #include "KNS_types.h"
 
 

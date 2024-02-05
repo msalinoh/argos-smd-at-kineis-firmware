@@ -19,7 +19,7 @@
 
 /** @brief This fct is a very basic standalone application
  *
- * So far, it is periodicaly transmitting one message with harcoded payload, each 60s.
+ * So far, it is periodicaly transmitting one message with hardcoded payload, each 60s.
  *
  * This application is internally posting a send-data event to MAC layer of Kineis software stack.
  * Then is is waiting for a sucessful TX-done event
@@ -29,7 +29,7 @@ void KNS_APP_stdalone(void);
 /** @brief This fct is same base as KNS_APP_stdalone, with some extra unexpected operations.
  *
  * So far, it is:
- * * Requesting transmission of one message (with harcoded payload)
+ * * Requesting transmission of one message (with hardcoded payload)
  * * Trying to send same message once again while previous transmission is not finished yet.
  *   As there is no FIFO yetin MAC, this is not supported. Thus MAC reports an ERROR back to APP
  *

@@ -30,7 +30,6 @@
 
 #include <stdbool.h>
 #include <stdint.h>
-#include "kineis_sw_conf.h"
 
 #pragma GCC visibility push(default)
 

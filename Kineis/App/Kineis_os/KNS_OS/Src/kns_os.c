@@ -53,6 +53,8 @@ void KNS_OS_main(void)
 	}
 }
 
+#pragma GCC visibility pop
+
 /**
  * @}
  */

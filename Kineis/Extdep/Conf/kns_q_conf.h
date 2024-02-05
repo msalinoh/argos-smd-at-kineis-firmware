@@ -123,6 +123,8 @@ extern const char *qIdx2Str[KNS_Q_MAX];
 
 #endif /* USE_BAREMETAL */
 
+#pragma GCC visibility pop
+
 #endif /* KNS_Q_CONF_H */
 
 /**

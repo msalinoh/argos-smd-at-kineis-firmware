@@ -126,6 +126,8 @@ struct KNS_RX_cfg_t {
 				  */
 };
 
+#pragma GCC visibility pop
+
 #endif /* KNS_SRVC_COMMON_H */
 /**
  * @}

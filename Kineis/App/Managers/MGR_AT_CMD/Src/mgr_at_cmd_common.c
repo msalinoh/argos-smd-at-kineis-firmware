@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: no SPDX license
 /**
  * @file mgr_at_cmd_common.c
- * @author Kinéis
+ * @author Kineis
  * @brief common part of the AT cmd manager (logging, AT cmd response api)
  */
 

@@ -81,6 +81,8 @@ const char *qIdx2Str[KNS_Q_MAX] = {
 
 #endif
 
+#pragma GCC visibility pop
+
 #endif /* KNS_Q_CONF_C */
 
 /**

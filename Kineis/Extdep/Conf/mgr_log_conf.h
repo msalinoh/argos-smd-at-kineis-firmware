@@ -33,11 +33,11 @@
 
 /* Defines -------------------------------------------------------------------*/
 
-#define log_uart	huart2
+#define log_uart	hlpuart1
 
 /* Variables -----------------------------------------------------------------*/
 
-extern UART_HandleTypeDef huart2;
+extern UART_HandleTypeDef hlpuart1;
 
 #endif // end USE_LOCAL_PRINTF
 

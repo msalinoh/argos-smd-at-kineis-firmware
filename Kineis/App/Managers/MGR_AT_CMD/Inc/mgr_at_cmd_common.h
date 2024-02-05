@@ -1,7 +1,7 @@
 /* SPDX-License-Identifier: no SPDX license */
 /**
  * @file mgr_at_cmd_common.h
- * @author Kinéis
+ * @author Kineis
  * @brief header file for common part of the AT cmd manager
  */
 
@@ -21,7 +21,6 @@ extern "C" {
 /* Includes ------------------------------------------------------------------*/
 #include <stdint.h>
 #include <stdbool.h>
-#include "mgr_log.h"
 #include "strutil_lib.h"
 #include "kineis_sw_conf.h" // get ERROR_RETURN_T types
 
@@ -35,14 +34,14 @@ enum atcmd_type_t {
 
 /** enum of command response */
 enum atcmd_rsp_type_t {
-	ATCMD_RSP_TXOK,		/**< At command delayed response for TX done */
-	ATCMD_RSP_TXNOTOK,	/**< At command delayed response for TX timeout */
-	ATCMD_RSP_TXACKOK,	/**< At command delayed response for TX done */
+	ATCMD_RSP_TXOK,		    /**< At command delayed response for TX done */
+	ATCMD_RSP_TXNOTOK,	    /**< At command delayed response for TX timeout */
+	ATCMD_RSP_TXACKOK,	    /**< At command delayed response for TX done */
 	ATCMD_RSP_TXACKNOTOK,	/**< At command delayed response for TX timeout */
-	ATCMD_RSP_SATDET,	/**< At command delayed response for SAT detection */
-	ATCMD_RSP_RXOK,		/**< At command delayed response for RX frame reception */
-	ATCMD_RSP_DLOK,		/**< At command delayed response for RX frame reception */
-	ATCMD_RSP_RXTIMEOUT	/**< At command delayed response for RX timeout */
+	ATCMD_RSP_SATDET,	    /**< At command delayed response for SAT detection */
+	ATCMD_RSP_RXOK,		    /**< At command delayed response for RX frame reception */
+	ATCMD_RSP_DLOK,		    /**< At command delayed response for RX frame reception */
+	ATCMD_RSP_RXTIMEOUT	    /**< At command delayed response for RX timeout */
 };
 
 

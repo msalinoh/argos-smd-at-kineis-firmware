@@ -81,6 +81,8 @@ enum KNS_status_t KNS_OS_registerTask(enum KNS_OS_taskHdlr_t tskHdlr, void (*tas
  */
 void KNS_OS_main(void);
 
+#pragma GCC visibility pop
+
 #endif /* KNS_OS_H */
 /**
  * @}

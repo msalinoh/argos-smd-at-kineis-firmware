@@ -78,11 +78,15 @@ enum KNS_satServiceFlag_t {
  *
  * @todo need to put modulation back into kns_tx.h in KNS_TX_cfg_t
  */
+/** @todo include for KNS_tx_rf_cfg_t, remove this type from this feader file */
 enum KNS_tx_mod_t {
-	KNS_TX_MOD_A2,    /**< modulation A2 */
-	KNS_TX_MOD_A2L,    /**< modulation A2 Legacy*/
-	KNS_TX_MOD_VLDA4, /**< modulation VLDA4 */
-	KNS_TX_MOD_LDK,    /**< modulation LDK */
+	KNS_TX_MOD_NONE  = 0,  /**< no TX generation */
+	KNS_TX_MOD_CW    = 1,  /**< continuous wave */
+	KNS_TX_MOD_LDA2  = 2,  /**< modulation A2 (with Kineis codec) */
+	KNS_TX_MOD_LDA2L = 3,  /**< modulation A2 Legacy (28-bit ID)*/
+	KNS_TX_MOD_VLDA4 = 4,  /**< modulation VLDA4 (with Kineis codec) */
+	KNS_TX_MOD_HDA4  = 5,  /**< modulation HDA4 (with Kineis codec) */
+	KNS_TX_MOD_LDK   = 6   /**< modulation LDK */
 };
 
 /**

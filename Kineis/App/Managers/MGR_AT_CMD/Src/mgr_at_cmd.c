@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: no SPDX license
 /**
- * @file mgr_at_cmd.c
- * @author  Kinéis
- * @brief APIs Implementation used to parse the UART ASCII data stream and extract AT commands
+ * @file   mgr_at_cmd.c
+ * @author Kineis
+ * @brief  APIs Implementation used to parse the UART ASCII data stream and extract AT commands
  */
 
 /**
@@ -13,12 +13,13 @@
 
 /* Includes -------------------------------------------------------------------------------------*/
 #include <string.h>
+
+#include "kns_types.h"
 #include "mgr_at_cmd.h"
 #include "mgr_at_cmd_common.h"
 #include "mgr_at_cmd_list.h"
 #include "mcu_at_console.h"
 #include "mgr_log.h"
-
 
 /* Defines --------------------------------------------------------------------------------------*/
 
@@ -35,8 +36,8 @@
 #define FIFO_MAX_SIZE                                   4
 #define FRAME_MAX_LEN                                   128
 
-#if (FIFO_MAX_SIZE % 2) != 0
-#error "FIFO_MAX_SIZE must be a power of 2 : 2, 4, 8, ..."
+#if FIFO_MAX_SIZE < 2
+#error "FIFO_MAX_SIZE must be superior or equal to 2"
 #endif
 
 /* Structure Declaration ------------------------------------------------------------------------*/

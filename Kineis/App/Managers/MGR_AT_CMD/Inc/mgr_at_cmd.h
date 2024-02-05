@@ -1,7 +1,7 @@
 /* SPDX-License-Identifier: no SPDX license */
 /**
  * @file mgr_at_cmd.h
- * @author  Kinéis
+ * @author  Kineis
  * @brief AT commands manager main header file
  */
 

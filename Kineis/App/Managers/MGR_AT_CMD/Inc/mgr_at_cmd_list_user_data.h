@@ -1,7 +1,7 @@
 /* SPDX-License-Identifier: no SPDX license */
 /**
  * @file mgr_at_cmd_list_user_data.h
- * @author  Kinéis
+ * @author  Kineis
  * @brief subset of AT commands concerning user data manipulation such as TX
  */
 
@@ -21,6 +21,29 @@
 
 /* Public functions ----------------------------------------------------------*/
 
+/** @brief : convert the input form ASCII to binary.
+ *
+ * Output data (data after conversion) will be stored in the same buffer.
+ *
+ * The size of the buffer will be reduced to the half. So 0 will be set onto unused Bytes.
+ *
+ * Example:
+ *           ______________________________________________________________
+ * buffer   |  'A' |  'B' |  'C' |  'D' |  'E' |  'F' |  '0' |  '1' |  'F' |
+ * before   ---------------------------------------------------------------
+ * buffer    ______________________________________________________________
+ * after    | 0xAB | 0xCD | 0xEF | 0x01 | 0xF0 | 0x00 | 0x00 | 0x00 | 0x00 |
+ *
+ * * In this example: u16_charNb is "9 characters" and the return value is "36 bits".
+ *
+ * @param[in,out] *pu8InputBuffer: pointer to the buffer that contains ASCII data. binary data
+ * will be stored into the same buffer.
+ * @param[in] u16_charNb: input data buffer length in ASCII char
+ *
+ * @return data length in bits if everything is OK, 0 otherwise.
+ */
+uint16_t u16MGR_AT_CMD_convertAsciiBinary(uint8_t *pu8InputBuffer, uint16_t u16_charNb);
+
 /**
  * @brief Process AT command "AT+TX" send user data.
  *
@@ -34,7 +57,7 @@
  * * bit3  : add back/front (0 back, 1 front)
  * * bit4-7: reserved
  *
- * @attention For VLDA4 on Kinéis, data payload is 3 bytes
+ * @attention For VLDA4 on Kineis, data payload is 3 bytes
  *
  * @param[in] pu8_cmdParamString: string containing AT command
  * @param[in] e_exec_mode: type of the command (status command or action command)

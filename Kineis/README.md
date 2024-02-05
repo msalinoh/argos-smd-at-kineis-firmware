@@ -1,27 +1,45 @@
-This is package is releasing Kinéis SW library with a demo app on Kinéis reference HW design
-(STM32WL55xx microcontroller based).
+This is package is releasing Kinéis SW library with a demo app on a STM32WL55xx-based HW reference
+design.
 
-Two applications tasks are available in KNS_APP files:
-* A standalone app (\ref KNS_APP_stdalone) is sending one message
+By default this package is built for KRD_MP HW. Refer to "How to build" section later for details.
+
+
+Two applications tasks are available in KNS_APP files (kns_app.h):
+* A standalone app (\ref KNS_APP_stdalone) is sending one message each 60s.
 * a GUI app (\ref KNS_APP_gui) is dedicated to communicate with the Kinéis Device Interface (KDI)
-through AT commands (\ref mgr_at_cmd_page) over an UART link.
+through AT commands (\ref mgr_at_cmd_page) over an UART link (9600 bauds, 8, N, 1).
 
-You can choose the application through the compilation flag in main.c (USE_STDALONE_APP, USE_GUI_APP).
-In main.c, the expected app is then registered in OS through a register API. Queues are also created
-and declared in main function. Note the KNS_MAC_task task is also registered. This is the main task
-of the Kinéis SW library.
+Those application needs some configurations from user such as credentials (ID, ADDR, Secret key)
+and radio configuration (UL frequency and modulation). Refer to "getting started" section below for
+details.
+
+
+
+You can choose the application through the compilation flag in main.c (comment / uncomment
+USE_STDALONE_APP / USE_GUI_APP). In main.c, the expected app is then registered in OS through a
+"register" API. Queues are also created and declared in main function.
+
+\note The Kinéis stack task (\ref KNS_MAC_task) is also registered (cf kns_mac.h).
+
+
 
 The OS embedded in this package is the Kineis baremetal OS, which is a very minimalist OS.
-Behind the queue create APIs and task register APIs, all is actually statically declared in
-the kns_q_conf.c, kns_q_conf.h, kns_os_conf.h files (cf Kineis/Extdep/Conf/ folder).
+Behind the "queue create" APIs and "task register" APIs, all is actually statically declared in
+the kns_q_conf.c, kns_q_conf.h, kns_os_conf.h files (cf \ref Kineis/Extdep/Conf folder).
 
-The format of an AT command is like "<pattern>=?\r\n" (e.g. "AT+PING=?\r\n") to get information or
-"<pattern>=<params>\r\n" (e.g. "AT+TX=<user_data>\r\n") to set information. <br>
+
+
+In case of GUI APP, the format of an AT command is like "<pattern>=?\r\n" (e.g. "AT+PING=?\r\n") to
+get information or "<pattern>=<params>\r\n" (e.g. "AT+TX=<user_data>\r\n") to set information. <br>
 The list of supported AT commands is available through \ref cas_atcmd_list_array.
 
-By the end, those applications shows how to use the Kinéis library (libkineis.a) which currently
-exposes the `Service` layer of the Kinéis software stack, especially the `TX service` (kns_tx.h) and
-the `configuration service` (kns_cfg.h).
+
+
+By the end, those applications shows how to use the Kinéis stack library which currently exposes the
+`MAC` layer for:
+
+* TX, RX, TRX actions and notifications (kns_mac_evt.h)
+* configuration service (kns_cfg.h).
 
 # Doc
 
@@ -30,46 +48,82 @@ opening `Kineis/doc/html/index.html` file in a web browser.
 
 # Getting started
 
-Refer to how to build section later to get detailed information on build and flashing items.
+## Credentials
 
-Once project is built and flashed into your HW, UART communication is available through
-hyperterminal at 9600 bauds and 1,N,8 configuration by default.
+This kineis stack needs integrator/users credentials (ID, address, secret key) to run properly. 
 
-# Package introduction
+\attention Please contact Kinéis to get your own credentials file.
 
-All Kinéis related informations are located in `Kineis` folder. Typical source tree looks like below.
-* **Lib** folder contains the Kinéis library (libkineis.a) and all required entry-points header
-files.
-* **Extdep** folder contains external dependencies of the library. It is internally used in the
-library. So far, it is about:
+\attention Credentials are delivered by Kineis after certificication of your device.  
+\attention Once credentials are delivered by Kineis, it becomes your responsability.
+
+It is up to the integrator to store it as per its own security strategy. The kineis stack is just
+requesting them through APIs called MCU-NVM wrapper (mcu_nvm.c):
+
+* "get device ID" and "get device address" are said not to be critical from a security point of
+view. Thus it remains visible when the API is called
+* "AES init" and "AES encrypt" are used to build the frame which is transmitted over the air.
+\note Here Kineis stack never knows the secret key.
+
+In this package, the credentials are just hardcoded in the code, meaning clearly stored in
+RAM/FLASH without any protections. One can change the code of these wrappers to fit its security
+strategy (e.g. set the secret key directly in some AES HW module or secure element). 
+
+## Radio configuration
+
+This FW package needs some radio configuration (transmission frequency range, transmission
+modulation, ...) to run properly.
+
+\attention Please contact Kinéis to get your own radio configuration binary file when you will
+deploy your devices.
+
+It is up to you to handle how to store those informations in the devices. The kineis stack is just
+requesting them through one API. 
+
+In this package, the configuration binary file is just hardcoded in the code as a table of bytes.
+You will get several examples of it. you can comment, uncomment the one you want.
+
+\note In case of GUI APP, it is also possible to change the radio configuration through the AT
+command "AT+RCONF" (\ref bMGR_AT_CMD_RCONF_cmd)
+
+All Kineis stack needs is to be able to get the radio configuration at initialisation.
+In case user application wants to change the radio configuration on the fly, Kineis stack must
+stopped and restarted.
+
+# Package content
+
+All Kinéis related informations are located in `Kineis` folder. Typical source tree looks like
+below.
+* **Extdep** folder contains external dependencies of the stack. So far, it is about:
     * **MGR_LOG** The logging manager (mgr_log.h) which may be used by the library to log important
-informations during execution.
-@note So far, this logger is also used by the application software described later below.
+  informations during execution.
+  \note So far, this logger is also used by the application software described later below.
     * **Mcu** contains low level hardware drivers (called wrappers) used by the Kinéis SW library.
-This is about AES (mcu_aes.c), credentials (mcu_nvm.c), extra drivers such as PA (mcu_misc.c).
-User is expected to implement its own version of thoses wrappers as per his platform needs.
-By default, this package is delivering a simple implementation of each wrapper. <br>
+  This is about AES (mcu_aes.c), credentials (mcu_nvm.c), extra drivers such as PA (mcu_misc.c).
+  User is expected to implement its own version of thoses wrappers as per his platform needs.
+  By default, this package is delivering a simple implementation of each wrapper. <br>
     * **Conf** contains static configurations used by the entire project. As mentionned earlier,
-you will find here all things concerning OS task and queue definitions. <br>
+  you will find here all things concerning OS task and queue definitions. <br>
 * **App** folder contains:
-    * The **main** file (kns_app.c) for the applications mentionned earlier. The GUI app relies on an AT
-command manager.
+    * The **main** file (kns_app.c) for the applications mentionned earlier. The GUI app relies on
+    an AT command manager.
     * **Kineis_os** contains the Kineis baremetal OS used to register queues and tasks. <br>
     * **Managers/MGR_AT_CMD** contains the AT command manager used by the GUI application. <br>
-It is about parsing a ASCII data stream coming from UART driver. <br>
-Entry point of this manager is mgr_at_cmd.h. <br>
-mgr_at_cmd_list.h is the entry files referencing the
-AT cmds supported by this firmware. Then, the other mgr_at_cmd_list files refers to subsets
-of AT cmds per functionnalities (such as general, user_data). General subset is to get ID or
-firmware version. user data subset is to transmit data over the air.
+    It is about parsing a ASCII data stream coming from UART driver. <br>
+    Entry point of this manager is mgr_at_cmd.h. <br>
+    mgr_at_cmd_list.h is the entry files referencing the
+    AT cmds supported by this firmware. Then, the other mgr_at_cmd_list files refers to subsets
+    of AT cmds per functionnalities (such as general, user_data). General subset is to get ID or
+    firmware version. user data subset is to transmit data over the air.
     * **Libs/STRUTIL** and **Libs/USERDATA** are pure sw libraries (no HW dependencies) used in AT
-cmd manager.
-    * **Mcu** contains low level hardware drivers (called wrappers) used by the components above. <br>
-Typically, it contains the wrapper used to handle a terminal/console to post/receive AT cmds (mcu_at_console.h).
-@note So far, this at_cmd console wrapper is derived from STM32_HAL_UART drivers.
-It is a bit changed to handle a continuous ACII data stream. It may be optimized as your
-convenience or based on STM LL drivers instead. Each time a character is received on UART, it is
-invoking a stream-parsing callback (so far \ref MGR_AT_CMD_parseStreamCb in this package).
+    cmd manager.
+    * **Mcu** contains low level hardware drivers (called wrappers) used by the components above.<br>
+    Typically, it contains the wrapper used to handle a terminal/console to post/receive AT cmds
+    (mcu_at_console.h).
+    \note So far, this at_cmd console wrapper is derived from STM32_HAL_UART drivers.
+    It is a bit changed to handle a continuous ACII data stream. It may be optimized as your
+    convenience or based on STM LL drivers instead. Each time a character is received on UART, it
+    is invoking a stream-parsing callback (so far \ref MGR_AT_CMD_parseStreamCb in this package).
 * **version.txt** file contains references to the software version of the package
 
 ```
@@ -199,29 +253,44 @@ Java version: 11.0.14.1
 ```
 
 Once STM32CubeIDE is properly installed:
+
 * Go to following menu: `File > Open Projects from File System...`
 * In popped-up windows
     * Click on `Archive...` button in a way to select Kinéis .tar .gz archive of
-this package (should be named something like `krd_fw_package_.*.tar.gz`.
+    this package (should be named something like `krd_fw_package_.*.tar.gz`.
     * Click on `Open`
     * Let STM32CubeIDE parse the package once `Folder` sub-window shows items
     * In this `Folder` sub-windows, select only the found `Eclipse project`
     * Click on `Finish`. `krd_fw` project should open and be available in `Project Explorer` panel
-* In `Project Explorer` panel, you can select the `krd_fw` project. As the project is already
-built in the package, you need to clean it before build if you want to rebuild it
-    * right click on project and select `Clean Project` to clean all. In build console, you should
-see something like
+* In `Project Explorer` panel, you can select the `krd_fw` project. As the project is already built
+in the package, you need to clean it before build if you want to rebuild it
+
+### Build option for KRD_MP
+
+Right click on project and select `Clean Project` to clean all. In build console, you should see
+something like:
 ```
-make -j8 clean 
+make clean 
 rm -fR build
 ```
-    * right click on project and select `Build Project` to build. you should see some
+
+Right click on project and select `Build Project` to build. you should see something like:
 ```
-make -j8 all 
+make all 
 mkdir build
 arm-none-eabi-gcc ...
 ```
-* Binary file `*.elf` file should be present in `build` folder of the project.
+
+* Binary file `\*.elf` file should be present in `build` folder of the project and ready to be
+flashed in KRD_MP HW.
+
+### Build option for KRD_LP
+
+As HW setting are different between KRD_MP and KRD_LP (mcu_misc.c), a specific compilation
+flag is used to discrminate both. In the build menu of you IDE, modify build command as following:
+```
+make all KRD_BOARD=KRD_FW_LP
+```
 
 ## From terminal
 
@@ -240,12 +309,34 @@ export PATH=~/st/stm32cubeide_1.4.0/plugins/com.st.stm32cube.ide.mcu.externaltoo
 ```
 * Windows: Update System PATH variable as usual.
 
+### Build option for KRD_MP
+
 Once toolchain is correctly available:
 * Go to root directory of the package
-* Run following command to build for default build (LDA2 modulation)
+* Run following command to build for default HW
 ```
 make clean
 make
 ```
-* Binary file `*.elf` file should be present in `build` folder of the project.
+or
+```
+make clean
+make KRD_BOARD=KRD_FW_MP
+```
 
+* Binary file `*.elf` file should be present in `build` folder of the project and ready to be
+flashed in KRD_MP HW.
+
+### Build option for KRD_LP
+
+As HW setting are different between KRD_MP and KRD_LP, a specific compilation flag is used to
+discrminate both. Once toolchain is correctly available:
+* Go to root directory of the package
+* Run following command to build for default HW
+```
+make clean
+make KRD_BOARD=KRD_FW_LP
+```
+
+* Binary file `*.elf` file should be present in `build` folder of the project and ready to be
+flashed in KRD_LP HW.

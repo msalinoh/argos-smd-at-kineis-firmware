@@ -22,12 +22,12 @@
 #ifdef USE_LOCAL_PRINTF
 #include STM32_HAL_H
 
-#define log_uart			huart2
+#define log_uart			hlpuart1
 
 /*******************************************************************************
  * EXTERNAL VARIABLES
  ******************************************************************************/
-extern UART_HandleTypeDef huart2;
+extern UART_HandleTypeDef hlpuart1;
 
 #endif // end USE_LOCAL_PRINTF
 

@@ -28,8 +28,6 @@
 #include <stdbool.h>
 #include "mgr_log_conf.h"
 
-#define VERBOSE 1
-
 #ifndef USE_LOCAL_PRINTF
 #include <stdio.h>
 #endif // end USE_LOCAL_PRINTF

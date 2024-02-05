@@ -43,6 +43,8 @@ enum KNS_OS_taskHdlr_t {
 	KNS_OS_TASK_MAX	 /**< number of queues */
 };
 
+#pragma GCC visibility pop
+
 #endif /* KNS_OS_CONF_H */
 
 /**

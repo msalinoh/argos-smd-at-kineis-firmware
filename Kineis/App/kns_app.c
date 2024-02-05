@@ -2,7 +2,7 @@
 /**
  * @file    kns_app.h
  * @brief   provide main application softwares using kineis sw satck
- * @author  Kinéis
+ * @author  Kineis
  */
 
 /**
@@ -14,7 +14,10 @@
 #include <stdbool.h>
 #include "kns_q.h"
 #include "kns_mac.h"
+#include "kns_cfg.h"
 #include "mgr_at_cmd.h"
+#include "kineis_sw_conf.h"
+#include KINEIS_SW_ASSERT_H
 #include "mgr_log.h"
 
 #ifdef USE_TX_LED // Light on a GPIO when TX occurs
@@ -36,12 +39,6 @@
 #define TEST_PASS(...)
 #define TEST_FAIL(...)
 #endif
-
-// defines used to check compilation flag settings KNS_TX_MOD (numerical values are dummy)
-#define LDA2 0x22
-#define LDK 0x33
-#define VLDA4 0x44
-#define LDA2L 0x55
 
 /* Private variables ---------------------------------------------------------*/
 
@@ -71,9 +68,10 @@ static void Set_TX_LED(__attribute__((unused)) uint8_t state)
 /** @brief  Reports the name of the source file and the source line number where assert occured
  *
  * @param[in] file: pointer to the source file name
- * @param[in] line: assert_param error line source number
+ * @param[in] line: kns_assert error line source number
  */
-static void KNS_APP_assert_failed(uint8_t *file, uint32_t line)
+static void KNS_APP_assert_failed( __attribute__((unused)) uint8_t *file,
+	__attribute__((unused)) uint32_t line)
 {
 	/* User can add his own implementation to report the file name and line number,
 	 * ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line)
@@ -145,42 +143,49 @@ void KNS_APP_stdalone(void)
 	static uint8_t state;
 	static uint8_t one_sec_delay_idx;
 
-#if KNS_TX_MOD == LDA2
-	//const uint8_t buffer_tx[] = { 0x00, 0x11, 0x22, 0x33 };
-	const uint8_t buffer_tx[] = { 0x00, 0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88, 0x99,
-					0xAA, 0xBB, 0xCC, 0xDD, 0xEE, 0xFF, 0x00, 0x11, 0x22, 0x33,
-					0x44, 0x55, 0x66, 0x77};
-#elif KNS_TX_MOD == LDA2L
-	//const uint8_t buffer_tx[] = { 0x00, 0x11, 0x22, 0x33 };
-	const uint8_t buffer_tx[] = { 0x00, 0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88, 0x99,
-					0xAA, 0xBB, 0xCC, 0xDD, 0xEE, 0xFF, 0x00, 0x11, 0x22, 0x33,
-					0x44, 0x55, 0x66, 0x77, 0x88};
-#elif KNS_TX_MOD == LDK
-	const uint8_t buffer_tx[] = { 0x00, 0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88, 0x99,
-					0xAA, 0xBB, 0xCC, 0xDD, 0xEE, 0xFF, 0x11, 0x22, 0x33 };
-#elif KNS_TX_MOD == VLDA4
-	const uint8_t buffer_tx[] = { 0xC0, 0xFF, 0xE5 };
-#else
-#error configure KNS_TX_MOD compilation flag with LDA2, LDA2L, LDK, VLDA4
-#endif
+	uint8_t buffer_tx[KNS_MAC_USRDATA_MAXLEN];
 
+	/** Initialize buffer with {0x0, 0x1, 0x2, ...}
+	 * @todo remove once FLASH zone with radio config is supported on all platfoms
+	 */
+	for (idx = 0; idx < sizeof(buffer_tx); idx++)
+		buffer_tx[idx] = idx;
 
 	switch (state) {
-	case 0: /** Send data event */
+	case 0: { /** Send data event */
+		struct KNS_CFG_radio_t device_radio_cfg;
+
+		kns_assert(KNS_CFG_getRadioInfo(&device_radio_cfg) == KNS_STATUS_OK);
+
 		appEvt.id =  KNS_MAC_SEND_DATA;
 		for (idx = 0; idx < sizeof(buffer_tx); idx++)
 			appEvt.data_ctxt.usrdata[idx] = buffer_tx[idx];
-		appEvt.data_ctxt.usrdata_bitlen = sizeof(buffer_tx) * 8;
-#if KNS_TX_MOD == LDA2L
-		appEvt.data_ctxt.usrdata_bitlen -= 4; //> A2 Legacy = 196 bits = 24.5 bytes
-#endif
 		appEvt.data_ctxt.sf = KNS_SF_NO_SERVICE;
+
+		switch (device_radio_cfg.modulation) {
+		case (KNS_TX_MOD_LDA2):
+			appEvt.data_ctxt.usrdata_bitlen = 192;
+			break;
+		case (KNS_TX_MOD_LDA2L):
+			appEvt.data_ctxt.usrdata_bitlen = 196;
+			break;
+		case (KNS_TX_MOD_VLDA4):
+			appEvt.data_ctxt.usrdata_bitlen = 24;
+			break;
+		case (KNS_TX_MOD_LDK):
+			appEvt.data_ctxt.usrdata_bitlen = 152;
+			break;
+		default:
+			kns_assert(0); // wrong modulation flashed into device
+			break;
+		}
 
 		TEST_ASSERT(KNS_Q_push(KNS_Q_DL_APP2MAC, (void *)&appEvt) == KNS_STATUS_OK);
 		Set_TX_LED(1);
 
 		state++; /* go to next state, and return to let higher task to process event */
 		return;
+	}
 	case 1: { /** Wait for Kineis stack replying OK to send frame */
 		enum KNS_status_t status;
 		struct KNS_MAC_srvcEvt_t srvcEvt;
@@ -247,8 +252,8 @@ void KNS_APP_stdalone(void)
 		one_sec_delay_idx = 0;
 		return;
 	default:
+		kns_assert(0);
 		break;
-		assert_param(0);
 	}
 }
 
@@ -262,42 +267,49 @@ void KNS_APP_stdalone_stressTest(void)
 	static uint8_t state;
 	static uint8_t one_sec_delay_idx;
 
-#if KNS_TX_MOD == LDA2
-	//const uint8_t buffer_tx[] = { 0x00, 0x11, 0x22, 0x33 };
-	const uint8_t buffer_tx[] = { 0x00, 0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88, 0x99,
-					0xAA, 0xBB, 0xCC, 0xDD, 0xEE, 0xFF, 0x00, 0x11, 0x22, 0x33,
-					0x44, 0x55, 0x66, 0x77};
-#elif KNS_TX_MOD == LDA2L
-	//const uint8_t buffer_tx[] = { 0x00, 0x11, 0x22, 0x33 };
-	const uint8_t buffer_tx[] = { 0x00, 0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88, 0x99,
-					0xAA, 0xBB, 0xCC, 0xDD, 0xEE, 0xFF, 0x00, 0x11, 0x22, 0x33,
-					0x44, 0x55, 0x66, 0x77, 0x88};
-#elif KNS_TX_MOD == LDK
-	const uint8_t buffer_tx[] = { 0x00, 0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88, 0x99,
-					0xAA, 0xBB, 0xCC, 0xDD, 0xEE, 0xFF, 0x11, 0x22, 0x33 };
-#elif KNS_TX_MOD == VLDA4
-	const uint8_t buffer_tx[] = { 0xC0, 0xFF, 0xE5 };
-#else
-#error configure KNS_TX_MOD compilation flag with LDA2, LDA2L, LDK, VLDA4
-#endif
+	uint8_t buffer_tx[KNS_MAC_USRDATA_MAXLEN];
 
+	/** Initialize buffer with {0x0, 0x1, 0x2, ...}
+	 * @todo remove once FLASH zone with radio config is supported on all platfoms
+	 */
+	for (idx = 0; idx < sizeof(buffer_tx); idx++)
+		buffer_tx[idx] = idx;
 
 	switch (state) {
-	case 0: /** Send data event */
+	case 0: { /** Send data event */
+		struct KNS_CFG_radio_t device_radio_cfg;
+
+		kns_assert(KNS_CFG_getRadioInfo(&device_radio_cfg) == KNS_STATUS_OK);
+
 		appEvt.id =  KNS_MAC_SEND_DATA;
 		for (idx = 0; idx < sizeof(buffer_tx); idx++)
 			appEvt.data_ctxt.usrdata[idx] = buffer_tx[idx];
-		appEvt.data_ctxt.usrdata_bitlen = sizeof(buffer_tx) * 8;
-#if KNS_TX_MOD == LDA2L
-		appEvt.data_ctxt.usrdata_bitlen -= 4; //> A2 Legacy = 196 bits = 24.5 bytes
-#endif
 		appEvt.data_ctxt.sf = KNS_SF_NO_SERVICE;
+
+		switch (device_radio_cfg.modulation) {
+		case (KNS_TX_MOD_LDA2):
+			appEvt.data_ctxt.usrdata_bitlen = 192;
+			break;
+		case (KNS_TX_MOD_LDA2L):
+			appEvt.data_ctxt.usrdata_bitlen = 196;
+			break;
+		case (KNS_TX_MOD_VLDA4):
+			appEvt.data_ctxt.usrdata_bitlen = 24;
+			break;
+		case (KNS_TX_MOD_LDK):
+			appEvt.data_ctxt.usrdata_bitlen = 152;
+			break;
+		default:
+			kns_assert(0); // wrong modulation flashed into device
+			break;
+		}
 
 		TEST_ASSERT(KNS_Q_push(KNS_Q_DL_APP2MAC, (void *)&appEvt) == KNS_STATUS_OK);
 		Set_TX_LED(1);
 
 		state++; /* go to next state, and return to let higher task to process event */
 		return;
+	}
 	case 1:
 		/** ---- Pop OK event from MAC ---- */
 		appEvtDummy.id = KNS_MAC_TX_DONE; /* Initialize with a dummy value */
@@ -305,21 +317,40 @@ void KNS_APP_stdalone_stressTest(void)
 		TEST_ASSERT(appEvtDummy.id == KNS_MAC_OK);
 		state++; /* go to next state, and return to let higher task to process event */
 		//return;
-	case 2: /** Try sending data again but should lead to Error as transmission already
+	case 2: { /** Try sending data again but should lead to Error as transmission already
 		  * triggerred in previous state
 		  */
+		struct KNS_CFG_radio_t device_radio_cfg;
+
+		kns_assert(KNS_CFG_getRadioInfo(&device_radio_cfg) == KNS_STATUS_OK);
+
 		appEvt.id =  KNS_MAC_SEND_DATA;
 		for (idx = 0; idx < sizeof(buffer_tx); idx++)
 			appEvt.data_ctxt.usrdata[idx] = buffer_tx[idx];
-		appEvt.data_ctxt.usrdata_bitlen = sizeof(buffer_tx) * 8;
-#if KNS_TX_MOD == LDA2L
-		appEvt.data_ctxt.usrdata_bitlen -= 4; //> A2 Legacy = 196 bits = 24.5 bytes
-#endif
 		appEvt.data_ctxt.sf = KNS_SF_NO_SERVICE;
+
+		switch (device_radio_cfg.modulation) {
+		case (KNS_TX_MOD_LDA2):
+			appEvt.data_ctxt.usrdata_bitlen = 192;
+			break;
+		case (KNS_TX_MOD_LDA2L):
+			appEvt.data_ctxt.usrdata_bitlen = 196;
+			break;
+		case (KNS_TX_MOD_VLDA4):
+			appEvt.data_ctxt.usrdata_bitlen = 24;
+			break;
+		case (KNS_TX_MOD_LDK):
+			appEvt.data_ctxt.usrdata_bitlen = 152;
+			break;
+		default:
+			kns_assert(0); // wrong modulation flashed into device
+			break;
+		}
 
 		TEST_ASSERT(KNS_Q_push(KNS_Q_DL_APP2MAC, (void *)&appEvt) == KNS_STATUS_OK);
 		state++; /* go to next state, and return to let higher task to process event */
 		return;
+	}
 	case 3:
 		/** ---- Pop error event from MAC ---- */
 		appEvtDummy.id = KNS_MAC_TX_DONE; /* Initialize with a dummy value */
@@ -364,7 +395,6 @@ void KNS_APP_stdalone_stressTest(void)
 		return;
 	default:
 		break;
-		assert_param(0);
 	}
 
 	/** Wait before new transmit: reduce by 3s as KNS_APP_waitEndOfTx includes some.
@@ -391,7 +421,7 @@ void KNS_APP_gui(void)
 	/** ---- Look for AT cmds ---- */
 	pu8_atcmd = MGR_AT_CMD_getNextAt();
 	if (pu8_atcmd != NULL)
-		MGR_AT_CMD_decodeAt(pu8_atcmd);
+		MGR_AT_CMD_decodeAt(pu8_atcmd);  // @todo: return code is not used ?
 	MGR_AT_CMD_macEvtProcess();
 }
 

@@ -1,8 +1,8 @@
 /* SPDX-License-Identifier: no SPDX license */
 /**
  * @file    kns_cfg.h
- * @brief   Device communication driver for Kinéis radio frequence
- * @author  Kinéis
+ * @brief   Device communication driver for Kineis radio frequence
+ * @author  Kineis
  *
  * @attention
  *
@@ -41,26 +41,93 @@
 
 #pragma GCC visibility push(default)
 
+/* Global defines -------------------------------------------------------------------------------*/
+#define DEVICE_ADDR_LENGTH        4
+#define DEVICE_SN_LENGTH          14
+
 /* Structures ---------------------------------------------------------------------------------- */
 
 /**
  * @struct KNS_CFG_radio_t
- * @brief configuration parameters of Kineis services, may depend on platform needsr
+ * @brief radio configuration parameters of Kineis services, may depend on platform needs
  */
 struct KNS_CFG_radio_t {
 	uint32_t min_frequency;
 	uint32_t max_frequency;
 	int8_t rf_level;
-	uint8_t downlink_enable;
+	enum KNS_tx_mod_t modulation;
 };
 
 /* Function prototypes ------------------------------------------------------------------------- */
 
-enum KNS_status_t KNS_CFG_GetRadioInfo(struct KNS_CFG_radio_t *radio_cfg);
+/**
+ * @brief Get the value of the Message Counter
+ *
+ * @param[out] mc_ptr : pointer where the Message Counter value is copied
+ *
+ * @return Status @ref KNS_status_t
+ */
+enum KNS_status_t KNS_CFG_getMC(uint16_t *mc_ptr);
 
-enum KNS_status_t KNS_CFG_GetIdDec(uint32_t *id_dec);
+/**
+ * @brief Set the value of the Message Counter
+ *
+ * @param[in] mcTmp : value to store in non-volatile memory
+ *
+ * @return Status @ref KNS_status_t
+ */
+enum KNS_status_t KNS_CFG_setMC(uint16_t mcTmp);
 
-enum KNS_status_t KNS_CFG_GetAddr(uint8_t addr[]);
+/**
+ * @brief Get the Kineis radio configuration
+ *
+ * @param[out] radio_cfg : pointer to a radio configuration
+ * The radio configuration is an encrypted memory bloc containing data
+ * about radio settings of the device. This data bloc is provided by Kineis.
+ *
+ * @return Status @ref KNS_status_t
+ */
+enum KNS_status_t KNS_CFG_getRadioInfo(struct KNS_CFG_radio_t *radio_cfg);
+
+/**
+ * @brief Set the Kineis radio configuration
+ *
+ * @param[in] radio_cfg : pointer to a radio configuration
+ * The radio configuration is an encrypted memory bloc containing data
+ * about radio settings of the device. This data bloc is provided by Kineis.
+ *
+ * @return Status @ref KNS_status_t
+ */
+enum KNS_status_t KNS_CFG_setRadioInfo(void *radio_cfg);
+
+/**
+ * @brief Get the Kineis device identifier
+ *
+ * @param[out] dev_id : device identifier
+ *
+ * @return Status @ref KNS_status_t
+ */
+enum KNS_status_t KNS_CFG_getId(uint32_t *dev_id);
+
+/**
+ * @brief Get the Kineis device address
+ *
+ * @param[out] dev_add : device address (4-bytes binary array)
+ *
+ * @return Status @ref KNS_status_t
+ */
+enum KNS_status_t KNS_CFG_getAddr(uint8_t dev_add[]);
+
+/**
+ * @brief Get the device serial number
+ *
+ * @param[out] sn : serial number (14-bytes null terminated ASCII string)
+ *
+ * @return Status @ref KNS_status_t
+ */
+enum KNS_status_t KNS_CFG_getSN(uint8_t sn[]);
+
+#pragma GCC visibility pop
 
 #endif /* KNS_CFG_H */
 /**

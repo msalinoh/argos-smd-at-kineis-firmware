@@ -1,9 +1,8 @@
 /* SPDX-License-Identifier: no SPDX license */
 /**
- * @file kineis_sw_conf.h
- * @author Kinéis
- * @brief General configuration settings of Kineis SW, as per platform
- * @note This file is present in Extdep folder because it is an include of the logger.
+ * @file    kineis_sw_conf.h
+ * @brief   Kineis stack SW configurations depending on platform used
+ * @author  Kineis
  *
  * @attention
  *
@@ -13,14 +12,6 @@
  * You may not use this file except in compliance with the License.
  * You may obtain a copy of the License at:
  * * kineis.com
- *
- */
-/**
- * @file        kineis_sw_conf.h
- * @brief
- * @date        13/10/2020
- * @version     1.0
- * @note
  *
  */
 
@@ -44,16 +35,20 @@
 /* Defines ------------------------------------------------------------------------------------- */
 
 /**
+ * @brief define include file concerninq assert used by Kineis stack
+ *
+ * @attention DO NOT change this as long as you build with Kinés stack. Must keep it the same way
+ * it was when generating the library (libkineis.a).
+ */
+#define KINEIS_SW_ASSERT_H	"kns_assert.h"
+
+/**
  * @brief define STM32 HAL APIs as per platform, here STM32WL microcontroller
+ *
+ * @note This is not used by Kineis stack. It is only used by the Kineis APP (open code). You can
+ * change adapt it the way you want.
  */
 #define STM32_HAL_H		"stm32wlxx_hal.h"
-#define STM32_HAL_CONF_H	"stm32wlxx_hal_conf.h"
-#define STM32_HAL_SUBGHZ_H	"stm32wlxx_hal_subghz.h"
-#define STM32_HAL_RTC_H		"stm32wlxx_hal_rtc.h"
-#define STM32_HAL_LPTIM_H	"stm32wlxx_hal_lptim.h"
-#define STM32_HAL_UART_H	"stm32wlxx_hal_uart.h"
-#define STM32_HAL_SPI_H		"stm32wlxx_hal_spi.h"
-#define STM32_IT_H		"stm32wlxx_it.h"
 
 /* Enums --------------------------------------------------------------------------------------- */
 
@@ -90,12 +85,6 @@ enum ERROR_RETURN_T {
 	// config errors
 	ERROR_PROT_INVALID_TXFREQ_TXMOD = 60
 };
-
-/* KNS_TX: in case KNS_TX can be configured publicly, uncomment below or copy/paste code here */
-//#include "kns_tx_conf.h"
-
-/* MGR_LOG: in case MGR_LOG can be configured publicly, uncomment below or copy/paste code here */
-//#include "mgr_log_conf.h"
 
 #endif // end KINEIS_SW_CONF_H
 
