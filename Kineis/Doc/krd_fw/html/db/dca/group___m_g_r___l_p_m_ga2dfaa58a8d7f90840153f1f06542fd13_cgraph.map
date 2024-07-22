@@ -1,0 +1,6 @@
+<map id="LPM_stop_exit" name="LPM_stop_exit">
+<area shape="rect" id="node1" title="System callback invoked by MGR_LPM at STOP mode exit." alt="" coords="5,13,121,39"/>
+<area shape="rect" id="node2" href="$db/dca/group___m_g_r___l_p_m.html#gab502b89f35dcc87b365658836f69736e" title="System Clock Configuration when exit from stop mode." alt="" coords="169,5,360,47"/>
+<area shape="rect" id="node3" href="$d0/d29/main_8c.html#a1730ffe1e560465665eb47d9264826f9" title="This function is executed in case of error occurrence." alt="" coords="408,13,519,39"/>
+<area shape="rect" id="node4" href="$d8/d62/group___m_c_u___a_p_p___w_r_a_p_p_e_r_s.html#gae14ee3e1d2a9b459c0d89c451a4bc470" title="Send AT CMD response to console." alt="" coords="567,13,751,39"/>
+</map>

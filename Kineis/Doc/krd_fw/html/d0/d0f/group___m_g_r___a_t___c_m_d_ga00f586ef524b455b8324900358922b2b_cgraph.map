@@ -1,0 +1,4 @@
+<map id="MGR_AT_CMD_getAtType" name="MGR_AT_CMD_getAtType">
+<area shape="rect" id="node1" title="Identifies AT command and its type (AT+XYZ=... or AT+XYZ=? or AT+XYZ? mode)" alt="" coords="5,5,192,32"/>
+<area shape="rect" id="node2" href="$d8/da3/group___s_t_r_u_t_i_l_s.html#gae730bd1326c8ae1ceefe014b119ad407" title="Compare 2 strings." alt="" coords="240,5,351,32"/>
+</map>

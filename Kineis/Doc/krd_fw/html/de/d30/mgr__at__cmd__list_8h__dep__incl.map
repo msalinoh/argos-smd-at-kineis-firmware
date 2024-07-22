@@ -1,0 +1,6 @@
+<map id="Kineis/App/Managers/MGR_AT_CMD/Inc/mgr_at_cmd_list.h" name="Kineis/App/Managers/MGR_AT_CMD/Inc/mgr_at_cmd_list.h">
+<area shape="rect" id="node1" title="AT commands list header file." alt="" coords="203,5,375,61"/>
+<area shape="rect" id="node2" href="$da/d77/mgr__at__cmd_8c.html" title="APIs Implementation used to parse the UART ASCII data stream and extract AT commands." alt="" coords="5,109,179,165"/>
+<area shape="rect" id="node3" href="$da/df9/mgr__at__cmd__list_8c.html" title="AT commands list main file." alt="" coords="203,109,376,165"/>
+<area shape="rect" id="node4" href="$d1/dfd/mgr__at__cmd__list__general_8c.html" title="subset of AT commands concerning general purpose (get ID, FW version, ...)" alt="" coords="400,109,573,165"/>
+</map>

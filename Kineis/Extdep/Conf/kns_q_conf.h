@@ -8,18 +8,15 @@
 /**
  * @page kns_q_conf_page Kineis OS queue configuration
  *
- * This page is presenting the configuration parameters of Kineis software queues. It should be
- * fixed as per software architecture. Parameters are:
+ * This page is presenting the configuration of OS queues for Kineis Oq abtstraction layer
+ * (\ref KNS_Q). It should be fixed as per software architecture.
+ *
+ * Typical parameters of a queue are:
  * * size of each queue (maximum number of items in queue)
  * * size of each element of the queue.
  *
- * So far, description is done for UL queue between DRIVER layer and SERVICE layer.
- *
- * Additional later supports will probably add descriptions of following queues:
- * * DL PROFILE to SERVICE queue
- * * UL DRIVER to PROFILE queue
- * * UL SERVICE to PROFILE queue
- *
+ * So far, the queues are listed in a simple enum (\ref KNS_Q_handle_t) from lower-priority to
+ * higher-priority.
  */
 
 /**
@@ -71,24 +68,33 @@
  */
 #define KNS_Q_UL_SRVC2MAC_ITEM_BYTESIZE sizeof(struct KNS_SRVC_evt_t)
 
+/**< @attention queue length should be one more than expected in case of baremetal KNS OS */
+#ifdef USE_BAREMETAL
+#define KNS_Q_UL_INFRA2MAC_LEN           2
+#else // else of USE_BAREMETAL
+#define KNS_Q_UL_INFRA2MAC_LEN           1
+#endif // end of USE_BAREMETAL
+#define KNS_Q_UL_INFRA2MAC_ITEM_BYTESIZE sizeof(struct KNS_MAC_infraEvt_t)
+
 /* Enums --------------------------------------------------------------------------------------- */
 
 /**
  * @enum KNS_Q_handle_t
  * @brief Queue handlers
- * @attention Mandatory enum used in KNS_Q APIs whatever OS coded behinf (baremetal, FREERTOS, ...)
+ * @attention Mandatory enum used in KNS_Q APIs whatever OS coded behind (baremetal, FREERTOS, ...)
  * @attention Sort handlers by priority from lower to higher. E.G. SERVICE-to-MAC queue is higher
  * priority than MAC-to-APP queue. This will be important in case of baremetal "OS".
  */
 enum KNS_Q_handle_t {
 	/** @todo APP can add its own queues below */
-	//KNS_Q_DL_SENSOR2APP_DUMMY,   /**< DRIVER to PROFILE queue, @todo add when supported */
+	//KNS_Q_DL_SENSOR2APP_DUMMY = -1,   /**< DRIVER to PROFILE queue, @todo add when supported */
 	/** @attention keep below queue handlers for proper bahaviour of kineis stack
-	 * @attention align this enum wit hcontent of qPool declared in kns_q_conf.c
+	 * @attention align this enum with content of qPool declared in kns_q_conf.c
 	 */
-	KNS_Q_DL_APP2MAC,        /**< APP to MAC queue */
-	KNS_Q_UL_MAC2APP,        /**< MAC to APP queue */
-	KNS_Q_UL_SRVC2MAC,       /**< SERVICE to MAC queue */
+	KNS_Q_DL_APP2MAC   = 0,  /**< APP to MAC queue */
+	KNS_Q_UL_MAC2APP   = 1,  /**< MAC to APP queue */
+	KNS_Q_UL_INFRA2MAC = 2,  /**< INFRA to MAC queue, used by profile timer */
+	KNS_Q_UL_SRVC2MAC  = 3,  /**< SERVICE to MAC queue */
 	KNS_Q_MAX                /**< number of queues */
 };
 

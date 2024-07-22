@@ -17,21 +17,31 @@
 #include "mgr_at_cmd_list_user_data.h"
 #include "mgr_at_cmd_list_previpass.h"
 #include "mgr_at_cmd_list_mac.h"
+#include "mgr_at_cmd_list_certif.h"
 
+const char *atcmd_version = "v0.4";
+
+/** @attention update AT cmd version above if you add or remove commands in this list */
 const struct atcmd_desc_t cas_atcmd_list_array[ATCMD_MAX_COUNT] = {
 	/**< General commands */
+	{ "AT+VERSION",      10, bMGR_AT_CMD_VERSION_cmd},
 	{ "AT+PING",          7, bMGR_AT_CMD_PING_cmd},
 	{ "AT+FW",            5, bMGR_AT_CMD_FW_cmd},
 	{ "AT+ADDR",          7, bMGR_AT_CMD_ADDR_cmd},
 	{ "AT+ID",            5, bMGR_AT_CMD_ID_cmd},
 	{ "AT+SN",            5, bMGR_AT_CMD_SN_cmd},
 	{ "AT+RCONF",         8, bMGR_AT_CMD_RCONF_cmd},
+	{ "AT+SAVE_RCONF",   13, bMGR_AT_CMD_SAVE_RCONF_cmd},
+	{ "AT+LPM",           6, bMGR_AT_CMD_LPM_cmd},
 
 	/**< User data commands */
 	{ "AT+TX",            5, bMGR_AT_CMD_TX_cmd},
-#ifdef KIMX_FW
+#ifdef USE_RX_STACK
 	{ "AT+RX",            5, bMGR_AT_CMD_RX_cmd},
 #endif
+
+	/**< Certif commands */
+	{ "AT+CW",            5, bMGR_AT_CMD_CW_cmd},
 
 	/**< Satellite pass predictions commands (not functionnal, only to avoid GUI to crash) */
 	{ "AT+PREPASS_EN",   13, bMGR_AT_CMD_PREPASS_EN_cmd},

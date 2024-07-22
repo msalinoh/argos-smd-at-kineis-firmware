@@ -1,0 +1,5 @@
+<map id="LPM_configWakeUpRtc" name="LPM_configWakeUpRtc">
+<area shape="rect" id="node1" title="Function used to configure the internal wakeup line to exit low power mode." alt="" coords="213,31,384,57"/>
+<area shape="rect" id="node2" href="$db/dca/group___m_g_r___l_p_m.html#ga8828ea85b626943b9d30c4dfabb0666a" title="System callback invoked by MGR_LPM at STANDBY mode entering." alt="" coords="5,5,165,32"/>
+<area shape="rect" id="node3" href="$db/dca/group___m_g_r___l_p_m.html#gaa6d6e5889194fc0b5a37640ed3d53ef3" title="System callback invoked by MGR_LPM at STANDBY mode entering." alt="" coords="11,56,160,83"/>
+</map>

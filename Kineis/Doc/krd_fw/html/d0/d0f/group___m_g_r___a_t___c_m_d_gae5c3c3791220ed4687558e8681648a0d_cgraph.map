@@ -1,0 +1,5 @@
+<map id="bMGR_AT_CMD_sendResponse" name="bMGR_AT_CMD_sendResponse">
+<area shape="rect" id="node1" title=": This function writes in UART the response of specific command" alt="" coords="5,5,229,32"/>
+<area shape="rect" id="node2" href="$d8/d62/group___m_c_u___a_p_p___w_r_a_p_p_e_r_s.html#gae14ee3e1d2a9b459c0d89c451a4bc470" title="Send AT CMD response to console." alt="" coords="509,5,693,32"/>
+<area shape="rect" id="node3" href="$d8/d62/group___m_c_u___a_p_p___w_r_a_p_p_e_r_s.html#gaf6858a5591eaf9e21e59a15188ff6f13" title="Write content of a binary data buffer as AT cmd response." alt="" coords="277,27,461,69"/>
+</map>

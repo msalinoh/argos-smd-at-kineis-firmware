@@ -55,6 +55,16 @@ static struct q_desc_t qSrvc2Mac = {
 	.data = (uint8_t *)qDataSrvc2Mac
 };
 
+static uint8_t qDataInfra2Mac[KNS_Q_UL_INFRA2MAC_LEN][KNS_Q_UL_INFRA2MAC_ITEM_BYTESIZE];
+static struct q_desc_t qInfra2Mac = {
+	.mutex = false,
+	.rIdx = 0,
+	.wIdx = 0,
+	.nbElt = KNS_Q_UL_INFRA2MAC_LEN,
+	.eltSize = KNS_Q_UL_INFRA2MAC_ITEM_BYTESIZE,
+	.data = (uint8_t *)qDataInfra2Mac
+};
+
 struct q_desc_t *qPool[KNS_Q_MAX] = {
 	/** @todo APP can add its own queues below */
 	//&qSensor2App_dummy,   /**< example for adding one appplication queue here */
@@ -63,6 +73,7 @@ struct q_desc_t *qPool[KNS_Q_MAX] = {
 	 */
 	&qApp2Mac,
 	&qMac2App,
+	&qInfra2Mac,
 	&qSrvc2Mac
 };
 
@@ -75,11 +86,12 @@ const char *qIdx2Str[KNS_Q_MAX] = {
 	 */
 	"KNS_Q_DL_APP2MAC",
 	"KNS_Q_UL_MAC2APP",
+	"KNS_Q_UL_INFRA2MAC",
 	"KNS_Q_UL_SRVC2MAC"
 };
-#endif
+#endif /* (defined (DEBUG) || defined (VERBOSE)) */
 
-#endif
+#endif /* USE_BAREMETAL */
 
 #pragma GCC visibility pop
 

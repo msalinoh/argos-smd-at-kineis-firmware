@@ -1,0 +1,4 @@
+<map id="sUserDataTxFifoElt_t" name="sUserDataTxFifoElt_t">
+<area shape="rect" id="node1" title="structure defining one element of the TX fifo" alt="" coords="5,95,164,121"/>
+<area shape="rect" id="node2" href="$dc/dc4/unions_user_data_attribute__t.html" title="structure containing USERDATA attribute" alt="" coords="5,5,164,32"/>
+</map>

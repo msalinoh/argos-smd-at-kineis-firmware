@@ -19,11 +19,11 @@
 
 /* Includes ------------------------------------------------------------------------------------ */
 
+#include "kns_cs.h"
 #include "kns_q_conf.h"
 #include "kns_q.h"
 
-#undef DEBUG
-#undef VERBOSE
+//#undef VERBOSE
 #include "mgr_log.h"
 
 #pragma GCC visibility push(default)
@@ -70,7 +70,6 @@ __attribute((__weak__))
 #endif
 enum KNS_status_t KNS_Q_push(enum KNS_Q_handle_t qHandle, void *qItem)
 {
-	uint32_t prim;
 	uint8_t eltIdx, wIdxNext;
 	uint8_t *qEltPtr, *qItemPtr;
 	struct q_desc_t *q = qPool[qHandle];
@@ -80,8 +79,8 @@ enum KNS_status_t KNS_Q_push(enum KNS_Q_handle_t qHandle, void *qItem)
 
 	/** Get queue's mutex to write into FIFO
 	 */
-	prim = __get_PRIMASK();
-	__disable_irq();
+	KNS_CS_enter();
+
 	while (q->mutex == true)
 		;
 	q->mutex = true;
@@ -92,8 +91,7 @@ enum KNS_status_t KNS_Q_push(enum KNS_Q_handle_t qHandle, void *qItem)
 	wIdxNext = (q->wIdx  + 1) % q->nbElt;
 	if (wIdxNext == q->rIdx) {
 		q->mutex = false;
-		if (!prim)
-			__enable_irq();
+		KNS_CS_exit();
 		MGR_LOG_VERBOSE("[KNS_Q] push QFULL %s, idx %d, evt=0x%x\r\n", qIdx2Str[qHandle],
 			wIdxPrev, ((uint8_t *)qItem)[0]);
 		return KNS_STATUS_QFULL;
@@ -107,8 +105,7 @@ enum KNS_status_t KNS_Q_push(enum KNS_Q_handle_t qHandle, void *qItem)
 	q->wIdx = wIdxNext;
 
 	q->mutex = false;
-	if (!prim)
-		__enable_irq();
+	KNS_CS_exit();
 
 	MGR_LOG_VERBOSE("[KNS_Q] push q %s, idx %d, size %d: ", qIdx2Str[qHandle],
 		wIdxPrev, q->eltSize);
@@ -122,7 +119,6 @@ __attribute((__weak__))
 #endif
 enum KNS_status_t KNS_Q_pop(enum KNS_Q_handle_t qHandle, void *qItem)
 {
-	uint32_t prim;
 	uint8_t eltIdx;
 	uint8_t *qEltPtr, *qItemPtr;
 	struct q_desc_t *q = qPool[qHandle];
@@ -138,8 +134,7 @@ enum KNS_status_t KNS_Q_pop(enum KNS_Q_handle_t qHandle, void *qItem)
 
 	/** Get queue's mutex to update read pointer of the FIFO
 	 */
-	prim = __get_PRIMASK();
-	__disable_irq();
+	KNS_CS_enter();
 	while (q->mutex == true)
 		;
 	q->mutex = true;
@@ -149,8 +144,7 @@ enum KNS_status_t KNS_Q_pop(enum KNS_Q_handle_t qHandle, void *qItem)
 	 */
 	if (q->rIdx == q->wIdx) {
 		q->mutex = false;
-		if (!prim)
-			__enable_irq();
+		KNS_CS_exit();
 		//MGR_LOG_VERBOSE("[KNS_Q] pop QEMPTY %s\r\n", qIdx2Str[qHandle]);
 		return KNS_STATUS_QEMPTY;
 	}
@@ -163,8 +157,7 @@ enum KNS_status_t KNS_Q_pop(enum KNS_Q_handle_t qHandle, void *qItem)
 	q->rIdx = (q->rIdx  + 1) % q->nbElt;
 
 	q->mutex = false;
-	if (!prim)
-		__enable_irq();
+	KNS_CS_exit();
 
 	MGR_LOG_VERBOSE("[KNS_Q] pop  q %s, idx %d\r\n", qIdx2Str[qHandle], rIdxPrev);
 
@@ -181,6 +174,23 @@ bool KNS_Q_isEvtInHigherPrioQ(enum KNS_Q_handle_t qHandle)
 		if (q->rIdx != q->wIdx) {
 			MGR_LOG_VERBOSE("[KNS_Q] higher-prio check q %s, evt found in q %s\r\n",
 				qIdx2Str[qHandle], qIdx2Str[qHandleTmp]);
+			return true;
+		}
+	}
+
+	return false;
+}
+
+bool KNS_Q_isEvtInSomeQ()
+{
+	struct q_desc_t *q;
+	enum KNS_Q_handle_t qHandleTmp;
+
+	for (qHandleTmp = 0; qHandleTmp <  KNS_Q_MAX; qHandleTmp++) {
+		q = qPool[qHandleTmp];
+		if (q->rIdx != q->wIdx) {
+			MGR_LOG_VERBOSE("[KNS_Q] some-Q check, evt found in q %s\r\n",
+				qIdx2Str[qHandleTmp]);
 			return true;
 		}
 	}

@@ -167,4 +167,4 @@ void aes_decrypt_256( const uint8_t in[N_BLOCK],
 }
 #endif
 
-#endif // end AES_H
+#endif /* AES_H */

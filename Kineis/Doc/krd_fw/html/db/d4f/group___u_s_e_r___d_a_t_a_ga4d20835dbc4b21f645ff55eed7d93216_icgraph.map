@@ -1,0 +1,6 @@
+<map id="USERDATA_txFifoRemoveElt" name="USERDATA_txFifoRemoveElt">
+<area shape="rect" id="node1" title="Delete an element from the TX fifo." alt="" coords="568,5,773,32"/>
+<area shape="rect" id="node2" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#ga1a39b3c9cd76d50537a8bc42087ed46f" title="Fct used to retreive and process event coming from kineis stack as answers to AT commands." alt="" coords="299,5,520,32"/>
+<area shape="rect" id="node3" href="$dd/d41/group___k_n_s___a_p_p.html#ga06543de003a98e82570c572ce5e1240c" title="This fct is the application expected to run in front of the GUI." alt="" coords="108,5,251,32"/>
+<area shape="rect" id="node4" href="$d0/d29/main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="The application entry point." alt="" coords="5,5,60,32"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="Kineis/Lpm/Inc/lpm.h" name="Kineis/Lpm/Inc/lpm.h">
+<area shape="rect" id="node1" title="This file contains some utilities and functions needed for a correct handling of LPM on the STM32WL55..." alt="" coords="6,5,165,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,155,88,181"/>
+<area shape="rect" id="node3" href="$df/d63/mgr__lpm_8h.html" title="low power mode manager is in charge to collect all low power needs from &#39;clients&#39; and setup the corre..." alt="" coords="82,80,174,107"/>
+<area shape="rect" id="node4" title=" " alt="" coords="135,229,206,256"/>
+<area shape="rect" id="node5" href="$d8/d85/kns__types_8h.html" title="Kineis types definition." alt="" coords="165,155,265,181"/>
+</map>

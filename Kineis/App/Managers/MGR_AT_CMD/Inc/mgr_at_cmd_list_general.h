@@ -19,6 +19,17 @@
 
 /* Functions -----------------------------------------------------------------*/
 
+/** @brief Process AT command "AT+VERSION" to get the version of AT commands supported by the FW
+ *
+ * "AT+VERSION=?": will return the version of AT commands
+ *
+ * @param[in] pu8_cmdParamString: string containing AT command
+ * @param[in] e_exec_mode: type of the command (status command or action command)
+ *
+ * @return true if command is correctly received and processed, false if error
+ */
+bool bMGR_AT_CMD_VERSION_cmd(uint8_t *pu8_cmdParamString, enum atcmd_type_t e_exec_mode);
+
 /** @brief Process AT command "AT+PING" to test the UART communication.
  *
  * "AT+PING=?": if the UART communication is ready the module returns "+OK".
@@ -111,6 +122,43 @@ bool bMGR_AT_CMD_SN_cmd(uint8_t *pu8_cmdParamString, enum atcmd_type_t e_exec_mo
  * @return true if command is correctly received and processed, false if error
  */
 bool bMGR_AT_CMD_RCONF_cmd(uint8_t *pu8_cmdParamString, enum atcmd_type_t e_exec_mode);
+
+/** @brief Process AT command "AT+SAVE_RCONF" save the radio configuration into Flash
+ *
+ * 1) "AT+SAVE_RCONF="
+ * N/A Response format: "+ERROR=<error_code>". (See \ref ERROR_RETURN_T)
+ *
+ * @param[in] pu8_cmdParamString: string containing AT command
+ * @param[in] e_exec_mode: type of the command (status command or action command)
+ *
+ * @return true if command is correctly received and processed, false if error
+ */
+bool bMGR_AT_CMD_SAVE_RCONF_cmd(uint8_t *pu8_cmdParamString, enum atcmd_type_t e_exec_mode);
+
+/** @brief Set/Get low power mode "AT+LPM"
+ *
+ * So far, on all kineis platforms and reference designs, LPm is described as \ref MgrLpm_LPM_t:
+ * 	LOW_POWER_MODE_NONE     = 0x00,
+ * 	LOW_POWER_MODE_SLEEP    = 0x01,
+ * 	LOW_POWER_MODE_STOP     = 0x02,
+ * 	LOW_POWER_MODE_STANDBY  = 0x04,
+ * 	LOW_POWER_MODE_SHUTDOWN = 0x08
+ *
+ * 1) "AT+LPM=<LPM capabilities bitmap" will configure the expected LPM.
+ * the FW will then allow to reach the deepest LPM configured inthis bitmap.
+ *
+ * @attention Ensure your configuration fits the LPM capabilities implemented in the FW
+ *
+ * 2) "AT+LPM=?" will reply te LPM configuration bitmap
+ *
+ * Response format: "+LPM=<bitmap>" depending on your implementation.
+ *
+ * @param[in] pu8_cmdParamString: string containing AT command
+ * @param[in] e_exec_mode: type of the command (status command or action command)
+ *
+ * @return true if command is correctly received and processed, false if error
+ */
+bool bMGR_AT_CMD_LPM_cmd(uint8_t *pu8_cmdParamString, enum atcmd_type_t e_exec_mode);
 
 #endif /* __MGR_AT_CMD_LIST_GENERAL_H */
 /**

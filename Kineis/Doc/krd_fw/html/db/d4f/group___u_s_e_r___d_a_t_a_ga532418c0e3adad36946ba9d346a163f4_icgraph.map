@@ -1,0 +1,12 @@
+<map id="USERDATA_txFifoIsInBuf" name="USERDATA_txFifoIsInBuf">
+<area shape="rect" id="node1" title="check the element is pointing on a valid address, i.e. one from sUserDataTxFifoBuf buffer" alt="" coords="1057,56,1236,83"/>
+<area shape="rect" id="node2" href="$db/d4f/group___u_s_e_r___d_a_t_a.html#ga9dc3ef3b0eec939e8a61b25e0a107cbe" title="Add element in TX fifo." alt="" coords="557,5,733,32"/>
+<area shape="rect" id="node5" href="$db/d4f/group___u_s_e_r___d_a_t_a.html#ga2c1ea014de9c2ba244dc6605a6edce59" title="check element is part of the TX fifo or not" alt="" coords="808,56,1005,83"/>
+<area shape="rect" id="node7" href="$db/d4f/group___u_s_e_r___d_a_t_a.html#ga4d20835dbc4b21f645ff55eed7d93216" title="Delete an element from the TX fifo." alt="" coords="804,107,1009,133"/>
+<area shape="rect" id="node3" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#gaaa9bdf10c9ac69ef778eea22f8225343" title="Handle new TX data, this is the core function of AT+TX cmd." alt="" coords="236,31,487,57"/>
+<area shape="rect" id="node4" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#ga0a4332fc4f8bad99c421588fe542a2bd" title="Process AT command &quot;AT+TX&quot; send user data." alt="" coords="5,31,188,57"/>
+<area shape="rect" id="node6" href="$db/d4f/group___u_s_e_r___d_a_t_a.html#gacb676464a4de1543fa3e55314f740110" title="Get an element from memory pool in a way to push it later." alt="" coords="543,56,747,83"/>
+<area shape="rect" id="node8" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#ga1a39b3c9cd76d50537a8bc42087ed46f" title="Fct used to retreive and process event coming from kineis stack as answers to AT commands." alt="" coords="535,107,756,133"/>
+<area shape="rect" id="node9" href="$dd/d41/group___k_n_s___a_p_p.html#ga06543de003a98e82570c572ce5e1240c" title="This fct is the application expected to run in front of the GUI." alt="" coords="290,107,433,133"/>
+<area shape="rect" id="node10" href="$d0/d29/main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="The application entry point." alt="" coords="69,107,124,133"/>
+</map>

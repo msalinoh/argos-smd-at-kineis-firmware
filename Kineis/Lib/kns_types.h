@@ -28,7 +28,6 @@
 /**
  * @enum KNS_status_t
  * @brief Status codes returned by driver. All KNS_xxx functions returns this status type.
- * @todo This status should be common to all driver as much as possible.
  */
 enum KNS_status_t {
 	KNS_STATUS_OK,       /**< status OK */
@@ -38,13 +37,13 @@ enum KNS_status_t {
 	KNS_STATUS_BUSY,     /**< module is busy (transceiver, bus, ... */
 	KNS_STATUS_TIMEOUT,  /**< timeout reached */
 
-	KNS_STATUS_BAD_SETTING, /**< wrong configuration settig for radio */
+	KNS_STATUS_BAD_SETTING, /**< wrong settings (radio, protocol capabilities, ...) */
 	KNS_STATUS_BAD_LEN,  /**< TX data frame length error */
 
 	KNS_STATUS_TR_ERR,   /**< Error during transceiver action (TX, RX, SPI/A2S/... error) */
 
-	KNS_STATUS_QFULL,    /**< queue is full */
-	KNS_STATUS_QEMPTY,    /**< queue is empty */
+	KNS_STATUS_QFULL,    /**< queue is full, FIFO is full, ... */
+	KNS_STATUS_QEMPTY,    /**< queue is empty, FIFOis empty, ... */
 	KNS_STATUS_NVM_ACCESS_ERR  /**< for all nvm access issue */
 };
 
@@ -76,9 +75,7 @@ enum KNS_satServiceFlag_t {
  * @enum KNS_tx_mod_t
  * @brief Transmission modulation
  *
- * @todo need to put modulation back into kns_tx.h in KNS_TX_cfg_t
  */
-/** @todo include for KNS_tx_rf_cfg_t, remove this type from this feader file */
 enum KNS_tx_mod_t {
 	KNS_TX_MOD_NONE  = 0,  /**< no TX generation */
 	KNS_TX_MOD_CW    = 1,  /**< continuous wave */

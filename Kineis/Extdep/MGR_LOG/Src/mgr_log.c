@@ -15,6 +15,7 @@
 #include <stdarg.h>
 #include <string.h>
 #include <stdio.h>
+#include "mgr_log_conf.h"
 #include "mgr_log.h"
 
 

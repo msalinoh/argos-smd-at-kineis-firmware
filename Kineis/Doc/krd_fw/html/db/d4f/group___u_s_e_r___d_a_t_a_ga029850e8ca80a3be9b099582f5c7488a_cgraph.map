@@ -1,0 +1,7 @@
+<map id="USERDATA_txFifoFlush" name="USERDATA_txFifoFlush">
+<area shape="rect" id="node1" title="flush TX fifo" alt="" coords="5,56,175,83"/>
+<area shape="rect" id="node2" href="$d9/d2f/group___k_i_n_e_i_s___s_w___c_o_n_f.html#ga858c122b744e5d185b5abac307aae807" title="Enter critical section." alt="" coords="465,5,580,32"/>
+<area shape="rect" id="node3" href="$d9/d2f/group___k_i_n_e_i_s___s_w___c_o_n_f.html#ga58b477bfcd987dcd7b733b98ab692fdc" title="Exit critical section." alt="" coords="470,81,575,108"/>
+<area shape="rect" id="node4" href="$db/d4f/group___u_s_e_r___d_a_t_a.html#ga7c272898faf1448391a80b578d9acf45" title="count number of elements in TX fifo" alt="" coords="223,81,417,108"/>
+<area shape="rect" id="node5" href="$db/d4f/group___u_s_e_r___d_a_t_a.html#gafba02bd8b2e6ebad0b2f38b72e40ec21" title="Log content of the TX fifo." alt="" coords="241,31,399,57"/>
+</map>

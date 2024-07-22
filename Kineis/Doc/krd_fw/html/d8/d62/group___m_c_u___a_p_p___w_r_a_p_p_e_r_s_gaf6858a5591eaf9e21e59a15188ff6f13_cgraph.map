@@ -1,0 +1,4 @@
+<map id="MCU_AT_CONSOLE_send_dataBuf" name="MCU_AT_CONSOLE_send_dataBuf">
+<area shape="rect" id="node1" title="Write content of a binary data buffer as AT cmd response." alt="" coords="5,5,189,47"/>
+<area shape="rect" id="node2" href="$d8/d62/group___m_c_u___a_p_p___w_r_a_p_p_e_r_s.html#gae14ee3e1d2a9b459c0d89c451a4bc470" title="Send AT CMD response to console." alt="" coords="237,13,421,39"/>
+</map>

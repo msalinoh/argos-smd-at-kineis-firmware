@@ -1,0 +1,5 @@
+<map id="vMGR_LPM_clientNotifyExit" name="vMGR_LPM_clientNotifyExit">
+<area shape="rect" id="node1" title="internal API used to notify clients when exiting LPM" alt="" coords="320,5,523,32"/>
+<area shape="rect" id="node2" href="$db/dca/group___m_g_r___l_p_m.html#ga7bf128e76e6a14840b3c8d74946c37f1" title="This is the main Entry point to the low power mode manager." alt="" coords="144,5,272,32"/>
+<area shape="rect" id="node3" href="$db/dca/group___m_g_r___l_p_m.html#ga349cbb2c24fd0bd7f2c24bd063734660" title="Try to enter low power mode depending on clients capabilities." alt="" coords="5,5,96,32"/>
+</map>

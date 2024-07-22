@@ -1,0 +1,12 @@
+<map id="Kineis/App/Kineis_os/KNS_Q/Inc/kns_q.h" name="Kineis/App/Kineis_os/KNS_Q/Inc/kns_q.h">
+<area shape="rect" id="node1" title="Configuration of queues used in kineis_swr." alt="" coords="774,5,931,47"/>
+<area shape="rect" id="node2" href="$d0/d29/main_8c.html" title=": Main program body" alt="" coords="5,109,129,136"/>
+<area shape="rect" id="node3" href="$d0/d08/kns__q__baremetal_8c.html" title="Configuration of queues used in kineis_swr." alt="" coords="154,102,375,143"/>
+<area shape="rect" id="node5" href="$d5/d11/kns__q__cmsis__os2_8c.html" title=" " alt="" coords="400,102,623,143"/>
+<area shape="rect" id="node6" href="$d2/d9c/kns__q__freertos_8c.html" title="Configuration of queues used in kineis_swr." alt="" coords="647,102,853,143"/>
+<area shape="rect" id="node7" href="$d4/d0d/kns__app_8c.html" title=" " alt="" coords="877,109,1037,136"/>
+<area shape="rect" id="node8" href="$d8/d11/mgr__at__cmd__list__user__data_8c.html" title="subset of AT commands concerning user data manipulation such as TX" alt="" coords="1061,95,1247,151"/>
+<area shape="rect" id="node9" href="$d2/dae/kns__q__conf_8c.html" title="Configuration of queues used in kineis_swr." alt="" coords="1272,102,1417,143"/>
+<area shape="rect" id="node10" href="$dd/d8d/mgr__lpm_8c.html" title="low power mode manager is in charge to collect all low power needs from &#39;clients&#39; and setup the corre..." alt="" coords="1441,102,1589,143"/>
+<area shape="rect" id="node4" href="$d7/d30/kns__q_8c.html" title="Configuration of queues used in kineis_swr." alt="" coords="186,199,343,240"/>
+</map>

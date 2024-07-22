@@ -16,7 +16,9 @@
  */
 
 /**
- * @addtogroup KNS_SRVC
+ * @addtogroup KNS_SRV
+ * @brief low-level RF Service module: TX/RX/TRX common part
+
  * @{
  */
 
@@ -90,7 +92,7 @@ struct KNS_RX_frm_ctxt_t {
 struct KNS_SRVC_evt_t {
 	enum KNS_SRVC_eventId_t id;
 	union {
-#ifdef KIMX_FW // Rx event are only usefull in KIM2 which support downlink
+#ifdef USE_RX_STACK // Rx event are only usefull in KIM2 which support downlink
 		struct KNS_RX_frm_ctxt_t rx_ctxt; /**< RX-frame-received notification context*/
 #endif
 	};

@@ -1,0 +1,21 @@
+<map id="Kineis/Extdep/MGR_LOG/Inc/mgr_log_rtc.h" name="Kineis/Extdep/MGR_LOG/Inc/mgr_log_rtc.h">
+<area shape="rect" id="node1" title=": Header for mgr_log_rtc.c file. This file contains log routine concerning RTC. Thus there is a depen..." alt="" coords="1735,5,1915,47"/>
+<area shape="rect" id="node2" href="$d2/d2e/mgr__log_8h.html" title="logger main header file" alt="" coords="1671,95,1851,136"/>
+<area shape="rect" id="node18" href="$dc/d4f/mgr__log__rtc_8c.html" title="This file contains log routine concerning RTC. There is a dependency on HAL RTC." alt="" coords="3020,191,3200,233"/>
+<area shape="rect" id="node3" href="$d0/d29/main_8c.html" title=": Main program body" alt="" coords="5,199,129,225"/>
+<area shape="rect" id="node4" href="$d0/d08/kns__q__baremetal_8c.html" title="Configuration of queues used in kineis_swr." alt="" coords="154,191,375,233"/>
+<area shape="rect" id="node6" href="$d5/d11/kns__q__cmsis__os2_8c.html" title=" " alt="" coords="400,191,623,233"/>
+<area shape="rect" id="node7" href="$d2/d9c/kns__q__freertos_8c.html" title="Configuration of queues used in kineis_swr." alt="" coords="647,191,853,233"/>
+<area shape="rect" id="node8" href="$d4/d0d/kns__app_8c.html" title=" " alt="" coords="877,199,1037,225"/>
+<area shape="rect" id="node9" href="$d0/d01/user__data_8c.html" title="Library to handle user data to be be received or transmitted over the air." alt="" coords="1061,191,1255,233"/>
+<area shape="rect" id="node10" href="$da/d77/mgr__at__cmd_8c.html" title="APIs Implementation used to parse the UART ASCII data stream and extract AT commands." alt="" coords="1279,184,1453,240"/>
+<area shape="rect" id="node11" href="$d2/d04/mgr__at__cmd__list__certif_8c.html" title="subset of AT commands concerning specifics for certification" alt="" coords="1477,184,1650,240"/>
+<area shape="rect" id="node12" href="$d1/dfd/mgr__at__cmd__list__general_8c.html" title="subset of AT commands concerning general purpose (get ID, FW version, ...)" alt="" coords="1674,184,1847,240"/>
+<area shape="rect" id="node13" href="$d8/d11/mgr__at__cmd__list__user__data_8c.html" title="subset of AT commands concerning user data manipulation such as TX" alt="" coords="1871,184,2058,240"/>
+<area shape="rect" id="node14" href="$d0/d4d/kns__assert_8c.html" title="assert handling dependency regarding platform using the Kineis stack (handle reset)" alt="" coords="2083,191,2228,233"/>
+<area shape="rect" id="node15" href="$df/ddf/mcu__misc_8c.html" title="File to implement miscellaneous features for a specific design." alt="" coords="2252,191,2419,233"/>
+<area shape="rect" id="node16" href="$dd/d3f/mcu__tim_8c.html" title="MCU wrappers for timer or non&#45;blocking delays used by Kineis stack." alt="" coords="2443,191,2609,233"/>
+<area shape="rect" id="node17" href="$db/de3/mgr__log_8c.html" title="logger main file" alt="" coords="2633,191,2813,233"/>
+<area shape="rect" id="node19" href="$d5/db5/lpm_8c.html" title="This file contains some utilities and functions needed for a correct handling of LPM on the STM32WL55..." alt="" coords="2837,199,2996,225"/>
+<area shape="rect" id="node5" href="$d7/d30/kns__q_8c.html" title="Configuration of queues used in kineis_swr." alt="" coords="186,288,343,329"/>
+</map>

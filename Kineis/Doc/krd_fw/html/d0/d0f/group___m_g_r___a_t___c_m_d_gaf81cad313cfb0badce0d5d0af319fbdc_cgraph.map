@@ -1,0 +1,6 @@
+<map id="bMGR_AT_CMD_ID_cmd" name="bMGR_AT_CMD_ID_cmd">
+<area shape="rect" id="node1" title=" " alt="" coords="5,56,184,83"/>
+<area shape="rect" id="node2" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#ga3d564aff9653e8bdc572d189093f1acc" title="Log in debug interface a failed message." alt="" coords="232,5,448,32"/>
+<area shape="rect" id="node3" href="$d8/d62/group___m_c_u___a_p_p___w_r_a_p_p_e_r_s.html#gae14ee3e1d2a9b459c0d89c451a4bc470" title="Send AT CMD response to console." alt="" coords="496,31,680,57"/>
+<area shape="rect" id="node4" href="$d0/d54/group___k_n_s___c_f_g.html#ga9faee7a73798015800271e9a7b81db6a" title="Get the Kineis device identifier." alt="" coords="279,107,401,133"/>
+</map>

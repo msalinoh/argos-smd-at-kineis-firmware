@@ -1,0 +1,5 @@
+<map id="Kineis/Lib/kns_cfg.h" name="Kineis/Lib/kns_cfg.h">
+<area shape="rect" id="node1" title="Device communication driver for Kineis radio frequence." alt="" coords="105,5,255,32"/>
+<area shape="rect" id="node2" href="$d4/d0d/kns__app_8c.html" title=" " alt="" coords="5,95,165,121"/>
+<area shape="rect" id="node3" href="$d1/dfd/mgr__at__cmd__list__general_8c.html" title="subset of AT commands concerning general purpose (get ID, FW version, ...)" alt="" coords="189,80,363,136"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="USERDATA_txFifoLog" name="USERDATA_txFifoLog">
+<area shape="rect" id="node1" title="Log content of the TX fifo." alt="" coords="891,56,1048,83"/>
+<area shape="rect" id="node2" href="$db/d4f/group___u_s_e_r___d_a_t_a.html#ga9dc3ef3b0eec939e8a61b25e0a107cbe" title="Add element in TX fifo." alt="" coords="652,5,828,32"/>
+<area shape="rect" id="node5" href="$db/d4f/group___u_s_e_r___d_a_t_a.html#ga029850e8ca80a3be9b099582f5c7488a" title="flush TX fifo" alt="" coords="655,56,825,83"/>
+<area shape="rect" id="node6" href="$db/d4f/group___u_s_e_r___d_a_t_a.html#ga4d20835dbc4b21f645ff55eed7d93216" title="Delete an element from the TX fifo." alt="" coords="637,107,843,133"/>
+<area shape="rect" id="node3" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#gaaa9bdf10c9ac69ef778eea22f8225343" title="Handle new TX data, this is the core function of AT+TX cmd." alt="" coords="339,5,589,32"/>
+<area shape="rect" id="node4" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#ga0a4332fc4f8bad99c421588fe542a2bd" title="Process AT command &quot;AT+TX&quot; send user data." alt="" coords="108,5,291,32"/>
+<area shape="rect" id="node7" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#ga1a39b3c9cd76d50537a8bc42087ed46f" title="Fct used to retreive and process event coming from kineis stack as answers to AT commands." alt="" coords="353,107,575,133"/>
+<area shape="rect" id="node8" href="$dd/d41/group___k_n_s___a_p_p.html#ga06543de003a98e82570c572ce5e1240c" title="This fct is the application expected to run in front of the GUI." alt="" coords="128,107,271,133"/>
+<area shape="rect" id="node9" href="$d0/d29/main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="The application entry point." alt="" coords="5,107,60,133"/>
+</map>

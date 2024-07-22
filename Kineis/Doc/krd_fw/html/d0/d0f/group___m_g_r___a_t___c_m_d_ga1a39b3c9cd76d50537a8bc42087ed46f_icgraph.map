@@ -1,0 +1,5 @@
+<map id="MGR_AT_CMD_macEvtProcess" name="MGR_AT_CMD_macEvtProcess">
+<area shape="rect" id="node1" title="Fct used to retreive and process event coming from kineis stack as answers to AT commands." alt="" coords="299,5,520,32"/>
+<area shape="rect" id="node2" href="$dd/d41/group___k_n_s___a_p_p.html#ga06543de003a98e82570c572ce5e1240c" title="This fct is the application expected to run in front of the GUI." alt="" coords="108,5,251,32"/>
+<area shape="rect" id="node3" href="$d0/d29/main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="The application entry point." alt="" coords="5,5,60,32"/>
+</map>

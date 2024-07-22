@@ -7,7 +7,7 @@
  */
 
 /**
- * @page kns_q_page Kineis OS queue utilities
+ * @page kns_q_page OS queue utilities
  *
  * This page is presenting the utilities to manipulate queues used in kineis_sw.
  *
@@ -142,6 +142,16 @@ enum KNS_status_t KNS_Q_pop(enum KNS_Q_handle_t qHandle, void *qItem);
  * @retval true if some element present in higher priority queue, false otherwise.
  */
 bool KNS_Q_isEvtInHigherPrioQ(enum KNS_Q_handle_t qHandle);
+
+/**
+ * @brief This function is used to check some queue contains some elements
+ *
+ * This function is aimed to be used inside some IDLE task to ensure it is possible to go into low
+ * power
+ *
+ * @retval true if some element present in higher priority queue, false otherwise.
+ */
+bool KNS_Q_isEvtInSomeQ(void);
 #endif
 
 #pragma GCC visibility pop

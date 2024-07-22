@@ -7,7 +7,7 @@
  */
 
 /**
- * @page mcu_aes_page MCU wrappers concerning Encryption
+ * @page mcu_aes_page MCU wrappers: AES
  *
  * Encryption is used by the Kineis SW library for protocol.
  *
@@ -31,6 +31,8 @@
 #include <stdint.h>
 
 /* Defines -------------------------------------------------------------------*/
+
+/* Size of the device secret key */
 #define DSK_BYTE_LENGTH 16
 #define AES_BYTE_LENGTH 16
 #define AES_BIT_LENGTH (AES_BYTE_LENGTH * 8)
@@ -82,7 +84,7 @@ enum KNS_status_t MCU_AES_128_cbc_encrypt(const uint8_t *in, uint8_t *out, int32
  */
 enum KNS_status_t MCU_AES_128_cbc_decrypt(const uint8_t *in, uint8_t *out, int32_t nb_block, uint8_t *iv);
 
-#endif // end MCU_AES_H
+#endif /* MCU_AES_H */
 
 /**
  * @}

@@ -1,0 +1,4 @@
+<map id="KNS_MAC_getRsrcStatus" name="KNS_MAC_getRsrcStatus">
+<area shape="rect" id="node1" title="Get the status of the ressource currently used by MAC protocol." alt="" coords="167,5,349,32"/>
+<area shape="rect" id="node2" href="$db/dca/group___m_g_r___l_p_m.html#ga6d8e2a9027832f189ef6c2472355eb2a" title="Request deepest LPM allowed by the Kineis stack client." alt="" coords="5,5,119,32"/>
+</map>

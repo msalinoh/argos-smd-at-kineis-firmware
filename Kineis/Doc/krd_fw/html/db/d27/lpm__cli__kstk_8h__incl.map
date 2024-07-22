@@ -1,0 +1,7 @@
+<map id="Kineis/Lpm/Inc/lpm_cli_kstk.h" name="Kineis/Lpm/Inc/lpm_cli_kstk.h">
+<area shape="rect" id="node1" title="Kineis stack&#39;s LPM client. It is implementing APIs needed to interface with the low power manager (MG..." alt="" coords="12,5,159,47"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,169,88,196"/>
+<area shape="rect" id="node3" href="$df/d63/mgr__lpm_8h.html" title="low power mode manager is in charge to collect all low power needs from &#39;clients&#39; and setup the corre..." alt="" coords="82,95,174,121"/>
+<area shape="rect" id="node4" title=" " alt="" coords="135,244,206,271"/>
+<area shape="rect" id="node5" href="$d8/d85/kns__types_8h.html" title="Kineis types definition." alt="" coords="165,169,265,196"/>
+</map>

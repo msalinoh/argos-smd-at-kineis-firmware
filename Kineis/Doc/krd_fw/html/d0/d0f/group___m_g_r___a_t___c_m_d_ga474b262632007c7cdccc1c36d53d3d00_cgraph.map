@@ -1,0 +1,4 @@
+<map id="u16MGR_AT_CMD_convertAsciiBinary" name="u16MGR_AT_CMD_convertAsciiBinary">
+<area shape="rect" id="node1" title=": convert the input form ASCII to binary." alt="" coords="5,5,232,47"/>
+<area shape="rect" id="node2" href="$d8/da3/group___s_t_r_u_t_i_l_s.html#ga84065a55b8ebeb12a5e2a8e8ce2833fb" title="convert an hexadecimal ASCII digit to a 4bits integer" alt="" coords="280,13,505,39"/>
+</map>

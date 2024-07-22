@@ -1,0 +1,14 @@
+<map id="Kineis/Lpm/Src/mgr_lpm.c" name="Kineis/Lpm/Src/mgr_lpm.c">
+<area shape="rect" id="node1" title="low power mode manager is in charge to collect all low power needs from &#39;clients&#39; and setup the corre..." alt="" coords="193,5,341,47"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,95,80,121"/>
+<area shape="rect" id="node3" href="$df/d63/mgr__lpm_8h.html" title="low power mode manager is in charge to collect all low power needs from &#39;clients&#39; and setup the corre..." alt="" coords="497,244,589,271"/>
+<area shape="rect" id="node7" href="$d9/dc4/kineis__sw__conf_8h.html" title="Kineis stack SW configurations depending on platform used." alt="" coords="201,95,333,121"/>
+<area shape="rect" id="node8" href="$d5/d04/kns__app__conf_8h.html" title="Kineis Application configurations depending on platform used." alt="" coords="357,95,480,121"/>
+<area shape="rect" id="node9" href="$d0/d84/kns__q_8h.html" title="Configuration of queues used in kineis_swr." alt="" coords="104,95,176,121"/>
+<area shape="rect" id="node4" title=" " alt="" coords="367,319,449,345"/>
+<area shape="rect" id="node5" title=" " alt="" coords="126,393,197,420"/>
+<area shape="rect" id="node6" href="$d8/d85/kns__types_8h.html" title="Kineis types definition." alt="" coords="155,319,255,345"/>
+<area shape="rect" id="node10" href="$d8/dd1/kns__q__conf_8h.html" title="Configuration of queues used in kineis_sw." alt="" coords="87,169,193,196"/>
+<area shape="rect" id="node11" href="$df/d64/kns__mac__evt_8h.html" title=" " alt="" coords="72,244,192,271"/>
+<area shape="rect" id="node12" href="$d7/d8a/kns__srvc__common_8h.html" title="Common part of Kinéis service layer." alt="" coords="216,244,371,271"/>
+</map>

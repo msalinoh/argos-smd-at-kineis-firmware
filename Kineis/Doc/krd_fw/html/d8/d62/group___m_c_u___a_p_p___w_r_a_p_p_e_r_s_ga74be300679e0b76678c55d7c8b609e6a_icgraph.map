@@ -1,0 +1,6 @@
+<map id="MCU_AT_CONSOLE_register" name="MCU_AT_CONSOLE_register">
+<area shape="rect" id="node1" title="Start AT CMD console for AT cmd reception." alt="" coords="492,5,695,32"/>
+<area shape="rect" id="node2" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#ga8edd80aa91125cf8b5f711cd822df02a" title="main API used to start AT command Manager" alt="" coords="292,5,444,32"/>
+<area shape="rect" id="node3" href="$dd/d41/group___k_n_s___a_p_p.html#ga255c1dfa836e65189f22594678e9f616" title="Init function needed for the application SW running in front of the GUI." alt="" coords="108,5,244,32"/>
+<area shape="rect" id="node4" href="$d0/d29/main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="The application entry point." alt="" coords="5,5,60,32"/>
+</map>

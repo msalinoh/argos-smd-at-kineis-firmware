@@ -12,6 +12,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include <stdbool.h>
+#include <stdlib.h>
 #include "kns_q.h"
 #include "kns_mac.h"
 #include "kns_cfg.h"
@@ -26,8 +27,17 @@
 
 /* Private macro -------------------------------------------------------------*/
 
-/** Comment below to avoid 'TEST' status primitives to be logged
- */
+/** Uncomment below depending on Kineis MAC protocol to be used by Kineis stack. */
+#if !defined(USE_MAC_PRFL_BASIC) && !defined(USE_MAC_PRFL_BLIND)
+//#define USE_MAC_PRFL_BASIC // immediate TX
+#define USE_MAC_PRFL_BLIND // period TX for few repetitions
+#endif
+
+#if defined(USE_MAC_PRFL_BASIC) && defined(USE_MAC_PRFL_BLIND)
+#error "USE_MAC_PRFL_BASIC/USE_MAC_PRFL_BLIND: Cannot build an APP which select two MAC profile at the same time, select only one."
+#endif
+
+/** Comment below to avoid 'TEST' status primitives to be logged */
 #define PRINT_TEST_ASSERT
 
 #ifdef PRINT_TEST_ASSERT
@@ -42,27 +52,21 @@
 
 /* Private variables ---------------------------------------------------------*/
 
-static bool isCbReached;
-static enum KNS_status_t cbStatus = KNS_STATUS_ERROR;
+#ifdef USE_MAC_PRFL_BLIND
+/**
+ * @attention Configuration below shall be discussed with Kineis according to the SAT constellation
+ * deployment
+ */
+struct KNS_MAC_BLIND_usrCfg_t prflBlindUserCfg = {
+	.retx_nb = 4,
+	.retx_period_s = 60,	/** Repetition period per message
+				 * @attention ensure retx_period_s =  60 * nb_parrallel_msg
+				 */
+	.nb_parrallel_msg = 1	/** User-Message FIFO size @attention do not exceed 4*/
+};
+#endif
 
 /* Private functions ----------------------------------------------------------*/
-
-/** @brief  Set/clear a GPIO aroung transmission
- *
- * @note It is assumed a GPIO named LED1 is defined. Compile with USE_TX_LED to call STM32 HAL APIs
- *
- * @param[in] state: 1 set gpio, 0 clear GPIO
- */
-#ifdef USE_TX_LED // Light on a GPIO when TX occurs
-static void Set_TX_LED(uint8_t state)
-{
-	HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, state);
-}
-#else
-static void Set_TX_LED(__attribute__((unused)) uint8_t state)
-{
-}
-#endif
 
 #ifdef PRINT_TEST_ASSERT
 /** @brief  Reports the name of the source file and the source line number where assert occured
@@ -83,50 +87,19 @@ static void KNS_APP_assert_failed( __attribute__((unused)) uint8_t *file,
 }
 #endif
 
-/** @brief Function used to process kineis expected kineis stack event instandalone APP.
- *
- * @retval KNS_STATUS_OK if TX DONE or KNS_STATUS_TIMEOUT if timeout reached, else KNS_STATUS_ERROR
+__attribute__((unused))
+/** @brief  Log array of uint8_t
+ * @param[in] data pointer to table
+ * @param[in] len number of bytes to log from the table
  */
-static enum KNS_status_t KNS_APP_macEvtProcess(void)
+static void MGR_LOG_array(__attribute__((unused)) uint8_t *data, uint16_t len)
 {
-	enum KNS_status_t status;
-	struct KNS_MAC_srvcEvt_t srvcEvt;
+	uint16_t i;
 
-	status = KNS_Q_pop(KNS_Q_UL_MAC2APP, (void *)&srvcEvt);
-
-	if (status == KNS_STATUS_OK) {
-		switch (srvcEvt.id) {
-		case (KNS_MAC_TX_DONE):
-			MGR_LOG_DEBUG("[%s] TX done\r\n", __func__);
-			Set_TX_LED(0);
-			status = KNS_STATUS_OK;
-			break;
-		case (KNS_MAC_TX_TIMEOUT):
-			MGR_LOG_DEBUG("[%s] TX timeout\r\n", __func__);
-			status = KNS_STATUS_TIMEOUT;
-			break;
-		case (KNS_MAC_OK):
-			MGR_LOG_DEBUG("[%s] OK from MAC layer\r\n", __func__);
-			status = KNS_STATUS_ERROR;
-			break;
-		case (KNS_MAC_ERROR):
-			MGR_LOG_DEBUG("[%s] ERROR from MAC layer\r\n", __func__);
-			status = KNS_STATUS_ERROR;
-			break;
-		default:
-			/* Any other event than above should not occur in current standalone app
-			 *
-			 */
-			status = KNS_STATUS_ERROR;
-			break;
-		}
-		cbStatus = status;
-		isCbReached = true;
-	}
-
-	return status;
+	for (i = 0; i < len; i++)
+		MGR_LOG_DEBUG_RAW("%02X", data[i]);
+	MGR_LOG_DEBUG_RAW("\r\n");
 }
-
 /** @brief At end of standalone APP test, generate TEST status
  *
  * @return true if data is correctly processed, false otherwise
@@ -134,27 +107,66 @@ static enum KNS_status_t KNS_APP_macEvtProcess(void)
 
 /* Public functions ----------------------------------------------------------*/
 
-void KNS_APP_stdalone(void)
+void KNS_APP_stdln_init(__attribute__((unused)) void *context)
 {
+	enum KNS_status_t status;
+
+	kns_assert(context == NULL);
+
+	/** Initialize Kineis MAC profile */
+#ifdef USE_MAC_PRFL_BASIC
+	status = KNS_MAC_init(KNS_MAC_PRFL_BASIC, NULL);
+	if (status != KNS_STATUS_OK) {
+		MGR_LOG_DEBUG("[ERROR] Cannot initialize MAC BASIC protocol: Error code 0x%x\r\n",
+			status);
+		MGR_LOG_DEBUG("[ERROR] Check protocol capabilities of the build\r\n");
+		kns_assert(0);
+	}
+#endif
+#ifdef USE_MAC_PRFL_BLIND
+	status = KNS_MAC_init(KNS_MAC_PRFL_BLIND, (void *)&prflBlindUserCfg);
+	if (status != KNS_STATUS_OK) {
+		MGR_LOG_DEBUG("[ERROR] Cannot initialize MAC BLIND protocol: Error code 0x%x\r\n",
+			status);
+		MGR_LOG_DEBUG("[ERROR] Check protocol capabilities of the build\r\n");
+		kns_assert(0);
+	}
+#endif
+}
+
+void KNS_APP_stdln_loop(void)
+{
+	/** Static variables for state machine.
+	 * @note The implementation as a state machine is mainly usefull with kineis baremetal OS.
+	 * The standalone application should be much more simple with a real OS
+	 */
+	static
+	__attribute__((__section__(".retentionRamData")))
+	uint8_t state;
+
+	/** Static variable used with rand_r() function to generate random USER DATA in messages
+	 * sent to Kineis stack.
+	 * This will work also with STANDBY LPM as the seed tis mapped in SRAM2 memory here
+	 * @note using rand() instead of rand_r() may lead to generate several messages with the
+	 * same USER DATA payload
+	 */
+	static
+	__attribute__((__section__(".retentionRamData")))
+	uint32_t seed;
+
 	uint8_t idx;
 	struct KNS_MAC_appEvt_t appEvt;
-
-	/** static variables for state machine */
-	static uint8_t state;
-	static uint8_t one_sec_delay_idx;
-
 	uint8_t buffer_tx[KNS_MAC_USRDATA_MAXLEN];
-
-	/** Initialize buffer with {0x0, 0x1, 0x2, ...}
-	 * @todo remove once FLASH zone with radio config is supported on all platfoms
-	 */
-	for (idx = 0; idx < sizeof(buffer_tx); idx++)
-		buffer_tx[idx] = idx;
 
 	switch (state) {
 	case 0: { /** Send data event */
 		struct KNS_CFG_radio_t device_radio_cfg;
 
+		/** Initialize buffer with random data */
+		for (idx = 0; idx < sizeof(buffer_tx); idx++)
+			buffer_tx[idx] = rand_r(((unsigned int *)&seed));
+
+		/** ---- OPTIONAL BLOCK ---- START -- needed if radio conf not hardcoded -----   */
 		kns_assert(KNS_CFG_getRadioInfo(&device_radio_cfg) == KNS_STATUS_OK);
 
 		appEvt.id =  KNS_MAC_SEND_DATA;
@@ -164,6 +176,7 @@ void KNS_APP_stdalone(void)
 
 		switch (device_radio_cfg.modulation) {
 		case (KNS_TX_MOD_LDA2):
+			/** max payload size in this  example, cf spec for smaller packets */
 			appEvt.data_ctxt.usrdata_bitlen = 192;
 			break;
 		case (KNS_TX_MOD_LDA2L):
@@ -179,247 +192,118 @@ void KNS_APP_stdalone(void)
 			kns_assert(0); // wrong modulation flashed into device
 			break;
 		}
+		/** ---- OPTIONAL BLOCK ---- END ---------------------------------------------   */
+
+		MGR_LOG_DEBUG("[%s] request to send 0x", __func__);
+		MGR_LOG_array(appEvt.data_ctxt.usrdata, (appEvt.data_ctxt.usrdata_bitlen+7)>>3);
 
 		TEST_ASSERT(KNS_Q_push(KNS_Q_DL_APP2MAC, (void *)&appEvt) == KNS_STATUS_OK);
-		Set_TX_LED(1);
 
 		state++; /* go to next state, and return to let higher task to process event */
 		return;
 	}
-	case 1: { /** Wait for Kineis stack replying OK to send frame */
-		enum KNS_status_t status;
+	case 1: { /** Wait for Kineis stack replying:
+	 	   *  * OK to send frame
+	 	   *  * TX done for previous transmit
+	 	   */
+		enum KNS_status_t status = KNS_STATUS_OK;
 		struct KNS_MAC_srvcEvt_t srvcEvt;
 
-		status = KNS_Q_pop(KNS_Q_UL_MAC2APP, (void *)&srvcEvt);
-
-		if (status == KNS_STATUS_OK) {
-			switch (srvcEvt.id) {
-			case (KNS_MAC_OK):
-				MGR_LOG_DEBUG("[%s] TX OK for sending\r\n", __func__);
-				state++; /* go to next state, and let higher task process event */
-				return;
-			default:
-				TEST_FAIL();
-				state++; /* go to next state, and let higher task process event */
-				return;
+		for (status = KNS_Q_pop(KNS_Q_UL_MAC2APP, (void *)&srvcEvt);
+		     status != KNS_STATUS_QEMPTY;
+		     status = KNS_Q_pop(KNS_Q_UL_MAC2APP, (void *)&srvcEvt)) {
+			if (status == KNS_STATUS_OK) {
+				switch (srvcEvt.id) {
+				case (KNS_MAC_OK):
+					if (srvcEvt.app_evt == KNS_MAC_SEND_DATA) {
+						MGR_LOG_DEBUG("[%s] OK to send 0x", __func__);
+						MGR_LOG_array(srvcEvt.tx_ctxt.data,
+//							(srvcEvt.tx_ctxt.data_bitlen+7)>>3);
+							4); // limit to 4 bytes for real-time
+					}
+					break;
+				case (KNS_MAC_TX_DONE):
+					MGR_LOG_DEBUG("[%s] TX done for 0x", __func__);
+					MGR_LOG_array(srvcEvt.tx_ctxt.data,
+						(srvcEvt.tx_ctxt.data_bitlen+7)>>3);
+					TEST_PASS();
+					state++;
+					break;
+				case (KNS_MAC_TX_TIMEOUT):
+					MGR_LOG_DEBUG("[%s] TX timeout for 0x", __func__);
+					MGR_LOG_array(srvcEvt.tx_ctxt.data,
+						(srvcEvt.tx_ctxt.data_bitlen+7)>>3);
+					TEST_FAIL();
+					state++;
+					break;
+				case (KNS_MAC_ERROR):
+					/** MAC ERROR can occure when FIFO is full, as expected per
+					 * this application
+					 */
+					if (srvcEvt.app_evt == KNS_MAC_SEND_DATA) {
+						MGR_LOG_DEBUG("[%s] cannot send 0x", __func__);
+						MGR_LOG_array(srvcEvt.tx_ctxt.data,
+//							(srvcEvt.tx_ctxt.data_bitlen+7)>>3);
+							4); // limit to 4 bytes for real-time
+					}
+					TEST_FAIL();
+					state++;
+					break;
+				default:
+					TEST_FAIL();
+					break;
+				}
 			}
 		}
 		return;
 	}
-	case 2: { /** Wait for TX-done event from Kineis stack */
-		enum KNS_status_t status;
-		struct KNS_MAC_srvcEvt_t srvcEvt;
-
-		status = KNS_Q_pop(KNS_Q_UL_MAC2APP, (void *)&srvcEvt);
-
-		if (status == KNS_STATUS_OK) {
-			switch (srvcEvt.id) {
-			case (KNS_MAC_TX_DONE):
-				MGR_LOG_DEBUG("[%s] TX done\r\n", __func__);
-				Set_TX_LED(0);
-				TEST_PASS();
-				one_sec_delay_idx = 0;
-				state++; /* go to next state, and let higher task process event */
-				return;
-			case (KNS_MAC_TX_TIMEOUT):
-				MGR_LOG_DEBUG("[%s] TX timeout\r\n", __func__);
-				TEST_FAIL();
-				one_sec_delay_idx = 0;
-				state++; /* go to next state, and let higher task process event */
-				return;
-			case (KNS_MAC_ERROR):
-				MGR_LOG_DEBUG("[%s] ERROR from MAC layer\r\n", __func__);
-				TEST_FAIL();
-				one_sec_delay_idx = 0;
-				state++; /* go to next state, and let higher task process event */
-				return;
-			default:
-				TEST_FAIL();
-				one_sec_delay_idx = 0;
-				state++; /* go to next state, and let higher task process event */
-				return;
-			}
-		}
-		return;
+	case 2: { /** Wait for Kineis stack replying:*/
+		break;
 	}
-	case 3: /** active wait during almost 60s */
-		for (; one_sec_delay_idx < 58; one_sec_delay_idx++) {
-			HAL_Delay(1000);
-			if (KNS_Q_isEvtInHigherPrioQ(KNS_Q_UL_MAC2APP))
-				return;
-		}
-		state = 0;
-		one_sec_delay_idx = 0;
-		return;
 	default:
 		kns_assert(0);
 		break;
 	}
 }
 
-void KNS_APP_stdalone_stressTest(void)
+void KNS_APP_gui_init(void *context)
 {
-	uint8_t idx;
-	struct KNS_MAC_appEvt_t appEvt;
-	struct KNS_MAC_srvcEvt_t appEvtDummy;
+	enum KNS_status_t status;
 
-	/** static variables for state machine */
-	static uint8_t state;
-	static uint8_t one_sec_delay_idx;
+	kns_assert(context != NULL); // context should contain pointer to UART handle
 
-	uint8_t buffer_tx[KNS_MAC_USRDATA_MAXLEN];
+	/** Initialize AT command manager */
+	MGR_AT_CMD_start(context);
 
-	/** Initialize buffer with {0x0, 0x1, 0x2, ...}
-	 * @todo remove once FLASH zone with radio config is supported on all platfoms
-	 */
-	for (idx = 0; idx < sizeof(buffer_tx); idx++)
-		buffer_tx[idx] = idx;
-
-	switch (state) {
-	case 0: { /** Send data event */
-		struct KNS_CFG_radio_t device_radio_cfg;
-
-		kns_assert(KNS_CFG_getRadioInfo(&device_radio_cfg) == KNS_STATUS_OK);
-
-		appEvt.id =  KNS_MAC_SEND_DATA;
-		for (idx = 0; idx < sizeof(buffer_tx); idx++)
-			appEvt.data_ctxt.usrdata[idx] = buffer_tx[idx];
-		appEvt.data_ctxt.sf = KNS_SF_NO_SERVICE;
-
-		switch (device_radio_cfg.modulation) {
-		case (KNS_TX_MOD_LDA2):
-			appEvt.data_ctxt.usrdata_bitlen = 192;
-			break;
-		case (KNS_TX_MOD_LDA2L):
-			appEvt.data_ctxt.usrdata_bitlen = 196;
-			break;
-		case (KNS_TX_MOD_VLDA4):
-			appEvt.data_ctxt.usrdata_bitlen = 24;
-			break;
-		case (KNS_TX_MOD_LDK):
-			appEvt.data_ctxt.usrdata_bitlen = 152;
-			break;
-		default:
-			kns_assert(0); // wrong modulation flashed into device
-			break;
-		}
-
-		TEST_ASSERT(KNS_Q_push(KNS_Q_DL_APP2MAC, (void *)&appEvt) == KNS_STATUS_OK);
-		Set_TX_LED(1);
-
-		state++; /* go to next state, and return to let higher task to process event */
-		return;
+	/** Initialize Kineis MAC profile
+	 * @todo to be moved in "AT+KMAC=<PRFL>,<prfl context>" AT command once implemented
+	 * */
+#ifdef USE_MAC_PRFL_BASIC
+	status = KNS_MAC_init(KNS_MAC_PRFL_BASIC, NULL);
+	if (status != KNS_STATUS_OK) {
+		MGR_LOG_DEBUG("[ERROR] Cannot initialize MAC BASIC protocol: Error code 0x%x\r\n",
+			status);
+		MGR_LOG_DEBUG("[ERROR] Check protocol capabilities of the build\r\n");
+		kns_assert(0);
 	}
-	case 1:
-		/** ---- Pop OK event from MAC ---- */
-		appEvtDummy.id = KNS_MAC_TX_DONE; /* Initialize with a dummy value */
-		TEST_ASSERT(KNS_Q_pop(KNS_Q_UL_MAC2APP, (void *)&appEvtDummy) == KNS_STATUS_OK);
-		TEST_ASSERT(appEvtDummy.id == KNS_MAC_OK);
-		state++; /* go to next state, and return to let higher task to process event */
-		//return;
-	case 2: { /** Try sending data again but should lead to Error as transmission already
-		  * triggerred in previous state
-		  */
-		struct KNS_CFG_radio_t device_radio_cfg;
-
-		kns_assert(KNS_CFG_getRadioInfo(&device_radio_cfg) == KNS_STATUS_OK);
-
-		appEvt.id =  KNS_MAC_SEND_DATA;
-		for (idx = 0; idx < sizeof(buffer_tx); idx++)
-			appEvt.data_ctxt.usrdata[idx] = buffer_tx[idx];
-		appEvt.data_ctxt.sf = KNS_SF_NO_SERVICE;
-
-		switch (device_radio_cfg.modulation) {
-		case (KNS_TX_MOD_LDA2):
-			appEvt.data_ctxt.usrdata_bitlen = 192;
-			break;
-		case (KNS_TX_MOD_LDA2L):
-			appEvt.data_ctxt.usrdata_bitlen = 196;
-			break;
-		case (KNS_TX_MOD_VLDA4):
-			appEvt.data_ctxt.usrdata_bitlen = 24;
-			break;
-		case (KNS_TX_MOD_LDK):
-			appEvt.data_ctxt.usrdata_bitlen = 152;
-			break;
-		default:
-			kns_assert(0); // wrong modulation flashed into device
-			break;
-		}
-
-		TEST_ASSERT(KNS_Q_push(KNS_Q_DL_APP2MAC, (void *)&appEvt) == KNS_STATUS_OK);
-		state++; /* go to next state, and return to let higher task to process event */
-		return;
+#endif
+#ifdef USE_MAC_PRFL_BLIND
+	status = KNS_MAC_init(KNS_MAC_PRFL_BLIND, (void *)&prflBlindUserCfg);
+	if (status != KNS_STATUS_OK) {
+		MGR_LOG_DEBUG("[ERROR] Cannot initialize MAC BLIND protocol: Error code 0x%x\r\n",
+			status);
+		MGR_LOG_DEBUG("[ERROR] Check protocol capabilities of the build\r\n");
+		kns_assert(0);
 	}
-	case 3:
-		/** ---- Pop error event from MAC ---- */
-		appEvtDummy.id = KNS_MAC_TX_DONE; /* Initialize with a dummy value */
-		TEST_ASSERT(KNS_Q_pop(KNS_Q_UL_MAC2APP, (void *)&appEvtDummy) == KNS_STATUS_OK);
-		TEST_ASSERT(appEvtDummy.id == KNS_MAC_ERROR);
-		state++; /* go to next state, and return to let higher task to process event */
-		//return;
-	case 4:
-	case 5:
-	case 6:
-		/** Wait after end-of-transmission callback, to raise test status,
-		 * return each second to let higher-prio task to execute
-		 * Wait 3s at maximum (3 states)
-		 */
-		HAL_Delay(1000); /* wait callback to be reached while 1s */
-		KNS_APP_macEvtProcess();
-		state++; /* go to next state, and return to let higher task to process event */
-		return;
-	case 7:
-		/** ---- Free element once again, should report error as already inetrnally free
-		 * by lower layer at TX-done event ----
-		 */
-		appEvt.id =  KNS_MAC_STOP_SEND_DATA;
-		TEST_ASSERT(KNS_Q_push(KNS_Q_DL_APP2MAC, (void *)&appEvt) == KNS_STATUS_OK);
-		state++; /* go to next state, and return to let higher task to process event */
-		return;
-	case 8:
-		/** ---- Pop error event from MAC ---- */
-		appEvtDummy.id = KNS_MAC_TX_DONE; /* Initialize with a dummy value */
-		TEST_ASSERT(KNS_Q_pop(KNS_Q_UL_MAC2APP, (void *)&appEvtDummy) == KNS_STATUS_OK);
-		TEST_ASSERT(appEvtDummy.id == KNS_MAC_ERROR);
-		state++; /* go to next state, and return to let higher task to process event */
-		//return;
-	case 9: /** check test passed, meaning TX-done event was received */
-		if (!isCbReached || (cbStatus != KNS_STATUS_OK))
-			TEST_FAIL();
-		else
-			TEST_PASS();
-		isCbReached = false;
-		cbStatus = KNS_STATUS_ERROR;
-		state++; /* go to next state, and return to let higher task to process event */
-		return;
-	default:
-		break;
-	}
-
-	/** Wait before new transmit: reduce by 3s as KNS_APP_waitEndOfTx includes some.
-	 * Check higher-prio-task needs preemption each second.
-	 *
-	 * wait 57s as we want to transmit each 60s seconds
-	 */
-	for (; one_sec_delay_idx < 57; one_sec_delay_idx++) {
-		HAL_Delay(1000);
-		TEST_ASSERT(KNS_APP_macEvtProcess() == KNS_STATUS_QEMPTY);
-		if (KNS_Q_isEvtInHigherPrioQ(KNS_Q_UL_MAC2APP))
-			return;
-	}
-
-	/** Return to start of loop */
-	state = 0;
-	one_sec_delay_idx = 0;
+#endif
 }
 
-void KNS_APP_gui(void)
+void KNS_APP_gui_loop(void)
 {
 	uint8_t *pu8_atcmd = NULL;
 
 	/** ---- Look for AT cmds ---- */
-	pu8_atcmd = MGR_AT_CMD_getNextAt();
+	pu8_atcmd = MGR_AT_CMD_popNextAt();
 	if (pu8_atcmd != NULL)
 		MGR_AT_CMD_decodeAt(pu8_atcmd);  // @todo: return code is not used ?
 	MGR_AT_CMD_macEvtProcess();

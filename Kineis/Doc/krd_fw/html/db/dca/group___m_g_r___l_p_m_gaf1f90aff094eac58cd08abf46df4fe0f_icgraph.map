@@ -1,0 +1,4 @@
+<map id="LPM_SystemClockConfig" name="LPM_SystemClockConfig">
+<area shape="rect" id="node1" title="Specific system function to configure some clock behaviours during LPM (e.g. UART)" alt="" coords="108,5,291,32"/>
+<area shape="rect" id="node2" href="$d0/d29/main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="The application entry point." alt="" coords="5,5,60,32"/>
+</map>

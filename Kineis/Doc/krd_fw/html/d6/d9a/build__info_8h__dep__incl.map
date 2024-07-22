@@ -1,0 +1,6 @@
+<map id="build_info.h" name="build_info.h">
+<area shape="rect" id="node1" title="contains references to SW version information. Corresponding builf_info.c will be generated during bu..." alt="" coords="153,5,251,32"/>
+<area shape="rect" id="node2" href="$d0/d29/main_8c.html" title=": Main program body" alt="" coords="5,95,129,121"/>
+<area shape="rect" id="node3" href="$de/d89/build__info_8c.html" title=" " alt="" coords="153,95,251,121"/>
+<area shape="rect" id="node4" href="$d1/dfd/mgr__at__cmd__list__general_8c.html" title="subset of AT commands concerning general purpose (get ID, FW version, ...)" alt="" coords="275,80,449,136"/>
+</map>

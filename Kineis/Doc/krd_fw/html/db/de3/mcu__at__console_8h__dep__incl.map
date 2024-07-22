@@ -1,0 +1,8 @@
+<map id="Kineis/App/Mcu/Inc/mcu_at_console.h" name="Kineis/App/Mcu/Inc/mcu_at_console.h">
+<area shape="rect" id="node1" title="MCU wrapper for AT CMD console." alt="" coords="414,5,559,47"/>
+<area shape="rect" id="node2" href="$da/d77/mgr__at__cmd_8c.html" title="APIs Implementation used to parse the UART ASCII data stream and extract AT commands." alt="" coords="5,95,179,151"/>
+<area shape="rect" id="node3" href="$d5/dd7/mgr__at__cmd__common_8c.html" title="common part of the AT cmd manager (logging, AT cmd response api)" alt="" coords="203,95,376,151"/>
+<area shape="rect" id="node4" href="$d1/dfd/mgr__at__cmd__list__general_8c.html" title="subset of AT commands concerning general purpose (get ID, FW version, ...)" alt="" coords="400,95,573,151"/>
+<area shape="rect" id="node5" href="$d1/de0/mgr__at__cmd__list__mac_8c.html" title="subset of AT commands concerning Kinéis Medium Acces Channel (MAC)." alt="" coords="597,95,771,151"/>
+<area shape="rect" id="node6" href="$d0/d4a/mgr__at__cmd__list__previpass_8c.html" title="subset of AT commands concerning satellite PASS predictions, usefull for Medium Acces" alt="" coords="795,95,981,151"/>
+</map>

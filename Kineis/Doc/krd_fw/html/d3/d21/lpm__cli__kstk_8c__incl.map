@@ -1,0 +1,11 @@
+<map id="Kineis/Lpm/Src/lpm_cli_kstk.c" name="Kineis/Lpm/Src/lpm_cli_kstk.c">
+<area shape="rect" id="node1" title="Kineis stack&#39;s LPM client. It is implementing APIs needed to interface with the low power manager (MG..." alt="" coords="61,5,207,47"/>
+<area shape="rect" id="node2" title=" " alt="" coords="18,244,101,271"/>
+<area shape="rect" id="node3" href="$df/da4/lpm__cli__kstk_8h.html" title="Kineis stack&#39;s LPM client. It is implementing APIs needed to interface with the low power manager (MG..." alt="" coords="28,95,144,121"/>
+<area shape="rect" id="node4" href="$df/d63/mgr__lpm_8h.html" title="low power mode manager is in charge to collect all low power needs from &#39;clients&#39; and setup the corre..." alt="" coords="84,169,176,196"/>
+<area shape="rect" id="node7" href="$d7/d1a/kns__mac_8h.html" title="Main header file for MAC layer of Kineis stack." alt="" coords="220,95,312,121"/>
+<area shape="rect" id="node5" title=" " alt="" coords="259,319,329,345"/>
+<area shape="rect" id="node6" href="$d8/d85/kns__types_8h.html" title="Kineis types definition." alt="" coords="200,244,300,271"/>
+<area shape="rect" id="node8" href="$df/d64/kns__mac__evt_8h.html" title=" " alt="" coords="201,169,321,196"/>
+<area shape="rect" id="node9" href="$d8/d4a/kns__mac__prfl__cfg_8h.html" title="Header file describing the ser settings required to configure a MAC protocol." alt="" coords="345,169,493,196"/>
+</map>

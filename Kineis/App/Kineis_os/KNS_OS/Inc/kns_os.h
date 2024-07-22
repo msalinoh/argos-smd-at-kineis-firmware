@@ -7,9 +7,9 @@
  */
 
 /**
- * @page kns_os_page Kineis OS abstraction layer for Kinéis
+ * @page kns_os_page OS abstraction layer for Kinéis
  *
- * This page is presenting the Kineis OS design
+ * This page is presenting the Kineis OS design (\ref KNS_OS, \ref KNS_Q)
  *
  * @section kns_os_intro Introduction
  *
@@ -24,12 +24,18 @@
  * effect of priorities declared on queues. An event delivered in a high-priority queues shall be
  * consumed as soon as possible by the dedicated task.
  *
- * From global kineis SW architecture, below is typical list of tasks to be used imvolved in Kineis
- * FW environement (kineis satck + application):
+ * Below is typical list of tasks imvolved in Kineis FW environement (kineis satck + application):
  * * KNS_OS_TASK_APP one application task defined by default. User can decide to add an extra
- *   application task through kns_os_conf.h configuration file. Refer also to @ref kns_os_conf_page
- *   for extra details.
+ *   application task through (\ref kns_os_conf.h) configuration file. Refer also to
+ *   \ref kns_os_conf_page for details.
  * * KNS_OS_TASK_MAC Kineis stack main task
+ * * KNS_OS_TASK_IDLE idle tsak entering LPM when other task are not active
+ *
+ * @section kns_os_subpages Sub-pages
+ *
+ * * @subpage kns_os_conf_page
+ * * @subpage kns_q_page
+ * * @subpage kns_q_conf_page
  */
 
 /**

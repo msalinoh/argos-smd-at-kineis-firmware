@@ -1,0 +1,4 @@
+<map id="KNS_APP_gui_init" name="KNS_APP_gui_init">
+<area shape="rect" id="node1" title="Init function needed for the application SW running in front of the GUI." alt="" coords="108,5,244,32"/>
+<area shape="rect" id="node2" href="$d0/d29/main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="The application entry point." alt="" coords="5,5,60,32"/>
+</map>

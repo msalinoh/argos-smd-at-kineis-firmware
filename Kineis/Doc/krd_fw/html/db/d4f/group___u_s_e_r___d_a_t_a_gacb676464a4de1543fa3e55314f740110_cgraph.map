@@ -1,0 +1,5 @@
+<map id="USERDATA_txFifoReserveElt" name="USERDATA_txFifoReserveElt">
+<area shape="rect" id="node1" title="Get an element from memory pool in a way to push it later." alt="" coords="5,5,209,32"/>
+<area shape="rect" id="node2" href="$db/d4f/group___u_s_e_r___d_a_t_a.html#ga2c1ea014de9c2ba244dc6605a6edce59" title="check element is part of the TX fifo or not" alt="" coords="257,5,455,32"/>
+<area shape="rect" id="node3" href="$db/d4f/group___u_s_e_r___d_a_t_a.html#ga532418c0e3adad36946ba9d346a163f4" title="check the element is pointing on a valid address, i.e. one from sUserDataTxFifoBuf buffer" alt="" coords="503,5,681,32"/>
+</map>

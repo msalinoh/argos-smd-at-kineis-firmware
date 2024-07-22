@@ -1,0 +1,7 @@
+<map id="bUTIL_strcmp" name="bUTIL_strcmp">
+<area shape="rect" id="node1" title="Compare 2 strings." alt="" coords="764,5,875,32"/>
+<area shape="rect" id="node2" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#ga00f586ef524b455b8324900358922b2b" title="Identifies AT command and its type (AT+XYZ=... or AT+XYZ=? or AT+XYZ? mode)" alt="" coords="529,5,716,32"/>
+<area shape="rect" id="node3" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#ga9cef55cf869d8f8c3eaf6a49ca61b5d2" title="Decode and exectue AT cmd if valid." alt="" coords="299,5,481,32"/>
+<area shape="rect" id="node4" href="$dd/d41/group___k_n_s___a_p_p.html#ga06543de003a98e82570c572ce5e1240c" title="This fct is the application expected to run in front of the GUI." alt="" coords="108,5,251,32"/>
+<area shape="rect" id="node5" href="$d0/d29/main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="The application entry point." alt="" coords="5,5,60,32"/>
+</map>

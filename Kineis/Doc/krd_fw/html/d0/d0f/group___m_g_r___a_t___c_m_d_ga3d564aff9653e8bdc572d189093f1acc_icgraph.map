@@ -1,0 +1,23 @@
+<map id="bMGR_AT_CMD_logFailedMsg" name="bMGR_AT_CMD_logFailedMsg">
+<area shape="rect" id="node1" title="Log in debug interface a failed message." alt="" coords="645,411,861,437"/>
+<area shape="rect" id="node2" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#ga204fad5fbc19a59d6c9a498aad156fc5" title=" " alt="" coords="369,5,571,32"/>
+<area shape="rect" id="node3" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#ga292621f6d8d6617d0f06907bae52a96f" title="Process AT command &quot;AT+ATXRP&quot; get/set the repetition number and the period between 2 transmissions." alt="" coords="366,56,574,83"/>
+<area shape="rect" id="node4" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#gafccf5cd6468be2c39af4c4c599d48ef8" title="Process AT command &quot;AT+CW&quot;." alt="" coords="108,781,295,808"/>
+<area shape="rect" id="node5" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#gaaa6dc2a43b7e21084f52c8591674d534" title=" " alt="" coords="377,157,563,184"/>
+<area shape="rect" id="node6" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#gaaa9bdf10c9ac69ef778eea22f8225343" title="Handle new TX data, this is the core function of AT+TX cmd." alt="" coords="345,208,595,235"/>
+<area shape="rect" id="node7" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#ga0a4332fc4f8bad99c421588fe542a2bd" title="Process AT command &quot;AT+TX&quot; send user data." alt="" coords="110,157,293,184"/>
+<area shape="rect" id="node8" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#gaf81cad313cfb0badce0d5d0af319fbdc" title=" " alt="" coords="381,309,559,336"/>
+<area shape="rect" id="node9" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#gaed4723249aba7dbe8e17c74eed648f4b" title=" " alt="" coords="374,360,566,387"/>
+<area shape="rect" id="node10" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#gad504c930c0c0222576334c21940e245e" title=" " alt="" coords="371,411,569,437"/>
+<area shape="rect" id="node11" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#gafa3e80f7aedfa74c8d16d0202a3f4f07" title="Process AT command &quot;AT+PREPASS_EN&quot; Enabling/disabling PREVIPASS (sat pass prediction) computation,..." alt="" coords="376,462,564,503"/>
+<area shape="rect" id="node12" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#gaf2dc4b8c03924fc01641182032c31ba5" title=" " alt="" coords="365,528,575,555"/>
+<area shape="rect" id="node13" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#ga02e2a055602cf05cffff4e57ef414e50" title=" " alt="" coords="343,579,597,605"/>
+<area shape="rect" id="node14" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#ga35554beb51f6f25a760a6d2bb76f7ee8" title=" " alt="" coords="379,629,561,656"/>
+<area shape="rect" id="node15" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#gafa261eed6f61302c724f74b963bae320" title=" " alt="" coords="359,680,581,707"/>
+<area shape="rect" id="node16" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#ga9cef55cf869d8f8c3eaf6a49ca61b5d2" title="Decode and exectue AT cmd if valid." alt="" coords="379,731,561,757"/>
+<area shape="rect" id="node19" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#ga1a39b3c9cd76d50537a8bc42087ed46f" title="Fct used to retreive and process event coming from kineis stack as answers to AT commands." alt="" coords="359,259,581,285"/>
+<area shape="rect" id="node20" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#ga60486b23c6850d01bbb1e29875cd24f4" title="Send random TX data as per RF configuration." alt="" coords="343,832,597,859"/>
+<area shape="rect" id="node17" href="$dd/d41/group___k_n_s___a_p_p.html#ga06543de003a98e82570c572ce5e1240c" title="This fct is the application expected to run in front of the GUI." alt="" coords="130,495,273,521"/>
+<area shape="rect" id="node18" href="$d0/d29/main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="The application entry point." alt="" coords="5,495,60,521"/>
+<area shape="rect" id="node21" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#gafccb1dfaf28ab371bebd814a3abaa57c" title="Callback function notifying end of TX processing in case of modulated wave." alt="" coords="140,832,263,859"/>
+</map>

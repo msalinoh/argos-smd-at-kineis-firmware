@@ -1,0 +1,7 @@
+<map id="USERDATA_txFifoRemoveElt" name="USERDATA_txFifoRemoveElt">
+<area shape="rect" id="node1" title="Delete an element from the TX fifo." alt="" coords="5,31,211,57"/>
+<area shape="rect" id="node2" href="$db/d4f/group___u_s_e_r___d_a_t_a.html#ga532418c0e3adad36946ba9d346a163f4" title="check the element is pointing on a valid address, i.e. one from sUserDataTxFifoBuf buffer" alt="" coords="259,5,437,32"/>
+<area shape="rect" id="node3" href="$db/d4f/group___u_s_e_r___d_a_t_a.html#gafba02bd8b2e6ebad0b2f38b72e40ec21" title="Log content of the TX fifo." alt="" coords="269,56,427,83"/>
+<area shape="rect" id="node4" href="$d9/d2f/group___k_i_n_e_i_s___s_w___c_o_n_f.html#ga858c122b744e5d185b5abac307aae807" title="Enter critical section." alt="" coords="485,31,600,57"/>
+<area shape="rect" id="node5" href="$d9/d2f/group___k_i_n_e_i_s___s_w___c_o_n_f.html#ga58b477bfcd987dcd7b733b98ab692fdc" title="Exit critical section." alt="" coords="490,81,595,108"/>
+</map>

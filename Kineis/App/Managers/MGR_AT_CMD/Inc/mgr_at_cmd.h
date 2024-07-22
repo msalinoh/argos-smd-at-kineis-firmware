@@ -6,7 +6,7 @@
  */
 
 /**
- * \page mgr_at_cmd_page AT commands manager
+ * @page mgr_at_cmd_page AT commands manager
  *
  * The AT cmd manager is in charge of parsing an incoming data stream and extract AT commands. Then
  * call the corresponding handler.
@@ -18,6 +18,12 @@
  * * mgr_at_cmd.h        is the main header file for AT cmd manager core.
  * * mgr_at_cmd_list.h   is the main entry point to get the list of suported commands
  *                       (cf enum \ref atcmd_idx_t)
+ *
+ * @section mgr_at_cmd_subpages Sub-pages
+ *
+ * * @subpage user_data_page
+ * * @subpage strutil_lib_page
+ * * @subpage mcu_at_console_page
  */
 
 /**
@@ -56,11 +62,18 @@ extern "C" {
 bool MGR_AT_CMD_start(void *context);
 
 /**
+ * @brief API used to check there is some AT command in internal fifo
+ *
+ * @retval true if there is some AT command in fifo, false otherwise
+ */
+bool MGR_AT_CMD_isPendingAt(void);
+
+/**
  * @brief API used to get next AT command stored in internal fifo
  *
  * @retval Pointer to the AT cmd to be decoded
  */
-uint8_t *MGR_AT_CMD_getNextAt(void);
+uint8_t *MGR_AT_CMD_popNextAt(void);
 
 /**
  * @brief Decode and exectue AT cmd if valid

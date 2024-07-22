@@ -1,0 +1,11 @@
+<map id="Kineis/App/Mcu/Src/mcu_at_console_stm.c" name="Kineis/App/Mcu/Src/mcu_at_console_stm.c">
+<area shape="rect" id="node1" title=" " alt="" coords="305,5,479,47"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,95,80,121"/>
+<area shape="rect" id="node3" title=" " alt="" coords="105,95,175,121"/>
+<area shape="rect" id="node4" title=" " alt="" coords="200,95,283,121"/>
+<area shape="rect" id="node5" title=" " alt="" coords="307,95,381,121"/>
+<area shape="rect" id="node6" title=" " alt="" coords="406,95,477,121"/>
+<area shape="rect" id="node7" title=" " alt="" coords="501,95,568,121"/>
+<area shape="rect" id="node8" href="$d5/d04/kns__app__conf_8h.html" title="Kineis Application configurations depending on platform used." alt="" coords="592,95,715,121"/>
+<area shape="rect" id="node9" href="$d9/dc4/kineis__sw__conf_8h.html" title="Kineis stack SW configurations depending on platform used." alt="" coords="739,95,871,121"/>
+</map>

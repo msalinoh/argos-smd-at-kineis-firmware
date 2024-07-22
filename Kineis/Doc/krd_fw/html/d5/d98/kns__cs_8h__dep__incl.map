@@ -1,0 +1,6 @@
+<map id="Kineis/Extdep/Conf/kns_cs.h" name="Kineis/Extdep/Conf/kns_cs.h">
+<area shape="rect" id="node1" title="critical section handling for kineis stack." alt="" coords="159,5,305,47"/>
+<area shape="rect" id="node2" href="$d0/d08/kns__q__baremetal_8c.html" title="Configuration of queues used in kineis_swr." alt="" coords="5,95,227,136"/>
+<area shape="rect" id="node4" href="$d0/d01/user__data_8c.html" title="Library to handle user data to be be received or transmitted over the air." alt="" coords="251,95,445,136"/>
+<area shape="rect" id="node3" href="$d7/d30/kns__q_8c.html" title="Configuration of queues used in kineis_swr." alt="" coords="37,184,195,225"/>
+</map>

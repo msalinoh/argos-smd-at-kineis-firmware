@@ -1,0 +1,10 @@
+<map id="Kineis/Extdep/MGR_LOG/Src/mgr_log.c" name="Kineis/Extdep/MGR_LOG/Src/mgr_log.c">
+<area shape="rect" id="node1" title="logger main file" alt="" coords="143,5,323,47"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,95,80,121"/>
+<area shape="rect" id="node3" title=" " alt="" coords="105,95,175,121"/>
+<area shape="rect" id="node4" title=" " alt="" coords="200,95,267,121"/>
+<area shape="rect" id="node5" href="$dc/d44/mgr__log__conf_8h.html" title="template configuration for logging manager of kineis_sw libraries" alt="" coords="291,95,413,121"/>
+<area shape="rect" id="node7" href="$d2/d2e/mgr__log_8h.html" title="logger main header file" alt="" coords="446,95,533,121"/>
+<area shape="rect" id="node6" title=" " alt="" coords="280,169,413,196"/>
+<area shape="rect" id="node8" href="$d9/d70/mgr__log__rtc_8h.html" title=": Header for mgr_log_rtc.c file. This file contains log routine concerning RTC. Thus there is a depen..." alt="" coords="438,169,549,196"/>
+</map>

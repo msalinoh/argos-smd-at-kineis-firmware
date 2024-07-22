@@ -1,0 +1,8 @@
+<map id="Kineis/Lib/kns_mac.h" name="Kineis/Lib/kns_mac.h">
+<area shape="rect" id="node1" title="Main header file for MAC layer of Kineis stack." alt="" coords="125,5,283,32"/>
+<area shape="rect" id="node2" href="$df/d64/kns__mac__evt_8h.html" title=" " alt="" coords="65,80,185,107"/>
+<area shape="rect" id="node6" href="$d8/d4a/kns__mac__prfl__cfg_8h.html" title="Header file describing the ser settings required to configure a MAC protocol." alt="" coords="210,80,358,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="5,155,88,181"/>
+<area shape="rect" id="node4" title=" " alt="" coords="178,229,249,256"/>
+<area shape="rect" id="node5" href="$d8/d85/kns__types_8h.html" title="Kineis types definition." alt="" coords="163,155,263,181"/>
+</map>

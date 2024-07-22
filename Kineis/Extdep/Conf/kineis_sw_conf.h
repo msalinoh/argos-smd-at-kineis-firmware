@@ -24,14 +24,6 @@
 #ifndef KINEIS_SW_CONF_H
 #define KINEIS_SW_CONF_H
 
-/* Includes ------------------------------------------------------------------------------------ */
-
-/**
- * @brief Platform dependent includes for basic types such uint8_t, uint32_t, ...
- */
-#include <stdint.h>
-#include <stdbool.h>
-
 /* Defines ------------------------------------------------------------------------------------- */
 
 /**
@@ -43,12 +35,12 @@
 #define KINEIS_SW_ASSERT_H	"kns_assert.h"
 
 /**
- * @brief define STM32 HAL APIs as per platform, here STM32WL microcontroller
+ * @brief define include file concerninq critical sections used by Kineis stack
  *
- * @note This is not used by Kineis stack. It is only used by the Kineis APP (open code). You can
- * change adapt it the way you want.
+ * @attention DO NOT change this as long as you build with Kinés stack. Must keep it the same way
+ * it was when generating the library (libkineis.a).
  */
-#define STM32_HAL_H		"stm32wlxx_hal.h"
+#define KINEIS_CS_H		"kns_cs.h"
 
 /* Enums --------------------------------------------------------------------------------------- */
 

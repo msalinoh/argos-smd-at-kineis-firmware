@@ -43,7 +43,6 @@ bool bMGR_AT_CMD_sendResponse(enum atcmd_rsp_type_t atcmd_response_type, void *a
 			uint8_t *pu8UserDataPtr = spUserDataMsg->u8DataBuf;
 			uint16_t u16UserDataBitlen = spUserDataMsg->u16DataBitLen;
 
-			spUserDataMsg->bIsToBeTransmit = false;
 			MCU_AT_CONSOLE_send("+TX=0,");
 			MCU_AT_CONSOLE_send_dataBuf(pu8UserDataPtr, u16UserDataBitlen);
 			MCU_AT_CONSOLE_send("\r\n");
@@ -64,7 +63,6 @@ bool bMGR_AT_CMD_sendResponse(enum atcmd_rsp_type_t atcmd_response_type, void *a
 			if (atcmd_response_type == ATCMD_RSP_RXTIMEOUT)
 				error_id = ERROR_RX_TIMEOUT;
 
-			spUserDataMsg->bIsToBeTransmit = false;
 			MCU_AT_CONSOLE_send("+TX=%d,", error_id);
 			MCU_AT_CONSOLE_send_dataBuf(pu8UserDataPtr, u16UserDataBitlen);
 			MCU_AT_CONSOLE_send("\r\n");

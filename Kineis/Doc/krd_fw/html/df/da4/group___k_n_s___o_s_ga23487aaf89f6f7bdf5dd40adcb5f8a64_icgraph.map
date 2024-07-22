@@ -1,0 +1,4 @@
+<map id="KNS_OS_registerTask" name="KNS_OS_registerTask">
+<area shape="rect" id="node1" title="This function is used to register task to be handled by baremetal Kineis OS." alt="" coords="108,5,268,32"/>
+<area shape="rect" id="node2" href="$d0/d29/main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="The application entry point." alt="" coords="5,5,60,32"/>
+</map>

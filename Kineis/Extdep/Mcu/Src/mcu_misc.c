@@ -18,20 +18,74 @@
 #include "main.h"
 #include "mgr_log.h"
 
+/* Defines -------------------------------------------------------------------------------------- */
+
+/** @note Define a delay macro which does not depend on systick interrupt in a way to be able to run
+ * from any ISR (e.g. turn ON PA wrapper below will be called from SUBGHZ ISR during continuous
+ * modulated wave)
+ *
+ * @attention at typical 32MHz clock and 4 instruction cycle per loop, max value is 536870 ms
+ *
+ * NOP             : 1 cycle
+ * SUBS R3, #1     : 1 cycle
+ * CMP  R3, #0     : 1 cycle
+ * BNE  <ADDR>     : 1 cycle
+ */
+//#define DELAY_MS(time_ms) HAL_Delay(time_ms)
+extern uint32_t SystemCoreClock;
+#define FOR_LOOP_CYCLE_NB 4
+#define DELAY_MS(time_ms) \
+{ \
+	uint32_t _nb_for_loop_per_ms = SystemCoreClock / 1000 / FOR_LOOP_CYCLE_NB; \
+	for (uint32_t _count = time_ms * _nb_for_loop_per_ms; \
+		_count > 0 ; \
+		_count--) __NOP(); \
+}
+
 /* Functions ------------------------------------------------------------------------------------ */
 
 void MCU_MISC_turn_on_pa()
 {
+	/** @attention this code may run under ISR, especially during continuous modulated wave */
 #ifdef KRD_FW_MP
+	GPIO_InitTypeDef GPIO_InitStruct = {0};
+
+
+	/* GPIO Ports Clock Enable */
+	__HAL_RCC_GPIOA_CLK_ENABLE();
+
+	/*Configure GPIO pin Output Level */
+	HAL_GPIO_WritePin(PA_PSU_EN_GPIO_Port, PA_PSU_EN_Pin, GPIO_PIN_RESET);
+
+
+	/*Configure GPIO pin : PtPin */
+	GPIO_InitStruct.Pin = PA_PSU_EN_Pin;
+	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+	GPIO_InitStruct.Pull = GPIO_NOPULL;
+	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+	HAL_GPIO_Init(PA_PSU_EN_GPIO_Port, &GPIO_InitStruct);
+
+
+
 	HAL_GPIO_WritePin(PA_PSU_EN_GPIO_Port, PA_PSU_EN_Pin, GPIO_PIN_SET);
-        HAL_Delay(10);
+	DELAY_MS(10);
 #endif
 }
 
 void MCU_MISC_turn_off_pa()
 {
+	/** @attention this code may run under ISR, especially during continuous modulated wave */
 #ifdef KRD_FW_MP
+	GPIO_InitTypeDef GPIO_InitStruct = {0};
+
 	HAL_GPIO_WritePin(PA_PSU_EN_GPIO_Port, PA_PSU_EN_Pin, GPIO_PIN_RESET);
+
+
+	/*Configure GPIO pin : PtPin */
+	GPIO_InitStruct.Pin = PA_PSU_EN_Pin;
+	GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
+	GPIO_InitStruct.Pull = GPIO_NOPULL;
+	HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 #endif
 }
 
@@ -57,10 +111,10 @@ enum KNS_status_t MCU_MISC_getSettingsHwRf(int8_t rf_level_dBm, void* rfSettings
 	rficPaLevel = rf_level_dBm - settings->externalPaGain;
 
 	MGR_LOG_VERBOSE("[MCU_MISC] RFIC PA select (0:LPA, 1:HPA) = %d\r\n",
-		settings->isRficHPA);
+			settings->isRficHPA);
 	MGR_LOG_VERBOSE("[MCU_MISC] RFIC PA level=%d dBm, external PA gain = %d dB\r\n",
-		rficPaLevel,
-		settings->externalPaGain);
+			rficPaLevel,
+			settings->externalPaGain);
 
 	/* check settings */
 	if ((rficPaLevel >= rficPaLevel_min) && (rficPaLevel <= rficPaLevel_max))

@@ -1,0 +1,12 @@
+<map id="Kineis/App/Managers/MGR_AT_CMD/Src/mgr_at_cmd_list_previpass.c" name="Kineis/App/Managers/MGR_AT_CMD/Src/mgr_at_cmd_list_previpass.c">
+<area shape="rect" id="node1" title="subset of AT commands concerning satellite PASS predictions, usefull for Medium Acces" alt="" coords="205,5,391,61"/>
+<area shape="rect" id="node2" title=" " alt="" coords="102,109,169,136"/>
+<area shape="rect" id="node3" href="$d4/d30/mcu__at__console_8h.html" title="MCU wrapper for AT CMD console." alt="" coords="382,259,521,285"/>
+<area shape="rect" id="node6" href="$da/da4/mgr__at__cmd__list__previpass_8h.html" title="subset of AT commands concerning satellite PASS predictions, usefull for Medium Acces" alt="" coords="192,109,404,136"/>
+<area shape="rect" id="node4" title=" " alt="" coords="227,333,310,360"/>
+<area shape="rect" id="node5" title=" " alt="" coords="335,333,405,360"/>
+<area shape="rect" id="node7" href="$d5/d58/mgr__at__cmd__common_8h.html" title="header file for common part of the AT cmd manager" alt="" coords="205,184,383,211"/>
+<area shape="rect" id="node8" href="$df/d36/strutil__lib_8h.html" title="small utilities to manipulate strings" alt="" coords="5,259,100,285"/>
+<area shape="rect" id="node10" href="$d9/dc4/kineis__sw__conf_8h.html" title="Kineis stack SW configurations depending on platform used." alt="" coords="124,259,256,285"/>
+<area shape="rect" id="node9" title=" " alt="" coords="17,333,88,360"/>
+</map>

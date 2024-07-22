@@ -24,18 +24,24 @@
 /** Indexes for AT commands present in system */
 enum  atcmd_idx_t {
 	// General commands
+	AT_VERSION,      /**< Get AT commands version */
 	AT_PING,         /**< Ping command */
 	AT_FW,           /**< Get fw version command */
 	AT_ADDR,         /**< Get device address command */
 	AT_ID,           /**< Get device ID command */
 	AT_SN,           /**< Get device serial number command */
-	AT_RCONF,        /**< Get radio configuration command */
+	AT_RCONF,        /**< Get/Set radio configuration command */
+	AT_SAVE_RCONF,   /**< Save radio configuration into Flash command */
+	AT_LPM,          /**< Get/Set low power mode command */
 
 	// User data commands
 	AT_TX,           /**< Index for TX commands */
-#ifdef KIMX_FW
+#ifdef USE_RX_STACK
 	AT_RX,           /**< Index for TX commands */
 #endif
+
+	// Certif commands
+	AT_CW,           /**< Index for CW/MW commands */
 
 	// Satellite pass predictions commands
 	AT_PREPASS_EN,   /**< Index for get/set PREVIPASS algo */
@@ -76,6 +82,7 @@ struct atcmd_desc_t {
 };
 
 /* Extern ---------------------------------------------------------------------------------------*/
+extern const char *atcmd_version;
 extern const struct atcmd_desc_t cas_atcmd_list_array[];
 
 

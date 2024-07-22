@@ -19,6 +19,7 @@ MEMORY
   ROM    (rx)    : ORIGIN = 0x08000000, LENGTH = 256K
   RAM1   (xrw)   : ORIGIN = 0x20000000, LENGTH = 32K    /* Non-backup SRAM1 */
   RAM2   (xrw)   : ORIGIN = 0x20008000, LENGTH = 32K    /* Backup SRAM2 */
+  RTC_BKPR (xrw) : ORIGIN = 0x4000B100, LENGTH = 128     /* TAMP_BKPR register used to backup over LPM */
 }
 
 /* Sections */
@@ -101,29 +102,71 @@ SECTIONS
     . = ALIGN(8);
   } >ROM
 
-  /* Used by the startup to initialize data */
-  _sidata = LOADADDR(.data);
+  /* ------------------------------------------------------------------------------
+   * ---- Initialized data sections goes into RAM1, load LMA copy after code   ----
+   * ---- so far, put all into RAM1 section                                    ----
+   * ---- RAM2 contains kineis stack lpm retention data                        ----
+   * ------------------------------------------------------------------------------
+   */
+
+  _sidata2 = LOADADDR(.data2); /* used by the startup to initialize data */
+
+  .data2 : 
+  {
+    . = ALIGN(4);
+    _sdata2 = .;        /* create a global symbol at data start */
+
+    *(.knsCtxtData)
+    *(.retentionRamData)
+
+    . = ALIGN(4);
+    _edata2 = .;        /* define a global symbol at data end */
+  } >RAM2 AT> ROM
+
+  _sidata = LOADADDR(.data); /* Used by the startup to initialize data */
 
   /* Initialized data sections into "SRAM1" Ram type memory */
   .data : 
   {
     . = ALIGN(8);
     _sdata = .;        /* create a global symbol at data start */
+
     *(.data)           /* .data sections */
     *(.data*)          /* .data* sections */
 
     . = ALIGN(8);
     _edata = .;        /* define a global symbol at data end */
-    
   } >RAM1 AT> ROM
 
-  /* Uninitialized data section into "SRAM1" Ram type memory */
+  /* ------------------------------------------------------------------------------
+   * ---- Uninitialized data sections goes into RAM                            ----
+   * ---- so far, put all into RAM section                                     ----
+   * ---- RAM3 is empty so far, RAM2 contains kineis stack lpm retention data  ----
+   * ------------------------------------------------------------------------------
+   */
+
+  . = ALIGN(4);
+  .bss2 :
+  {
+    /* This is used by the startup in order to initialize the .bss2 secion */
+    _sbss2 = .;         /* define a global symbol at bss2 start */
+    __bss2_start__ = _sbss2;
+
+    *(.knsCtxtBss)
+    *(.retentionRamBss)
+
+    . = ALIGN(4);
+    _ebss2 = .;         /* define a global symbol at bss2 end */
+    __bss2_end__ = _ebss2;
+  } >RAM2
+
   . = ALIGN(8);
   .bss :
   {
     /* This is used by the startup in order to initialize the .bss section */
     _sbss = .;         /* define a global symbol at bss start */
     __bss_start__ = _sbss;
+
     *(.bss)
     *(.bss*)
     *(COMMON)
@@ -165,6 +208,24 @@ SECTIONS
     . = . + _Min_Stack_Size;
     . = ALIGN(8);
   } >RAM1
+
+  /* ------------------------------------------------------------------------------ */
+
+  /* RTC backup domain register section (32 32-bit-long registers), retention during shutdown and standby modes */
+  .rtc_bkpr :
+  {
+    . = ALIGN(4);
+    _srtc_bkpr = .;        /* create a global symbol at rtc_bkpr start */
+    *(.lpmSection)         /* LPM context section, used to store data what ever the low power mode is */
+    *(.msgCntSectionData)
+    *(.rtc_bkpr)           /* .rtc_bkpr sections */
+    *(.rtc_bkpr*)          /* .rtc_bkpr* sections */
+
+    . = ALIGN(4);
+    _ertc_bkpr = .;        /* define a global symbol at rtc_bkpr end */
+  } >RTC_BKPR
+
+  /* ------------------------------------------------------------------------------ */
 
   /* Remove information from the compiler libraries */
   /DISCARD/ :

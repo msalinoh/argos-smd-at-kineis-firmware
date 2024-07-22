@@ -1,0 +1,9 @@
+<map id="Kineis/App/Managers/MGR_AT_CMD/Inc/mgr_at_cmd_list_general.h" name="Kineis/App/Managers/MGR_AT_CMD/Inc/mgr_at_cmd_list_general.h">
+<area shape="rect" id="node1" title="subset of AT commands concerning general purpose (get ID, FW version, ...)" alt="" coords="92,5,264,61"/>
+<area shape="rect" id="node2" href="$d5/d58/mgr__at__cmd__common_8h.html" title="header file for common part of the AT cmd manager" alt="" coords="89,109,267,136"/>
+<area shape="rect" id="node3" title=" " alt="" coords="5,259,76,285"/>
+<area shape="rect" id="node4" title=" " alt="" coords="195,259,278,285"/>
+<area shape="rect" id="node5" href="$df/d36/strutil__lib_8h.html" title="small utilities to manipulate strings" alt="" coords="88,184,183,211"/>
+<area shape="rect" id="node7" href="$d9/dc4/kineis__sw__conf_8h.html" title="Kineis stack SW configurations depending on platform used." alt="" coords="259,184,391,211"/>
+<area shape="rect" id="node6" title=" " alt="" coords="100,259,171,285"/>
+</map>

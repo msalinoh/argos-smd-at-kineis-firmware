@@ -105,6 +105,52 @@ LoopForever:
   .size Reset_Handler, .-Reset_Handler
 
 /**
+ * @brief  This is the code which initializes SRAM2 .data and .bss section
+ *         It is done the same way as the "Reset_Handler" above does it for SRAM1 and CCM RAM (RAM3)
+ * @param  None
+ * @retval : None
+*/
+
+    .section	.text.Sram2_Init
+	.weak	Sram2_Init
+	.type	Sram2_Init, %function
+Sram2_Init:
+/* Copy the data2 segment initializers from flash to SRAM */
+  ldr r0, =_sdata2
+  ldr r1, =_edata2
+  ldr r2, =_sidata2
+  movs r3, #0
+  b	LoopCopyData2Init
+
+CopyData2Init:
+  ldr r4, [r2, r3]
+  str r4, [r0, r3]
+  adds r3, r3, #4
+
+LoopCopyData2Init:
+  adds r4, r0, r3
+  cmp r4, r1
+  bcc CopyData2Init
+
+/* Zero fill the bss2 segment. */
+  ldr r2, =_sbss2
+  ldr r4, =_ebss2
+  movs r3, #0
+  b LoopFillZerobss2
+
+FillZerobss2:
+  str  r3, [r2]
+  adds r2, r2, #4
+
+LoopFillZerobss2:
+  cmp r2, r4
+  bcc FillZerobss2
+
+  bx lr
+
+.size	Sram2_Init, .-Sram2_Init
+
+/**
  * @brief  This is the code that gets called when the processor receives an
  *         unexpected interrupt.  This simply enters an infinite loop, preserving
  *         the system state for examination by a debugger.

@@ -1,0 +1,6 @@
+<map id="Kineis/App/Managers/MGR_AT_CMD/Inc/mgr_at_cmd_list_user_data.h" name="Kineis/App/Managers/MGR_AT_CMD/Inc/mgr_at_cmd_list_user_data.h">
+<area shape="rect" id="node1" title="subset of AT commands concerning user data manipulation such as TX" alt="" coords="196,5,383,61"/>
+<area shape="rect" id="node2" href="$da/df9/mgr__at__cmd__list_8c.html" title="AT commands list main file." alt="" coords="5,109,179,165"/>
+<area shape="rect" id="node3" href="$d1/dfd/mgr__at__cmd__list__general_8c.html" title="subset of AT commands concerning general purpose (get ID, FW version, ...)" alt="" coords="203,109,376,165"/>
+<area shape="rect" id="node4" href="$d8/d11/mgr__at__cmd__list__user__data_8c.html" title="subset of AT commands concerning user data manipulation such as TX" alt="" coords="400,109,587,165"/>
+</map>

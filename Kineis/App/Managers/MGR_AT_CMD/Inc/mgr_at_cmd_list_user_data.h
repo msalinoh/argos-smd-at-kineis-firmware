@@ -66,7 +66,7 @@ uint16_t u16MGR_AT_CMD_convertAsciiBinary(uint8_t *pu8InputBuffer, uint16_t u16_
  */
 bool bMGR_AT_CMD_TX_cmd(uint8_t *pu8_cmdParamString, enum atcmd_type_t e_exec_mode);
 
-#ifdef KIMX_FW
+#ifdef USE_RX_STACK
 /**
  * @brief Process AT command "AT+RX" received data. This is mainly aimed at updating AOP/CS data
  *        in case of PREPASS MAC profile, or received some DL beacon command in programmed mode.
@@ -83,7 +83,7 @@ bool bMGR_AT_CMD_TX_cmd(uint8_t *pu8_cmdParamString, enum atcmd_type_t e_exec_mo
  * @return true if command is correctly received and processed, false if error
  */
 bool bMGR_AT_CMD_RX_cmd(uint8_t *pu8_cmdParamString, enum atcmd_type_t e_exec_mode);
-#endif // KIMX_FW
+#endif // USE_RX_STACK
 
 /**
  * @brief Fct used to retreive and process event coming from kineis stack as answers to AT commands

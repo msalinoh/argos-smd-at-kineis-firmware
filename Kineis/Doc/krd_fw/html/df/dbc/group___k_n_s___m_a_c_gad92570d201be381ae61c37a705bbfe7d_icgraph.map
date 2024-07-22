@@ -1,0 +1,6 @@
+<map id="KNS_MAC_init" name="KNS_MAC_init">
+<area shape="rect" id="node1" title="Initialize and start MAC profile." alt="" coords="304,31,419,57"/>
+<area shape="rect" id="node2" href="$dd/d41/group___k_n_s___a_p_p.html#ga255c1dfa836e65189f22594678e9f616" title="Init function needed for the application SW running in front of the GUI." alt="" coords="114,5,250,32"/>
+<area shape="rect" id="node4" href="$dd/d41/group___k_n_s___a_p_p.html#ga7f6fc13a3df7e1c584e0afc7f85c2a1b" title="At end of standalone APP test, generate TEST status." alt="" coords="108,56,256,83"/>
+<area shape="rect" id="node3" href="$d0/d29/main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="The application entry point." alt="" coords="5,31,60,57"/>
+</map>

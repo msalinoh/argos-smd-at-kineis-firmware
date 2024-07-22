@@ -19,6 +19,8 @@
 #include "mgr_at_cmd_common.h"
 #include "mgr_at_cmd_list.h"
 #include "mcu_at_console.h"
+#include "kineis_sw_conf.h"
+#include KINEIS_SW_ASSERT_H
 #include "mgr_log.h"
 
 /* Defines --------------------------------------------------------------------------------------*/
@@ -27,7 +29,7 @@
  * enqueue AT commands so far. Later, this may be useful to increase FIFO in case application or
  * GUI is sending several commands in a raw.
  *
- * @attention AT CMD FIFO_MAX_SIZE must be a power of 2 : 2, 4, 8, ...
+ * @attention AT CMD FIFO_MAX_SIZE must be superior or equal to 2
  *
  * @attention Ensure there is always one extra free space in fifo between write index and read
  *            index meaning that if you expect to store 3 AT cmd at maximum, FIFO size should be
@@ -41,7 +43,7 @@
 #endif
 
 /* Structure Declaration ------------------------------------------------------------------------*/
-struct framefifo_t {
+struct atcmdfifo_t {
 	uint8_t au8_fifo[FIFO_MAX_SIZE][FRAME_MAX_LEN];
 	uint8_t u8_widx;
 	uint8_t u8_ridx;
@@ -54,7 +56,7 @@ struct atcmd_info_t {
 
 /* Private variables ----------------------------------------------------------------------------*/
 
-struct framefifo_t s_atcmdfifo; /**< A FIFO used to store AT commands received from UART */
+static struct atcmdfifo_t s_atcmdfifo; /**< A FIFO used to store AT commands received from UART */
 
 /* Private functions ----------------------------------------------------------------------------*/
 
@@ -64,27 +66,20 @@ struct framefifo_t s_atcmdfifo; /**< A FIFO used to store AT commands received f
  * This fct is looking for the start pattern ("AT+") and the end pattern ("\r\n") in the stream.
  * If several frames are received in a row, only the last AT cmd is extracted
  *
- * Once AT cmd is found, it is removed from the stream and stored into the FIFO.
+ * Once AT cmd is found, it is removed from the stream and stored into the FIFO if not full.
  *
  * As this fct is the entry point into FW, it is real-time critical and may be more robust. Some
  * design limitations are describerd below.
  *
- * @note This fct may be called from ISR context
+ * @attention This fct may be called from ISR context
  *
  * @note Any garbage after the found AT cmd is also removed from stream. But the garbage before
  *       remains in the original stream.
  *
- * @note In case FIFO is full, any new AT cmd will overwrite the oldest stored AT commands.
- *       Priority is given to the newest AT commands here.
- *
- * @todo It can be changed to FIFO, as per application needs. A normal usage of UART buses
- *       (request -> acknowledge -> request -> ...) should not be impacted by this behaviour. This
- *       is only impacting in case APP is sending several AT cmds in a row.
- *
  * @param[in,out] pu8_RxBuffer pointer to start of RX buffer
  * @param[in,out] pi16_nbRxValidChar number of valid charecters in RX buffer
  *
- * @retval true if a valid frame was extracted and put in FIFO, false if nothing was extracted
+ * @retval true if a valid frame was extracted, false if nothing was extracted
  */
 static bool MGR_AT_CMD_parseStreamCb(uint8_t *pu8_RxBuffer, int16_t *pi16_nbRxValidChar)
 {
@@ -122,6 +117,18 @@ static bool MGR_AT_CMD_parseStreamCb(uint8_t *pu8_RxBuffer, int16_t *pi16_nbRxVa
 	if (!isEOLdetected)
 		return false;
 
+	/* As some AT cmd was consummed from the end at idxStart position,
+	 * idxStart characters remaing to be parsed at the beginning of the buffer.
+	 * Assume they are all valid.
+	 *
+	 */
+	*pi16_nbRxValidChar = idxStart;
+
+	/* In case FIFO is full (read index is reached), skip this new AT CMD. We need to wait for
+	 * FW to consume the previous AT CMDs before.
+	 */
+	if ( ((s_atcmdfifo.u8_widx+1) % FIFO_MAX_SIZE) == (s_atcmdfifo.u8_ridx % FIFO_MAX_SIZE))
+		return true;
 	/* Set the frame in the UART fifo */
 	i16_atcmdLen = idxEnd - idxStart;
 	/* Check AT cmd length overflow. Limit AT cmd len to maximum if overflow was
@@ -132,19 +139,13 @@ static bool MGR_AT_CMD_parseStreamCb(uint8_t *pu8_RxBuffer, int16_t *pi16_nbRxVa
 	memcpy(s_atcmdfifo.au8_fifo[s_atcmdfifo.u8_widx % FIFO_MAX_SIZE],
 		&pu8_RxBuffer[idxStart], i16_atcmdLen);
 	s_atcmdfifo.au8_fifo[s_atcmdfifo.u8_widx % FIFO_MAX_SIZE][i16_atcmdLen] = '\0';
-
-	/* As some AT cmd was consummed from the end at idxStart position,
-	 * idxStart characters remaing to be parsed at the beginning of the buffer.
-	 * Assume they are all valid.
-	 *
-	 */
-	*pi16_nbRxValidChar = idxStart;
-
 	/* Increment write index to next free position */
 	s_atcmdfifo.u8_widx++;
+
 	/* In case read index is reached, skip oldest stored AT cmd to let a newest one to come */
 	if (s_atcmdfifo.u8_widx % FIFO_MAX_SIZE == s_atcmdfifo.u8_ridx % FIFO_MAX_SIZE)
-		s_atcmdfifo.u8_ridx++;
+		kns_assert(0); // should no more happen
+		// s_atcmdfifo.u8_ridx++;
 
 	return true;
 }
@@ -222,7 +223,12 @@ bool MGR_AT_CMD_start(void *context)
 
 }
 
-uint8_t *MGR_AT_CMD_getNextAt(void)
+bool MGR_AT_CMD_isPendingAt(void)
+{
+	return (s_atcmdfifo.u8_ridx % FIFO_MAX_SIZE != s_atcmdfifo.u8_widx % FIFO_MAX_SIZE);
+}
+
+uint8_t *MGR_AT_CMD_popNextAt(void)
 {
 	if (s_atcmdfifo.u8_ridx % FIFO_MAX_SIZE != s_atcmdfifo.u8_widx % FIFO_MAX_SIZE)
 		return s_atcmdfifo.au8_fifo[s_atcmdfifo.u8_ridx++ % FIFO_MAX_SIZE];
@@ -238,7 +244,8 @@ bool MGR_AT_CMD_decodeAt(uint8_t *pu8_atcmd)
 	if (pu8_atcmd != NULL) {
 		atcmdInfo = MGR_AT_CMD_getAtType(pu8_atcmd);
 
-		if (atcmdInfo.ATcmdIndex < ATCMD_UNKNOWN_COMMAND)
+		if ((atcmdInfo.ATcmdIndex < ATCMD_UNKNOWN_COMMAND) &&
+		    (cas_atcmd_list_array[atcmdInfo.ATcmdIndex].f_ht_cmd_fun_proc != NULL))
 			status = (cas_atcmd_list_array[atcmdInfo.ATcmdIndex].f_ht_cmd_fun_proc)(
 					pu8_atcmd,
 					atcmdInfo.ATcmdExecType);

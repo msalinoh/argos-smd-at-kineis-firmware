@@ -1,0 +1,10 @@
+<map id="Kineis/Extdep/Mcu/Src/mcu_misc.c" name="Kineis/Extdep/Mcu/Src/mcu_misc.c">
+<area shape="rect" id="node1" title="File to implement miscellaneous features for a specific design." alt="" coords="133,5,299,47"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,95,88,121"/>
+<area shape="rect" id="node3" href="$dc/d0e/mcu__misc_8h.html" title="MCU wrappers for miscellaneous features." alt="" coords="113,95,213,121"/>
+<area shape="rect" id="node6" title=" " alt="" coords="237,95,304,121"/>
+<area shape="rect" id="node7" href="$d2/d2e/mgr__log_8h.html" title="logger main header file" alt="" coords="329,95,415,121"/>
+<area shape="rect" id="node4" title=" " alt="" coords="123,244,194,271"/>
+<area shape="rect" id="node5" href="$d8/d85/kns__types_8h.html" title="Kineis types definition." alt="" coords="153,169,253,196"/>
+<area shape="rect" id="node8" href="$d9/d70/mgr__log__rtc_8h.html" title=": Header for mgr_log_rtc.c file. This file contains log routine concerning RTC. Thus there is a depen..." alt="" coords="317,169,427,196"/>
+</map>

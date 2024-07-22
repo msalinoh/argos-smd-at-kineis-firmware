@@ -1,0 +1,4 @@
+<map id="KINEIS_UART_StartRx_IT" name="KINEIS_UART_StartRx_IT">
+<area shape="rect" id="node1" title="Enable and start RX interrupt from UART." alt="" coords="5,5,188,32"/>
+<area shape="rect" id="node2" href="$d8/d62/group___m_c_u___a_p_p___w_r_a_p_p_e_r_s.html#gaeda0953e4ffe9aae0475009c1d221944" title="RX interrupt handler for 7 or 8 bits data word length ." alt="" coords="236,5,383,32"/>
+</map>

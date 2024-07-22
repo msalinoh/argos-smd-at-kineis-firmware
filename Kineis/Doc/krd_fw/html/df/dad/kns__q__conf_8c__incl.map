@@ -1,0 +1,10 @@
+<map id="Kineis/Extdep/Conf/kns_q_conf.c" name="Kineis/Extdep/Conf/kns_q_conf.c">
+<area shape="rect" id="node1" title="Configuration of queues used in kineis_swr." alt="" coords="111,5,257,47"/>
+<area shape="rect" id="node2" href="$d8/dd1/kns__q__conf_8h.html" title="Configuration of queues used in kineis_sw." alt="" coords="85,169,192,196"/>
+<area shape="rect" id="node8" href="$d0/d84/kns__q_8h.html" title="Configuration of queues used in kineis_swr." alt="" coords="193,95,265,121"/>
+<area shape="rect" id="node3" title=" " alt="" coords="137,319,220,345"/>
+<area shape="rect" id="node4" title=" " alt="" coords="222,393,293,420"/>
+<area shape="rect" id="node5" href="$df/d64/kns__mac__evt_8h.html" title=" " alt="" coords="21,244,141,271"/>
+<area shape="rect" id="node7" href="$d7/d8a/kns__srvc__common_8h.html" title="Common part of Kinéis service layer." alt="" coords="267,244,421,271"/>
+<area shape="rect" id="node6" href="$d8/d85/kns__types_8h.html" title="Kineis types definition." alt="" coords="295,319,395,345"/>
+</map>

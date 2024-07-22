@@ -16,16 +16,23 @@
  */
 
 /**
- * @page kns_cfg_page KNS_CFG: Service handling general kineis stack configuration parameters
+ * @page kns_cfg_page KNS_CFG: Kineis cofiguration library
  *
- * This page is presenting the Kineis configuration service.
+ * This page is presenting some Kineis stack configuration services (\ref KNS_CFG)
  *
  * Its purpose is to:
- * * Provide information such as ID, radio config
+ * * Provide information such as ID, address, serail number, radio configuration
+ *
+ * @note As those services reply on data stored in non volatile memory, there may be a dependency on
+ * MCU wrappers implemented by the integrator.
+ *
+ * @section kns_app_subpages Sub-pages
+ *
+ * * @subpage mcu_nvm_page
  */
 
 /**
- * @addtogroup KNS_SRVC
+ * @addtogroup KNS_CFG
  * @brief Kineis RF Transceiver module. (refer to @ref kns_cfg_page for general description).
  * @{
  */
@@ -42,7 +49,7 @@
 #pragma GCC visibility push(default)
 
 /* Global defines -------------------------------------------------------------------------------*/
-#define DEVICE_ADDR_LENGTH        4
+#define DEVICE_ADDR_LENGTH         4
 #define DEVICE_SN_LENGTH          14
 
 /* Structures ---------------------------------------------------------------------------------- */
@@ -99,6 +106,13 @@ enum KNS_status_t KNS_CFG_getRadioInfo(struct KNS_CFG_radio_t *radio_cfg);
  * @return Status @ref KNS_status_t
  */
 enum KNS_status_t KNS_CFG_setRadioInfo(void *radio_cfg);
+
+/**
+ * @brief Save the Kineis radio configuration into Flash
+ *
+ * @return Status @ref KNS_status_t
+ */
+enum KNS_status_t KNS_CFG_saveRadioInfo(void);
 
 /**
  * @brief Get the Kineis device identifier

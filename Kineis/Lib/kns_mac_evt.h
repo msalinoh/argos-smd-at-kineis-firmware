@@ -45,10 +45,11 @@
  * @brief List events which could be reported by service layer
  */
 enum KNS_MAC_appEvtId_t {
-	KNS_MAC_SEND_DATA,  /**< Send data on Kineis UL link */
-	KNS_MAC_STOP_SEND_DATA,  /**< Abort Send data on Kineis UL link */
-	KNS_MAC_RX_START, /**< Start reception on Kineis DL link (e.g. DL_BC or AOP/CS update) */
-	KNS_MAC_RX_STOP,  /**< Stop reception on Kineis DL link */
+	KNS_MAC_APP_NONE_EVT,  /**< Send data on Kineis UL link */
+	KNS_MAC_SEND_DATA,     /**< Send data on Kineis UL link */
+	KNS_MAC_STOP_SEND_DATA,/**< Abort Send data on Kineis UL link */
+	KNS_MAC_RX_START,      /**< Start reception on Kineis DL link (e.g. DL_BC or AOP/CS update) */
+	KNS_MAC_RX_STOP        /**< Stop reception on Kineis DL link */
 };
 
 /**
@@ -56,6 +57,7 @@ enum KNS_MAC_appEvtId_t {
  * @brief List events which could be reported by service layer
  */
 enum KNS_MAC_srvcEvtId_t {
+	KNS_MAC_SRVC_NONE_EVT, /**< default value meaning event is not valid */
 	KNS_MAC_TX_DONE,       /**< TX completed */
 	KNS_MAC_TX_TIMEOUT,    /**< TX failed, timeout reached */
 	KNS_MAC_TXACK_DONE,    /**< UL-ACK TX completed */
@@ -72,8 +74,17 @@ enum KNS_MAC_srvcEvtId_t {
 	KNS_MAC_ERROR          /**< generic error event */
 };
 
+/**
+ * @enum KNS_MAC_infraEvtId_t
+ * @brief List events which could be reported by service layer
+ */
+enum KNS_MAC_infraEvtId_t {
+	KNS_MAC_TRIG_TX        /**< Send data on Kineis UL link */
+};
+
 /* Structures ---------------------------------------------------------------------------------- */
 
+	/* ---- APP-to-MAC events ---- */
 
 /**
  * @struct KNS_MAC_send_data_ctxt_t
@@ -98,6 +109,8 @@ struct KNS_MAC_appEvt_t {
 		struct KNS_MAC_send_data_ctxt_t data_ctxt;
 	};
 };
+
+	/* ---- SRV-Cto-MAC events ---- */
 
 /**
  * @struct KNS_MAC_TX_cplt_ctxt_t
@@ -135,19 +148,39 @@ struct KNS_MAC_RX_dl_msg_ctxt_t {
 
 /**
  * @struct KNS_MAC_srvcEvt_t
- * @brief Generic event structure
+ * @brief Generic structure/union describing events coming from SERVICE layer
  *
- * @todo move it to upper part of MAC, because of KNS_MAC_OK and KNS_MAC_ERROR
+ * This events are internally used by MAC layer. But @note most of them are converted and forwarded
+ * to APP layer as notifications.
  *
- * Union describing event reported by this driver
  */
 struct KNS_MAC_srvcEvt_t {
 	enum KNS_MAC_srvcEvtId_t id;
+	enum KNS_MAC_appEvtId_t app_evt; /**< original APP event which triggered this.
+					  * Correctly set for KNS_MAC_OK and KNS_MAC_ERROR evt
+					  */
 	union {
-		struct KNS_MAC_TX_cplt_ctxt_t tx_ctxt; /**< TX-complete notification context */
+		struct KNS_MAC_TX_cplt_ctxt_t tx_ctxt; /**< TX-complete notification context
+							 * Also set in case of KNS_MAC_OK and
+							 * KNS_MAC_ERROR evt
+							 */
 		struct KNS_MAC_RX_frm_ctxt_t rx_ctxt; /**< RX-frame-received notification context */
 		struct KNS_MAC_RX_dl_msg_ctxt_t msg_ctxt; /**< decoded DL msg context */
-		enum KNS_MAC_appEvtId_t app_evt; /**< original APP event which triggered this */
+	};
+};
+
+	/* ---- INFRA-to-MAC events ---- */
+
+/**
+ * @struct KNS_MAC_infraEvt_t
+ * @brief Generic structure of events coming from INFRA (e.g. timer)
+ *
+ * Union describing event contexts
+ */
+struct KNS_MAC_infraEvt_t {
+	enum KNS_MAC_infraEvtId_t id;
+	union {
+		uint32_t trigtx_ctxt; /**< TRIG_TX event context */
 	};
 };
 

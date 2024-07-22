@@ -1,0 +1,8 @@
+<map id="Kineis/Extdep/Mcu/Src/mcu_nvm.c" name="Kineis/Extdep/Mcu/Src/mcu_nvm.c">
+<area shape="rect" id="node1" title="MCU wrapper for any access to the non volatile memory accesses." alt="" coords="44,5,211,47"/>
+<area shape="rect" id="node2" href="$d8/d85/kns__types_8h.html" title="Kineis types definition." alt="" coords="87,169,187,196"/>
+<area shape="rect" id="node4" href="$db/dcb/aes_8h.html" title=" " alt="" coords="5,169,63,196"/>
+<area shape="rect" id="node5" href="$df/dbf/mcu__aes_8h.html" title="MCU wrapper for encryption/decryption wrappers utilities." alt="" coords="245,95,337,121"/>
+<area shape="rect" id="node6" href="$d8/dd2/mcu__nvm_8h.html" title="MCU wrappers for Non volatile memory management." alt="" coords="122,95,221,121"/>
+<area shape="rect" id="node3" title=" " alt="" coords="145,244,216,271"/>
+</map>

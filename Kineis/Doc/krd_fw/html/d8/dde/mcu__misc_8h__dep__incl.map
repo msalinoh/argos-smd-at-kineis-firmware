@@ -1,0 +1,5 @@
+<map id="Kineis/Extdep/Mcu/Inc/mcu_misc.h" name="Kineis/Extdep/Mcu/Inc/mcu_misc.h">
+<area shape="rect" id="node1" title="MCU wrappers for miscellaneous features." alt="" coords="107,5,272,47"/>
+<area shape="rect" id="node2" href="$d1/dfd/mgr__at__cmd__list__general_8c.html" title="subset of AT commands concerning general purpose (get ID, FW version, ...)" alt="" coords="5,95,179,151"/>
+<area shape="rect" id="node3" href="$df/ddf/mcu__misc_8c.html" title="File to implement miscellaneous features for a specific design." alt="" coords="203,102,370,143"/>
+</map>

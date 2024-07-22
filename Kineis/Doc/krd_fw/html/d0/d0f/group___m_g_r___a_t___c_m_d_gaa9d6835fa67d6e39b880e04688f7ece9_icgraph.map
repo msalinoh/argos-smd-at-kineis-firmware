@@ -1,0 +1,8 @@
+<map id="MGR_LOG_array" name="MGR_LOG_array">
+<area shape="rect" id="node1" title="Log array of uint8_t." alt="" coords="543,56,671,83"/>
+<area shape="rect" id="node2" href="$dd/d41/group___k_n_s___a_p_p.html#ga7dcd894e8e120e17325f7801d136d938" title="This fct is a very basic standalone application." alt="" coords="290,19,445,45"/>
+<area shape="rect" id="node4" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#ga60486b23c6850d01bbb1e29875cd24f4" title="Send random TX data as per RF configuration." alt="" coords="240,81,495,108"/>
+<area shape="rect" id="node3" href="$d0/d29/main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="The application entry point." alt="" coords="71,5,126,32"/>
+<area shape="rect" id="node5" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#gafccf5cd6468be2c39af4c4c599d48ef8" title="Process AT command &quot;AT+CW&quot;." alt="" coords="5,56,192,83"/>
+<area shape="rect" id="node6" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#gafccb1dfaf28ab371bebd814a3abaa57c" title="Callback function notifying end of TX processing in case of modulated wave." alt="" coords="37,107,160,133"/>
+</map>

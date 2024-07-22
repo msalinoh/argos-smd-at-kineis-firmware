@@ -1,0 +1,6 @@
+<map id="Kineis/Lib/kns_types.h" name="Kineis/Lib/kns_types.h">
+<area shape="rect" id="node1" title="Kineis types definition." alt="" coords="194,5,361,32"/>
+<area shape="rect" id="node2" href="$dc/d0e/mcu__misc_8h.html" title="MCU wrappers for miscellaneous features." alt="" coords="5,80,171,121"/>
+<area shape="rect" id="node3" href="$d4/dbe/mcu__tim_8h.html" title="MCU wrappers for timer or non&#45;blocking delays used by Kineis stack." alt="" coords="195,80,360,121"/>
+<area shape="rect" id="node4" href="$df/d53/kns__rf_8h.html" title="Device communication driver for Kinéis radio frequence." alt="" coords="385,87,525,114"/>
+</map>

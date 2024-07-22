@@ -1,0 +1,6 @@
+<map id="KNS_RF_evt_t" name="KNS_RF_evt_t">
+<area shape="rect" id="node1" title="Generic event structure." alt="" coords="281,95,394,121"/>
+<area shape="rect" id="node2" href="$d7/d5a/struct_k_n_s___r_f__ctxt__sat__detected__t.html" title="satellite&#45;detected event context structure" alt="" coords="5,5,213,32"/>
+<area shape="rect" id="node3" href="$d3/dd6/struct_k_n_s___r_f__ctxt__rx__received__t.html" title="RX&#45;received event context structure." alt="" coords="237,5,437,32"/>
+<area shape="rect" id="node4" href="$d1/dc8/struct_k_n_s___r_f__ctxt__tx__done__t.html" title="TX&#45;done event context structure." alt="" coords="461,5,637,32"/>
+</map>

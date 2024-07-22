@@ -1,0 +1,9 @@
+<map id="Kineis/App/Kineis_os/KNS_OS/Src/kns_os.c" name="Kineis/App/Kineis_os/KNS_OS/Src/kns_os.c">
+<area shape="rect" id="node1" title="Minimalist baremetal OS to be used with Kineis software stack." alt="" coords="37,5,200,47"/>
+<area shape="rect" id="node2" title=" " alt="" coords="31,95,105,121"/>
+<area shape="rect" id="node3" href="$d2/de2/kns__os_8h.html" title="Minimalist baremetal OS to be used with Kineissoftware stack." alt="" coords="130,95,209,121"/>
+<area shape="rect" id="node4" title=" " alt="" coords="5,169,88,196"/>
+<area shape="rect" id="node5" title=" " alt="" coords="134,244,205,271"/>
+<area shape="rect" id="node6" href="$d8/d85/kns__types_8h.html" title="Kineis types definition." alt="" coords="163,169,263,196"/>
+<area shape="rect" id="node7" href="$d6/d73/kns__os__conf_8h.html" title="Configuration of task used with/in kineis_sw." alt="" coords="287,169,401,196"/>
+</map>

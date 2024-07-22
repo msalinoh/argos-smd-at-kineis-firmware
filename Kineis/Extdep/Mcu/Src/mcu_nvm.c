@@ -23,20 +23,26 @@
 
 /* Variables ---------------------------------------------------------*/
 
-/** In this short example, the message counter is stored in ram, but it should
- * be stored in a non volatile memory (flash, etc.)
- * The message counter value should be recovered after each device power off/on.
- * If you use a flash memory, be careful about the storage of this data. The
- * message counter is updated at each message transmission, so this implies a
- * lot of erase/write cycles.
+/** @note The message counter be stored in a non volatile memory (flash, RTC backup reg, etc.).
+ * Proposed implementation below is mapping the message_counter variable in a memory section:
+ * * Ensure .msgCntSectionData section is mapped at the correct place
+ * * or fill free to change this proposal as per you needs.
+ *
+ * It could remain in RAM as long as the device is not POWER OFF and is not entering LPM.
+ * The message counter value should be recovered after each device power off/on and low power wakeup
+ *
+ * If you use a flash memory, be careful about the storage of this data. The message counter is
+ * updated at each message transmission, so this implies a lot of erase/write cycles.
  */
+__attribute__((__section__(".msgCntSectionData")))
 static uint16_t message_counter;
 
+
 /** The device identifier may be stored in a secured way (encryption, etc.) */
-static const uint32_t device_id = 123456;
+static const uint32_t device_id = 214010;
 
 /** The device address may be stored in a secured way (encryption, etc.) */
-static const uint8_t device_addr[4] = { 0x11, 0x22, 0x33, 0x44 };
+static const uint8_t device_addr[4] = { 0x22, 0x67, 0x5A, 0xD0 };
 
 /** Radio configuration : Ensure radio configuration is valid when Kineis stack is called.
  *
@@ -90,9 +96,10 @@ static uint8_t radioConfZone[16] = {
 };
 
 /* Device serial number */
-static const uint8_t device_sn[DEVICE_SN_LENGTH] = { 's', 'e', 'r', 'i', 'a', 'l', '_', \
-					      '_', 'n', 'u', 'm', 'b', 'e', 'r' };
-
+//static const uint8_t device_sn[DEVICE_SN_LENGTH] = { 's', 'e', 'r', 'i', 'a', 'l', '_', \
+//					      '_', 'n', 'u', 'm', 'b', 'e', 'r' };
+static const uint8_t device_sn[DEVICE_SN_LENGTH] = { 'S', 'M', 'D', '_', '0', '1', '_', \
+					      '_', 'T', 'E', 'S', 'T', '0', '0' };
 /* Functions -------------------------------------------------------------*/
 
 enum KNS_status_t MCU_NVM_getMC(uint16_t *mc_ptr)
@@ -127,6 +134,11 @@ enum KNS_status_t MCU_NVM_setRadioConfZone(void *ConfZonePtr, uint16_t ConfZoneS
 	for (i = 0 ; i < ConfZoneSize ; i++)
 		radioConfZone[i] = ((uint8_t*)ConfZonePtr)[i];
 
+	return KNS_STATUS_OK;
+}
+
+enum KNS_status_t MCU_NVM_saveRadioConfZone(void)
+{
 	return KNS_STATUS_OK;
 }
 

@@ -11,10 +11,12 @@
  */
 
 /* Includes ------------------------------------------------------------------*/
+#include <stdio.h>
 #include <string.h>
 
 #include "kns_types.h"
 #include "mgr_at_cmd_common.h"
+#include "mgr_at_cmd_list.h"
 #include "mgr_at_cmd_list_general.h"
 #include "mgr_at_cmd_list_user_data.h"
 #include "mcu_at_console.h"
@@ -23,11 +25,32 @@
 #include "mcu_misc.h" // use to check RF HW setting vers radio confoguration
 #endif
 #include "kns_cfg.h"
+#include "lpm.h" // used for AT+LPM command all is hardcoded so far
 #include "build_info.h"
 #include "mgr_log.h"
 
 
 /* Functions -----------------------------------------------------------------*/
+
+bool bMGR_AT_CMD_VERSION_cmd(uint8_t *pu8_cmdParamString __attribute__((unused)),
+	enum atcmd_type_t e_exec_mode)
+{
+	uint8_t idx;
+
+	if (e_exec_mode == ATCMD_ACTION_MODE) {
+		MGR_LOG_VERBOSE("[ERROR] Action mode is unauthorized for this AT cmd\r\n");
+		return bMGR_AT_CMD_logFailedMsg(ERROR_UNKNOWN_AT_CMD);
+	}
+
+	MCU_AT_CONSOLE_send("+VERSION=%s", atcmd_version);
+	for (idx=0; idx < ATCMD_MAX_COUNT; idx++) {
+		MCU_AT_CONSOLE_send(",%s", cas_atcmd_list_array[idx].pu8_cmdNameString);
+
+	}
+	MCU_AT_CONSOLE_send("\r\n");
+
+	return true;
+}
 
 bool bMGR_AT_CMD_PING_cmd(uint8_t *pu8_cmdParamString __attribute__((unused)),
 	enum atcmd_type_t e_exec_mode)
@@ -159,6 +182,47 @@ bool bMGR_AT_CMD_RCONF_cmd(uint8_t *pu8_cmdParamString __attribute__((unused)),
 		return bMGR_AT_CMD_logSucceedMsg();
 	}
 	return bMGR_AT_CMD_logFailedMsg(ERROR_UNKNOWN_AT_CMD);
+}
+
+bool bMGR_AT_CMD_SAVE_RCONF_cmd(uint8_t *pu8_cmdParamString __attribute__((unused)),
+	enum atcmd_type_t e_exec_mode)
+{
+	if (e_exec_mode == ATCMD_ACTION_MODE) {
+		if (KNS_CFG_saveRadioInfo() != KNS_STATUS_OK)
+			/* TODO: add a new error code ? */
+			return bMGR_AT_CMD_logFailedMsg(ERROR_INVALID_ID);
+		return bMGR_AT_CMD_logSucceedMsg();
+	}
+	return bMGR_AT_CMD_logFailedMsg(ERROR_UNKNOWN_AT_CMD);
+}
+
+bool bMGR_AT_CMD_LPM_cmd(uint8_t *pu8_cmdParamString __attribute__((unused)),
+	enum atcmd_type_t e_exec_mode)
+{
+	int16_t scanParamRes;
+	uint16_t lpm; /** @todo PRODEV-88:need to keep uint16_t remove compilation error.
+	 	       * leads to hardfault error if using uint8_t
+	 	       */
+
+	if (e_exec_mode == ATCMD_STATUS_MODE) {
+		MCU_AT_CONSOLE_send("+LPM=0x%X\r\n", lpm_config.allowedLPMbitmap);
+		return true;
+	}
+	if (e_exec_mode == ATCMD_ACTION_MODE) {
+
+		/** Extract USER DATA from pu8_cmdParamString */
+		scanParamRes = sscanf((const char *)pu8_cmdParamString, (const char *)"AT+LPM=0x%hX", &lpm);
+		if (scanParamRes == 1) {
+			lpm &= LOW_POWER_MODE_NONE | LOW_POWER_MODE_SLEEP | LOW_POWER_MODE_STOP |
+				LOW_POWER_MODE_STANDBY | LOW_POWER_MODE_SHUTDOWN;
+			lpm_config.allowedLPMbitmap = (uint8_t)lpm;
+			bMGR_AT_CMD_logSucceedMsg();
+		}
+		if (scanParamRes != 1)
+			return bMGR_AT_CMD_logFailedMsg(ERROR_PARAMETER_FORMAT);
+	}
+
+	return false;
 }
 
 /**

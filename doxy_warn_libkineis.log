@@ -1,0 +1,5 @@
+/tmp/krd_fw_package_2024-05-29T19:52:53+02:00/krd_fw_package_v6.2.1/Kineis/Lib/kns_cfg.h:28: warning: multiple use of section label 'kns_app_subpages' while adding section, (first occurrence: /tmp/krd_fw_package_2024-05-29T19:52:53+02:00/krd_fw_package_v6.2.1/Kineis/Lib/kns_mac.h, line 37)
+/tmp/krd_fw_package_2024-05-29T19:52:53+02:00/krd_fw_package_v6.2.1/Kineis/Lib/kns_rf.h:25: warning: multiple use of section label 'kns_app_subpages' while adding section, (first occurrence: /tmp/krd_fw_package_2024-05-29T19:52:53+02:00/krd_fw_package_v6.2.1/Kineis/Lib/kns_mac.h, line 37)
+/tmp/krd_fw_package_2024-05-29T19:52:53+02:00/krd_fw_package_v6.2.1/Kineis/Extdep/MGR_LOG/Inc/mgr_log.h:31: warning: unable to resolve reference to 'mgr_log.c' for \ref command
+/tmp/krd_fw_package_2024-05-29T19:52:53+02:00/krd_fw_package_v6.2.1/Kineis/Lib/kns_rf.h:27: warning: unable to resolve reference to 'mcu_misc_page' for \ref command
+/tmp/krd_fw_package_2024-05-29T19:52:53+02:00/krd_fw_package_v6.2.1/Kineis/Lib/kns_rf.h:27: warning: unable to resolve reference to 'mcu_misc_page' for \ref command

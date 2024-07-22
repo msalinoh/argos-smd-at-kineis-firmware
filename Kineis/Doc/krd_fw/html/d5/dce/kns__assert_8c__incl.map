@@ -1,0 +1,7 @@
+<map id="Kineis/Extdep/Conf/kns_assert.c" name="Kineis/Extdep/Conf/kns_assert.c">
+<area shape="rect" id="node1" title="assert handling dependency regarding platform using the Kineis stack (handle reset)" alt="" coords="61,5,207,47"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,95,76,121"/>
+<area shape="rect" id="node3" title=" " alt="" coords="101,95,167,121"/>
+<area shape="rect" id="node4" href="$d2/d2e/mgr__log_8h.html" title="logger main header file" alt="" coords="192,95,279,121"/>
+<area shape="rect" id="node5" href="$d9/d70/mgr__log__rtc_8h.html" title=": Header for mgr_log_rtc.c file. This file contains log routine concerning RTC. Thus there is a depen..." alt="" coords="180,169,291,196"/>
+</map>

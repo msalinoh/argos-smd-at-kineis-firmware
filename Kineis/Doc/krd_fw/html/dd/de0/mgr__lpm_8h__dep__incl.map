@@ -1,0 +1,10 @@
+<map id="Kineis/Lpm/Inc/mgr_lpm.h" name="Kineis/Lpm/Inc/mgr_lpm.h">
+<area shape="rect" id="node1" title="low power mode manager is in charge to collect all low power needs from &#39;clients&#39; and setup the corre..." alt="" coords="425,5,571,47"/>
+<area shape="rect" id="node2" href="$df/db7/lpm_8h.html" title="This file contains some utilities and functions needed for a correct handling of LPM on the STM32WL55..." alt="" coords="176,102,335,129"/>
+<area shape="rect" id="node5" href="$d5/db5/lpm_8c.html" title="This file contains some utilities and functions needed for a correct handling of LPM on the STM32WL55..." alt="" coords="352,199,511,225"/>
+<area shape="rect" id="node6" href="$df/da4/lpm__cli__kstk_8h.html" title="Kineis stack&#39;s LPM client. It is implementing APIs needed to interface with the low power manager (MG..." alt="" coords="425,95,571,136"/>
+<area shape="rect" id="node7" href="$df/d53/lpm__cli__kstk_8c.html" title="Kineis stack&#39;s LPM client. It is implementing APIs needed to interface with the low power manager (MG..." alt="" coords="535,191,682,233"/>
+<area shape="rect" id="node8" href="$dd/d8d/mgr__lpm_8c.html" title="low power mode manager is in charge to collect all low power needs from &#39;clients&#39; and setup the corre..." alt="" coords="647,95,795,136"/>
+<area shape="rect" id="node3" href="$d0/d29/main_8c.html" title=": Main program body" alt="" coords="5,199,129,225"/>
+<area shape="rect" id="node4" href="$d1/dfd/mgr__at__cmd__list__general_8c.html" title="subset of AT commands concerning general purpose (get ID, FW version, ...)" alt="" coords="154,184,327,240"/>
+</map>

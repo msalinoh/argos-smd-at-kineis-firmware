@@ -1,0 +1,13 @@
+<map id="Kineis/Lpm/Src/lpm.c" name="Kineis/Lpm/Src/lpm.c">
+<area shape="rect" id="node1" title="This file contains some utilities and functions needed for a correct handling of LPM on the STM32WL55..." alt="" coords="187,5,346,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="60,229,142,256"/>
+<area shape="rect" id="node3" title=" " alt="" coords="304,80,370,107"/>
+<area shape="rect" id="node4" title=" " alt="" coords="394,80,461,107"/>
+<area shape="rect" id="node5" href="$df/db7/lpm_8h.html" title="This file contains some utilities and functions needed for a correct handling of LPM on the STM32WL55..." alt="" coords="170,80,229,107"/>
+<area shape="rect" id="node6" href="$df/d63/mgr__lpm_8h.html" title="low power mode manager is in charge to collect all low power needs from &#39;clients&#39; and setup the corre..." alt="" coords="164,155,256,181"/>
+<area shape="rect" id="node9" href="$df/da4/lpm__cli__kstk_8h.html" title="Kineis stack&#39;s LPM client. It is implementing APIs needed to interface with the low power manager (MG..." alt="" coords="30,80,146,107"/>
+<area shape="rect" id="node10" href="$d2/d2e/mgr__log_8h.html" title="logger main header file" alt="" coords="486,80,572,107"/>
+<area shape="rect" id="node7" title=" " alt="" coords="203,304,274,331"/>
+<area shape="rect" id="node8" href="$d8/d85/kns__types_8h.html" title="Kineis types definition." alt="" coords="232,229,332,256"/>
+<area shape="rect" id="node11" href="$d9/d70/mgr__log__rtc_8h.html" title=": Header for mgr_log_rtc.c file. This file contains log routine concerning RTC. Thus there is a depen..." alt="" coords="474,155,584,181"/>
+</map>

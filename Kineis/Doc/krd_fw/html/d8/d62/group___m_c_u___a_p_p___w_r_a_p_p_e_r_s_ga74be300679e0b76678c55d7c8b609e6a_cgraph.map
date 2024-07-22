@@ -1,0 +1,5 @@
+<map id="MCU_AT_CONSOLE_register" name="MCU_AT_CONSOLE_register">
+<area shape="rect" id="node1" title="Start AT CMD console for AT cmd reception." alt="" coords="5,5,208,32"/>
+<area shape="rect" id="node2" href="$d8/d62/group___m_c_u___a_p_p___w_r_a_p_p_e_r_s.html#ga2fbcd5790071dab1b10a9196607692b8" title="Enable and start RX interrupt from UART." alt="" coords="256,5,439,32"/>
+<area shape="rect" id="node3" href="$d8/d62/group___m_c_u___a_p_p___w_r_a_p_p_e_r_s.html#gaeda0953e4ffe9aae0475009c1d221944" title="RX interrupt handler for 7 or 8 bits data word length ." alt="" coords="487,5,633,32"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="KNS_RF_PowerOff" name="KNS_RF_PowerOff">
+<area shape="rect" id="node1" title="This function powers off the LDO for the KNS_RF. cb is called when done." alt="" coords="713,31,853,57"/>
+<area shape="rect" id="node2" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#gafccf5cd6468be2c39af4c4c599d48ef8" title="Process AT command &quot;AT+CW&quot;." alt="" coords="5,5,192,32"/>
+<area shape="rect" id="node3" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#gafccb1dfaf28ab371bebd814a3abaa57c" title="Callback function notifying end of TX processing in case of modulated wave." alt="" coords="543,31,665,57"/>
+<area shape="rect" id="node4" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#ga60486b23c6850d01bbb1e29875cd24f4" title="Send random TX data as per RF configuration." alt="" coords="240,31,495,57"/>
+</map>

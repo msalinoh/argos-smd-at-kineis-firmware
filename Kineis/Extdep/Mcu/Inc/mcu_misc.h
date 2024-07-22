@@ -9,6 +9,14 @@
  */
 
 /**
+ * @page mcu_misc_page MCU wrappers: MISCellaneous utilities
+ *
+ * So far, the RF DRIVER needs some miscellaneous utilies such as:
+ * * turn the externam PA ON/OFF
+ * * get RF HW settings to configure the output power properly
+ */
+
+/**
  * @addtogroup MCU_WRAPPERS
  * @brief MCU wrapper used for extra little features
  * @{

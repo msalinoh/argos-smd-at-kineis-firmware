@@ -6,7 +6,7 @@
  */
 
 /**
- * \page mcu_at_console_page MCU wrapper for AT commands console
+ * @page mcu_at_console_page MCU wrapper: AT CMD console
  *
  * This console is used to communicate At commands and responses with the device.
  * Depending on your application need, it could be based on UART link, I2c and so on.

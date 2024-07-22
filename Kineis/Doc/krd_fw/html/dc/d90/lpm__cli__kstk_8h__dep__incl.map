@@ -1,0 +1,5 @@
+<map id="Kineis/Lpm/Inc/lpm_cli_kstk.h" name="Kineis/Lpm/Inc/lpm_cli_kstk.h">
+<area shape="rect" id="node1" title="Kineis stack&#39;s LPM client. It is implementing APIs needed to interface with the low power manager (MG..." alt="" coords="99,5,246,47"/>
+<area shape="rect" id="node2" href="$d5/db5/lpm_8c.html" title="This file contains some utilities and functions needed for a correct handling of LPM on the STM32WL55..." alt="" coords="5,102,164,129"/>
+<area shape="rect" id="node3" href="$df/d53/lpm__cli__kstk_8c.html" title="Kineis stack&#39;s LPM client. It is implementing APIs needed to interface with the low power manager (MG..." alt="" coords="189,95,335,136"/>
+</map>

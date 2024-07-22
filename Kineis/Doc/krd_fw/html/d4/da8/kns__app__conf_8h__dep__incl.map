@@ -1,0 +1,9 @@
+<map id="Kineis/Appconf/kns_app_conf.h" name="Kineis/Appconf/kns_app_conf.h">
+<area shape="rect" id="node1" title="Kineis Application configurations depending on platform used." alt="" coords="412,5,559,47"/>
+<area shape="rect" id="node2" href="$d2/d04/mgr__at__cmd__list__certif_8c.html" title="subset of AT commands concerning specifics for certification" alt="" coords="5,95,179,151"/>
+<area shape="rect" id="node3" href="$d8/d3c/mcu__at__console__stm_8c.html" title=" " alt="" coords="203,102,378,143"/>
+<area shape="rect" id="node5" href="$dd/d3f/mcu__tim_8c.html" title="MCU wrappers for timer or non&#45;blocking delays used by Kineis stack." alt="" coords="402,102,569,143"/>
+<area shape="rect" id="node6" href="$dc/d4f/mgr__log__rtc_8c.html" title="This file contains log routine concerning RTC. There is a dependency on HAL RTC." alt="" coords="593,102,773,143"/>
+<area shape="rect" id="node7" href="$dd/d8d/mgr__lpm_8c.html" title="low power mode manager is in charge to collect all low power needs from &#39;clients&#39; and setup the corre..." alt="" coords="797,102,945,143"/>
+<area shape="rect" id="node4" href="$dd/ddf/mcu__at__console_8c.html" title="MCU wrapper for AT CMD console." alt="" coords="217,199,364,240"/>
+</map>

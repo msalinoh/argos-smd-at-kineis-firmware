@@ -1,0 +1,4 @@
+<map id="LPM_SystemClock_Config_RestoreFromStop" name="LPM_SystemClock_Config_RestoreFromStop">
+<area shape="rect" id="node1" title="System Clock Configuration when exit from stop mode." alt="" coords="169,5,360,47"/>
+<area shape="rect" id="node2" href="$db/dca/group___m_g_r___l_p_m.html#ga2dfaa58a8d7f90840153f1f06542fd13" title="System callback invoked by MGR_LPM at STOP mode exit." alt="" coords="5,13,121,39"/>
+</map>

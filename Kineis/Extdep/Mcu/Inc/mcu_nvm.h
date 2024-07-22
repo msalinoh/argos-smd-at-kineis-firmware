@@ -7,7 +7,7 @@
  */
 
 /**
- * @page mcu_nvm_page MCU wrappers concerning non-volatile settings used by Kineis stack
+ * @page mcu_nvm_page MCU wrappers: NVM
  *
  * This is about storing ID and address into some Non-Volatile Memory (NVM).
  * Those settings are part of the credentials (ID, address, DSK) provided by Kineis operator.
@@ -82,6 +82,13 @@ enum KNS_status_t MCU_NVM_getRadioConfZonePtr(void **ConfZonePtr);
  * @return Status @ref KNS_status_t
  */
 enum KNS_status_t MCU_NVM_setRadioConfZone(void *ConfZonePtr, uint16_t ConfZoneSize);
+
+/**
+ * @brief save the Kineis radio configuration into NVM
+ *
+ * @return Status @ref KNS_status_t
+ */
+enum KNS_status_t MCU_NVM_saveRadioConfZone(void);
 
 /**
  * @brief get the Kineis identifier (32-bits long)

@@ -1,0 +1,7 @@
+<map id="MGR_AT_CMD_start" name="MGR_AT_CMD_start">
+<area shape="rect" id="node1" title="main API used to start AT command Manager" alt="" coords="5,31,157,57"/>
+<area shape="rect" id="node2" href="$d8/d62/group___m_c_u___a_p_p___w_r_a_p_p_e_r_s.html#ga74be300679e0b76678c55d7c8b609e6a" title="Start AT CMD console for AT cmd reception." alt="" coords="215,5,418,32"/>
+<area shape="rect" id="node5" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#ga8a8d9cacd2053d0c96e923fc183ac4ad" title="API used to extract the latest AT cmds from the incoming received data stream." alt="" coords="205,56,428,83"/>
+<area shape="rect" id="node3" href="$d8/d62/group___m_c_u___a_p_p___w_r_a_p_p_e_r_s.html#ga2fbcd5790071dab1b10a9196607692b8" title="Enable and start RX interrupt from UART." alt="" coords="476,5,659,32"/>
+<area shape="rect" id="node4" href="$d8/d62/group___m_c_u___a_p_p___w_r_a_p_p_e_r_s.html#gaeda0953e4ffe9aae0475009c1d221944" title="RX interrupt handler for 7 or 8 bits data word length ." alt="" coords="707,5,853,32"/>
+</map>

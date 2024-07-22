@@ -6,7 +6,7 @@
  */
 
 /**
- * \page strutil_lib_page String utils library
+ * @page strutil_lib_page String utils library
  *
  * This is the library containing utils to manipulate string data.
  *

@@ -20,7 +20,7 @@
 #include "mgr_at_cmd_list_user_data.h"
 #include "kns_q.h"
 #include "kns_mac.h"
-#include "kineis_sw_conf.h"  // for assert include below
+#include "kineis_sw_conf.h"  // for assert include below and ERROR_RETURN_T type
 #include KINEIS_SW_ASSERT_H
 #include "mgr_log.h"
 
@@ -49,6 +49,7 @@ static void Set_TX_LED(__attribute__((unused)) uint8_t state)
 }
 #endif
 
+__attribute__((unused))
 /** @brief  Log array of uint8_t
  * @param[in] data pointer to table
  * @param[in] len number of bytes to log from the table
@@ -62,14 +63,14 @@ static void MGR_LOG_array(__attribute__((unused)) uint8_t *data, uint16_t len)
 	MGR_LOG_DEBUG_RAW("\r\n");
 }
 
-#ifdef KIMX_FW
+#ifdef USE_RX_STACK
+__attribute__((unused))
 /** @brief This function converts kineis stack status into AT cmd error code
  *
  * param[in] knsStatus: KNS libraries status
  *
  * @retval ERROR_RETURN_T: KIM error code
  */
-__attribute__((unused))
 static enum ERROR_RETURN_T convKnsStatusToAtErr(enum KNS_status_t knsStatus)
 {
 	switch (knsStatus) {
@@ -127,7 +128,7 @@ static enum ERROR_RETURN_T convKnsStatusToAtErr(enum KNS_status_t knsStatus)
 static bool bMGR_AT_CMD_handleNewTxData(uint8_t *pu8_cmdParamString, const char *pcAtCmdPattern)
 {
 	enum KNS_status_t status = KNS_STATUS_OK;
-	struct sUserDataTxFifoElt_t *spUserDataMsg = &sUserDataTx;
+	struct sUserDataTxFifoElt_t *spUserDataMsg;
 	union sUserDataAttribute_t u8UserDataAttr;
 	uint8_t *pu8UserDataBuf;
 	int16_t i16_scan_param_res;
@@ -145,21 +146,8 @@ static bool bMGR_AT_CMD_handleNewTxData(uint8_t *pu8_cmdParamString, const char 
 		}
 	};
 
-	/** So far, in case a new command occurs while previous one is not completed, abort it.
-	 * Send error response concerning previous frame.
-	 *
-	 * @todo remove code block below once KIMX_FW correctly supports RX timeout
-	 */
-	if (spUserDataMsg->bIsToBeTransmit) {
-		MGR_LOG_VERBOSE("MGR_AT_CMD: Abort transmission of previous frame\r\n");
-		spUserDataMsg->bIsToBeTransmit = false;
-		appEvt.id =  KNS_MAC_STOP_SEND_DATA;
-		status = KNS_Q_push(KNS_Q_DL_APP2MAC, (void *)&appEvt);
-		kns_assert(status == KNS_STATUS_OK);
-		bMGR_AT_CMD_sendResponse(ATCMD_RSP_TXNOTOK, (void *)spUserDataMsg);
-	}
-
-	if (!spUserDataMsg->bIsToBeTransmit) {
+	spUserDataMsg = USERDATA_txFifoReserveElt();
+	if (spUserDataMsg != NULL) {
 
 		for (idx = 0; idx < sizeof(spUserDataMsg->u8DataBuf); idx++)
 			spUserDataMsg->u8DataBuf[idx] = 0;
@@ -174,7 +162,7 @@ static bool bMGR_AT_CMD_handleNewTxData(uint8_t *pu8_cmdParamString, const char 
 		/** Assert when the number of characters received from AT command is bigger than
 		 * authorized
 		 */
-		kns_assert(u16UserDataCharNb <= (USERDATA_TX_PAYLOAD_MAX_SIZE * 2));
+		kns_assert(u16UserDataCharNb <= (USERDATA_TX_PAYLOAD_MAX_SIZE -1 ));
 
 		switch (i16_scan_param_res) {
 		case 1:/** Case ARGOS Message with user data only */
@@ -184,10 +172,10 @@ static bool bMGR_AT_CMD_handleNewTxData(uint8_t *pu8_cmdParamString, const char 
 			 */
 			u16UserDataBitlen = u16MGR_AT_CMD_convertAsciiBinary(pu8UserDataBuf,
 									     u16UserDataCharNb);
-			if (u16UserDataBitlen <= (USERDATA_TX_PAYLOAD_MAX_SIZE * 8)) {
+			if (u16UserDataBitlen <= (USERDATA_TX_DATAFIELD_SIZE * 8)) {
 				spUserDataMsg->u16DataBitLen = u16UserDataBitlen;
 				spUserDataMsg->u8Attr = u8UserDataAttr;
-				spUserDataMsg->bIsToBeTransmit = true;
+				kns_assert(USERDATA_txFifoAddElt(spUserDataMsg, true));
 
 				for (idx = 0; idx < sizeof(appEvt.data_ctxt.usrdata); idx++)
 					appEvt.data_ctxt.usrdata[idx] =
@@ -199,8 +187,17 @@ static bool bMGR_AT_CMD_handleNewTxData(uint8_t *pu8_cmdParamString, const char 
 				/** @note appEvt.send_ctxt already filled-up at declaration */
 				appEvt.id = KNS_MAC_SEND_DATA;
 				status = KNS_Q_push(KNS_Q_DL_APP2MAC, (void *)&appEvt);
-				kns_assert(status == KNS_STATUS_OK);
-				return true;
+				switch (status) {
+				case KNS_STATUS_QFULL:
+					return bMGR_AT_CMD_logFailedMsg(ERROR_DATA_QUEUE_FULL);
+				break;
+				default:
+					return bMGR_AT_CMD_logFailedMsg(ERROR_UNKNOWN);
+				break;
+				case KNS_STATUS_OK:
+					return true;
+				break;
+				}
 			}
 			MGR_LOG_VERBOSE("[ERROR] User data is badly formatted (check length)\r\n");
 			return bMGR_AT_CMD_logFailedMsg(ERROR_INVALID_USER_DATA_LENGTH);
@@ -269,7 +266,7 @@ bool bMGR_AT_CMD_TX_cmd(uint8_t *pu8_cmdParamString, enum atcmd_type_t e_exec_mo
 		return false;
 }
 
-#ifdef KIMX_FW
+#ifdef USE_RX_STACK
 bool bMGR_AT_CMD_RX_cmd(uint8_t *pu8_cmdParamString, enum atcmd_type_t e_exec_mode)
 {
 	int16_t scanParamRes;
@@ -283,7 +280,7 @@ bool bMGR_AT_CMD_RX_cmd(uint8_t *pu8_cmdParamString, enum atcmd_type_t e_exec_mo
 	}
 
 	scanParamRes = sscanf((const char *)pu8_cmdParamString,
-			(const char *)"AT+RX=%hhu",
+			(const char *)"AT+RX=%u",
 			&rxMode);
 
 	if (scanParamRes == 1) {
@@ -292,16 +289,34 @@ bool bMGR_AT_CMD_RX_cmd(uint8_t *pu8_cmdParamString, enum atcmd_type_t e_exec_mo
 			MGR_LOG_VERBOSE("stop RX\r\n");
 			appEvt.id = KNS_MAC_RX_STOP;
 			status = KNS_Q_push(KNS_Q_DL_APP2MAC, (void *)&appEvt);
-			kns_assert(status == KNS_STATUS_OK);
-			return true;
+			switch (status) {
+			case KNS_STATUS_QFULL:
+				return bMGR_AT_CMD_logFailedMsg(ERROR_DATA_QUEUE_FULL);
+			break;
+			default:
+				return bMGR_AT_CMD_logFailedMsg(ERROR_UNKNOWN);
+			break;
+			case KNS_STATUS_OK:
+				return true;
+			break;
+			}
 		break;
 		case 1:
 		{
 			MGR_LOG_VERBOSE("start RX\r\n");
 			appEvt.id = KNS_MAC_RX_START;
 			status = KNS_Q_push(KNS_Q_DL_APP2MAC, (void *)&appEvt);
-			kns_assert(status == KNS_STATUS_OK);
-			return true;
+			switch (status) {
+			case KNS_STATUS_QFULL:
+				return bMGR_AT_CMD_logFailedMsg(ERROR_DATA_QUEUE_FULL);
+			break;
+			default:
+				return bMGR_AT_CMD_logFailedMsg(ERROR_UNKNOWN);
+			break;
+			case KNS_STATUS_OK:
+				return true;
+			break;
+			}
 		}
 		break;
 		default:
@@ -318,199 +333,229 @@ enum KNS_status_t MGR_AT_CMD_macEvtProcess(void)
 {
 	enum KNS_status_t cbStatus;
 	struct KNS_MAC_srvcEvt_t srvcEvt;
-	struct sUserDataTxFifoElt_t *spUserDataMsg = &sUserDataTx;
+	struct sUserDataTxFifoElt_t *spUserDataMsg = USERDATA_txFifoGetFirst();
 
 	cbStatus = KNS_Q_pop(KNS_Q_UL_MAC2APP, (void *)&srvcEvt);
 
-	if (cbStatus == KNS_STATUS_OK) {
-		switch (srvcEvt.id) {
-		case (KNS_MAC_TX_DONE):
-			MGR_LOG_DEBUG("MGR_AT_CMD TX_DONE callback reached\r\n");
-			MGR_LOG_DEBUG("TX DONE for usrdata (%d bits = %d bytes + %d bits): 0x",
-				srvcEvt.tx_ctxt.data_bitlen,
-				srvcEvt.tx_ctxt.data_bitlen>>3,
-				srvcEvt.tx_ctxt.data_bitlen&0x07);
-			MGR_LOG_array(srvcEvt.tx_ctxt.data, (srvcEvt.tx_ctxt.data_bitlen+7)>>3);
+	if (cbStatus != KNS_STATUS_OK)
+		return cbStatus;
 
-			kns_assert(sUserDataTx.bIsToBeTransmit);
-			/** Upon TX done of a mail request message, it means some DL_BC was received
-			 * Thus, UL ACK of DL_BC will transmitted by lower layer internally just
-			 * after the end of this callback.
-			 * AT response "+TX=..." will be sent to UART once UL-ACK is really
-			 * transmitted, cf TXACK_DONE below
-			 */
-			if (sUserDataTx.u8Attr.sf == ATTR_MAIL_REQUEST) {
-				Set_TX_LED(0);
-			} else {
-				/** @todo Should check integrity between data reported by event
-				 * above and the one stored in user data buffer
-				 *
-				 * So far, as only one user data, consider this is the correct one:
-				 * * notify host with AT cmd response then
-				 * * free element from user data buffer.
-				 */
-				bMGR_AT_CMD_sendResponse(ATCMD_RSP_TXOK, (void *)&sUserDataTx);
-				sUserDataTx.bIsToBeTransmit = false; /* Free as host notified */
-				Set_TX_LED(0);
-			}
-			cbStatus = KNS_STATUS_OK;
-		break;
-		case (KNS_MAC_TXACK_DONE):
-			MGR_LOG_DEBUG("MGR_AT_CMD TXACK_DONE callback reached\r\n");
-			kns_assert(sUserDataTx.bIsToBeTransmit);
-			/** Upon TX done of a mail request message, it means some DL_BC was received
-			 * previously and UL ACK of DL_BC was just transmitted.
-			 * Send +TX= instead of +TACK=, meaning this is the real end of TX data
-			 * transmission
-			 */
-			if (sUserDataTx.u8Attr.sf == ATTR_MAIL_REQUEST)
-				bMGR_AT_CMD_sendResponse(ATCMD_RSP_TXOK, (void *)&sUserDataTx);
-			else
-				bMGR_AT_CMD_sendResponse(ATCMD_RSP_TXACKOK, NULL);
-
-			sUserDataTx.bIsToBeTransmit = false; /* Free as host is notified */
-			Set_TX_LED(0);
-			cbStatus = KNS_STATUS_OK;
-		break;
-		case (KNS_MAC_TX_TIMEOUT):
-			MGR_LOG_DEBUG("MGR_AT_CMD TX_TIMEOUT callback reached\r\n");
-			MGR_LOG_DEBUG("TX TIMEOUT for usrdata (%d bits = %d bytes + %d bits): 0X",
-				srvcEvt.tx_ctxt.data_bitlen,
-				srvcEvt.tx_ctxt.data_bitlen>>3,
-				srvcEvt.tx_ctxt.data_bitlen&0x07);
-			MGR_LOG_array(srvcEvt.tx_ctxt.data, (srvcEvt.tx_ctxt.data_bitlen+7)>>3);
-			kns_assert(sUserDataTx.bIsToBeTransmit);
-			/** @todo Should check integrity between data reported by event above and
-			 * the one stored in user data buffer
-			 *
-			 * So far, as only one user data, consider this is the correct one:
-			 * * notify host with AT cmd response then
-			 * * free element from user data buffer.
-			 */
-			bMGR_AT_CMD_sendResponse(ATCMD_RSP_TXNOTOK, (void *)&sUserDataTx);
-			sUserDataTx.bIsToBeTransmit = false;
-			Set_TX_LED(0);
-			cbStatus = KNS_STATUS_TIMEOUT;
-		break;
-		case (KNS_MAC_TXACK_TIMEOUT):
-			MGR_LOG_DEBUG("MGR_AT_CMD TXACK_TIMEOUT callback reached\r\n");
-			kns_assert(sUserDataTx.bIsToBeTransmit);
-			bMGR_AT_CMD_sendResponse(ATCMD_RSP_TXACKNOTOK, NULL);
-			sUserDataTx.bIsToBeTransmit = false;
-			Set_TX_LED(0);
-			cbStatus = KNS_STATUS_TIMEOUT;
-		break;
-		case (KNS_MAC_RX_ERROR):  /**< RX error during TRX frame, report TX failure then */
-			MGR_LOG_DEBUG("MGR_AT_CMD TX callback reached\r\n");
-			if (sUserDataTx.bIsToBeTransmit) {
-				MGR_LOG_DEBUG("RX enable ERROR (%d bits = %d bytes + %d bits): 0x",
-					srvcEvt.tx_ctxt.data_bitlen,
-					srvcEvt.tx_ctxt.data_bitlen>>3,
-					srvcEvt.tx_ctxt.data_bitlen&0x07);
-				MGR_LOG_array(srvcEvt.tx_ctxt.data,
-					(srvcEvt.tx_ctxt.data_bitlen+7)>>3);
-				/** @todo Should check integrity between data reported by event
-				 * above and the one stored in user data buffer
-				 *
-				 * So far, as only one user data, consider this is the correct one:
-				 * * notify host with AT cmd response then
-				 * * free element from user data buffer.
-				 */
-				bMGR_AT_CMD_sendResponse(ATCMD_RSP_TXNOTOK, (void *)&sUserDataTx);
-				sUserDataTx.bIsToBeTransmit = false;
-				Set_TX_LED(0);
-				cbStatus = KNS_STATUS_TR_ERR;
-			} else {
-				MGR_LOG_DEBUG("MGR_AT_CMD RX callback reached\r\n");
-				MGR_LOG_DEBUG("RX ERROR  unexpected event received.\r\n");
-				cbStatus = KNS_STATUS_ERROR;
-			}
-		break;
-		case (KNS_MAC_RX_TIMEOUT): /**< RX window reached during TRX, report failure then */
-			/** @attention so far, TX failure is reported upon TRX RX timeout when:
-			 * * no DL-ACK received for a TX requesting ACK (this case is fine)
-			 * * no DL-BC received for a TX mail request. Actually this may really occur
-			 * as no BC was available on board (protocol to be discussed)
-			 */
-			MGR_LOG_DEBUG("MGR_AT_CMD RX timeout callback reached\r\n");
-			MGR_LOG_DEBUG("ERROR: no DL frm for (%d bits = %d bytes + %d bits): 0x",
-				srvcEvt.tx_ctxt.data_bitlen,
-				srvcEvt.tx_ctxt.data_bitlen>>3,
-				srvcEvt.tx_ctxt.data_bitlen&0x07);
-			MGR_LOG_array(srvcEvt.tx_ctxt.data, (srvcEvt.tx_ctxt.data_bitlen+7)>>3);
-			/** @todo Should check integrity between data reported by event above and
-			 * the one stored in user data buffer
-			 *
-			 * So far, as only one user data, consider this is the correct one:
-			 * * notify host with AT cmd response then
-			 * * free element from user data buffer.
-			 */
-			bMGR_AT_CMD_sendResponse(ATCMD_RSP_RXTIMEOUT, (void *)&sUserDataTx);
-			sUserDataTx.bIsToBeTransmit = false;
-			Set_TX_LED(0);
-			cbStatus = KNS_STATUS_TIMEOUT;
-		break;
-#ifdef KIMX_FW
-		case (KNS_MAC_DL_ACK):
-		case (KNS_MAC_DL_BC):
-			MGR_LOG_DEBUG("MGR_AT_CMD DL callback reached\r\n");
-	//		MGR_LOG_DEBUG("decoded msg (%d bits = %d bytes + %d bits): 0x",
-	//			srvcEvt.rx_ctxt.data_bitlen,
-	//			srvcEvt.rx_ctxt.data_bitlen>>3,
-	//			srvcEvt.rx_ctxt.data_bitlen&0x07);
-	//		MGR_LOG_array(srvcEvt.rx_ctxt.data, (srvcEvt.rx_ctxt.data_bitlen+7)>>3);
-			/** @todo Should check integrity between data reported by event above and
-			 * the one stored in user data buffer
-			 *
-			 * So far, as only one user data, consider this is the correct one:
-			 * * notify host with AT cmd response then
-			 * * free element from user data buffer.
-			 */
-			bMGR_AT_CMD_sendResponse(ATCMD_RSP_DLOK, (void *)&(srvcEvt.rx_ctxt));
-			cbStatus = KNS_STATUS_OK;
-		break;
-		case (KNS_MAC_RX_RECEIVED):
-			MGR_LOG_DEBUG("MGR_AT_CMD RX callback reached\r\n");
-	//		MGR_LOG_DEBUG("bitstream (%d bits = %d bytes + %d bits): 0x",
-	//			srvcEvt.rx_ctxt.data_bitlen,
-	//			srvcEvt.rx_ctxt.data_bitlen>>3,
-	//			srvcEvt.rx_ctxt.data_bitlen&0x07);
-	//		MGR_LOG_array(srvcEvt.rx_ctxt.data, (srvcEvt.rx_ctxt.data_bitlen+7)>>3);
-			/** @todo Should check integrity between data reported by event above and
-			 * the one stored in user data buffer
-			 *
-			 * So far, as only one user data, consider this is the correct one:
-			 * * notify host with AT cmd response then
-			 * * free element from user data buffer.
-			 */
-			bMGR_AT_CMD_sendResponse(ATCMD_RSP_RXOK, (void *)&(srvcEvt.rx_ctxt));
-			cbStatus = KNS_STATUS_OK;
-		break;
-		case (KNS_MAC_SAT_DETECTED):
-			MGR_LOG_DEBUG("MGR_AT_CMD SAT detect callback reached\r\n");
-			bMGR_AT_CMD_sendResponse(ATCMD_RSP_SATDET, NULL);
-			cbStatus = KNS_STATUS_OK;
-		break;
-#endif
-		case (KNS_MAC_OK):
-			MGR_LOG_DEBUG("MGR_AT_CMD MAC reported OK to previous command.\r\n");
-			bMGR_AT_CMD_logSucceedMsg();
-			if (srvcEvt.app_evt == KNS_MAC_SEND_DATA)
-				Set_TX_LED(1);
-			cbStatus = KNS_STATUS_OK;
-		break;
-		case (KNS_MAC_ERROR):
-			MGR_LOG_DEBUG("MGR_AT_CMD MAC reported ERROR to previous command.\r\n");
-			bMGR_AT_CMD_logFailedMsg(ERROR_UNKNOWN);
-			if (srvcEvt.app_evt == KNS_MAC_SEND_DATA)
-				spUserDataMsg->bIsToBeTransmit = false;
-			cbStatus = KNS_STATUS_ERROR;
-		break;
-		default:
-			kns_assert(0);
-			cbStatus = KNS_STATUS_ERROR;
-		break;
+	/** get pointer to user data FIFO element when possible */
+	switch (srvcEvt.id) {
+	case (KNS_MAC_TX_DONE):
+	case (KNS_MAC_TXACK_DONE):
+	case (KNS_MAC_TX_TIMEOUT):
+	case (KNS_MAC_TXACK_TIMEOUT):
+	case (KNS_MAC_RX_ERROR):
+	case (KNS_MAC_RX_TIMEOUT):
+		spUserDataMsg = USERDATA_txFifoFindPayload(srvcEvt.tx_ctxt.data,
+			srvcEvt.tx_ctxt.data_bitlen);
+		kns_assert(spUserDataMsg != NULL);
+	break;
+	case (KNS_MAC_ERROR):
+		if (srvcEvt.app_evt == KNS_MAC_SEND_DATA) {
+			spUserDataMsg = USERDATA_txFifoFindPayload(srvcEvt.tx_ctxt.data,
+				srvcEvt.tx_ctxt.data_bitlen);
+			kns_assert(spUserDataMsg != NULL);
 		}
+	break;
+	default:
+	break;
+	}
+
+	/** process event */
+	switch (srvcEvt.id) {
+	case (KNS_MAC_TX_DONE):
+//		MGR_LOG_DEBUG("MGR_AT_CMD TX_DONE callback reached\r\n");
+//		MGR_LOG_DEBUG("TX DONE for usrdata (%d bits = %d bytes + %d bits): 0x",
+//			srvcEvt.tx_ctxt.data_bitlen,
+//			srvcEvt.tx_ctxt.data_bitlen>>3,
+//			srvcEvt.tx_ctxt.data_bitlen&0x07);
+//		MGR_LOG_array(srvcEvt.tx_ctxt.data, (srvcEvt.tx_ctxt.data_bitlen+7)>>3);
+		kns_assert(spUserDataMsg->bIsToBeTransmit);
+		/** Upon TX done of a mail request message, it means some DL_BC was received
+		 * Thus, UL ACK of DL_BC will transmitted by lower layer internally just
+		 * after the end of this callback.
+		 * AT response "+TX=..." will be sent to UART once UL-ACK is really
+		 * transmitted, cf TXACK_DONE below
+		 */
+		if (spUserDataMsg->u8Attr.sf == ATTR_MAIL_REQUEST) {
+			Set_TX_LED(0);
+		} else {
+			/** @todo Should check integrity between data reported by event
+			 * above and the one stored in user data buffer
+			 *
+			 * So far, as only one user data, consider this is the correct one:
+			 * * notify host with AT cmd response then
+			 * * free element from user data buffer.
+			 */
+			bMGR_AT_CMD_sendResponse(ATCMD_RSP_TXOK, (void *)spUserDataMsg);
+			USERDATA_txFifoRemoveElt(spUserDataMsg);/* Free as host notified */
+			Set_TX_LED(0);
+		}
+		cbStatus = KNS_STATUS_OK;
+	break;
+	case (KNS_MAC_TXACK_DONE):
+//		MGR_LOG_DEBUG("MGR_AT_CMD TXACK_DONE callback reached\r\n");
+		kns_assert(spUserDataMsg->bIsToBeTransmit);
+		/** Upon TX done of a mail request message, it means some DL_BC was received
+		 * previously and UL ACK of DL_BC was just transmitted.
+		 * Send +TX= instead of +TACK=, meaning this is the real end of TX data
+		 * transmission
+		 */
+		if (spUserDataMsg->u8Attr.sf == ATTR_MAIL_REQUEST)
+			bMGR_AT_CMD_sendResponse(ATCMD_RSP_TXOK, (void *)spUserDataMsg);
+		else
+			bMGR_AT_CMD_sendResponse(ATCMD_RSP_TXACKOK, NULL);
+
+		USERDATA_txFifoRemoveElt(spUserDataMsg);/* Free as host notified */
+		Set_TX_LED(0);
+		cbStatus = KNS_STATUS_OK;
+	break;
+	case (KNS_MAC_TX_TIMEOUT):
+//		MGR_LOG_DEBUG("MGR_AT_CMD TX_TIMEOUT callback reached\r\n");
+//		MGR_LOG_DEBUG("TX TIMEOUT for usrdata (%d bits = %d bytes + %d bits): 0X",
+//			srvcEvt.tx_ctxt.data_bitlen,
+//			srvcEvt.tx_ctxt.data_bitlen>>3,
+//			srvcEvt.tx_ctxt.data_bitlen&0x07);
+//		MGR_LOG_array(srvcEvt.tx_ctxt.data, (srvcEvt.tx_ctxt.data_bitlen+7)>>3);
+		kns_assert(spUserDataMsg->bIsToBeTransmit);
+		/** @todo Should check integrity between data reported by event above and
+		 * the one stored in user data buffer
+		 *
+		 * So far, as only one user data, consider this is the correct one:
+		 * * notify host with AT cmd response then
+		 * * free element from user data buffer.
+		 */
+		bMGR_AT_CMD_sendResponse(ATCMD_RSP_TXNOTOK, (void *)spUserDataMsg);
+		USERDATA_txFifoRemoveElt(spUserDataMsg);/* Free as host notified */
+		Set_TX_LED(0);
+		cbStatus = KNS_STATUS_TIMEOUT;
+	break;
+	case (KNS_MAC_TXACK_TIMEOUT):
+//		MGR_LOG_DEBUG("MGR_AT_CMD TXACK_TIMEOUT callback reached\r\n");
+		kns_assert(spUserDataMsg->bIsToBeTransmit);
+		bMGR_AT_CMD_sendResponse(ATCMD_RSP_TXACKNOTOK, NULL);
+		USERDATA_txFifoRemoveElt(spUserDataMsg);/* Free as host notified */
+		Set_TX_LED(0);
+		cbStatus = KNS_STATUS_TIMEOUT;
+	break;
+	case (KNS_MAC_RX_ERROR):  /**< RX error during TRX frame, report TX failure then */
+//		MGR_LOG_DEBUG("MGR_AT_CMD TX callback reached\r\n");
+		if (spUserDataMsg->bIsToBeTransmit) {
+//			MGR_LOG_DEBUG("RX enable ERROR (%d bits = %d bytes + %d bits): 0x",
+//				srvcEvt.tx_ctxt.data_bitlen,
+//				srvcEvt.tx_ctxt.data_bitlen>>3,
+//				srvcEvt.tx_ctxt.data_bitlen&0x07);
+//			MGR_LOG_array(srvcEvt.tx_ctxt.data,
+//				(srvcEvt.tx_ctxt.data_bitlen+7)>>3);
+			/** @todo Should check integrity between data reported by event
+			 * above and the one stored in user data buffer
+			 *
+			 * So far, as only one user data, consider this is the correct one:
+			 * * notify host with AT cmd response then
+			 * * free element from user data buffer.
+			 */
+			bMGR_AT_CMD_sendResponse(ATCMD_RSP_TXNOTOK, (void *)spUserDataMsg);
+			USERDATA_txFifoRemoveElt(spUserDataMsg);/* Free as host notified */
+			Set_TX_LED(0);
+			cbStatus = KNS_STATUS_TR_ERR;
+		} else {
+			MGR_LOG_DEBUG("MGR_AT_CMD RX callback reached\r\n");
+			MGR_LOG_DEBUG("RX ERROR  unexpected event received.\r\n");
+			cbStatus = KNS_STATUS_ERROR;
+		}
+	break;
+	case (KNS_MAC_RX_TIMEOUT): /**< RX window reached during TRX, report failure then */
+		/** @attention so far, TX failure is reported upon TRX RX timeout when:
+		 * * no DL-ACK received for a TX requesting ACK (this case is fine)
+		 * * no DL-BC received for a TX mail request. Actually this may really occur
+		 * as no BC was available on board (protocol to be discussed)
+		 */
+//		MGR_LOG_DEBUG("MGR_AT_CMD RX timeout callback reached\r\n");
+//		MGR_LOG_DEBUG("ERROR: no DL frm for (%d bits = %d bytes + %d bits): 0x",
+//			srvcEvt.tx_ctxt.data_bitlen,
+//			srvcEvt.tx_ctxt.data_bitlen>>3,
+//			srvcEvt.tx_ctxt.data_bitlen&0x07);
+//		MGR_LOG_array(srvcEvt.tx_ctxt.data, (srvcEvt.tx_ctxt.data_bitlen+7)>>3);
+		/** @todo Should check integrity between data reported by event above and
+		 * the one stored in user data buffer
+		 *
+		 * So far, as only one user data, consider this is the correct one:
+		 * * notify host with AT cmd response then
+		 * * free element from user data buffer.
+		 */
+		bMGR_AT_CMD_sendResponse(ATCMD_RSP_RXTIMEOUT, (void *)spUserDataMsg);
+		USERDATA_txFifoRemoveElt(spUserDataMsg);/* Free as host notified */
+		Set_TX_LED(0);
+		cbStatus = KNS_STATUS_TIMEOUT;
+	break;
+#ifdef USE_RX_STACK
+	case (KNS_MAC_DL_ACK):
+	case (KNS_MAC_DL_BC):
+//		MGR_LOG_DEBUG("MGR_AT_CMD DL callback reached\r\n");
+//		MGR_LOG_DEBUG("decoded msg (%d bits = %d bytes + %d bits): 0x",
+//			srvcEvt.rx_ctxt.data_bitlen,
+//			srvcEvt.rx_ctxt.data_bitlen>>3,
+//			srvcEvt.rx_ctxt.data_bitlen&0x07);
+//		MGR_LOG_array(srvcEvt.rx_ctxt.data, (srvcEvt.rx_ctxt.data_bitlen+7)>>3);
+		/** @todo Should check integrity between data reported by event above and
+		 * the one stored in user data buffer
+		 *
+		 * So far, as only one user data, consider this is the correct one:
+		 * * notify host with AT cmd response then
+		 * * free element from user data buffer.
+		 */
+		bMGR_AT_CMD_sendResponse(ATCMD_RSP_DLOK, (void *)&(srvcEvt.rx_ctxt));
+		cbStatus = KNS_STATUS_OK;
+	break;
+	case (KNS_MAC_RX_RECEIVED):
+//		MGR_LOG_DEBUG("MGR_AT_CMD RX callback reached\r\n");
+//		MGR_LOG_DEBUG("bitstream (%d bits = %d bytes + %d bits): 0x",
+//			srvcEvt.rx_ctxt.data_bitlen,
+//			srvcEvt.rx_ctxt.data_bitlen>>3,
+//			srvcEvt.rx_ctxt.data_bitlen&0x07);
+//		MGR_LOG_array(srvcEvt.rx_ctxt.data, (srvcEvt.rx_ctxt.data_bitlen+7)>>3);
+		/** @todo Should check integrity between data reported by event above and
+		 * the one stored in user data buffer
+		 *
+		 * So far, as only one user data, consider this is the correct one:
+		 * * notify host with AT cmd response then
+		 * * free element from user data buffer.
+		 */
+		bMGR_AT_CMD_sendResponse(ATCMD_RSP_RXOK, (void *)&(srvcEvt.rx_ctxt));
+		cbStatus = KNS_STATUS_OK;
+	break;
+	case (KNS_MAC_SAT_DETECTED):
+//		MGR_LOG_DEBUG("MGR_AT_CMD SAT detect callback reached\r\n");
+		bMGR_AT_CMD_sendResponse(ATCMD_RSP_SATDET, NULL);
+		cbStatus = KNS_STATUS_OK;
+	break;
+	case (KNS_MAC_SAT_LOST):
+		MGR_LOG_DEBUG("MGR_AT_CMD SAT lost callback reached\r\n");
+		/** @todo add SAT lost reply over AT CMD? To be implemented */
+		//bMGR_AT_CMD_sendResponse(ATCMD_RSP_SATLOST, NULL);
+		cbStatus = KNS_STATUS_OK;
+	break;
+#endif
+	case (KNS_MAC_OK):
+//		MGR_LOG_DEBUG("MGR_AT_CMD MAC reported OK to previous command.\r\n");
+		bMGR_AT_CMD_logSucceedMsg();
+		if (srvcEvt.app_evt == KNS_MAC_SEND_DATA)
+			Set_TX_LED(1);
+		cbStatus = KNS_STATUS_OK;
+	break;
+	case (KNS_MAC_ERROR):
+//		MGR_LOG_DEBUG("MGR_AT_CMD MAC reported ERROR to previous command.\r\n");
+		bMGR_AT_CMD_logFailedMsg(ERROR_UNKNOWN);
+		if (srvcEvt.app_evt == KNS_MAC_SEND_DATA)
+			USERDATA_txFifoRemoveElt(spUserDataMsg);/* Free as host notified */
+		cbStatus = KNS_STATUS_ERROR;
+	break;
+	default:
+		kns_assert(0);
+		cbStatus = KNS_STATUS_ERROR;
+	break;
 	}
 
 	return cbStatus;

@@ -1,0 +1,7 @@
+<map id="Kineis/Extdep/MGR_LOG/Src/mgr_log_rtc.c" name="Kineis/Extdep/MGR_LOG/Src/mgr_log_rtc.c">
+<area shape="rect" id="node1" title="This file contains log routine concerning RTC. There is a dependency on HAL RTC." alt="" coords="90,5,270,47"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,95,72,121"/>
+<area shape="rect" id="node3" href="$d2/d2e/mgr__log_8h.html" title="logger main header file" alt="" coords="97,95,183,121"/>
+<area shape="rect" id="node4" href="$d9/d70/mgr__log__rtc_8h.html" title=": Header for mgr_log_rtc.c file. This file contains log routine concerning RTC. Thus there is a depen..." alt="" coords="125,169,235,196"/>
+<area shape="rect" id="node5" href="$d5/d04/kns__app__conf_8h.html" title="Kineis Application configurations depending on platform used." alt="" coords="259,95,381,121"/>
+</map>
