@@ -17,7 +17,7 @@ current_repo_commit := $(shell  if !(git log -1 --format="%h"); then echo 'unkno
 ######################################
 # target
 ######################################
-TARGET = krd_fw
+TARGET = argos-smd-at-kineis-firmware
 
 
 ######################################
@@ -40,7 +40,7 @@ MAC_PRFL = BASIC
 
 # LPM: depest low power mode supported can be:
 # NONE, SLEEP, STOP, STANDBY, SHUTDOWN
-LPM = SHUTDOWN
+LPM = NONE
 
 # * KRD board: choose between: KRD_FW_LP, KRD_FW_MP
 KRD_BOARD = KRD_FW_MP
@@ -87,6 +87,8 @@ Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_rcc_ex.c \
 Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_flash.c \
 Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_flash_ex.c \
 Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_gpio.c \
+Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_i2c.c \
+Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_i2c_ex.c \
 Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_dma.c \
 Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_dma_ex.c \
 Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_pwr.c \
@@ -101,6 +103,7 @@ Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_uart.c \
 Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_uart_ex.c \
 Core/Src/system_stm32wlxx.c \
 Core/Src/gpio.c \
+Core/Src/i2c.c \
 Core/Src/usart.c \
 Core/Src/subghz.c \
 Core/Src/tim.c \

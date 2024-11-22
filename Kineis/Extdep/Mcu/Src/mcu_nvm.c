@@ -39,10 +39,10 @@ static uint16_t message_counter;
 
 
 /** The device identifier may be stored in a secured way (encryption, etc.) */
-static const uint32_t device_id = 214010;
+static const uint32_t device_id = 214012;
 
 /** The device address may be stored in a secured way (encryption, etc.) */
-static const uint8_t device_addr[4] = { 0x22, 0x67, 0x5A, 0xD0 };
+static const uint8_t device_addr[4] = { 0x22, 0x67, 0x5C, 0x70 };
 
 /** Radio configuration : Ensure radio configuration is valid when Kineis stack is called.
  *
@@ -98,8 +98,8 @@ static uint8_t radioConfZone[16] = {
 /* Device serial number */
 //static const uint8_t device_sn[DEVICE_SN_LENGTH] = { 's', 'e', 'r', 'i', 'a', 'l', '_', \
 //					      '_', 'n', 'u', 'm', 'b', 'e', 'r' };
-static const uint8_t device_sn[DEVICE_SN_LENGTH] = { 'S', 'M', 'D', '_', '0', '1', '_', \
-					      '_', 'T', 'E', 'S', 'T', '0', '0' };
+static const uint8_t device_sn[DEVICE_SN_LENGTH] = { 'S', 'M', 'D', '_', '1', '0', '_', \
+					      '_', 'T', 'E', 'S', 'T', '0', '2' };
 /* Functions -------------------------------------------------------------*/
 
 enum KNS_status_t MCU_NVM_getMC(uint16_t *mc_ptr)

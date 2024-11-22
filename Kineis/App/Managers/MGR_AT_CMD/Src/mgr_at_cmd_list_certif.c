@@ -93,7 +93,7 @@ struct mwCfg_t mw_cfg = {
  * @attention If this delay is over 1s, the TXCOWU will be re-done at each transmit. It will also
  * reply +OK at each transmit
  */
-uint16_t repPeriod_s = 0;
+uint16_t repPeriod_s = 10;
 #endif
 
 /* Private function prototypes (usefull for later internal functions) --------*/
@@ -150,6 +150,7 @@ static enum KNS_status_t eoAtMW_isr_cb(struct KNS_RF_evt_t *evt)
 		if (repPeriod_s != 0)
 			DELAY_MS(repPeriod_s * 1000);
 #endif
+		DELAY_MS(5000);
 		if (MGR_AT_CMD_sendRandomTxData(NULL))
 			return KNS_STATUS_OK;
 		else

@@ -42,6 +42,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "i2c.h"
 #include "usart.h"
 #include "rtc.h"
 #include "subghz.h"
@@ -313,6 +314,7 @@ int main(void)
   MX_SUBGHZ_Init();
   MX_TIM16_Init();
   MX_RTC_Init();
+  MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
 
 #ifdef DEBUG
