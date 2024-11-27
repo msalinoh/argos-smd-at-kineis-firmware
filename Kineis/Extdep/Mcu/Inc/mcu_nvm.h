@@ -30,6 +30,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include <stdint.h>
 #include "kns_types.h"
+#include <stdbool.h>
 
 /* Global defines -------------------------------------------------------------------------------*/
 #define DEVICE_ADDR_LENGTH        4
@@ -89,6 +90,7 @@ enum KNS_status_t MCU_NVM_setRadioConfZone(void *ConfZonePtr, uint16_t ConfZoneS
  * @return Status @ref KNS_status_t
  */
 enum KNS_status_t MCU_NVM_saveRadioConfZone(void);
+
 
 /**
  * @brief get the Kineis identifier (32-bits long)

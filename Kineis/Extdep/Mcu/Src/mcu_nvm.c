@@ -20,6 +20,7 @@
 #include "aes.h"
 #include "mcu_aes.h"
 #include "mcu_nvm.h"
+#include <stdbool.h>
 
 /* Variables ---------------------------------------------------------*/
 
@@ -37,6 +38,12 @@
 __attribute__((__section__(".msgCntSectionData")))
 static uint16_t message_counter;
 
+__attribute__((__section__(".radioConfFlag")))
+static bool radioConfZoneSavedFlag;
+
+static
+__attribute__((__section__(".radioConfSection")))
+uint32_t radioConfZoneSaved[16];
 
 /** The device identifier may be stored in a secured way (encryption, etc.) */
 static const uint32_t device_id = 214012;
@@ -96,8 +103,6 @@ static uint8_t radioConfZone[16] = {
 };
 
 /* Device serial number */
-//static const uint8_t device_sn[DEVICE_SN_LENGTH] = { 's', 'e', 'r', 'i', 'a', 'l', '_', \
-//					      '_', 'n', 'u', 'm', 'b', 'e', 'r' };
 static const uint8_t device_sn[DEVICE_SN_LENGTH] = { 'S', 'M', 'D', '_', '1', '0', '_', \
 					      '_', 'T', 'E', 'S', 'T', '0', '2' };
 /* Functions -------------------------------------------------------------*/
@@ -119,7 +124,18 @@ enum KNS_status_t MCU_NVM_setMC(uint16_t mcTmp)
 
 enum KNS_status_t MCU_NVM_getRadioConfZonePtr(void **ConfZonePtr)
 {
-	*ConfZonePtr = radioConfZone;
+	if (radioConfZoneSavedFlag)
+	{
+		// Set ConfZonePtr to point to the appropriate memory location
+		unsigned int i;
+		for(i = 0; i < sizeof(radioConfZoneSaved)/ sizeof(uint32_t) ; i++)
+		{
+			radioConfZone[i] = (uint8_t)(radioConfZoneSaved[i]);
+		}
+	}
+
+
+		*ConfZonePtr = radioConfZone;
 
 	return KNS_STATUS_OK;
 }
@@ -132,15 +148,23 @@ enum KNS_status_t MCU_NVM_setRadioConfZone(void *ConfZonePtr, uint16_t ConfZoneS
 		return KNS_STATUS_ERROR;
 
 	for (i = 0 ; i < ConfZoneSize ; i++)
+	{
 		radioConfZone[i] = ((uint8_t*)ConfZonePtr)[i];
+		radioConfZoneSaved[i] = (uint32_t)((uint8_t*)ConfZonePtr)[i];
+	}
+
 
 	return KNS_STATUS_OK;
 }
 
 enum KNS_status_t MCU_NVM_saveRadioConfZone(void)
 {
+
+	radioConfZoneSavedFlag = true;
+
 	return KNS_STATUS_OK;
 }
+
 
 enum KNS_status_t MCU_NVM_getID(uint32_t *id)
 {

@@ -20,6 +20,7 @@ MEMORY
   RAM1   (xrw)   : ORIGIN = 0x20000000, LENGTH = 32K    /* Non-backup SRAM1 */
   RAM2   (xrw)   : ORIGIN = 0x20008000, LENGTH = 32K    /* Backup SRAM2 */
   RTC_BKPR (xrw) : ORIGIN = 0x4000B100, LENGTH = 128     /* TAMP_BKPR register used to backup over LPM */
+
 }
 
 /* Sections */
@@ -102,11 +103,12 @@ SECTIONS
     . = ALIGN(8);
   } >ROM
 
-  /* ------------------------------------------------------------------------------
-   * ---- Initialized data sections goes into RAM1, load LMA copy after code   ----
-   * ---- so far, put all into RAM1 section                                    ----
-   * ---- RAM2 contains kineis stack lpm retention data                        ----
-   * ------------------------------------------------------------------------------
+
+  /* ------------------------------------------------------------------------------ 
+   * ---- Initialized data sections goes into RAM1, load LMA copy after code   ---- 
+   * ---- so far, put all into RAM1 section                                    ---- 
+   * ---- RAM2 contains kineis stack lpm retention data                        ---- 
+   * ------------------------------------------------------------------------------ 
    */
 
   _sidata2 = LOADADDR(.data2); /* used by the startup to initialize data */
@@ -118,8 +120,10 @@ SECTIONS
 
     *(.knsCtxtData)
     *(.retentionRamData)
+    
 
     . = ALIGN(4);
+    
     _edata2 = .;        /* define a global symbol at data end */
   } >RAM2 AT> ROM
 
@@ -138,11 +142,11 @@ SECTIONS
     _edata = .;        /* define a global symbol at data end */
   } >RAM1 AT> ROM
 
-  /* ------------------------------------------------------------------------------
-   * ---- Uninitialized data sections goes into RAM                            ----
-   * ---- so far, put all into RAM section                                     ----
-   * ---- RAM3 is empty so far, RAM2 contains kineis stack lpm retention data  ----
-   * ------------------------------------------------------------------------------
+  /* ------------------------------------------------------------------------------ 
+   * ---- Uninitialized data sections goes into RAM                            ---- 
+   * ---- so far, put all into RAM section                                     ---- 
+   * ---- RAM3 is empty so far, RAM2 contains kineis stack lpm retention data  ---- 
+   * ------------------------------------------------------------------------------ 
    */
 
   . = ALIGN(4);
@@ -214,18 +218,23 @@ SECTIONS
   /* RTC backup domain register section (32 32-bit-long registers), retention during shutdown and standby modes */
   .rtc_bkpr :
   {
+    //*(.radioConfSection)   /* .radioConfSection section */
     . = ALIGN(4);
     _srtc_bkpr = .;        /* create a global symbol at rtc_bkpr start */
     *(.lpmSection)         /* LPM context section, used to store data what ever the low power mode is */
     *(.msgCntSectionData)
     *(.rtc_bkpr)           /* .rtc_bkpr sections */
     *(.rtc_bkpr*)          /* .rtc_bkpr* sections */
+    *(.radioConfFlag)   /* .radioConfSection section */
 
     . = ALIGN(4);
+    . = ALIGN(1);
+   	*(.radioConfSection)   /* Include the .radioConfSection data */
+   	. = ALIGN(1);
+   	
     _ertc_bkpr = .;        /* define a global symbol at rtc_bkpr end */
   } >RTC_BKPR
 
-  /* ------------------------------------------------------------------------------ */
 
   /* Remove information from the compiler libraries */
   /DISCARD/ :

@@ -18,6 +18,8 @@
 #include "kns_cfg.h"
 #include "mgr_at_cmd.h"
 #include "kineis_sw_conf.h"
+#include "mcu_nvm.h"
+
 #include KINEIS_SW_ASSERT_H
 #include "mgr_log.h"
 

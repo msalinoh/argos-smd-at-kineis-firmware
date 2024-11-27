@@ -1,3 +1,3 @@
 #include "build_info.h"
 
-const char uc_fw_vers_commit_id[] = "a8b10c4_DMp_gui_basic";
+const char uc_fw_vers_commit_id[] = "ab0c34c_DMp_gui_basic";

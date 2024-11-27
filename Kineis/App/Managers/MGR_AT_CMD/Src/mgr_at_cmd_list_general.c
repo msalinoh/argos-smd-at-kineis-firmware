@@ -28,6 +28,7 @@
 #include "lpm.h" // used for AT+LPM command all is hardcoded so far
 #include "build_info.h"
 #include "mgr_log.h"
+#include "mcu_nvm.h"
 
 
 /* Functions -----------------------------------------------------------------*/
@@ -130,6 +131,7 @@ bool bMGR_AT_CMD_SN_cmd(uint8_t *pu8_cmdParamString __attribute__((unused)),
 bool bMGR_AT_CMD_RCONF_cmd(uint8_t *pu8_cmdParamString __attribute__((unused)),
 	enum atcmd_type_t e_exec_mode)
 {
+	
 	struct KNS_CFG_radio_t radio_cfg;
 	uint8_t modulation[8];
 	uint16_t nbBits;
@@ -188,9 +190,12 @@ bool bMGR_AT_CMD_SAVE_RCONF_cmd(uint8_t *pu8_cmdParamString __attribute__((unuse
 	enum atcmd_type_t e_exec_mode)
 {
 	if (e_exec_mode == ATCMD_ACTION_MODE) {
+		
 		if (KNS_CFG_saveRadioInfo() != KNS_STATUS_OK)
 			/* TODO: add a new error code ? */
 			return bMGR_AT_CMD_logFailedMsg(ERROR_INVALID_ID);
+		
+		//MCU_NVM_saveRadioConfZone();
 		return bMGR_AT_CMD_logSucceedMsg();
 	}
 	return bMGR_AT_CMD_logFailedMsg(ERROR_UNKNOWN_AT_CMD);
