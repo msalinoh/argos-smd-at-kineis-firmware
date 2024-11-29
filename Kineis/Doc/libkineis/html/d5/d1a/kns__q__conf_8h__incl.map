@@ -1,8 +1,9 @@
 <map id="Kineis/Extdep/Conf/kns_q_conf.h" name="Kineis/Extdep/Conf/kns_q_conf.h">
-<area shape="rect" id="node1" title="Configuration of queues used in kineis_sw." alt="" coords="117,5,262,47"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,169,88,196"/>
-<area shape="rect" id="node3" title=" " alt="" coords="222,244,293,271"/>
-<area shape="rect" id="node4" href="$df/d64/kns__mac__evt_8h.html" title=" " alt="" coords="211,95,331,121"/>
-<area shape="rect" id="node6" href="$d7/d8a/kns__srvc__common_8h.html" title="Common part of Kinéis service layer." alt="" coords="32,95,187,121"/>
-<area shape="rect" id="node5" href="$d8/d85/kns__types_8h.html" title="Kineis types definition." alt="" coords="163,169,263,196"/>
+<area shape="rect" id="node1" title="Configuration of queues used in kineis_sw." alt="" coords="142,5,288,47"/>
+<area shape="rect" id="node2" title=" " alt="" coords="259,169,342,196"/>
+<area shape="rect" id="node3" title=" " alt="" coords="74,319,145,345"/>
+<area shape="rect" id="node4" href="$df/d64/kns__mac__evt_8h.html" title=" " alt="" coords="107,95,227,121"/>
+<area shape="rect" id="node7" href="$d7/d8a/kns__srvc__common_8h.html" title="Common part of Kinéis service layer." alt="" coords="302,95,456,121"/>
+<area shape="rect" id="node5" href="$d8/d85/kns__types_8h.html" title="Kineis types definition." alt="" coords="160,244,260,271"/>
+<area shape="rect" id="node6" href="$d8/d4a/kns__mac__prfl__cfg_8h.html" title="Header file describing the ser settings required to configure a MAC protocol." alt="" coords="36,169,184,196"/>
 </map>

@@ -101,6 +101,7 @@ var menudata={children:[
 {text:"\u202Ae",url:"globals_func.html#index_e"},
 {text:"\u202Ag",url:"globals_func.html#index_g"},
 {text:"\u202Ah",url:"globals_func.html#index_h"},
+{text:"\u202Ai",url:"globals_func.html#index_i"},
 {text:"\u202Ak",url:"globals_func.html#index_k"},
 {text:"\u202Al",url:"globals_func.html#index_l"},
 {text:"\u202Am",url:"globals_func.html#index_m"},

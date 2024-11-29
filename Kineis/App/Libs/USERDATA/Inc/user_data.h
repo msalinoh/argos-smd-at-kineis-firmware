@@ -112,7 +112,11 @@
  * * add 1 extra for end-of-string ('\0')
  */
 #ifndef USERDATA_TX_DATAFIELD_SIZE
+#ifdef USE_HDA4
+#define USERDATA_TX_DATAFIELD_SIZE 633
+#else
 #define USERDATA_TX_DATAFIELD_SIZE 25
+#endif
 #endif
 
 #ifndef USERDATA_TX_PAYLOAD_MAX_SIZE

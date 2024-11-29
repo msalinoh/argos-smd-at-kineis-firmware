@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="../../kineis_logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">&#x202A;Krd firmware
-   &#160;<span id="projectnumber">&#x202A;v6.2.1</span>
+   &#160;<span id="projectnumber">&#x202A;v8.5.1</span>
    </div>
    <div id="projectbrief">&#x202A;Firmware application for Kinéis reference design project</div>
   </td>
@@ -94,13 +94,19 @@ $(document).ready(function(){initNavTree('d1/de0/mgr__at__cmd__list__mac_8c.html
 <p>&#x202A;subset of AT commands concerning Kinéis Medium Acces Channel (MAC).  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdbool.h&gt;</code><br />
 <code>#include &lt;string.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="../../d4/d30/mcu__at__console_8h_source.html">mcu_at_console.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../de/de6/mgr__at__cmd__list__user__data_8h_source.html">mgr_at_cmd_list_user_data.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="../../d9/dc9/mgr__at__cmd__list__mac_8h_source.html">mgr_at_cmd_list_mac.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../d0/d84/kns__q_8h_source.html">kns_q.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../d7/d1a/kns__mac_8h_source.html">kns_mac.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../d2/d2e/mgr__log_8h_source.html">mgr_log.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../d8/d77/kns__assert_8h_source.html">kns_assert.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for mgr_at_cmd_list_mac.c:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="../../d5/d5d/mgr__at__cmd__list__mac_8c__incl.svg" width="527" height="366"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d5/d5d/mgr__at__cmd__list__mac_8c__incl.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 </div>
@@ -108,9 +114,9 @@ Include dependency graph for mgr_at_cmd_list_mac.c:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga292621f6d8d6617d0f06907bae52a96f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#ga292621f6d8d6617d0f06907bae52a96f">bMGR_AT_CMD_ATXRP_cmd</a> (uint8_t *pu8_cmdParamString, enum <a class="el" href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#gab89e1f0a2ffb77ebf4f9bb354ecebc67">atcmd_type_t</a> e_exec_mode)</td></tr>
-<tr class="memdesc:ga292621f6d8d6617d0f06907bae52a96f"><td class="mdescLeft">&#160;</td><td class="mdescRight">&#x202A;Process AT command "AT+ATXRP" get/set the repetition number and the period between 2 transmissions.  <a href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#ga292621f6d8d6617d0f06907bae52a96f">More...</a><br /></td></tr>
-<tr class="separator:ga292621f6d8d6617d0f06907bae52a96f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacc6b6479b50b0c5aed24b2e62448bde0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#gacc6b6479b50b0c5aed24b2e62448bde0">bMGR_AT_CMD_KMAC_cmd</a> (uint8_t *pu8_cmdParamString, enum <a class="el" href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#gab89e1f0a2ffb77ebf4f9bb354ecebc67">atcmd_type_t</a> e_exec_mode)</td></tr>
+<tr class="memdesc:gacc6b6479b50b0c5aed24b2e62448bde0"><td class="mdescLeft">&#160;</td><td class="mdescRight">&#x202A;Process AT command "AT+KMAC" get/set the Kineis MAC profile.  <a href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#gacc6b6479b50b0c5aed24b2e62448bde0">More...</a><br /></td></tr>
+<tr class="separator:gacc6b6479b50b0c5aed24b2e62448bde0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p class="DocNodeLTR">subset of AT commands concerning Kinéis Medium Acces Channel (MAC). </p>

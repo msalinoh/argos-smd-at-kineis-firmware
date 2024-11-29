@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="../../kineis_logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">&#x202A;libkineis
-   &#160;<span id="projectnumber">&#x202A;v6.2.1_unknow_Tx0x3</span>
+   &#160;<span id="projectnumber">&#x202A;v8.5.1_unknow_Tx0x6</span>
    </div>
    <div id="projectbrief">&#x202A;Documentation for libkineis library</div>
   </td>
@@ -85,9 +85,9 @@ $(document).ready(function(){initNavTree('d8/d4a/kns__mac__prfl__cfg_8h.html','.
 
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Data Structures</a> &#124;
 <a href="#define-members">Macros</a> &#124;
-<a href="#enum-members">Enumerations</a>  </div>
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">kns_mac_prfl_cfg.h File Reference</div>  </div>
 </div><!--header-->
@@ -106,20 +106,12 @@ Include dependency graph for kns_mac_prfl_cfg.h:</div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d26/kns__mac__prfl__cfg_8h__dep__incl.svg" width="170" height="127"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d26/kns__mac__prfl__cfg_8h__dep__incl.svg" width="346" height="320"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </div>
 <p><a href="../../d8/d4a/kns__mac__prfl__cfg_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
-Data Structures</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/ddc/struct_k_n_s___m_a_c___b_l_i_n_d__usr_cfg__t.html">KNS_MAC_BLIND_usrCfg_t</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d6d/struct_k_n_s___m_a_c__prfl_info__t.html">KNS_MAC_prflInfo_t</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">&#x202A;structure describing current profil used by kineis stack MAC mayer  <a href="../../d1/d6d/struct_k_n_s___m_a_c__prfl_info__t.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
 <tr class="memitem:ga2536c346a655a889c4e92a9d8af96d62"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/daa/group___k_n_s___m_a_c___p_r_f_l.html#ga2536c346a655a889c4e92a9d8af96d62">NB_PARRALLEL_MSG_MIN</a>&#160;&#160;&#160;1</td></tr>
@@ -133,12 +125,18 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:ga1a0e46b941815a0e9c18722186ff0050"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/daa/group___k_n_s___m_a_c___p_r_f_l.html#ga1a0e46b941815a0e9c18722186ff0050">KNS_MAC_prflId_t</a> { <a class="el" href="../../db/daa/group___k_n_s___m_a_c___p_r_f_l.html#gga1a0e46b941815a0e9c18722186ff0050a9f8132e161925ba5b933fb86da0fd0c7">KNS_MAC_PRFL_BASIC</a>, 
+<tr class="memitem:ga1a0e46b941815a0e9c18722186ff0050"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/daa/group___k_n_s___m_a_c___p_r_f_l.html#ga1a0e46b941815a0e9c18722186ff0050">KNS_MAC_prflId_t</a> { <a class="el" href="../../db/daa/group___k_n_s___m_a_c___p_r_f_l.html#gga1a0e46b941815a0e9c18722186ff0050a4f96bcc167ad48b1a3636befc6b01543">KNS_MAC_PRFL_NONE</a>, 
+<a class="el" href="../../db/daa/group___k_n_s___m_a_c___p_r_f_l.html#gga1a0e46b941815a0e9c18722186ff0050a9f8132e161925ba5b933fb86da0fd0c7">KNS_MAC_PRFL_BASIC</a>, 
 <a class="el" href="../../db/daa/group___k_n_s___m_a_c___p_r_f_l.html#gga1a0e46b941815a0e9c18722186ff0050ae9517c0e76e778c160f7ada2a13ae389">KNS_MAC_PRFL_BLIND</a>, 
 <a class="el" href="../../db/daa/group___k_n_s___m_a_c___p_r_f_l.html#gga1a0e46b941815a0e9c18722186ff0050a517b3f2608314e40d21d4566723398d6">KNS_MAC_PRFL_MAX</a>
  }</td></tr>
 <tr class="memdesc:ga1a0e46b941815a0e9c18722186ff0050"><td class="mdescLeft">&#160;</td><td class="mdescRight">&#x202A;MAC profile list.  <a href="../../db/daa/group___k_n_s___m_a_c___p_r_f_l.html#ga1a0e46b941815a0e9c18722186ff0050">More...</a><br /></td></tr>
 <tr class="separator:ga1a0e46b941815a0e9c18722186ff0050"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ga12316b1bc584a9298c9af04aa923d4da"><td class="memItemLeft" align="right" valign="top">struct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/daa/group___k_n_s___m_a_c___p_r_f_l.html#ga12316b1bc584a9298c9af04aa923d4da">__attribute__</a> ((packed)) KNS_MAC_BLIND_usrCfg_t</td></tr>
+<tr class="separator:ga12316b1bc584a9298c9af04aa923d4da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p class="DocNodeLTR">Header file describing the ser settings required to configure a MAC protocol. </p>

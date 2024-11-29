@@ -295,9 +295,9 @@ C_INCLUDES += #$(libknsrf_wl_INCLUDES)
 
 
 # compile gcc flags
-ASFLAGS += $(MCU) $(AS_DEFS) $(AS_INCLUDES) $(OPT) -Wall -Wextra -Wimplicit-fallthrough=1 -Werror -Wtype-limits -fdata-sections -ffunction-sections -fstack-usage
+ASFLAGS += $(MCU) $(AS_DEFS) $(AS_INCLUDES) $(OPT) -Wall -Wextra -Wno-unused-parameter -Wimplicit-fallthrough=1 -Werror -Wtype-limits -fdata-sections -Wwrite-strings -ffunction-sections -fstack-usage
 
-CFLAGS += $(MCU) $(C_DEFS) $(C_INCLUDES) $(OPT) -Wall -Wextra -Wimplicit-fallthrough=1 -fdata-sections -Wtype-limits  -Wwrite-strings -ffunction-sections -fstack-usage
+CFLAGS += $(MCU) $(C_DEFS) $(C_INCLUDES) $(OPT) -Wall -Wextra -Wno-unused-parameter -Wimplicit-fallthrough=1 -Werror -Wtype-limits -fdata-sections -Wwrite-strings -ffunction-sections -fstack-usage
 
 ifeq ($(DEBUG), 1)
 CFLAGS += -g -gdwarf-2

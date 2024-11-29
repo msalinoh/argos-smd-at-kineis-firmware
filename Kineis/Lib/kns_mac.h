@@ -83,22 +83,21 @@ union KNS_MAC_rsrcStatus_t {
 /* Public functions ----------------------------------------------------------*/
 
 /**
- * @brief Initialize and start MAC profile
- *
- * @param[in] prflId: profile identification
- * @param[in] prflCtxt: configuiration context, NULL if no contexte needed
- *
- * @return KNS_STATUS_OK if data is correctly processed, any other status if error
- */
-enum KNS_status_t KNS_MAC_init(enum KNS_MAC_prflId_t prflId, void* prflCtxt);
-
-/**
  * @brief MAC layer main task to be called from OS
  *
  * This task is the main loop of Kineis stack. It is going to handle all TX/RX/TRX UL/DL events
  * of the kineis modem.
  */
 void KNS_MAC_task(void);
+
+/**
+ * @brief Get current MAC profile info
+ *
+ * @param[out] prflInfo pointer to the current MAC configiration
+ *
+ * @return KNS_MAC_rsrcStatus_t bitmap listing the peripherals
+ */
+enum KNS_status_t KNS_MAC_getPrflInfo(struct KNS_MAC_prflInfo_t *prflInfo);
 
 /**
  * @brief Get the status of the ressource currently used by MAC protocol

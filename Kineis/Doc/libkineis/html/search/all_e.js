@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['q_5fdesc_5ft_278',['q_desc_t',['../d2/d12/structq__desc__t.html',1,'']]],
-  ['qpool_279',['qPool',['../d1/ddb/group___k_n_s___q.html#ga970e4f6a5647d5091022d91b02b076a6',1,'kns_q_conf.h']]]
+  ['power_283',['power',['../d3/d5d/struct_k_n_s__tx__rf__cfg__t.html#aa96484dd52e73daccfdb5e5ba3a33796',1,'KNS_tx_rf_cfg_t']]]
 ];

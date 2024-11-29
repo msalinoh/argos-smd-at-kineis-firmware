@@ -28,7 +28,8 @@ var group___k_n_s___q =
       [ "\u202AKNS_Q_UL_SRVC2MAC", "d1/ddb/group___k_n_s___q.html#ggab9d1a27a3da3a7b59fed3544ee94a472a3a8c3de42b596a6efbc57e5ae0bf07fa", null ],
       [ "\u202AKNS_Q_MAX", "d1/ddb/group___k_n_s___q.html#ggab9d1a27a3da3a7b59fed3544ee94a472abf9204f176d362ae890ba9c9e132c225", null ]
     ] ],
-    [ "\u202AKNS_Q_create", "d1/ddb/group___k_n_s___q.html#gaed715efec764fe53762e7d275b943877", null ],
+    [ "\u202A__attribute", "d1/ddb/group___k_n_s___q.html#ga7e310607d1c11816086af9e38cf8f3b0", null ],
+    [ "\u202AKNS_Q_create", "d1/ddb/group___k_n_s___q.html#gaa6fee493c2be7dbf974796fd99db498d", null ],
     [ "\u202AKNS_Q_isEvtInHigherPrioQ", "d1/ddb/group___k_n_s___q.html#gabcaf3198194d1c93f16bcbbda5d0fe13", null ],
     [ "\u202AKNS_Q_isEvtInSomeQ", "d1/ddb/group___k_n_s___q.html#gae3b6f82f0cfe829173632dde48cd0d28", null ],
     [ "\u202AKNS_Q_pop", "d1/ddb/group___k_n_s___q.html#ga200d86f8adcbe9365bcec0cc085c91c0", null ],

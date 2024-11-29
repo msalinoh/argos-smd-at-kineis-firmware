@@ -48,7 +48,7 @@ enum  atcmd_idx_t {
 	AT_UDATE,        /**< Index for UTC date/time update */
 
 	// MAC commands
-	AT_ATXRP,        /**< Index for get/set tx repetition  commands */
+	AT_KMAC,         /**< Index for change profile */
 
 	ATCMD_MAX_COUNT,
 	ATCMD_UNKNOWN_COMMAND = ATCMD_MAX_COUNT

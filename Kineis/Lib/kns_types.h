@@ -41,6 +41,7 @@ enum KNS_status_t {
 	KNS_STATUS_BAD_LEN,  /**< TX data frame length error */
 
 	KNS_STATUS_TR_ERR,   /**< Error during transceiver action (TX, RX, SPI/A2S/... error) */
+	KNS_STATUS_DL_FRM_ERR, /**< Received a DL frame without any corresponding UL one */
 
 	KNS_STATUS_QFULL,    /**< queue is full, FIFO is full, ... */
 	KNS_STATUS_QEMPTY,    /**< queue is empty, FIFOis empty, ... */

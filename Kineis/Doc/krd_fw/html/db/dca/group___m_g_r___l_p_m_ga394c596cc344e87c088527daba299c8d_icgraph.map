@@ -1,5 +1,7 @@
 <map id="vMGR_LPM_enterStop" name="vMGR_LPM_enterStop">
-<area shape="rect" id="node1" title="This is the function to enter in stop mode." alt="" coords="320,5,485,32"/>
-<area shape="rect" id="node2" href="$db/dca/group___m_g_r___l_p_m.html#ga7bf128e76e6a14840b3c8d74946c37f1" title="This is the main Entry point to the low power mode manager." alt="" coords="144,5,272,32"/>
-<area shape="rect" id="node3" href="$db/dca/group___m_g_r___l_p_m.html#ga349cbb2c24fd0bd7f2c24bd063734660" title="Try to enter low power mode depending on clients capabilities." alt="" coords="5,5,96,32"/>
+<area shape="rect" id="node1" title="This is the function to enter in stop mode." alt="" coords="557,5,723,32"/>
+<area shape="rect" id="node2" href="$db/dca/group___m_g_r___l_p_m.html#ga7bf128e76e6a14840b3c8d74946c37f1" title="This is the main Entry point to the low power mode manager." alt="" coords="381,5,509,32"/>
+<area shape="rect" id="node3" href="$db/dca/group___m_g_r___l_p_m.html#ga349cbb2c24fd0bd7f2c24bd063734660" title="Try to enter low power mode depending on clients capabilities." alt="" coords="243,5,333,32"/>
+<area shape="rect" id="node4" href="$d0/d29/main_8c.html#ab5e4675bc5ccd4c2aeeae31f8df4b4fb" title=" " alt="" coords="108,5,195,32"/>
+<area shape="rect" id="node5" href="$d0/d29/main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="The application entry point." alt="" coords="5,5,60,32"/>
 </map>

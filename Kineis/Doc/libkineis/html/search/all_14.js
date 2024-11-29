@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['widx_315',['wIdx',['../d2/d12/structq__desc__t.html#ac46fc7d570607a36dc0d30afeb401eca',1,'q_desc_t']]]
+  ['vmgr_5flog_5fprintf_318',['vMGR_LOG_printf',['../d8/dca/group___m_g_r___l_o_g.html#gae0ea9ea6d3bdae15d910705473830124',1,'mgr_log.h']]]
 ];

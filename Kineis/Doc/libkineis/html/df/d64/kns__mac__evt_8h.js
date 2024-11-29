@@ -5,6 +5,7 @@ var kns__mac__evt_8h =
     [ "\u202AKNS_MAC_USRDATA_MAXLEN", "df/dbc/group___k_n_s___m_a_c.html#ga3aba3360c7da2577d06c7046815ebfbd", null ],
     [ "\u202AKNS_MAC_appEvtId_t", "df/dbc/group___k_n_s___m_a_c.html#ga2c539a27eacae4bd329a890b9bf7ba5e", [
       [ "\u202AKNS_MAC_APP_NONE_EVT", "df/dbc/group___k_n_s___m_a_c.html#gga2c539a27eacae4bd329a890b9bf7ba5ead911ccbe1dbb3aad20cf6a08f7f2ca68", null ],
+      [ "\u202AKNS_MAC_INIT", "df/dbc/group___k_n_s___m_a_c.html#gga2c539a27eacae4bd329a890b9bf7ba5ea471e8a7ae040d01b8554fd8531c488a8", null ],
       [ "\u202AKNS_MAC_SEND_DATA", "df/dbc/group___k_n_s___m_a_c.html#gga2c539a27eacae4bd329a890b9bf7ba5ea47e31c217a82d0bfc8b9eb9c7fc47790", null ],
       [ "\u202AKNS_MAC_STOP_SEND_DATA", "df/dbc/group___k_n_s___m_a_c.html#gga2c539a27eacae4bd329a890b9bf7ba5eaa19f9115f895ccd159a195a882b4be4e", null ],
       [ "\u202AKNS_MAC_RX_START", "df/dbc/group___k_n_s___m_a_c.html#gga2c539a27eacae4bd329a890b9bf7ba5eaad037c1204b0d2c2c4db4768f6113b71", null ],

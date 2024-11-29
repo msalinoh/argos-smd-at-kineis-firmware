@@ -91,7 +91,6 @@ enum KNS_status_t MCU_NVM_setRadioConfZone(void *ConfZonePtr, uint16_t ConfZoneS
  */
 enum KNS_status_t MCU_NVM_saveRadioConfZone(void);
 
-
 /**
  * @brief get the Kineis identifier (32-bits long)
  *

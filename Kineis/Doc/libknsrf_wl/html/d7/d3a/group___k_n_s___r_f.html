@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="../../kineis_logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">&#x202A;libknsrf_wl
-   &#160;<span id="projectnumber">&#x202A;v6.2.1_unknow</span>
+   &#160;<span id="projectnumber">&#x202A;v7.0.0_unknow</span>
    </div>
    <div id="projectbrief">&#x202A;Documentation for libknsrf_wl library</div>
   </td>
@@ -146,36 +146,48 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga836ae8de400c6a3eade149163f525d77"><td class="memItemLeft" align="right" valign="top">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d3a/group___k_n_s___r_f.html#ga836ae8de400c6a3eade149163f525d77">KNS_RF_PowerOn</a> (enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a>(*eop_isr_cb)(struct <a class="el" href="../../db/de1/struct_k_n_s___r_f__evt__t.html">KNS_RF_evt_t</a> *evt_ctxt))</td></tr>
-<tr class="memdesc:ga836ae8de400c6a3eade149163f525d77"><td class="mdescLeft">&#160;</td><td class="mdescRight">&#x202A;This function powers on the LDO for the KNS_RF.  <a href="../../d7/d3a/group___k_n_s___r_f.html#ga836ae8de400c6a3eade149163f525d77">More...</a><br /></td></tr>
-<tr class="separator:ga836ae8de400c6a3eade149163f525d77"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga033aa6b275db02f80da176ff8d61283e"><td class="memItemLeft" align="right" valign="top">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d3a/group___k_n_s___r_f.html#ga033aa6b275db02f80da176ff8d61283e">KNS_RF_PowerOff</a> (enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a>(*eop_isr_cb)(struct <a class="el" href="../../db/de1/struct_k_n_s___r_f__evt__t.html">KNS_RF_evt_t</a> *evt_ctxt))</td></tr>
-<tr class="memdesc:ga033aa6b275db02f80da176ff8d61283e"><td class="mdescLeft">&#160;</td><td class="mdescRight">&#x202A;This function powers off the LDO for the KNS_RF. cb is called when done.  <a href="../../d7/d3a/group___k_n_s___r_f.html#ga033aa6b275db02f80da176ff8d61283e">More...</a><br /></td></tr>
-<tr class="separator:ga033aa6b275db02f80da176ff8d61283e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga842b064a2b091a7df598b8f277b729e5"><td class="memItemLeft" align="right" valign="top">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d3a/group___k_n_s___r_f.html#ga842b064a2b091a7df598b8f277b729e5">KNS_RF_setRxCfg</a> (struct <a class="el" href="../../dc/d8a/struct_k_n_s___r_f__rx__cfg__t.html">KNS_RF_rx_cfg_t</a> *rx_rf_cfg)</td></tr>
-<tr class="memdesc:ga842b064a2b091a7df598b8f277b729e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">&#x202A;This function fills the internal RX configuration structure for all RX RF parameters.  <a href="../../d7/d3a/group___k_n_s___r_f.html#ga842b064a2b091a7df598b8f277b729e5">More...</a><br /></td></tr>
-<tr class="separator:ga842b064a2b091a7df598b8f277b729e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gafb94c39480f1dddf5589fc6683547605"><td class="memItemLeft" align="right" valign="top">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d3a/group___k_n_s___r_f.html#gafb94c39480f1dddf5589fc6683547605">KNS_RF_setTxCfg</a> (struct <a class="el" href="../../d3/d5d/struct_k_n_s__tx__rf__cfg__t.html">KNS_tx_rf_cfg_t</a> *tx_rf_cfg)</td></tr>
-<tr class="memdesc:gafb94c39480f1dddf5589fc6683547605"><td class="mdescLeft">&#160;</td><td class="mdescRight">&#x202A;This function fills the internal TX configuration structure for all TX RF parameters.  <a href="../../d7/d3a/group___k_n_s___r_f.html#gafb94c39480f1dddf5589fc6683547605">More...</a><br /></td></tr>
-<tr class="separator:gafb94c39480f1dddf5589fc6683547605"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga27a155fef00030187c03c6b68e01b7e4"><td class="memItemLeft" align="right" valign="top">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d3a/group___k_n_s___r_f.html#ga27a155fef00030187c03c6b68e01b7e4">KNS_RF_pushBitstream</a> (uint8_t *buffer, uint16_t bitsize)</td></tr>
-<tr class="memdesc:ga27a155fef00030187c03c6b68e01b7e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">&#x202A;This function loads the bitstream to send with the radio.  <a href="../../d7/d3a/group___k_n_s___r_f.html#ga27a155fef00030187c03c6b68e01b7e4">More...</a><br /></td></tr>
-<tr class="separator:ga27a155fef00030187c03c6b68e01b7e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga1ef284f0eb6b7fb2c6ed9bbb05a8cff5"><td class="memItemLeft" align="right" valign="top">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d3a/group___k_n_s___r_f.html#ga1ef284f0eb6b7fb2c6ed9bbb05a8cff5">KNS_RF_tcxoWarmup</a> (enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a>(*eop_isr_cb)(struct <a class="el" href="../../db/de1/struct_k_n_s___r_f__evt__t.html">KNS_RF_evt_t</a> *evt_ctxt))</td></tr>
-<tr class="memdesc:ga1ef284f0eb6b7fb2c6ed9bbb05a8cff5"><td class="mdescLeft">&#160;</td><td class="mdescRight">&#x202A;This function switch on the tcxo for the right time and callback is called when tcxo is considered ready.  <a href="../../d7/d3a/group___k_n_s___r_f.html#ga1ef284f0eb6b7fb2c6ed9bbb05a8cff5">More...</a><br /></td></tr>
-<tr class="separator:ga1ef284f0eb6b7fb2c6ed9bbb05a8cff5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaf1ef01cc0838db2d7da3fd45d011a547"><td class="memItemLeft" align="right" valign="top">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d3a/group___k_n_s___r_f.html#gaf1ef01cc0838db2d7da3fd45d011a547">KNS_RF_startImmediateTx</a> (enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a>(*eop_isr_cb)(struct <a class="el" href="../../db/de1/struct_k_n_s___r_f__evt__t.html">KNS_RF_evt_t</a> *evt_ctxt))</td></tr>
-<tr class="memdesc:gaf1ef01cc0838db2d7da3fd45d011a547"><td class="mdescLeft">&#160;</td><td class="mdescRight">&#x202A;This function starts the transmission immediately of the bitstream set into the tx buffer during the push_bitstream api.  <a href="../../d7/d3a/group___k_n_s___r_f.html#gaf1ef01cc0838db2d7da3fd45d011a547">More...</a><br /></td></tr>
-<tr class="separator:gaf1ef01cc0838db2d7da3fd45d011a547"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga11b5a03fb4283e2c198232be19d3118e"><td class="memItemLeft" align="right" valign="top">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d3a/group___k_n_s___r_f.html#ga11b5a03fb4283e2c198232be19d3118e">KNS_RF_startImmediateRx</a> (enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a>(*eop_isr_cb)(struct <a class="el" href="../../db/de1/struct_k_n_s___r_f__evt__t.html">KNS_RF_evt_t</a> *evt_ctxt))</td></tr>
-<tr class="memdesc:ga11b5a03fb4283e2c198232be19d3118e"><td class="mdescLeft">&#160;</td><td class="mdescRight">&#x202A;This function starts reception immediately and stores the received data into the rx buffer.  <a href="../../d7/d3a/group___k_n_s___r_f.html#ga11b5a03fb4283e2c198232be19d3118e">More...</a><br /></td></tr>
-<tr class="separator:ga11b5a03fb4283e2c198232be19d3118e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga5c526e258624633dd20877313fce2733"><td class="memItemLeft" align="right" valign="top">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d3a/group___k_n_s___r_f.html#ga5c526e258624633dd20877313fce2733">KNS_RF_startImmediateSatDetect</a> (enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a>(*eop_isr_cb)(struct <a class="el" href="../../db/de1/struct_k_n_s___r_f__evt__t.html">KNS_RF_evt_t</a> *evt_ctxt))</td></tr>
-<tr class="memdesc:ga5c526e258624633dd20877313fce2733"><td class="mdescLeft">&#160;</td><td class="mdescRight">&#x202A;This function starts the detection satellite mechanism till detection ok or timeout or abort or power off called.  <a href="../../d7/d3a/group___k_n_s___r_f.html#ga5c526e258624633dd20877313fce2733">More...</a><br /></td></tr>
-<tr class="separator:ga5c526e258624633dd20877313fce2733"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaa84375c34c9507c0cbab963f506dad5b"><td class="memItemLeft" align="right" valign="top">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d3a/group___k_n_s___r_f.html#gaa84375c34c9507c0cbab963f506dad5b">KNS_RF_abortRf</a> (enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a>(*eop_isr_cb)(struct <a class="el" href="../../db/de1/struct_k_n_s___r_f__evt__t.html">KNS_RF_evt_t</a> *evt_ctxt))</td></tr>
-<tr class="memdesc:gaa84375c34c9507c0cbab963f506dad5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">&#x202A;This function starts aborting the current RF processing (TX, SAT_detect, RX, ...)  <a href="../../d7/d3a/group___k_n_s___r_f.html#gaa84375c34c9507c0cbab963f506dad5b">More...</a><br /></td></tr>
-<tr class="separator:gaa84375c34c9507c0cbab963f506dad5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa9c736fbac9f46ca1e46e99aac4e1848"><td class="memItemLeft" align="right" valign="top">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d3a/group___k_n_s___r_f.html#gaa9c736fbac9f46ca1e46e99aac4e1848">KNS_RFRX_powerOn</a> (enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a>(*eop_isr_cb)(struct <a class="el" href="../../db/de1/struct_k_n_s___r_f__evt__t.html">KNS_RF_evt_t</a> *evt_ctxt))</td></tr>
+<tr class="memdesc:gaa9c736fbac9f46ca1e46e99aac4e1848"><td class="mdescLeft">&#160;</td><td class="mdescRight">&#x202A;This function powers on the LDO for the KNS_RF RX part.  <a href="../../d7/d3a/group___k_n_s___r_f.html#gaa9c736fbac9f46ca1e46e99aac4e1848">More...</a><br /></td></tr>
+<tr class="separator:gaa9c736fbac9f46ca1e46e99aac4e1848"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2776b091ade9330588e1e17100602268"><td class="memItemLeft" align="right" valign="top">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d3a/group___k_n_s___r_f.html#ga2776b091ade9330588e1e17100602268">KNS_RFRX_powerOff</a> (enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a>(*eop_isr_cb)(struct <a class="el" href="../../db/de1/struct_k_n_s___r_f__evt__t.html">KNS_RF_evt_t</a> *evt_ctxt))</td></tr>
+<tr class="memdesc:ga2776b091ade9330588e1e17100602268"><td class="mdescLeft">&#160;</td><td class="mdescRight">&#x202A;This function powers off the LDO for the KNS_RF RX part. cb is called when done.  <a href="../../d7/d3a/group___k_n_s___r_f.html#ga2776b091ade9330588e1e17100602268">More...</a><br /></td></tr>
+<tr class="separator:ga2776b091ade9330588e1e17100602268"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf18ea413db1dde465faaff4701ab11aa"><td class="memItemLeft" align="right" valign="top">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d3a/group___k_n_s___r_f.html#gaf18ea413db1dde465faaff4701ab11aa">KNS_RFRX_setCfg</a> (struct <a class="el" href="../../dc/d8a/struct_k_n_s___r_f__rx__cfg__t.html">KNS_RF_rx_cfg_t</a> *rx_rf_cfg)</td></tr>
+<tr class="memdesc:gaf18ea413db1dde465faaff4701ab11aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">&#x202A;This function fills the internal RX configuration structure for all RX RF parameters.  <a href="../../d7/d3a/group___k_n_s___r_f.html#gaf18ea413db1dde465faaff4701ab11aa">More...</a><br /></td></tr>
+<tr class="separator:gaf18ea413db1dde465faaff4701ab11aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa3d2a3be97d3e626ee9fea9f61aa0488"><td class="memItemLeft" align="right" valign="top">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d3a/group___k_n_s___r_f.html#gaa3d2a3be97d3e626ee9fea9f61aa0488">KNS_RFRX_tcxoWarmup</a> (enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a>(*eop_isr_cb)(struct <a class="el" href="../../db/de1/struct_k_n_s___r_f__evt__t.html">KNS_RF_evt_t</a> *evt_ctxt))</td></tr>
+<tr class="memdesc:gaa3d2a3be97d3e626ee9fea9f61aa0488"><td class="mdescLeft">&#160;</td><td class="mdescRight">&#x202A;This function switch on the TCXO for the right time and callback is called when tcxo is considered ready.  <a href="../../d7/d3a/group___k_n_s___r_f.html#gaa3d2a3be97d3e626ee9fea9f61aa0488">More...</a><br /></td></tr>
+<tr class="separator:gaa3d2a3be97d3e626ee9fea9f61aa0488"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga37dee1706c5e24d2b9da64e9dddae1e5"><td class="memItemLeft" align="right" valign="top">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d3a/group___k_n_s___r_f.html#ga37dee1706c5e24d2b9da64e9dddae1e5">KNS_RFRX_startImmediate</a> (enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a>(*eop_isr_cb)(struct <a class="el" href="../../db/de1/struct_k_n_s___r_f__evt__t.html">KNS_RF_evt_t</a> *evt_ctxt))</td></tr>
+<tr class="memdesc:ga37dee1706c5e24d2b9da64e9dddae1e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">&#x202A;This function starts reception immediately and stores the received data into the rx buffer.  <a href="../../d7/d3a/group___k_n_s___r_f.html#ga37dee1706c5e24d2b9da64e9dddae1e5">More...</a><br /></td></tr>
+<tr class="separator:ga37dee1706c5e24d2b9da64e9dddae1e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga079090692b5ec1c9ca7d996bc130606a"><td class="memItemLeft" align="right" valign="top">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d3a/group___k_n_s___r_f.html#ga079090692b5ec1c9ca7d996bc130606a">KNS_RFRX_startSatDetect</a> (enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a>(*eop_isr_cb)(struct <a class="el" href="../../db/de1/struct_k_n_s___r_f__evt__t.html">KNS_RF_evt_t</a> *evt_ctxt))</td></tr>
+<tr class="memdesc:ga079090692b5ec1c9ca7d996bc130606a"><td class="mdescLeft">&#160;</td><td class="mdescRight">&#x202A;This function starts the detection satellite mechanism till detection ok or timeout or abort or power off called.  <a href="../../d7/d3a/group___k_n_s___r_f.html#ga079090692b5ec1c9ca7d996bc130606a">More...</a><br /></td></tr>
+<tr class="separator:ga079090692b5ec1c9ca7d996bc130606a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae3c1820115c2ded211f03cb78d26c770"><td class="memItemLeft" align="right" valign="top">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d3a/group___k_n_s___r_f.html#gae3c1820115c2ded211f03cb78d26c770">KNS_RFRX_abortRf</a> (enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a>(*eop_isr_cb)(struct <a class="el" href="../../db/de1/struct_k_n_s___r_f__evt__t.html">KNS_RF_evt_t</a> *evt_ctxt))</td></tr>
+<tr class="memdesc:gae3c1820115c2ded211f03cb78d26c770"><td class="mdescLeft">&#160;</td><td class="mdescRight">&#x202A;This function starts aborting the current RX RF processing part (SAT_detect, RX, ...)  <a href="../../d7/d3a/group___k_n_s___r_f.html#gae3c1820115c2ded211f03cb78d26c770">More...</a><br /></td></tr>
+<tr class="separator:gae3c1820115c2ded211f03cb78d26c770"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0b871589a9702968087c3cb5d42d3382"><td class="memItemLeft" align="right" valign="top">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d3a/group___k_n_s___r_f.html#ga0b871589a9702968087c3cb5d42d3382">KNS_RFTX_powerOn</a> (enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a>(*eop_isr_cb)(struct <a class="el" href="../../db/de1/struct_k_n_s___r_f__evt__t.html">KNS_RF_evt_t</a> *evt_ctxt))</td></tr>
+<tr class="memdesc:ga0b871589a9702968087c3cb5d42d3382"><td class="mdescLeft">&#160;</td><td class="mdescRight">&#x202A;This function powers on the LDO for the KNS_RF TX part.  <a href="../../d7/d3a/group___k_n_s___r_f.html#ga0b871589a9702968087c3cb5d42d3382">More...</a><br /></td></tr>
+<tr class="separator:ga0b871589a9702968087c3cb5d42d3382"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga52c7f4638ef321b41724a0fc88498d06"><td class="memItemLeft" align="right" valign="top">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d3a/group___k_n_s___r_f.html#ga52c7f4638ef321b41724a0fc88498d06">KNS_RFTX_powerOff</a> (enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a>(*eop_isr_cb)(struct <a class="el" href="../../db/de1/struct_k_n_s___r_f__evt__t.html">KNS_RF_evt_t</a> *evt_ctxt))</td></tr>
+<tr class="memdesc:ga52c7f4638ef321b41724a0fc88498d06"><td class="mdescLeft">&#160;</td><td class="mdescRight">&#x202A;This function powers off the LDO for the KNS_RF TX part. cb is called when done.  <a href="../../d7/d3a/group___k_n_s___r_f.html#ga52c7f4638ef321b41724a0fc88498d06">More...</a><br /></td></tr>
+<tr class="separator:ga52c7f4638ef321b41724a0fc88498d06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga34294206ef3097155fa358116d413a39"><td class="memItemLeft" align="right" valign="top">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d3a/group___k_n_s___r_f.html#ga34294206ef3097155fa358116d413a39">KNS_RFTX_setCfg</a> (struct <a class="el" href="../../d3/d5d/struct_k_n_s__tx__rf__cfg__t.html">KNS_tx_rf_cfg_t</a> *tx_rf_cfg)</td></tr>
+<tr class="memdesc:ga34294206ef3097155fa358116d413a39"><td class="mdescLeft">&#160;</td><td class="mdescRight">&#x202A;This function fills the internal TX configuration structure for all TX RF parameters.  <a href="../../d7/d3a/group___k_n_s___r_f.html#ga34294206ef3097155fa358116d413a39">More...</a><br /></td></tr>
+<tr class="separator:ga34294206ef3097155fa358116d413a39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa259215b78a757967e3a30b5c30120df"><td class="memItemLeft" align="right" valign="top">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d3a/group___k_n_s___r_f.html#gaa259215b78a757967e3a30b5c30120df">KNS_RFTX_tcxoWarmup</a> (enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a>(*eop_isr_cb)(struct <a class="el" href="../../db/de1/struct_k_n_s___r_f__evt__t.html">KNS_RF_evt_t</a> *evt_ctxt))</td></tr>
+<tr class="memdesc:gaa259215b78a757967e3a30b5c30120df"><td class="mdescLeft">&#160;</td><td class="mdescRight">&#x202A;This function switch on the TCXO for the right time and callback is called when tcxo is considered ready.  <a href="../../d7/d3a/group___k_n_s___r_f.html#gaa259215b78a757967e3a30b5c30120df">More...</a><br /></td></tr>
+<tr class="separator:gaa259215b78a757967e3a30b5c30120df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga602a906128ed6586ef9de06a800aa52b"><td class="memItemLeft" align="right" valign="top">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d3a/group___k_n_s___r_f.html#ga602a906128ed6586ef9de06a800aa52b">KNS_RFTX_pushBitstream</a> (uint8_t *buffer, uint16_t bitsize)</td></tr>
+<tr class="memdesc:ga602a906128ed6586ef9de06a800aa52b"><td class="mdescLeft">&#160;</td><td class="mdescRight">&#x202A;This function loads the bitstream to send with the radio.  <a href="../../d7/d3a/group___k_n_s___r_f.html#ga602a906128ed6586ef9de06a800aa52b">More...</a><br /></td></tr>
+<tr class="separator:ga602a906128ed6586ef9de06a800aa52b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8389adb73a411a65a9ae68a6ff0815a8"><td class="memItemLeft" align="right" valign="top">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d3a/group___k_n_s___r_f.html#ga8389adb73a411a65a9ae68a6ff0815a8">KNS_RFTX_startImmediate</a> (enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a>(*eop_isr_cb)(struct <a class="el" href="../../db/de1/struct_k_n_s___r_f__evt__t.html">KNS_RF_evt_t</a> *evt_ctxt))</td></tr>
+<tr class="memdesc:ga8389adb73a411a65a9ae68a6ff0815a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">&#x202A;This function starts the transmission immediately of the bitstream set into the tx buffer during the push_bitstream api.  <a href="../../d7/d3a/group___k_n_s___r_f.html#ga8389adb73a411a65a9ae68a6ff0815a8">More...</a><br /></td></tr>
+<tr class="separator:ga8389adb73a411a65a9ae68a6ff0815a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4d708d28e77ccbd85afd3efe8242e2ff"><td class="memItemLeft" align="right" valign="top">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d3a/group___k_n_s___r_f.html#ga4d708d28e77ccbd85afd3efe8242e2ff">KNS_RFTX_abortRf</a> (enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a>(*eop_isr_cb)(struct <a class="el" href="../../db/de1/struct_k_n_s___r_f__evt__t.html">KNS_RF_evt_t</a> *evt_ctxt))</td></tr>
+<tr class="memdesc:ga4d708d28e77ccbd85afd3efe8242e2ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">&#x202A;This function starts aborting the current TX RF processing.  <a href="../../d7/d3a/group___k_n_s___r_f.html#ga4d708d28e77ccbd85afd3efe8242e2ff">More...</a><br /></td></tr>
+<tr class="separator:ga4d708d28e77ccbd85afd3efe8242e2ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p class="DocNodeLTR">Kineis RF Transceiver module. (refer to <a class="el" href="../../da/dac/kns_rf_page.html">KNS_RF DRIVER</a> for general description). </p>
@@ -272,14 +284,14 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="gaa84375c34c9507c0cbab963f506dad5b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaa84375c34c9507c0cbab963f506dad5b">&#9670;&nbsp;</a></span>KNS_RF_abortRf()</h2>
+<a id="gae3c1820115c2ded211f03cb78d26c770"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae3c1820115c2ded211f03cb78d26c770">&#9670;&nbsp;</a></span>KNS_RFRX_abortRf()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a> KNS_RF_abortRf </td>
+          <td class="memname">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a> KNS_RFRX_abortRf </td>
           <td>(</td>
           <td class="paramtype">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a>(*)(struct <a class="el" href="../../db/de1/struct_k_n_s___r_f__evt__t.html">KNS_RF_evt_t</a> *evt_ctxt)&#160;</td>
           <td class="paramname"><em>eop_isr_cb</em></td><td>)</td>
@@ -288,7 +300,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>&#x202A;This function starts aborting the current RF processing (TX, SAT_detect, RX, ...) </p>
+<p>&#x202A;This function starts aborting the current RX RF processing part (SAT_detect, RX, ...) </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">eop_isr_cb</td><td>&#x202A;function pointer on a callback called when processing is aborted and driver has been cleanly stopped. </td></tr>
@@ -305,14 +317,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga033aa6b275db02f80da176ff8d61283e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga033aa6b275db02f80da176ff8d61283e">&#9670;&nbsp;</a></span>KNS_RF_PowerOff()</h2>
+<a id="ga2776b091ade9330588e1e17100602268"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2776b091ade9330588e1e17100602268">&#9670;&nbsp;</a></span>KNS_RFRX_powerOff()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a> KNS_RF_PowerOff </td>
+          <td class="memname">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a> KNS_RFRX_powerOff </td>
           <td>(</td>
           <td class="paramtype">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a>(*)(struct <a class="el" href="../../db/de1/struct_k_n_s___r_f__evt__t.html">KNS_RF_evt_t</a> *evt_ctxt)&#160;</td>
           <td class="paramname"><em>eop_isr_cb</em></td><td>)</td>
@@ -321,7 +333,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>&#x202A;This function powers off the LDO for the KNS_RF. cb is called when done. </p>
+<p>&#x202A;This function powers off the LDO for the KNS_RF RX part. cb is called when done. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">eop_isr_cb</td><td>&#x202A;Pointer on a callback which will be called to notify end of processing. Put <code>void*</code> in case no notification is needed. </td></tr>
@@ -338,14 +350,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga836ae8de400c6a3eade149163f525d77"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga836ae8de400c6a3eade149163f525d77">&#9670;&nbsp;</a></span>KNS_RF_PowerOn()</h2>
+<a id="gaa9c736fbac9f46ca1e46e99aac4e1848"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa9c736fbac9f46ca1e46e99aac4e1848">&#9670;&nbsp;</a></span>KNS_RFRX_powerOn()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a> KNS_RF_PowerOn </td>
+          <td class="memname">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a> KNS_RFRX_powerOn </td>
           <td>(</td>
           <td class="paramtype">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a>(*)(struct <a class="el" href="../../db/de1/struct_k_n_s___r_f__evt__t.html">KNS_RF_evt_t</a> *evt_ctxt)&#160;</td>
           <td class="paramname"><em>eop_isr_cb</em></td><td>)</td>
@@ -354,7 +366,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>&#x202A;This function powers on the LDO for the KNS_RF. </p>
+<p>&#x202A;This function powers on the LDO for the KNS_RF RX part. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">eop_isr_cb</td><td>&#x202A;Pointer on a callback which will be called to notify end of processing. Put <code>void*</code> in case no notification is needed. </td></tr>
@@ -371,14 +383,245 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga27a155fef00030187c03c6b68e01b7e4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga27a155fef00030187c03c6b68e01b7e4">&#9670;&nbsp;</a></span>KNS_RF_pushBitstream()</h2>
+<a id="gaf18ea413db1dde465faaff4701ab11aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf18ea413db1dde465faaff4701ab11aa">&#9670;&nbsp;</a></span>KNS_RFRX_setCfg()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a> KNS_RF_pushBitstream </td>
+          <td class="memname">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a> KNS_RFRX_setCfg </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="../../dc/d8a/struct_k_n_s___r_f__rx__cfg__t.html">KNS_RF_rx_cfg_t</a> *&#160;</td>
+          <td class="paramname"><em>rx_rf_cfg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>&#x202A;This function fills the internal RX configuration structure for all RX RF parameters. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">rx_rf_cfg</td><td>&#x202A;configuration struct, NULL if not applicable </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">KNS_status_t</td><td>&#x202A;status: KNS_STATUS_OK or ERROR </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga37dee1706c5e24d2b9da64e9dddae1e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga37dee1706c5e24d2b9da64e9dddae1e5">&#9670;&nbsp;</a></span>KNS_RFRX_startImmediate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a> KNS_RFRX_startImmediate </td>
+          <td>(</td>
+          <td class="paramtype">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a>(*)(struct <a class="el" href="../../db/de1/struct_k_n_s___r_f__evt__t.html">KNS_RF_evt_t</a> *evt_ctxt)&#160;</td>
+          <td class="paramname"><em>eop_isr_cb</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>&#x202A;This function starts reception immediately and stores the received data into the rx buffer. </p>
+<p class="DocNodeLTR">Each received frame is stored in a buffer, and upper layer is notified through registered callback. Callback can be called multiple times if multiple RX data till abort or poweroff call.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">eop_isr_cb</td><td>&#x202A;Pointer on a callback called when frame is received. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section warning DocNodeLTR"><dt>Warning</dt><dd>&#x202A;Callback may run from ISR context and break realtime consideration. Do not exceed 100us </dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">KNS_status_t</td><td>&#x202A;status: KNS_STATUS_OK or ERROR </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga079090692b5ec1c9ca7d996bc130606a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga079090692b5ec1c9ca7d996bc130606a">&#9670;&nbsp;</a></span>KNS_RFRX_startSatDetect()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a> KNS_RFRX_startSatDetect </td>
+          <td>(</td>
+          <td class="paramtype">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a>(*)(struct <a class="el" href="../../db/de1/struct_k_n_s___r_f__evt__t.html">KNS_RF_evt_t</a> *evt_ctxt)&#160;</td>
+          <td class="paramname"><em>eop_isr_cb</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>&#x202A;This function starts the detection satellite mechanism till detection ok or timeout or abort or power off called. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">eop_isr_cb</td><td>&#x202A;Function pointer on a callback which will be called to notify a satellite is detected. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section warning DocNodeLTR"><dt>Warning</dt><dd>&#x202A;Callback may run from ISR context and break realtime consideration. Do not exceed 100us </dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">KNS_status_t</td><td>&#x202A;status: KNS_STATUS_OK or ERROR </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gaa3d2a3be97d3e626ee9fea9f61aa0488"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa3d2a3be97d3e626ee9fea9f61aa0488">&#9670;&nbsp;</a></span>KNS_RFRX_tcxoWarmup()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a> KNS_RFRX_tcxoWarmup </td>
+          <td>(</td>
+          <td class="paramtype">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a>(*)(struct <a class="el" href="../../db/de1/struct_k_n_s___r_f__evt__t.html">KNS_RF_evt_t</a> *evt_ctxt)&#160;</td>
+          <td class="paramname"><em>eop_isr_cb</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>&#x202A;This function switch on the TCXO for the right time and callback is called when tcxo is considered ready. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">eop_isr_cb</td><td>&#x202A;Pointer on a callback which will be called to notify end of processing. Put <code>void*</code> in case no notification is needed. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section warning DocNodeLTR"><dt>Warning</dt><dd>&#x202A;Callback may run from ISR context and break realtime consideration. Do not exceed 100us </dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">KNS_status_t</td><td>&#x202A;status: KNS_STATUS_OK or ERROR </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga4d708d28e77ccbd85afd3efe8242e2ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4d708d28e77ccbd85afd3efe8242e2ff">&#9670;&nbsp;</a></span>KNS_RFTX_abortRf()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a> KNS_RFTX_abortRf </td>
+          <td>(</td>
+          <td class="paramtype">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a>(*)(struct <a class="el" href="../../db/de1/struct_k_n_s___r_f__evt__t.html">KNS_RF_evt_t</a> *evt_ctxt)&#160;</td>
+          <td class="paramname"><em>eop_isr_cb</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>&#x202A;This function starts aborting the current TX RF processing. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">eop_isr_cb</td><td>&#x202A;function pointer on a callback called when processing is aborted and driver has been cleanly stopped. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section warning DocNodeLTR"><dt>Warning</dt><dd>&#x202A;Callback may run from ISR context and break realtime consideration. Do not exceed 100us </dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">KNS_status_t</td><td>&#x202A;status: KNS_STATUS_OK or ERROR </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga52c7f4638ef321b41724a0fc88498d06"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga52c7f4638ef321b41724a0fc88498d06">&#9670;&nbsp;</a></span>KNS_RFTX_powerOff()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a> KNS_RFTX_powerOff </td>
+          <td>(</td>
+          <td class="paramtype">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a>(*)(struct <a class="el" href="../../db/de1/struct_k_n_s___r_f__evt__t.html">KNS_RF_evt_t</a> *evt_ctxt)&#160;</td>
+          <td class="paramname"><em>eop_isr_cb</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>&#x202A;This function powers off the LDO for the KNS_RF TX part. cb is called when done. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">eop_isr_cb</td><td>&#x202A;Pointer on a callback which will be called to notify end of processing. Put <code>void*</code> in case no notification is needed. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section warning DocNodeLTR"><dt>Warning</dt><dd>&#x202A;Callback may run from ISR context and break realtime consideration. Do not exceed 100us </dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">KNS_status_t</td><td>&#x202A;status: KNS_STATUS_OK or ERROR </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga0b871589a9702968087c3cb5d42d3382"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0b871589a9702968087c3cb5d42d3382">&#9670;&nbsp;</a></span>KNS_RFTX_powerOn()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a> KNS_RFTX_powerOn </td>
+          <td>(</td>
+          <td class="paramtype">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a>(*)(struct <a class="el" href="../../db/de1/struct_k_n_s___r_f__evt__t.html">KNS_RF_evt_t</a> *evt_ctxt)&#160;</td>
+          <td class="paramname"><em>eop_isr_cb</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>&#x202A;This function powers on the LDO for the KNS_RF TX part. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">eop_isr_cb</td><td>&#x202A;Pointer on a callback which will be called to notify end of processing. Put <code>void*</code> in case no notification is needed. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section warning DocNodeLTR"><dt>Warning</dt><dd>&#x202A;Callback may run from ISR context and break realtime consideration. Do not exceed 100us </dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">KNS_status_t</td><td>&#x202A;status: KNS_STATUS_OK or ERROR </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga602a906128ed6586ef9de06a800aa52b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga602a906128ed6586ef9de06a800aa52b">&#9670;&nbsp;</a></span>KNS_RFTX_pushBitstream()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a> KNS_RFTX_pushBitstream </td>
           <td>(</td>
           <td class="paramtype">uint8_t *&#160;</td>
           <td class="paramname"><em>buffer</em>, </td>
@@ -415,46 +658,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga842b064a2b091a7df598b8f277b729e5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga842b064a2b091a7df598b8f277b729e5">&#9670;&nbsp;</a></span>KNS_RF_setRxCfg()</h2>
+<a id="ga34294206ef3097155fa358116d413a39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga34294206ef3097155fa358116d413a39">&#9670;&nbsp;</a></span>KNS_RFTX_setCfg()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a> KNS_RF_setRxCfg </td>
-          <td>(</td>
-          <td class="paramtype">struct <a class="el" href="../../dc/d8a/struct_k_n_s___r_f__rx__cfg__t.html">KNS_RF_rx_cfg_t</a> *&#160;</td>
-          <td class="paramname"><em>rx_rf_cfg</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>&#x202A;This function fills the internal RX configuration structure for all RX RF parameters. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">rx_rf_cfg</td><td>&#x202A;configuration struct, NULL if not applicable </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="retval"><dt>Return values</dt><dd>
-  <table class="retval">
-    <tr><td class="paramname">KNS_status_t</td><td>&#x202A;status: KNS_STATUS_OK or ERROR </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="gafb94c39480f1dddf5589fc6683547605"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gafb94c39480f1dddf5589fc6683547605">&#9670;&nbsp;</a></span>KNS_RF_setTxCfg()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a> KNS_RF_setTxCfg </td>
+          <td class="memname">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a> KNS_RFTX_setCfg </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="../../d3/d5d/struct_k_n_s__tx__rf__cfg__t.html">KNS_tx_rf_cfg_t</a> *&#160;</td>
           <td class="paramname"><em>tx_rf_cfg</em></td><td>)</td>
@@ -479,81 +690,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga11b5a03fb4283e2c198232be19d3118e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga11b5a03fb4283e2c198232be19d3118e">&#9670;&nbsp;</a></span>KNS_RF_startImmediateRx()</h2>
+<a id="ga8389adb73a411a65a9ae68a6ff0815a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8389adb73a411a65a9ae68a6ff0815a8">&#9670;&nbsp;</a></span>KNS_RFTX_startImmediate()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a> KNS_RF_startImmediateRx </td>
-          <td>(</td>
-          <td class="paramtype">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a>(*)(struct <a class="el" href="../../db/de1/struct_k_n_s___r_f__evt__t.html">KNS_RF_evt_t</a> *evt_ctxt)&#160;</td>
-          <td class="paramname"><em>eop_isr_cb</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>&#x202A;This function starts reception immediately and stores the received data into the rx buffer. </p>
-<p class="DocNodeLTR">Each received frame is stored in a buffer, and upper layer is notified through registered callback. Callback can be called multiple times if multiple RX data till abort or poweroff call.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">eop_isr_cb</td><td>&#x202A;Pointer on a callback called when frame is received. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section warning DocNodeLTR"><dt>Warning</dt><dd>&#x202A;Callback may run from ISR context and break realtime consideration. Do not exceed 100us </dd></dl>
-<dl class="retval"><dt>Return values</dt><dd>
-  <table class="retval">
-    <tr><td class="paramname">KNS_status_t</td><td>&#x202A;status: KNS_STATUS_OK or ERROR </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="ga5c526e258624633dd20877313fce2733"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga5c526e258624633dd20877313fce2733">&#9670;&nbsp;</a></span>KNS_RF_startImmediateSatDetect()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a> KNS_RF_startImmediateSatDetect </td>
-          <td>(</td>
-          <td class="paramtype">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a>(*)(struct <a class="el" href="../../db/de1/struct_k_n_s___r_f__evt__t.html">KNS_RF_evt_t</a> *evt_ctxt)&#160;</td>
-          <td class="paramname"><em>eop_isr_cb</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>&#x202A;This function starts the detection satellite mechanism till detection ok or timeout or abort or power off called. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">eop_isr_cb</td><td>&#x202A;Function pointer on a callback which will be called to notify a satellite is detected. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section warning DocNodeLTR"><dt>Warning</dt><dd>&#x202A;Callback may run from ISR context and break realtime consideration. Do not exceed 100us </dd></dl>
-<dl class="retval"><dt>Return values</dt><dd>
-  <table class="retval">
-    <tr><td class="paramname">KNS_status_t</td><td>&#x202A;status: KNS_STATUS_OK or ERROR </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="gaf1ef01cc0838db2d7da3fd45d011a547"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaf1ef01cc0838db2d7da3fd45d011a547">&#9670;&nbsp;</a></span>KNS_RF_startImmediateTx()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a> KNS_RF_startImmediateTx </td>
+          <td class="memname">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a> KNS_RFTX_startImmediate </td>
           <td>(</td>
           <td class="paramtype">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a>(*)(struct <a class="el" href="../../db/de1/struct_k_n_s___r_f__evt__t.html">KNS_RF_evt_t</a> *evt_ctxt)&#160;</td>
           <td class="paramname"><em>eop_isr_cb</em></td><td>)</td>
@@ -579,14 +723,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga1ef284f0eb6b7fb2c6ed9bbb05a8cff5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga1ef284f0eb6b7fb2c6ed9bbb05a8cff5">&#9670;&nbsp;</a></span>KNS_RF_tcxoWarmup()</h2>
+<a id="gaa259215b78a757967e3a30b5c30120df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa259215b78a757967e3a30b5c30120df">&#9670;&nbsp;</a></span>KNS_RFTX_tcxoWarmup()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a> KNS_RF_tcxoWarmup </td>
+          <td class="memname">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a> KNS_RFTX_tcxoWarmup </td>
           <td>(</td>
           <td class="paramtype">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a>(*)(struct <a class="el" href="../../db/de1/struct_k_n_s___r_f__evt__t.html">KNS_RF_evt_t</a> *evt_ctxt)&#160;</td>
           <td class="paramname"><em>eop_isr_cb</em></td><td>)</td>
@@ -595,7 +739,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>&#x202A;This function switch on the tcxo for the right time and callback is called when tcxo is considered ready. </p>
+<p>&#x202A;This function switch on the TCXO for the right time and callback is called when tcxo is considered ready. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">eop_isr_cb</td><td>&#x202A;Pointer on a callback which will be called to notify end of processing. Put <code>void*</code> in case no notification is needed. </td></tr>

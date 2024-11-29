@@ -1,6 +1,7 @@
 var globals_dup =
 [
-    [ "\u202Aa", "globals.html", null ],
+    [ "_", "globals.html", null ],
+    [ "\u202Aa", "globals_a.html", null ],
     [ "\u202Ad", "globals_d.html", null ],
     [ "\u202Ae", "globals_e.html", null ],
     [ "\u202Ai", "globals_i.html", null ],

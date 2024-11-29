@@ -3,6 +3,7 @@ var group___k_i_n_e_i_s___s_w___c_o_n_f =
     [ "\u202AKINEIS_CS_H", "d9/d2f/group___k_i_n_e_i_s___s_w___c_o_n_f.html#ga0ecb972d6c36c94ebbe44e77b3cd893f", null ],
     [ "\u202AKINEIS_SW_ASSERT_H", "d9/d2f/group___k_i_n_e_i_s___s_w___c_o_n_f.html#ga44184a8c71146b334b1f659b5001c5e1", null ],
     [ "\u202Akns_assert", "d9/d2f/group___k_i_n_e_i_s___s_w___c_o_n_f.html#gae161b7e20a5763a0048097e96c24cbbc", null ],
+    [ "\u202APRIM_ARRAY_SIZE", "d9/d2f/group___k_i_n_e_i_s___s_w___c_o_n_f.html#gabc6b8fb16cd1a91318aa369c42e2268d", null ],
     [ "\u202AERROR_RETURN_T", "d9/d2f/group___k_i_n_e_i_s___s_w___c_o_n_f.html#ga6ec2d413abf2c80e1b9ccf121d2be60e", [
       [ "\u202AERROR_NO", "d9/d2f/group___k_i_n_e_i_s___s_w___c_o_n_f.html#gga6ec2d413abf2c80e1b9ccf121d2be60ea18bbd975653ed24f2333c30c9f7f7386", null ],
       [ "\u202AERROR_UNKNOWN", "d9/d2f/group___k_i_n_e_i_s___s_w___c_o_n_f.html#gga6ec2d413abf2c80e1b9ccf121d2be60ea2c8108ceb9a85cecbbe3af50dbc1cf8c", null ],
@@ -27,5 +28,6 @@ var group___k_i_n_e_i_s___s_w___c_o_n_f =
     [ "\u202Akns_assert_failed", "d9/d2f/group___k_i_n_e_i_s___s_w___c_o_n_f.html#ga530a6753c266d92335600fbc8c47da6d", null ],
     [ "\u202AKNS_CS_enter", "d9/d2f/group___k_i_n_e_i_s___s_w___c_o_n_f.html#ga858c122b744e5d185b5abac307aae807", null ],
     [ "\u202AKNS_CS_exit", "d9/d2f/group___k_i_n_e_i_s___s_w___c_o_n_f.html#ga58b477bfcd987dcd7b733b98ab692fdc", null ],
-    [ "\u202Aprim", "d9/d2f/group___k_i_n_e_i_s___s_w___c_o_n_f.html#ga004c8dcd8fb11b8e7326c007e5b84c6a", null ]
+    [ "\u202Aidx", "d9/d2f/group___k_i_n_e_i_s___s_w___c_o_n_f.html#ga266732d9c228f9bac150e7554734d112", null ],
+    [ "\u202Aprim", "d9/d2f/group___k_i_n_e_i_s___s_w___c_o_n_f.html#ga6071ec3b1216e4e92c2ef4dddec5acee", null ]
 ];

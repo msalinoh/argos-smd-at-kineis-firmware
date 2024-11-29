@@ -67,17 +67,17 @@ var sectionId = 'dynsection-23';
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="../../d7/d3a/group___k_n_s___r_f.html#ga033aa6b275db02f80da176ff8d61283e" target="_top" xlink:title="This function powers off the LDO for the KNS_RF. cb is called when done.">
-<polygon fill="white" stroke="black" points="389,-380.5 389,-399.5 494,-399.5 494,-380.5 389,-380.5"/>
-<text text-anchor="middle" x="441.5" y="-387.5" font-family="Helvetica,sans-Serif" font-size="10.00">KNS_RF_PowerOff</text>
+<g id="a_node2"><a xlink:href="../../d7/d3a/group___k_n_s___r_f.html#ga52c7f4638ef321b41724a0fc88498d06" target="_top" xlink:title="This function powers off the LDO for the KNS_RF TX part. cb is called when done.">
+<polygon fill="white" stroke="black" points="382.5,-380.5 382.5,-399.5 500.5,-399.5 500.5,-380.5 382.5,-380.5"/>
+<text text-anchor="middle" x="441.5" y="-387.5" font-family="Helvetica,sans-Serif" font-size="10.00">KNS_RFTX_powerOff</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node2 -->
 <g id="edge1" class="edge">
 <title>Node1&#45;&gt;Node2</title>
-<path fill="none" stroke="midnightblue" d="M63.09,-228.68C107.8,-255.21 238.01,-329.81 355,-371 362.65,-373.69 370.82,-376.09 378.96,-378.19"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="378.3,-381.63 388.85,-380.62 379.97,-374.84 378.3,-381.63"/>
+<path fill="none" stroke="midnightblue" d="M63.09,-228.68C107.8,-255.21 238.01,-329.81 355,-371 362.36,-373.59 370.21,-375.91 378.05,-377.96"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="377.39,-381.4 387.94,-380.41 379.08,-374.6 377.39,-381.4"/>
 </g>
 <!-- Node3 -->
 <g id="node3" class="node">
@@ -103,8 +103,8 @@ var sectionId = 'dynsection-23';
 <!-- Node3&#45;&gt;Node2 -->
 <g id="edge10" class="edge">
 <title>Node3&#45;&gt;Node2</title>
-<path fill="none" stroke="midnightblue" d="M236.59,-228.59C255.66,-244.1 293.18,-276.27 319,-309 338.74,-334.02 329.29,-352.18 355,-371 362.13,-376.22 370.43,-380.05 379.01,-382.85"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="378.18,-386.25 388.75,-385.59 380.07,-379.51 378.18,-386.25"/>
+<path fill="none" stroke="midnightblue" d="M236.59,-228.59C255.66,-244.1 293.18,-276.27 319,-309 338.74,-334.02 329.29,-352.18 355,-371 360.23,-374.83 366.1,-377.91 372.24,-380.39"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="371.46,-383.82 382.06,-383.8 373.76,-377.21 371.46,-383.82"/>
 </g>
 <!-- Node4 -->
 <g id="node4" class="node">
@@ -154,39 +154,39 @@ var sectionId = 'dynsection-23';
 <!-- Node8 -->
 <g id="node8" class="node">
 <title>Node8</title>
-<g id="a_node8"><a xlink:href="../../d7/d3a/group___k_n_s___r_f.html#gaa84375c34c9507c0cbab963f506dad5b" target="_top" xlink:title="This function starts aborting the current RF processing (TX, SAT_detect, RX, ...)">
-<polygon fill="white" stroke="black" points="393.5,-228.5 393.5,-247.5 489.5,-247.5 489.5,-228.5 393.5,-228.5"/>
-<text text-anchor="middle" x="441.5" y="-235.5" font-family="Helvetica,sans-Serif" font-size="10.00">KNS_RF_abortRf</text>
+<g id="a_node8"><a xlink:href="../../d7/d3a/group___k_n_s___r_f.html#ga4d708d28e77ccbd85afd3efe8242e2ff" target="_top" xlink:title="This function starts aborting the current TX RF processing.">
+<polygon fill="white" stroke="black" points="387,-228.5 387,-247.5 496,-247.5 496,-228.5 387,-228.5"/>
+<text text-anchor="middle" x="441.5" y="-235.5" font-family="Helvetica,sans-Serif" font-size="10.00">KNS_RFTX_abortRf</text>
 </a>
 </g>
 </g>
 <!-- Node3&#45;&gt;Node8 -->
 <g id="edge9" class="edge">
 <title>Node3&#45;&gt;Node8</title>
-<path fill="none" stroke="midnightblue" d="M319.24,-227.33C341.06,-229.25 363.6,-231.24 383.25,-232.96"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="382.97,-236.45 393.24,-233.84 383.59,-229.48 382.97,-236.45"/>
+<path fill="none" stroke="midnightblue" d="M319.24,-227.33C338.66,-229.04 358.66,-230.8 376.68,-232.39"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="376.49,-235.88 386.76,-233.27 377.1,-228.91 376.49,-235.88"/>
 </g>
 <!-- Node9 -->
 <g id="node9" class="node">
 <title>Node9</title>
-<g id="a_node9"><a xlink:href="../../d7/d3a/group___k_n_s___r_f.html#ga836ae8de400c6a3eade149163f525d77" target="_top" xlink:title="This function powers on the LDO for the KNS_RF.">
-<polygon fill="white" stroke="black" points="389.5,-190.5 389.5,-209.5 493.5,-209.5 493.5,-190.5 389.5,-190.5"/>
-<text text-anchor="middle" x="441.5" y="-197.5" font-family="Helvetica,sans-Serif" font-size="10.00">KNS_RF_PowerOn</text>
+<g id="a_node9"><a xlink:href="../../d7/d3a/group___k_n_s___r_f.html#ga0b871589a9702968087c3cb5d42d3382" target="_top" xlink:title="This function powers on the LDO for the KNS_RF TX part.">
+<polygon fill="white" stroke="black" points="383.5,-190.5 383.5,-209.5 499.5,-209.5 499.5,-190.5 383.5,-190.5"/>
+<text text-anchor="middle" x="441.5" y="-197.5" font-family="Helvetica,sans-Serif" font-size="10.00">KNS_RFTX_powerOn</text>
 </a>
 </g>
 </g>
 <!-- Node3&#45;&gt;Node9 -->
 <g id="edge11" class="edge">
 <title>Node3&#45;&gt;Node9</title>
-<path fill="none" stroke="midnightblue" d="M319.24,-210.67C339.61,-208.87 360.62,-207.03 379.31,-205.38"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="379.79,-208.85 389.44,-204.49 379.17,-201.88 379.79,-208.85"/>
+<path fill="none" stroke="midnightblue" d="M319.24,-210.67C337.36,-209.07 355.98,-207.43 373.03,-205.94"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="373.76,-209.38 383.42,-205.02 373.15,-202.41 373.76,-209.38"/>
 </g>
 <!-- Node10 -->
 <g id="node10" class="node">
 <title>Node10</title>
-<g id="a_node10"><a xlink:href="../../d7/d3a/group___k_n_s___r_f.html#ga27a155fef00030187c03c6b68e01b7e4" target="_top" xlink:title="This function loads the bitstream to send with the radio.">
-<polygon fill="white" stroke="black" points="376,-152.5 376,-171.5 507,-171.5 507,-152.5 376,-152.5"/>
-<text text-anchor="middle" x="441.5" y="-159.5" font-family="Helvetica,sans-Serif" font-size="10.00">KNS_RF_pushBitstream</text>
+<g id="a_node10"><a xlink:href="../../d7/d3a/group___k_n_s___r_f.html#ga602a906128ed6586ef9de06a800aa52b" target="_top" xlink:title="This function loads the bitstream to send with the radio.">
+<polygon fill="white" stroke="black" points="369.5,-152.5 369.5,-171.5 513.5,-171.5 513.5,-152.5 369.5,-152.5"/>
+<text text-anchor="middle" x="441.5" y="-159.5" font-family="Helvetica,sans-Serif" font-size="10.00">KNS_RFTX_pushBitstream</text>
 </a>
 </g>
 </g>
@@ -199,9 +199,9 @@ var sectionId = 'dynsection-23';
 <!-- Node11 -->
 <g id="node11" class="node">
 <title>Node11</title>
-<g id="a_node11"><a xlink:href="../../d7/d3a/group___k_n_s___r_f.html#gafb94c39480f1dddf5589fc6683547605" target="_top" xlink:title="This function fills the internal TX configuration structure for all TX RF parameters.">
+<g id="a_node11"><a xlink:href="../../d7/d3a/group___k_n_s___r_f.html#ga34294206ef3097155fa358116d413a39" target="_top" xlink:title="This function fills the internal TX configuration structure for all TX RF parameters.">
 <polygon fill="white" stroke="black" points="389.5,-114.5 389.5,-133.5 493.5,-133.5 493.5,-114.5 389.5,-114.5"/>
-<text text-anchor="middle" x="441.5" y="-121.5" font-family="Helvetica,sans-Serif" font-size="10.00">KNS_RF_setTxCfg</text>
+<text text-anchor="middle" x="441.5" y="-121.5" font-family="Helvetica,sans-Serif" font-size="10.00">KNS_RFTX_setCfg</text>
 </a>
 </g>
 </g>
@@ -214,9 +214,9 @@ var sectionId = 'dynsection-23';
 <!-- Node12 -->
 <g id="node12" class="node">
 <title>Node12</title>
-<g id="a_node12"><a xlink:href="../../d7/d3a/group___k_n_s___r_f.html#gaf1ef01cc0838db2d7da3fd45d011a547" target="_top" xlink:title="This function starts the transmission immediately of the bitstream set into the tx buffer during the ...">
-<polygon fill="white" stroke="black" points="367.5,-76.5 367.5,-95.5 515.5,-95.5 515.5,-76.5 367.5,-76.5"/>
-<text text-anchor="middle" x="441.5" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">KNS_RF_startImmediateTx</text>
+<g id="a_node12"><a xlink:href="../../d7/d3a/group___k_n_s___r_f.html#ga8389adb73a411a65a9ae68a6ff0815a8" target="_top" xlink:title="This function starts the transmission immediately of the bitstream set into the tx buffer during the ...">
+<polygon fill="white" stroke="black" points="367,-76.5 367,-95.5 516,-95.5 516,-76.5 367,-76.5"/>
+<text text-anchor="middle" x="441.5" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">KNS_RFTX_startImmediate</text>
 </a>
 </g>
 </g>
@@ -229,17 +229,17 @@ var sectionId = 'dynsection-23';
 <!-- Node13 -->
 <g id="node13" class="node">
 <title>Node13</title>
-<g id="a_node13"><a xlink:href="../../d7/d3a/group___k_n_s___r_f.html#ga1ef284f0eb6b7fb2c6ed9bbb05a8cff5" target="_top" xlink:title="This function switch on the tcxo for the right time and callback is called when tcxo is considered re...">
-<polygon fill="white" stroke="black" points="380.5,-38.5 380.5,-57.5 502.5,-57.5 502.5,-38.5 380.5,-38.5"/>
-<text text-anchor="middle" x="441.5" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">KNS_RF_tcxoWarmup</text>
+<g id="a_node13"><a xlink:href="../../d7/d3a/group___k_n_s___r_f.html#gaa259215b78a757967e3a30b5c30120df" target="_top" xlink:title="This function switch on the TCXO for the right time and callback is called when tcxo is considered re...">
+<polygon fill="white" stroke="black" points="374,-38.5 374,-57.5 509,-57.5 509,-38.5 374,-38.5"/>
+<text text-anchor="middle" x="441.5" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">KNS_RFTX_tcxoWarmup</text>
 </a>
 </g>
 </g>
 <!-- Node3&#45;&gt;Node13 -->
 <g id="edge15" class="edge">
 <title>Node3&#45;&gt;Node13</title>
-<path fill="none" stroke="midnightblue" d="M229.78,-209.29C245.13,-182.03 292.65,-104.37 355,-67 359.81,-64.12 365.01,-61.67 370.38,-59.59"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="371.87,-62.79 380.2,-56.24 369.61,-56.16 371.87,-62.79"/>
+<path fill="none" stroke="midnightblue" d="M229.78,-209.29C245.13,-182.03 292.65,-104.37 355,-67 358.67,-64.8 362.56,-62.86 366.59,-61.14"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="368.06,-64.32 376.18,-57.52 365.59,-57.77 368.06,-64.32"/>
 </g>
 <!-- Node14 -->
 <g id="node14" class="node">

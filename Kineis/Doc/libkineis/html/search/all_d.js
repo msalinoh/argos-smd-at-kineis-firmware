@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['power_277',['power',['../d3/d5d/struct_k_n_s__tx__rf__cfg__t.html#aa96484dd52e73daccfdb5e5ba3a33796',1,'KNS_tx_rf_cfg_t']]]
+  ['os_20queue_20utilities_282',['OS queue utilities',['../d8/d3b/kns_q_page.html',1,'']]]
 ];

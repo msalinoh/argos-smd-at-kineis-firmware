@@ -1,4 +1,6 @@
 <map id="MGR_AT_CMD_isPendingAt" name="MGR_AT_CMD_isPendingAt">
-<area shape="rect" id="node1" title="API used to check there is some AT command in internal fifo." alt="" coords="240,5,439,32"/>
-<area shape="rect" id="node2" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#gafccf5cd6468be2c39af4c4c599d48ef8" title="Process AT command &quot;AT+CW&quot;." alt="" coords="5,5,192,32"/>
+<area shape="rect" id="node1" title="API used to check there is some AT command in internal fifo." alt="" coords="343,31,541,57"/>
+<area shape="rect" id="node2" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#gafccf5cd6468be2c39af4c4c599d48ef8" title="Process AT command &quot;AT+CW&quot;." alt="" coords="108,5,295,32"/>
+<area shape="rect" id="node3" href="$d0/d29/main_8c.html#ab5e4675bc5ccd4c2aeeae31f8df4b4fb" title=" " alt="" coords="158,56,245,83"/>
+<area shape="rect" id="node4" href="$d0/d29/main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="The application entry point." alt="" coords="5,56,60,83"/>
 </map>

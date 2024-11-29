@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['glossary_3a_20acronyms_20used_20in_20kineis_20package_41',['GLOSSARY: acronyms used in Kineis package',['../d6/d54/kns_glossary_page.html',1,'']]]
+  ['frequency_40',['frequency',['../dc/d8a/struct_k_n_s___r_f__rx__cfg__t.html#ab632fb0b4d5156ea4df0b1e15410e913',1,'KNS_RF_rx_cfg_t']]]
 ];

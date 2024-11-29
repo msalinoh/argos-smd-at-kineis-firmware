@@ -1,16 +1,15 @@
 <map id="bMGR_AT_CMD_logSucceedMsg" name="bMGR_AT_CMD_logSucceedMsg">
-<area shape="rect" id="node1" title=": Log in debug interface a succeed message" alt="" coords="645,245,876,272"/>
-<area shape="rect" id="node2" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#ga292621f6d8d6617d0f06907bae52a96f" title="Process AT command &quot;AT+ATXRP&quot; get/set the repetition number and the period between 2 transmissions." alt="" coords="366,5,574,32"/>
-<area shape="rect" id="node3" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#gafccf5cd6468be2c39af4c4c599d48ef8" title="Process AT command &quot;AT+CW&quot;." alt="" coords="108,427,295,453"/>
-<area shape="rect" id="node4" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#gaed4723249aba7dbe8e17c74eed648f4b" title=" " alt="" coords="374,107,566,133"/>
-<area shape="rect" id="node5" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#gad504c930c0c0222576334c21940e245e" title=" " alt="" coords="371,157,569,184"/>
-<area shape="rect" id="node6" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#gafa3e80f7aedfa74c8d16d0202a3f4f07" title="Process AT command &quot;AT+PREPASS_EN&quot; Enabling/disabling PREVIPASS (sat pass prediction) computation,..." alt="" coords="376,209,564,250"/>
-<area shape="rect" id="node7" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#gaf2dc4b8c03924fc01641182032c31ba5" title=" " alt="" coords="365,275,575,301"/>
-<area shape="rect" id="node8" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#ga02e2a055602cf05cffff4e57ef414e50" title=" " alt="" coords="343,325,597,352"/>
-<area shape="rect" id="node9" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#ga166c0300322bd71368b25fe8c351eb9b" title=" " alt="" coords="365,376,575,403"/>
-<area shape="rect" id="node10" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#ga1a39b3c9cd76d50537a8bc42087ed46f" title="Fct used to retreive and process event coming from kineis stack as answers to AT commands." alt="" coords="359,56,581,83"/>
-<area shape="rect" id="node13" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#ga60486b23c6850d01bbb1e29875cd24f4" title="Send random TX data as per RF configuration." alt="" coords="343,477,597,504"/>
-<area shape="rect" id="node11" href="$dd/d41/group___k_n_s___a_p_p.html#ga06543de003a98e82570c572ce5e1240c" title="This fct is the application expected to run in front of the GUI." alt="" coords="130,56,273,83"/>
-<area shape="rect" id="node12" href="$d0/d29/main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="The application entry point." alt="" coords="5,56,60,83"/>
-<area shape="rect" id="node14" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#gafccb1dfaf28ab371bebd814a3abaa57c" title="Callback function notifying end of TX processing in case of modulated wave." alt="" coords="140,477,263,504"/>
+<area shape="rect" id="node1" title=": Log in debug interface a succeed message" alt="" coords="645,224,876,251"/>
+<area shape="rect" id="node2" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#gafccf5cd6468be2c39af4c4c599d48ef8" title="Process AT command &quot;AT+CW&quot;." alt="" coords="108,376,295,403"/>
+<area shape="rect" id="node3" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#gaed4723249aba7dbe8e17c74eed648f4b" title=" " alt="" coords="374,56,566,83"/>
+<area shape="rect" id="node4" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#gad504c930c0c0222576334c21940e245e" title=" " alt="" coords="371,107,569,133"/>
+<area shape="rect" id="node5" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#gafa3e80f7aedfa74c8d16d0202a3f4f07" title="Process AT command &quot;AT+PREPASS_EN&quot; Enabling/disabling PREVIPASS (sat pass prediction) computation,..." alt="" coords="376,158,564,199"/>
+<area shape="rect" id="node6" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#gaf2dc4b8c03924fc01641182032c31ba5" title=" " alt="" coords="365,224,575,251"/>
+<area shape="rect" id="node7" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#ga02e2a055602cf05cffff4e57ef414e50" title=" " alt="" coords="343,275,597,301"/>
+<area shape="rect" id="node8" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#ga166c0300322bd71368b25fe8c351eb9b" title=" " alt="" coords="365,325,575,352"/>
+<area shape="rect" id="node9" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#ga1a39b3c9cd76d50537a8bc42087ed46f" title="Fct used to retreive and process event coming from kineis stack as answers to AT commands." alt="" coords="359,5,581,32"/>
+<area shape="rect" id="node12" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#ga60486b23c6850d01bbb1e29875cd24f4" title="Send random TX data as per RF configuration." alt="" coords="343,427,597,453"/>
+<area shape="rect" id="node10" href="$dd/d41/group___k_n_s___a_p_p.html#ga06543de003a98e82570c572ce5e1240c" title="This fct is the application expected to run in front of the GUI." alt="" coords="130,5,273,32"/>
+<area shape="rect" id="node11" href="$d0/d29/main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="The application entry point." alt="" coords="5,5,60,32"/>
+<area shape="rect" id="node13" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#gafccb1dfaf28ab371bebd814a3abaa57c" title="Callback function notifying end of TX processing in case of modulated wave." alt="" coords="140,427,263,453"/>
 </map>

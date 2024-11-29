@@ -1,0 +1,15 @@
+<map id="IDLE_task" name="IDLE_task">
+<area shape="rect" id="node1" title=" " alt="" coords="5,81,92,108"/>
+<area shape="rect" id="node2" href="$d0/d29/main_8c.html#a2436cad8369aeaa42df04ee4024042f2" title="Check stack limit, in a way to track overflows (0xAAAAAAAA)" alt="" coords="165,5,313,32"/>
+<area shape="rect" id="node3" href="$d1/ddb/group___k_n_s___q.html#gae3b6f82f0cfe829173632dde48cd0d28" title="This function is used to check some queue contains some elements." alt="" coords="823,233,987,260"/>
+<area shape="rect" id="node4" href="$db/dca/group___m_g_r___l_p_m.html#ga349cbb2c24fd0bd7f2c24bd063734660" title="Try to enter low power mode depending on clients capabilities." alt="" coords="194,107,285,133"/>
+<area shape="rect" id="node13" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#ga93e0ba86dd0dff06dc8b957213e34b58" title="API used to check there is some AT command in internal fifo." alt="" coords="140,157,339,184"/>
+<area shape="rect" id="node5" href="$db/dca/group___m_g_r___l_p_m.html#ga7bf128e76e6a14840b3c8d74946c37f1" title="This is the main Entry point to the low power mode manager." alt="" coords="387,233,515,260"/>
+<area shape="rect" id="node6" href="$db/dca/group___m_g_r___l_p_m.html#ga64b281d5b49b69bcc99344d5dd614493" title="internal API used to request client deepest LPM." alt="" coords="573,107,764,133"/>
+<area shape="rect" id="node7" href="$db/dca/group___m_g_r___l_p_m.html#ga52e2359a25b281d9fc80097bc2eae3c2" title="internal API used to notify clients when entering into LPM" alt="" coords="563,157,775,184"/>
+<area shape="rect" id="node8" href="$db/dca/group___m_g_r___l_p_m.html#gac44963210fbbc4095bab272f5b382b3a" title="internal API used to notify clients when exiting LPM" alt="" coords="567,208,770,235"/>
+<area shape="rect" id="node9" href="$db/dca/group___m_g_r___l_p_m.html#gabbe558bca2d35870d29e614dd72c63c5" title="This is the function to enter in shutdown mode." alt="" coords="569,259,769,285"/>
+<area shape="rect" id="node10" href="$db/dca/group___m_g_r___l_p_m.html#gae9eed692d36867fa1fa8d825e57d3926" title="This is the function to enter in sleep mode." alt="" coords="583,309,755,336"/>
+<area shape="rect" id="node11" href="$db/dca/group___m_g_r___l_p_m.html#gacba2a0ba5b0d79aee8e65edc76451e48" title="This is the function to enter in standby mode." alt="" coords="573,360,764,387"/>
+<area shape="rect" id="node12" href="$db/dca/group___m_g_r___l_p_m.html#ga394c596cc344e87c088527daba299c8d" title="This is the function to enter in stop mode." alt="" coords="586,411,751,437"/>
+</map>

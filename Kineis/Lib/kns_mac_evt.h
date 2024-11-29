@@ -28,12 +28,17 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include "kns_types.h"
+#include "kns_mac_prfl_cfg.h"
 
 #pragma GCC visibility push(default)
 
 /* Defines ------------------------------------------------------------------------------------- */
 
+#ifdef USE_HDA4
+#define KNS_MAC_USRDATA_MAXLEN 633 // 632.5 bytes long as maximum allowed in HDA4 (5060 bits)
+#else
 #define KNS_MAC_USRDATA_MAXLEN 25 // 24.5 bytes long as maximum allowed in LDA2L
+#endif
 
 #define DL_FRM_BITLEN 384 /* maximum bit length of a DL frame */
 #define DL_FRM_SZ  (((DL_FRM_BITLEN-1)/8)+1) /*  max frame len in byte */
@@ -45,7 +50,8 @@
  * @brief List events which could be reported by service layer
  */
 enum KNS_MAC_appEvtId_t {
-	KNS_MAC_APP_NONE_EVT,  /**< Send data on Kineis UL link */
+        KNS_MAC_APP_NONE_EVT,  /**< none, placed as value 0 to detect potential issues in SW */
+        KNS_MAC_INIT,          /**< Init MAC profile */
 	KNS_MAC_SEND_DATA,     /**< Send data on Kineis UL link */
 	KNS_MAC_STOP_SEND_DATA,/**< Abort Send data on Kineis UL link */
 	KNS_MAC_RX_START,      /**< Start reception on Kineis DL link (e.g. DL_BC or AOP/CS update) */
@@ -106,6 +112,7 @@ struct KNS_MAC_send_data_ctxt_t {
 struct KNS_MAC_appEvt_t {
 	enum KNS_MAC_appEvtId_t id;
 	union {
+		struct KNS_MAC_prflInfo_t init_prfl_ctxt;
 		struct KNS_MAC_send_data_ctxt_t data_ctxt;
 	};
 };

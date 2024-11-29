@@ -1,7 +1,8 @@
 <map id="u8UTIL_convertCharToHex4bits" name="u8UTIL_convertCharToHex4bits">
-<area shape="rect" id="node1" title="convert an hexadecimal ASCII digit to a 4bits integer" alt="" coords="809,31,1035,57"/>
-<area shape="rect" id="node2" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#ga474b262632007c7cdccc1c36d53d3d00" title=": convert the input form ASCII to binary." alt="" coords="535,23,761,65"/>
+<area shape="rect" id="node1" title="convert an hexadecimal ASCII digit to a 4bits integer" alt="" coords="809,56,1035,83"/>
+<area shape="rect" id="node2" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#ga474b262632007c7cdccc1c36d53d3d00" title=": convert the input form ASCII to binary." alt="" coords="535,49,761,90"/>
 <area shape="rect" id="node3" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#gaaa9bdf10c9ac69ef778eea22f8225343" title="Handle new TX data, this is the core function of AT+TX cmd." alt="" coords="236,5,487,32"/>
-<area shape="rect" id="node5" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#gaf2dc4b8c03924fc01641182032c31ba5" title=" " alt="" coords="256,56,467,83"/>
+<area shape="rect" id="node5" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#gacc6b6479b50b0c5aed24b2e62448bde0" title="Process AT command &quot;AT+KMAC&quot; get/set the Kineis MAC profile." alt="" coords="259,56,463,83"/>
+<area shape="rect" id="node6" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#gaf2dc4b8c03924fc01641182032c31ba5" title=" " alt="" coords="256,107,467,133"/>
 <area shape="rect" id="node4" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#ga0a4332fc4f8bad99c421588fe542a2bd" title="Process AT command &quot;AT+TX&quot; send user data." alt="" coords="5,5,188,32"/>
 </map>

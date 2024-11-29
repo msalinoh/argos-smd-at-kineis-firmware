@@ -24,21 +24,17 @@
 /* Functions -----------------------------------------------------------------*/
 
 /**
- * @brief Process AT command "AT+ATXRP" get/set the repetition number and the period between 2
- * transmissions
+ * @brief Process AT command "AT+KMAC" get/set the Kineis MAC profile
  *
- * @note This command is actually a stub, used to anwser correctly to GUI. There is no functionnal
- *       impact on Kinéis SW stack so far.
- *
- * 1) "AT+ATXRP=<rep_number[,period_ms>]"
+ * 1) "AT+KMAC=<profile ID>,<profile context>"
  * Response format: "+OK" or "+ERROR=<error_code>" (See \ref ERROR_RETURN_T)
  *
- * 2) "AT+ATXRP=?" returns the number of transmissions and period between 2 TX.
- * Response format: "+ATXRP=<rep_number>[,<period_ms>]"
+ * Profile ID:
+ * * 0 none
+ * * 1 basic
+ * * 2 blind
  *
- * "rep_number" is the repetition number of the transmission for one message.
- *
- * "period_ms" is the time between two transmissions in milliseconds .
+ * 2) "AT+KMAC=?" returns the profil ID
  *
  * @param[in] pu8_cmdParamString: string containing AT command
  * @param[in] e_exec_mode: type of the command (status command or action command)
@@ -46,7 +42,7 @@
  * @return true if command is correctly received and processed
  *         false if error
  */
-bool bMGR_AT_CMD_ATXRP_cmd(uint8_t *pu8_cmdParamString, enum atcmd_type_t e_exec_mode);
+bool bMGR_AT_CMD_KMAC_cmd(uint8_t *pu8_cmdParamString, enum atcmd_type_t e_exec_mode);
 
 #endif /* __MGR_AT_CMD_MAC_H */
 /**

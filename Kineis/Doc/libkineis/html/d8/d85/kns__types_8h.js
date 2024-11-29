@@ -23,6 +23,7 @@ var kns__types_8h =
       [ "\u202AKNS_STATUS_BAD_SETTING", "d3/df9/group___k_n_s___t_y_p_e_s.html#gga32a49ec3ea991c35828de5c747981245adb67d366ca84a1d58256a8654b2e4fe6", null ],
       [ "\u202AKNS_STATUS_BAD_LEN", "d3/df9/group___k_n_s___t_y_p_e_s.html#gga32a49ec3ea991c35828de5c747981245a3a9e4fbd85d14fc5f9aab2082b0e924a", null ],
       [ "\u202AKNS_STATUS_TR_ERR", "d3/df9/group___k_n_s___t_y_p_e_s.html#gga32a49ec3ea991c35828de5c747981245a628c3645e5aff6e6aba311bbc605fa33", null ],
+      [ "\u202AKNS_STATUS_DL_FRM_ERR", "d3/df9/group___k_n_s___t_y_p_e_s.html#gga32a49ec3ea991c35828de5c747981245ac1158b63d3f674eafd866ba40cbe5ff3", null ],
       [ "\u202AKNS_STATUS_QFULL", "d3/df9/group___k_n_s___t_y_p_e_s.html#gga32a49ec3ea991c35828de5c747981245a9d0944a60aaef8e38a6dca7607cc9300", null ],
       [ "\u202AKNS_STATUS_QEMPTY", "d3/df9/group___k_n_s___t_y_p_e_s.html#gga32a49ec3ea991c35828de5c747981245ad8934afd02f7e4709da2dd139c7bd3af", null ],
       [ "\u202AKNS_STATUS_NVM_ACCESS_ERR", "d3/df9/group___k_n_s___t_y_p_e_s.html#gga32a49ec3ea991c35828de5c747981245a5fd0183d25338bbe8f833575fa7c6711", null ]

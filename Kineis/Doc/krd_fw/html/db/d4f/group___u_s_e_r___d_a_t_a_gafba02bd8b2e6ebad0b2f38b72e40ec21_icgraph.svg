@@ -48,7 +48,7 @@ if (edges && edges.length) {
 <script type="text/javascript">
 var viewWidth = 790;
 var viewHeight = 104;
-var sectionId = 'dynsection-10';
+var sectionId = 'dynsection-11';
 </script>
 <script xlink:href="../../svgpan.js"/>
 <svg id="graph" class="graph">
@@ -94,18 +94,18 @@ var sectionId = 'dynsection-10';
 <path fill="none" stroke="midnightblue" d="M653.76,-48C640.87,-48 627.43,-48 614.71,-48"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="653.97,-51.5 663.97,-48 653.97,-44.5 653.97,-51.5"/>
 </g>
-<!-- Node6 -->
-<g id="node6" class="node">
-<title>Node6</title>
-<g id="a_node6"><a xlink:href="../../db/d4f/group___u_s_e_r___d_a_t_a.html#ga4d20835dbc4b21f645ff55eed7d93216" target="_top" xlink:title="Delete an element from the TX fifo.">
+<!-- Node9 -->
+<g id="node9" class="node">
+<title>Node9</title>
+<g id="a_node9"><a xlink:href="../../db/d4f/group___u_s_e_r___d_a_t_a.html#ga4d20835dbc4b21f645ff55eed7d93216" target="_top" xlink:title="Delete an element from the TX fifo.">
 <polygon fill="white" stroke="black" points="474,-0.5 474,-19.5 628,-19.5 628,-0.5 474,-0.5"/>
 <text text-anchor="middle" x="551" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">USERDATA_txFifoRemoveElt</text>
 </a>
 </g>
 </g>
-<!-- Node1&#45;&gt;Node6 -->
-<g id="edge5" class="edge">
-<title>Node1&#45;&gt;Node6</title>
+<!-- Node1&#45;&gt;Node9 -->
+<g id="edge8" class="edge">
+<title>Node1&#45;&gt;Node9</title>
 <path fill="none" stroke="midnightblue" d="M669.1,-36.18C645.13,-30.82 617.18,-24.57 594.59,-19.52"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="668.58,-39.65 679.1,-38.41 670.11,-32.81 668.58,-39.65"/>
 </g>
@@ -139,50 +139,56 @@ var sectionId = 'dynsection-10';
 <path fill="none" stroke="midnightblue" d="M239.71,-86C231.01,-86 222.36,-86 214.04,-86"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="239.93,-89.5 249.93,-86 239.93,-82.5 239.93,-89.5"/>
 </g>
+<!-- Node6 -->
+<g id="node6" class="node">
+<title>Node6</title>
+<g id="a_node6"><a xlink:href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#ga1a39b3c9cd76d50537a8bc42087ed46f" target="_top" xlink:title="Fct used to retreive and process event coming from kineis stack as answers to AT commands.">
+<polygon fill="white" stroke="black" points="261,-19.5 261,-38.5 427,-38.5 427,-19.5 261,-19.5"/>
+<text text-anchor="middle" x="344" y="-26.5" font-family="Helvetica,sans-Serif" font-size="10.00">MGR_AT_CMD_macEvtProcess</text>
+</a>
+</g>
+</g>
+<!-- Node5&#45;&gt;Node6 -->
+<g id="edge5" class="edge">
+<title>Node5&#45;&gt;Node6</title>
+<path fill="none" stroke="midnightblue" d="M476.97,-41.23C460.87,-39.74 443.71,-38.15 427.27,-36.62"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="477.1,-44.76 487.38,-42.2 477.75,-37.79 477.1,-44.76"/>
+</g>
 <!-- Node7 -->
 <g id="node7" class="node">
 <title>Node7</title>
-<g id="a_node7"><a xlink:href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#ga1a39b3c9cd76d50537a8bc42087ed46f" target="_top" xlink:title="Fct used to retreive and process event coming from kineis stack as answers to AT commands.">
-<polygon fill="white" stroke="black" points="261,-0.5 261,-19.5 427,-19.5 427,-0.5 261,-0.5"/>
-<text text-anchor="middle" x="344" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">MGR_AT_CMD_macEvtProcess</text>
+<g id="a_node7"><a xlink:href="../../dd/d41/group___k_n_s___a_p_p.html#ga06543de003a98e82570c572ce5e1240c" target="_top" xlink:title="This fct is the application expected to run in front of the GUI.">
+<polygon fill="white" stroke="black" points="92,-19.5 92,-38.5 199,-38.5 199,-19.5 92,-19.5"/>
+<text text-anchor="middle" x="145.5" y="-26.5" font-family="Helvetica,sans-Serif" font-size="10.00">KNS_APP_gui_loop</text>
 </a>
 </g>
 </g>
 <!-- Node6&#45;&gt;Node7 -->
 <g id="edge6" class="edge">
 <title>Node6&#45;&gt;Node7</title>
-<path fill="none" stroke="midnightblue" d="M463.83,-10C451.67,-10 439.2,-10 427.11,-10"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="463.96,-13.5 473.96,-10 463.96,-6.5 463.96,-13.5"/>
+<path fill="none" stroke="midnightblue" d="M250.49,-29C232.9,-29 215.06,-29 199.25,-29"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="250.8,-32.5 260.8,-29 250.8,-25.5 250.8,-32.5"/>
 </g>
 <!-- Node8 -->
 <g id="node8" class="node">
 <title>Node8</title>
-<g id="a_node8"><a xlink:href="../../dd/d41/group___k_n_s___a_p_p.html#ga06543de003a98e82570c572ce5e1240c" target="_top" xlink:title="This fct is the application expected to run in front of the GUI.">
-<polygon fill="white" stroke="black" points="92,-0.5 92,-19.5 199,-19.5 199,-0.5 92,-0.5"/>
-<text text-anchor="middle" x="145.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">KNS_APP_gui_loop</text>
+<g id="a_node8"><a xlink:href="../../d0/d29/main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" target="_top" xlink:title="The application entry point.">
+<polygon fill="white" stroke="black" points="0,-19.5 0,-38.5 41,-38.5 41,-19.5 0,-19.5"/>
+<text text-anchor="middle" x="20.5" y="-26.5" font-family="Helvetica,sans-Serif" font-size="10.00">main</text>
 </a>
 </g>
 </g>
 <!-- Node7&#45;&gt;Node8 -->
 <g id="edge7" class="edge">
 <title>Node7&#45;&gt;Node8</title>
-<path fill="none" stroke="midnightblue" d="M250.49,-10C232.9,-10 215.06,-10 199.25,-10"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="250.8,-13.5 260.8,-10 250.8,-6.5 250.8,-13.5"/>
+<path fill="none" stroke="midnightblue" d="M81.77,-29C66.99,-29 52.31,-29 41.13,-29"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="81.98,-32.5 91.98,-29 81.98,-25.5 81.98,-32.5"/>
 </g>
-<!-- Node9 -->
-<g id="node9" class="node">
-<title>Node9</title>
-<g id="a_node9"><a xlink:href="../../d0/d29/main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" target="_top" xlink:title="The application entry point.">
-<polygon fill="white" stroke="black" points="0,-0.5 0,-19.5 41,-19.5 41,-0.5 0,-0.5"/>
-<text text-anchor="middle" x="20.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">main</text>
-</a>
-</g>
-</g>
-<!-- Node8&#45;&gt;Node9 -->
-<g id="edge8" class="edge">
-<title>Node8&#45;&gt;Node9</title>
-<path fill="none" stroke="midnightblue" d="M81.77,-10C66.99,-10 52.31,-10 41.13,-10"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="81.98,-13.5 91.98,-10 81.98,-6.5 81.98,-13.5"/>
+<!-- Node9&#45;&gt;Node6 -->
+<g id="edge9" class="edge">
+<title>Node9&#45;&gt;Node6</title>
+<path fill="none" stroke="midnightblue" d="M463.83,-17.99C451.67,-19.11 439.2,-20.27 427.11,-21.39"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="464.32,-21.46 473.96,-17.05 463.68,-14.49 464.32,-21.46"/>
 </g>
 </g>
 </svg>

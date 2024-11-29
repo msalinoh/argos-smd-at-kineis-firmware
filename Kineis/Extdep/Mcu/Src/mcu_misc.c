@@ -68,7 +68,7 @@ void MCU_MISC_turn_on_pa()
 
 
 	HAL_GPIO_WritePin(PA_PSU_EN_GPIO_Port, PA_PSU_EN_Pin, GPIO_PIN_SET);
-	DELAY_MS(100);
+	DELAY_MS(10);
 #endif
 }
 

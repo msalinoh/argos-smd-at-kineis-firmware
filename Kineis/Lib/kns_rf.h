@@ -157,23 +157,23 @@ struct KNS_RF_evt_t {
 /* Function prototypes ------------------------------------------------------------------------- */
 
 /**
- * @brief This function powers on the LDO for the KNS_RF.
+ * @brief This function powers on the LDO for the KNS_RF RX part.
  * @param[in] eop_isr_cb: Pointer on a callback which will be called to notify end of
  *            processing. Put ``void*`` in case no notification is needed.
  * @warning Callback may run from ISR context and break realtime consideration. Do not exceed 100us
  * @retval KNS_status_t status: KNS_STATUS_OK or ERROR
  */
-enum KNS_status_t KNS_RF_PowerOn(
+enum KNS_status_t KNS_RFRX_powerOn(
 		enum KNS_status_t (*eop_isr_cb)(struct KNS_RF_evt_t *evt_ctxt));
 
 /**
- * @brief This function powers off the LDO for the KNS_RF. cb is called when done
+ * @brief This function powers off the LDO for the KNS_RF RX part. cb is called when done
  * @param[in] eop_isr_cb: Pointer on a callback which will be called to notify end of
  *            processing. Put ``void*`` in case no notification is needed.
  * @warning Callback may run from ISR context and break realtime consideration. Do not exceed 100us
  * @retval KNS_status_t status: KNS_STATUS_OK or ERROR
  */
-enum KNS_status_t KNS_RF_PowerOff(
+enum KNS_status_t KNS_RFRX_powerOff(
 		enum KNS_status_t (*eop_isr_cb)(struct KNS_RF_evt_t *evt_ctxt));
 
 /**
@@ -181,52 +181,18 @@ enum KNS_status_t KNS_RF_PowerOff(
  * @param[in] rx_rf_cfg configuration struct, NULL if not applicable
  * @retval KNS_status_t status: KNS_STATUS_OK or ERROR
  */
-enum KNS_status_t KNS_RF_setRxCfg(
+enum KNS_status_t KNS_RFRX_setCfg(
 		struct KNS_RF_rx_cfg_t *rx_rf_cfg);
 
 /**
- * @brief This function fills the internal TX configuration structure for all TX RF parameters.
- * @param[in] tx_rf_cfg configuration struct, NULL if not applicable
- * @retval KNS_status_t status: KNS_STATUS_OK or ERROR
- */
-enum KNS_status_t KNS_RF_setTxCfg(
-		struct KNS_tx_rf_cfg_t *tx_rf_cfg);
-
-/**
- * @brief This function loads the bitstream to send with the radio.
- *
- * A frame builder will build this bitstream including the overhead protocol. This function does not
- * send it.
- *
- * @param[in] buffer binary-data buffer containing bits to be transmitted
- * @param[in] bitsize number of bits to push (limited to uint16_t)
- * @retval KNS_status_t status: KNS_STATUS_OK or ERROR
- */
-enum KNS_status_t KNS_RF_pushBitstream(
-		uint8_t *buffer, uint16_t bitsize);
-
-
-/**
- * @brief This function switch on the tcxo for the right time and callback is called when tcxo is
+ * @brief This function switch on the TCXO for the right time and callback is called when tcxo is
  *        considered ready.
  * @param[in] eop_isr_cb: Pointer on a callback which will be called to notify end of
  *            processing. Put ``void*`` in case no notification is needed.
  * @warning Callback may run from ISR context and break realtime consideration. Do not exceed 100us
  * @retval KNS_status_t status: KNS_STATUS_OK or ERROR
  */
-enum KNS_status_t KNS_RF_tcxoWarmup(
-		enum KNS_status_t (*eop_isr_cb)(struct KNS_RF_evt_t *evt_ctxt));
-
-
-/**
- * @brief This function starts the transmission immediately of the bitstream set into the tx buffer
- *        during the push_bitstream api.
- * @param[in] eop_isr_cb: Pointer on a callback which will be called to notify end of
- *            processing. Put ``void*`` in case no notification is needed.
- * @warning Callback may run from ISR context and break realtime consideration. Do not exceed 100us
- * @retval KNS_status_t status: KNS_STATUS_OK or ERROR
- */
-enum KNS_status_t KNS_RF_startImmediateTx(
+enum KNS_status_t KNS_RFRX_tcxoWarmup(
 		enum KNS_status_t (*eop_isr_cb)(struct KNS_RF_evt_t *evt_ctxt));
 
 /**
@@ -239,9 +205,8 @@ enum KNS_status_t KNS_RF_startImmediateTx(
  * @warning Callback may run from ISR context and break realtime consideration. Do not exceed 100us
  * @retval KNS_status_t status: KNS_STATUS_OK or ERROR
  */
-enum KNS_status_t KNS_RF_startImmediateRx(
+enum KNS_status_t KNS_RFRX_startImmediate(
 		enum KNS_status_t (*eop_isr_cb)(struct KNS_RF_evt_t *evt_ctxt));
-
 
 /**
  * @brief This function starts the detection satellite mechanism till detection ok or timeout or
@@ -251,17 +216,90 @@ enum KNS_status_t KNS_RF_startImmediateRx(
  * @warning Callback may run from ISR context and break realtime consideration. Do not exceed 100us
  * @retval KNS_status_t status: KNS_STATUS_OK or ERROR
  */
-enum KNS_status_t KNS_RF_startImmediateSatDetect(
+enum KNS_status_t KNS_RFRX_startSatDetect(
 		enum KNS_status_t (*eop_isr_cb)(struct KNS_RF_evt_t *evt_ctxt));
 
 /**
- * @brief This function starts aborting the current RF processing (TX, SAT_detect, RX, ...)
+ * @brief This function starts aborting the current RX RF processing part (SAT_detect, RX, ...)
  * @param[in] eop_isr_cb: function pointer on a callback called when processing is
  *        aborted and driver has been cleanly stopped.
  * @warning Callback may run from ISR context and break realtime consideration. Do not exceed 100us
  * @retval KNS_status_t status: KNS_STATUS_OK or ERROR
  */
-enum KNS_status_t KNS_RF_abortRf(
+enum KNS_status_t KNS_RFRX_abortRf(
+		enum KNS_status_t (*eop_isr_cb)(struct KNS_RF_evt_t *evt_ctxt));
+
+/**
+ * @brief This function powers on the LDO for the KNS_RF TX part.
+ * @param[in] eop_isr_cb: Pointer on a callback which will be called to notify end of
+ *            processing. Put ``void*`` in case no notification is needed.
+ * @warning Callback may run from ISR context and break realtime consideration. Do not exceed 100us
+ * @retval KNS_status_t status: KNS_STATUS_OK or ERROR
+ */
+enum KNS_status_t KNS_RFTX_powerOn(
+		enum KNS_status_t (*eop_isr_cb)(struct KNS_RF_evt_t *evt_ctxt));
+
+/**
+ * @brief This function powers off the LDO for the KNS_RF TX part. cb is called when done
+ * @param[in] eop_isr_cb: Pointer on a callback which will be called to notify end of
+ *            processing. Put ``void*`` in case no notification is needed.
+ * @warning Callback may run from ISR context and break realtime consideration. Do not exceed 100us
+ * @retval KNS_status_t status: KNS_STATUS_OK or ERROR
+ */
+enum KNS_status_t KNS_RFTX_powerOff(
+		enum KNS_status_t (*eop_isr_cb)(struct KNS_RF_evt_t *evt_ctxt));
+
+/**
+ * @brief This function fills the internal TX configuration structure for all TX RF parameters.
+ * @param[in] tx_rf_cfg configuration struct, NULL if not applicable
+ * @retval KNS_status_t status: KNS_STATUS_OK or ERROR
+ */
+enum KNS_status_t KNS_RFTX_setCfg(
+		struct KNS_tx_rf_cfg_t *tx_rf_cfg);
+
+/**
+ * @brief This function switch on the TCXO for the right time and callback is called when tcxo is
+ *        considered ready.
+ * @param[in] eop_isr_cb: Pointer on a callback which will be called to notify end of
+ *            processing. Put ``void*`` in case no notification is needed.
+ * @warning Callback may run from ISR context and break realtime consideration. Do not exceed 100us
+ * @retval KNS_status_t status: KNS_STATUS_OK or ERROR
+ */
+enum KNS_status_t KNS_RFTX_tcxoWarmup(
+		enum KNS_status_t (*eop_isr_cb)(struct KNS_RF_evt_t *evt_ctxt));
+
+/**
+ * @brief This function loads the bitstream to send with the radio.
+ *
+ * A frame builder will build this bitstream including the overhead protocol. This function does not
+ * send it.
+ *
+ * @param[in] buffer binary-data buffer containing bits to be transmitted
+ * @param[in] bitsize number of bits to push (limited to uint16_t)
+ * @retval KNS_status_t status: KNS_STATUS_OK or ERROR
+ */
+enum KNS_status_t KNS_RFTX_pushBitstream(
+		uint8_t *buffer, uint16_t bitsize);
+
+/**
+ * @brief This function starts the transmission immediately of the bitstream set into the tx buffer
+ *        during the push_bitstream api.
+ * @param[in] eop_isr_cb: Pointer on a callback which will be called to notify end of
+ *            processing. Put ``void*`` in case no notification is needed.
+ * @warning Callback may run from ISR context and break realtime consideration. Do not exceed 100us
+ * @retval KNS_status_t status: KNS_STATUS_OK or ERROR
+ */
+enum KNS_status_t KNS_RFTX_startImmediate(
+		enum KNS_status_t (*eop_isr_cb)(struct KNS_RF_evt_t *evt_ctxt));
+
+/**
+ * @brief This function starts aborting the current TX RF processing
+ * @param[in] eop_isr_cb: function pointer on a callback called when processing is
+ *        aborted and driver has been cleanly stopped.
+ * @warning Callback may run from ISR context and break realtime consideration. Do not exceed 100us
+ * @retval KNS_status_t status: KNS_STATUS_OK or ERROR
+ */
+enum KNS_status_t KNS_RFTX_abortRf(
 		enum KNS_status_t (*eop_isr_cb)(struct KNS_RF_evt_t *evt_ctxt));
 
 #pragma GCC visibility pop

@@ -1,4 +1,5 @@
 <map id="Kineis/Extdep/Conf/kns_assert.h" name="Kineis/Extdep/Conf/kns_assert.h">
-<area shape="rect" id="node1" title="ASSERT handling for kineis stack. Handle way to reset device if needed." alt="" coords="19,5,165,47"/>
+<area shape="rect" id="node1" title="ASSERT handling for kineis stack. Handle way to reset device if needed." alt="" coords="118,5,263,47"/>
 <area shape="rect" id="node2" href="$d2/d04/mgr__at__cmd__list__certif_8c.html" title="subset of AT commands concerning specifics for certification" alt="" coords="5,95,179,151"/>
+<area shape="rect" id="node3" href="$d1/de0/mgr__at__cmd__list__mac_8c.html" title="subset of AT commands concerning Kinéis Medium Acces Channel (MAC)." alt="" coords="203,95,376,151"/>
 </map>

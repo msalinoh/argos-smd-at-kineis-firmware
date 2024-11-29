@@ -45,6 +45,7 @@
  * @brief MAC profile list
  */
 enum KNS_MAC_prflId_t {
+	KNS_MAC_PRFL_NONE,  /**< no profile currently configured */
 	KNS_MAC_PRFL_BASIC,  /**< basic profile */
 	KNS_MAC_PRFL_BLIND,  /**< blind profile */
 	KNS_MAC_PRFL_MAX
@@ -56,8 +57,11 @@ enum KNS_MAC_prflId_t {
  * @struct KNS_MAC_send_data_ctxt_t
  * @brief Event context structure containing usefull information for the APPlication to send data
  * to Kineis
+ *
+ * @attention Need to pack the struct to ensure memory mapping whatever the uC/compiler used to
+ * compile the kineis stack library
  */
-struct KNS_MAC_BLIND_usrCfg_t {
+struct __attribute__((packed)) KNS_MAC_BLIND_usrCfg_t {
 	int8_t retx_nb;
 	uint8_t nb_parrallel_msg;
 	uint32_t retx_period_s;
@@ -67,10 +71,11 @@ struct KNS_MAC_BLIND_usrCfg_t {
  * @struct KNS_MAC_prflInfo_t
  * @brief structure describing current profil used by kineis stack MAC mayer
  */
-struct KNS_MAC_prflInfo_t {
+struct __attribute__((packed)) KNS_MAC_prflInfo_t {
 	enum KNS_MAC_prflId_t id;
-	union {
-		struct KNS_MAC_BLIND_usrCfg_t blindCfg;
+	union { // empty for BASIC profile
+		uint8_t prflCfgPtr; // dummy pointer to to profile context
+		struct KNS_MAC_BLIND_usrCfg_t blindCfg; // config for BLIND profile
 	};
 };
 

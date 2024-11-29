@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="../../kineis_logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">&#x202A;Krd firmware
-   &#160;<span id="projectnumber">&#x202A;v6.2.1</span>
+   &#160;<span id="projectnumber">&#x202A;v8.5.1</span>
    </div>
    <div id="projectbrief">&#x202A;Firmware application for Kinéis reference design project</div>
   </td>
@@ -163,7 +163,7 @@ Enumerations</h2></td></tr>
 <a class="el" href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#gga2bb84f2b5291e6b0019cc5248e8c638eabbc4efb97e264b5e2e8df8303ad4be9e">AT_PREPASS_EN</a>, 
 <br />
 &#160;&#160;<a class="el" href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#gga2bb84f2b5291e6b0019cc5248e8c638eaa5595e7b3409315150027366849f3b58">AT_UDATE</a>, 
-<a class="el" href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#gga2bb84f2b5291e6b0019cc5248e8c638ea5a219628cb80faa6e9b9a458ca1fa933">AT_ATXRP</a>, 
+<a class="el" href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#gga2bb84f2b5291e6b0019cc5248e8c638ea38c0e7c4f511bb0e63e848b6ed344850">AT_KMAC</a>, 
 <a class="el" href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#gga2bb84f2b5291e6b0019cc5248e8c638eaf6cd7f2c23912c5c72efc15b0d2676c1">ATCMD_MAX_COUNT</a>, 
 <a class="el" href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#gga2bb84f2b5291e6b0019cc5248e8c638ea875366ec6a3651f6715e7ce904143a28">ATCMD_UNKNOWN_COMMAND</a> = ATCMD_MAX_COUNT
 <br />
@@ -226,9 +226,9 @@ Functions</h2></td></tr>
 <tr class="memitem:gaed54481dc013fb7e0aa7e0e4cac69fe8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#gaed54481dc013fb7e0aa7e0e4cac69fe8">bMGR_AT_CMD_LPM_cmd</a> (uint8_t *pu8_cmdParamString, enum <a class="el" href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#gab89e1f0a2ffb77ebf4f9bb354ecebc67">atcmd_type_t</a> e_exec_mode)</td></tr>
 <tr class="memdesc:gaed54481dc013fb7e0aa7e0e4cac69fe8"><td class="mdescLeft">&#160;</td><td class="mdescRight">&#x202A;Set/Get low power mode "AT+LPM".  <a href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#gaed54481dc013fb7e0aa7e0e4cac69fe8">More...</a><br /></td></tr>
 <tr class="separator:gaed54481dc013fb7e0aa7e0e4cac69fe8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga292621f6d8d6617d0f06907bae52a96f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#ga292621f6d8d6617d0f06907bae52a96f">bMGR_AT_CMD_ATXRP_cmd</a> (uint8_t *pu8_cmdParamString, enum <a class="el" href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#gab89e1f0a2ffb77ebf4f9bb354ecebc67">atcmd_type_t</a> e_exec_mode)</td></tr>
-<tr class="memdesc:ga292621f6d8d6617d0f06907bae52a96f"><td class="mdescLeft">&#160;</td><td class="mdescRight">&#x202A;Process AT command "AT+ATXRP" get/set the repetition number and the period between 2 transmissions.  <a href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#ga292621f6d8d6617d0f06907bae52a96f">More...</a><br /></td></tr>
-<tr class="separator:ga292621f6d8d6617d0f06907bae52a96f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacc6b6479b50b0c5aed24b2e62448bde0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#gacc6b6479b50b0c5aed24b2e62448bde0">bMGR_AT_CMD_KMAC_cmd</a> (uint8_t *pu8_cmdParamString, enum <a class="el" href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#gab89e1f0a2ffb77ebf4f9bb354ecebc67">atcmd_type_t</a> e_exec_mode)</td></tr>
+<tr class="memdesc:gacc6b6479b50b0c5aed24b2e62448bde0"><td class="mdescLeft">&#160;</td><td class="mdescRight">&#x202A;Process AT command "AT+KMAC" get/set the Kineis MAC profile.  <a href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#gacc6b6479b50b0c5aed24b2e62448bde0">More...</a><br /></td></tr>
+<tr class="separator:gacc6b6479b50b0c5aed24b2e62448bde0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gafa3e80f7aedfa74c8d16d0202a3f4f07"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#gafa3e80f7aedfa74c8d16d0202a3f4f07">bMGR_AT_CMD_PREPASS_EN_cmd</a> (uint8_t *pu8_cmdParamString, enum <a class="el" href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#gab89e1f0a2ffb77ebf4f9bb354ecebc67">atcmd_type_t</a> e_exec_mode)</td></tr>
 <tr class="memdesc:gafa3e80f7aedfa74c8d16d0202a3f4f07"><td class="mdescLeft">&#160;</td><td class="mdescRight">&#x202A;Process AT command "AT+PREPASS_EN" Enabling/disabling PREVIPASS (sat pass prediction) computation, leading to TX/RX only during satellite pass.  <a href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#gafa3e80f7aedfa74c8d16d0202a3f4f07">More...</a><br /></td></tr>
 <tr class="separator:gafa3e80f7aedfa74c8d16d0202a3f4f07"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -298,7 +298,7 @@ Variables</h2></td></tr>
 <tr class="separator:ga73fe54075947b887d3061f403198f7fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaa077ec99a4ec76b4f2f385c7dc2df4b5"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="../../df/de0/structatcmdfifo__t.html">atcmdfifo_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#gaa077ec99a4ec76b4f2f385c7dc2df4b5">s_atcmdfifo</a></td></tr>
 <tr class="separator:gaa077ec99a4ec76b4f2f385c7dc2df4b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga7ec9860b587b8b258ea603ce18b21783"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#ga7ec9860b587b8b258ea603ce18b21783">atcmd_version</a> = &quot;v0.4&quot;</td></tr>
+<tr class="memitem:ga7ec9860b587b8b258ea603ce18b21783"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#ga7ec9860b587b8b258ea603ce18b21783">atcmd_version</a> = &quot;v0.5&quot;</td></tr>
 <tr class="separator:ga7ec9860b587b8b258ea603ce18b21783"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga89998add3142dcd435b35f04f74da9f5"><td class="memItemLeft" align="right" valign="top">const struct <a class="el" href="../../df/daa/structatcmd__desc__t.html">atcmd_desc_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#ga89998add3142dcd435b35f04f74da9f5">cas_atcmd_list_array</a> [<a class="el" href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#gga2bb84f2b5291e6b0019cc5248e8c638eaf6cd7f2c23912c5c72efc15b0d2676c1">ATCMD_MAX_COUNT</a>]</td></tr>
 <tr class="separator:ga89998add3142dcd435b35f04f74da9f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -391,7 +391,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html#l00039">39</a> of file <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html">mgr_at_cmd.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html#l00042">42</a> of file <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html">mgr_at_cmd.c</a>.</p>
 
 </div>
 </div>
@@ -469,7 +469,7 @@ Variables</h2></td></tr>
 </td></tr>
 <tr><td class="fieldname"><a id="gga2bb84f2b5291e6b0019cc5248e8c638eaa5595e7b3409315150027366849f3b58"></a>AT_UDATE&#160;</td><td class="fielddoc"><p class="DocNodeLTR">Index for UTC date/time update </p>
 </td></tr>
-<tr><td class="fieldname"><a id="gga2bb84f2b5291e6b0019cc5248e8c638ea5a219628cb80faa6e9b9a458ca1fa933"></a>AT_ATXRP&#160;</td><td class="fielddoc"><p class="DocNodeLTR">Index for get/set tx repetition commands </p>
+<tr><td class="fieldname"><a id="gga2bb84f2b5291e6b0019cc5248e8c638ea38c0e7c4f511bb0e63e848b6ed344850"></a>AT_KMAC&#160;</td><td class="fielddoc"><p class="DocNodeLTR">Index for change profile </p>
 </td></tr>
 <tr><td class="fieldname"><a id="gga2bb84f2b5291e6b0019cc5248e8c638eaf6cd7f2c23912c5c72efc15b0d2676c1"></a>ATCMD_MAX_COUNT&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="gga2bb84f2b5291e6b0019cc5248e8c638ea875366ec6a3651f6715e7ce904143a28"></a>ATCMD_UNKNOWN_COMMAND&#160;</td><td class="fielddoc"></td></tr>
@@ -553,7 +553,7 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 <p class="DocNodeLTR">Empty weak core, can be overwritten, depending on AT cmd processed</p>
 
-<p class="definition">Definition at line <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html#l00263">263</a> of file <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html">mgr_at_cmd.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html#l00272">272</a> of file <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html">mgr_at_cmd.c</a>.</p>
 
 </div>
 </div>
@@ -653,57 +653,6 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="ga292621f6d8d6617d0f06907bae52a96f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga292621f6d8d6617d0f06907bae52a96f">&#9670;&nbsp;</a></span>bMGR_AT_CMD_ATXRP_cmd()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool bMGR_AT_CMD_ATXRP_cmd </td>
-          <td>(</td>
-          <td class="paramtype">uint8_t *&#160;</td>
-          <td class="paramname"><em>pu8_cmdParamString</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">enum <a class="el" href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#gab89e1f0a2ffb77ebf4f9bb354ecebc67">atcmd_type_t</a>&#160;</td>
-          <td class="paramname"><em>e_exec_mode</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>&#x202A;Process AT command "AT+ATXRP" get/set the repetition number and the period between 2 transmissions. </p>
-<dl class="section note DocNodeLTR"><dt>Note</dt><dd>&#x202A;This command is actually a stub, used to anwser correctly to GUI. There is no functionnal impact on Kinéis SW stack so far.</dd></dl>
-<p class="DocNodeLTR">1) "AT+ATXRP=&lt;rep_number[,period_ms&gt;]" Response format: "+OK" or "+ERROR=&lt;error_code&gt;" (See <a class="el" href="../../d9/d2f/group___k_i_n_e_i_s___s_w___c_o_n_f.html#ga6ec2d413abf2c80e1b9ccf121d2be60e">ERROR_RETURN_T</a>)</p>
-<p class="DocNodeLTR">2) "AT+ATXRP=?" returns the number of transmissions and period between 2 TX. Response format: "+ATXRP=&lt;rep_number&gt;[,&lt;period_ms&gt;]"</p>
-<p class="DocNodeLTR">"rep_number" is the repetition number of the transmission for one message.</p>
-<p class="DocNodeLTR">"period_ms" is the time between two transmissions in milliseconds .</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">pu8_cmdParamString</td><td>&#x202A;string containing AT command </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">e_exec_mode</td><td>&#x202A;type of the command (status command or action command)</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>&#x202A;true if command is correctly received and processed false if error </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="../../d1/de0/mgr__at__cmd__list__mac_8c_source.html#l00025">25</a> of file <a class="el" href="../../d1/de0/mgr__at__cmd__list__mac_8c_source.html">mgr_at_cmd_list_mac.c</a>.</p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d0/d0f/group___m_g_r___a_t___c_m_d_ga292621f6d8d6617d0f06907bae52a96f_cgraph.svg" width="100%" height="404"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-</div>
-
-</div>
-</div>
 <a id="gafccf5cd6468be2c39af4c4c599d48ef8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gafccf5cd6468be2c39af4c4c599d48ef8">&#9670;&nbsp;</a></span>bMGR_AT_CMD_CW_cmd()</h2>
 
@@ -748,7 +697,7 @@ Here is the call graph for this function:</div>
 <p class="DocNodeLTR">Invalidate modulated wave configuration,</p>
 <p class="DocNodeLTR">Invalidate modulated wave configuration, Will stop infinite loop at next end-of-TX callback</p>
 
-<p class="definition">Definition at line <a class="el" href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html#l00348">348</a> of file <a class="el" href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html">mgr_at_cmd_list_certif.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html#l00361">361</a> of file <a class="el" href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html">mgr_at_cmd_list_certif.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -982,6 +931,60 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
+<a id="gacc6b6479b50b0c5aed24b2e62448bde0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gacc6b6479b50b0c5aed24b2e62448bde0">&#9670;&nbsp;</a></span>bMGR_AT_CMD_KMAC_cmd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool bMGR_AT_CMD_KMAC_cmd </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>pu8_cmdParamString</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">enum <a class="el" href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#gab89e1f0a2ffb77ebf4f9bb354ecebc67">atcmd_type_t</a>&#160;</td>
+          <td class="paramname"><em>e_exec_mode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>&#x202A;Process AT command "AT+KMAC" get/set the Kineis MAC profile. </p>
+<p class="DocNodeLTR">1) "AT+KMAC=&lt;profile ID&gt;,&lt;profile context&gt;" Response format: "+OK" or "+ERROR=&lt;error_code&gt;" (See <a class="el" href="../../d9/d2f/group___k_i_n_e_i_s___s_w___c_o_n_f.html#ga6ec2d413abf2c80e1b9ccf121d2be60e">ERROR_RETURN_T</a>)</p>
+<p class="DocNodeLTR">Profile ID:</p><ul class="DocNodeLTR">
+<li>&#x202A;0 none</li>
+<li>&#x202A;1 basic</li>
+<li>&#x202A;2 blind</li>
+</ul>
+<p class="DocNodeLTR">2) "AT+KMAC=?" returns the profil ID</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pu8_cmdParamString</td><td>&#x202A;string containing AT command </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">e_exec_mode</td><td>&#x202A;type of the command (status command or action command)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>&#x202A;true if command is correctly received and processed false if error </dd></dl>
+<p class="DocNodeLTR">Assert when the number of characters received from AT command is bigger than authorized</p>
+
+<p class="definition">Definition at line <a class="el" href="../../d1/de0/mgr__at__cmd__list__mac_8c_source.html#l00031">31</a> of file <a class="el" href="../../d1/de0/mgr__at__cmd__list__mac_8c_source.html">mgr_at_cmd_list_mac.c</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d0/d0f/group___m_g_r___a_t___c_m_d_gacc6b6479b50b0c5aed24b2e62448bde0_cgraph.svg" width="100%" height="492"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
 <a id="ga3d564aff9653e8bdc572d189093f1acc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga3d564aff9653e8bdc572d189093f1acc">&#9670;&nbsp;</a></span>bMGR_AT_CMD_logFailedMsg()</h2>
 
@@ -1083,7 +1086,7 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="todo DocNodeLTR"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000010">Todo:</a></b></dt><dd>&#x202A;PRODEV-88:need to keep uint16_t remove compilation error. leads to hardfault error if using uint8_t </dd></dl>
+<dl class="todo DocNodeLTR"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000009">Todo:</a></b></dt><dd>&#x202A;PRODEV-88:need to keep uint16_t remove compilation error. leads to hardfault error if using uint8_t </dd></dl>
 <p class="DocNodeLTR">Extract USER DATA from pu8_cmdParamString</p>
 
 <p class="definition">Definition at line <a class="el" href="../../d1/dfd/mgr__at__cmd__list__general_8c_source.html#l00199">199</a> of file <a class="el" href="../../d1/dfd/mgr__at__cmd__list__general_8c_source.html">mgr_at_cmd_list_general.c</a>.</p>
@@ -1294,7 +1297,7 @@ Here is the call graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="todo DocNodeLTR"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000009">Todo:</a></b></dt><dd>&#x202A;PRODEV-68: check radio conf versus HW settings for other platforms </dd></dl>
+<dl class="todo DocNodeLTR"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000008">Todo:</a></b></dt><dd>&#x202A;PRODEV-68: check radio conf versus HW settings for other platforms </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="../../d1/dfd/mgr__at__cmd__list__general_8c_source.html#l00130">130</a> of file <a class="el" href="../../d1/dfd/mgr__at__cmd__list__general_8c_source.html">mgr_at_cmd_list_general.c</a>.</p>
 <div class="dynheader">
@@ -1596,7 +1599,7 @@ Here is the call graph for this function:</div>
 <dl class="section attention DocNodeLTR"><dt>Attention</dt><dd>&#x202A;pattern length below shall not be longer than the length defined by FRAME_MAX_LEN.</dd></dl>
 <p class="DocNodeLTR">So far, here in LDA2 example; limit size to 48 chars, i.e. 24 bytes</p>
 
-<p class="definition">Definition at line <a class="el" href="../../d8/d11/mgr__at__cmd__list__user__data_8c_source.html#l00249">249</a> of file <a class="el" href="../../d8/d11/mgr__at__cmd__list__user__data_8c_source.html">mgr_at_cmd_list_user_data.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d8/d11/mgr__at__cmd__list__user__data_8c_source.html#l00252">252</a> of file <a class="el" href="../../d8/d11/mgr__at__cmd__list__user__data_8c_source.html">mgr_at_cmd_list_user_data.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1792,9 +1795,9 @@ Here is the call graph for this function:</div>
   </table>
   </dd>
 </dl>
-<dl class="todo DocNodeLTR"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000008">Todo:</a></b></dt><dd>&#x202A;create specific Error code for this </dd></dl>
+<dl class="todo DocNodeLTR"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000007">Todo:</a></b></dt><dd>&#x202A;create specific Error code for this </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html#l00169">169</a> of file <a class="el" href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html">mgr_at_cmd_list_certif.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html#l00173">173</a> of file <a class="el" href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html">mgr_at_cmd_list_certif.c</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1845,7 +1848,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <p class="DocNodeLTR">Start new TX if continuous wave is still requested</p>
 
-<p class="definition">Definition at line <a class="el" href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html#l00141">141</a> of file <a class="el" href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html">mgr_at_cmd_list_certif.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html#l00145">145</a> of file <a class="el" href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html">mgr_at_cmd_list_certif.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1891,7 +1894,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html#l00239">239</a> of file <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html">mgr_at_cmd.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html#l00248">248</a> of file <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html">mgr_at_cmd.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1943,7 +1946,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>&#x202A;AT cmd info (e.g. index and execution type) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html#l00168">168</a> of file <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html">mgr_at_cmd.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html#l00177">177</a> of file <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html">mgr_at_cmd.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1983,11 +1986,11 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html#l00226">226</a> of file <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html">mgr_at_cmd.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html#l00235">235</a> of file <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html">mgr_at_cmd.c</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="../../d0/d0f/group___m_g_r___a_t___c_m_d_ga93e0ba86dd0dff06dc8b957213e34b58_icgraph.svg" width="444" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d0/d0f/group___m_g_r___a_t___c_m_d_ga93e0ba86dd0dff06dc8b957213e34b58_icgraph.svg" width="547" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -2020,19 +2023,19 @@ Here is the caller graph for this function:</div>
 <p class="DocNodeLTR">get pointer to user data FIFO element when possible</p>
 <p class="DocNodeLTR">process event</p>
 <p class="DocNodeLTR">Upon TX done of a mail request message, it means some DL_BC was received Thus, UL ACK of DL_BC will transmitted by lower layer internally just after the end of this callback. AT response "+TX=..." will be sent to UART once UL-ACK is really transmitted, cf TXACK_DONE below</p>
-<dl class="todo DocNodeLTR"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000011">Todo:</a></b></dt><dd>&#x202A;Should check integrity between data reported by event above and the one stored in user data buffer</dd></dl>
+<dl class="todo DocNodeLTR"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000010">Todo:</a></b></dt><dd>&#x202A;Should check integrity between data reported by event above and the one stored in user data buffer</dd></dl>
 <p class="DocNodeLTR">So far, as only one user data, consider this is the correct one:</p><ul class="DocNodeLTR">
 <li>&#x202A;notify host with AT cmd response then</li>
 <li>&#x202A;free element from user data buffer.</li>
 </ul>
 <p class="DocNodeLTR">Upon TX done of a mail request message, it means some DL_BC was received previously and UL ACK of DL_BC was just transmitted. Send +TX= instead of +TACK=, meaning this is the real end of TX data transmission</p>
-<dl class="todo DocNodeLTR"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000012">Todo:</a></b></dt><dd>&#x202A;Should check integrity between data reported by event above and the one stored in user data buffer</dd></dl>
+<dl class="todo DocNodeLTR"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000011">Todo:</a></b></dt><dd>&#x202A;Should check integrity between data reported by event above and the one stored in user data buffer</dd></dl>
 <p class="DocNodeLTR">So far, as only one user data, consider this is the correct one:</p><ul class="DocNodeLTR">
 <li>&#x202A;notify host with AT cmd response then</li>
 <li>&#x202A;free element from user data buffer.</li>
 </ul>
 <p class="DocNodeLTR">&lt; RX error during TRX frame, report TX failure then</p>
-<dl class="todo DocNodeLTR"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000013">Todo:</a></b></dt><dd>&#x202A;Should check integrity between data reported by event above and the one stored in user data buffer</dd></dl>
+<dl class="todo DocNodeLTR"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000012">Todo:</a></b></dt><dd>&#x202A;Should check integrity between data reported by event above and the one stored in user data buffer</dd></dl>
 <p class="DocNodeLTR">So far, as only one user data, consider this is the correct one:</p><ul class="DocNodeLTR">
 <li>&#x202A;notify host with AT cmd response then</li>
 <li>&#x202A;free element from user data buffer.</li>
@@ -2043,13 +2046,13 @@ Here is the caller graph for this function:</div>
 <li>&#x202A;no DL-BC received for a TX mail request. Actually this may really occur as no BC was available on board (protocol to be discussed)</li>
 </ul>
 </dd></dl>
-<dl class="todo DocNodeLTR"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000014">Todo:</a></b></dt><dd>&#x202A;Should check integrity between data reported by event above and the one stored in user data buffer</dd></dl>
+<dl class="todo DocNodeLTR"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000013">Todo:</a></b></dt><dd>&#x202A;Should check integrity between data reported by event above and the one stored in user data buffer</dd></dl>
 <p class="DocNodeLTR">So far, as only one user data, consider this is the correct one:</p><ul class="DocNodeLTR">
 <li>&#x202A;notify host with AT cmd response then</li>
 <li>&#x202A;free element from user data buffer.</li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="../../d8/d11/mgr__at__cmd__list__user__data_8c_source.html#l00332">332</a> of file <a class="el" href="../../d8/d11/mgr__at__cmd__list__user__data_8c_source.html">mgr_at_cmd_list_user_data.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d8/d11/mgr__at__cmd__list__user__data_8c_source.html#l00339">339</a> of file <a class="el" href="../../d8/d11/mgr__at__cmd__list__user__data_8c_source.html">mgr_at_cmd_list_user_data.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2119,7 +2122,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html#l00084">84</a> of file <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html">mgr_at_cmd.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html#l00088">88</a> of file <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html">mgr_at_cmd.c</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -2153,7 +2156,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html#l00231">231</a> of file <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html">mgr_at_cmd.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html#l00240">240</a> of file <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html">mgr_at_cmd.c</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -2212,7 +2215,7 @@ Here is the caller graph for this function:</div>
 <p class="DocNodeLTR">Do the TCXO wramp for first transmission. No need to do it for next burst as power OFF/ON sequence between burst is saud to be very quick</p>
 <p class="DocNodeLTR">Stop RF and Send delayed error reply if failure during send process</p>
 
-<p class="definition">Definition at line <a class="el" href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html#l00203">203</a> of file <a class="el" href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html">mgr_at_cmd_list_certif.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html#l00207">207</a> of file <a class="el" href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html">mgr_at_cmd_list_certif.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2260,7 +2263,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html#l00220">220</a> of file <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html">mgr_at_cmd.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html#l00229">229</a> of file <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html">mgr_at_cmd.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2319,7 +2322,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html#l00117">117</a> of file <a class="el" href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html">mgr_at_cmd_list_certif.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html#l00121">121</a> of file <a class="el" href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html">mgr_at_cmd_list_certif.c</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -2419,7 +2422,7 @@ Here is the caller graph for this function:</div>
 <p class="DocNodeLTR">Set other bytes to zero</p>
 <p class="DocNodeLTR">Return data length in bits</p>
 
-<p class="definition">Definition at line <a class="el" href="../../d8/d11/mgr__at__cmd__list__user__data_8c_source.html#l00217">217</a> of file <a class="el" href="../../d8/d11/mgr__at__cmd__list__user__data_8c_source.html">mgr_at_cmd_list_user_data.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d8/d11/mgr__at__cmd__list__user__data_8c_source.html#l00220">220</a> of file <a class="el" href="../../d8/d11/mgr__at__cmd__list__user__data_8c_source.html">mgr_at_cmd_list_user_data.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2429,7 +2432,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d0/d0f/group___m_g_r___a_t___c_m_d_ga474b262632007c7cdccc1c36d53d3d00_icgraph.svg" width="100%" height="366"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d0/d0f/group___m_g_r___a_t___c_m_d_ga474b262632007c7cdccc1c36d53d3d00_icgraph.svg" width="100%" height="404"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 
@@ -2443,7 +2446,7 @@ Here is the caller graph for this function:</div>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const char* atcmd_version = &quot;v0.4&quot;</td>
+          <td class="memname">const char* atcmd_version = &quot;v0.5&quot;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2488,7 +2491,7 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html#l00074">74</a> of file <a class="el" href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html">mgr_at_cmd_list_certif.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html#l00077">77</a> of file <a class="el" href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html">mgr_at_cmd_list_certif.c</a>.</p>
 
 </div>
 </div>
@@ -2512,7 +2515,7 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html#l00075">75</a> of file <a class="el" href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html">mgr_at_cmd_list_certif.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html#l00079">79</a> of file <a class="el" href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html">mgr_at_cmd_list_certif.c</a>.</p>
 
 </div>
 </div>
@@ -2570,7 +2573,7 @@ Here is the caller graph for this function:</div>
 <div class="line">        { <span class="stringliteral">&quot;AT+UDATE&quot;</span>,         8, <a class="code" href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#gac26c4703ebc4154a3d44c9fb01c366da">&#x202A;bMGR_AT_CMD_UDATE_cmd</a>},</div>
 <div class="line"> </div>
 <div class="line">        </div>
-<div class="line">        { <span class="stringliteral">&quot;AT+ATXRP&quot;</span>,         8, <a class="code" href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#ga292621f6d8d6617d0f06907bae52a96f">&#x202A;bMGR_AT_CMD_ATXRP_cmd</a>},</div>
+<div class="line">        { <span class="stringliteral">&quot;AT+KMAC&quot;</span>,          7, <a class="code" href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#gacc6b6479b50b0c5aed24b2e62448bde0">&#x202A;bMGR_AT_CMD_KMAC_cmd</a>},</div>
 <div class="line">}</div>
 </div><!-- fragment --><dl class="section attention DocNodeLTR"><dt>Attention</dt><dd>&#x202A;update AT cmd version above if you add or remove commands in this list </dd></dl>
 
@@ -2598,7 +2601,7 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html#l00076">76</a> of file <a class="el" href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html">mgr_at_cmd_list_certif.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html#l00080">80</a> of file <a class="el" href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html">mgr_at_cmd_list_certif.c</a>.</p>
 
 </div>
 </div>
@@ -2624,7 +2627,7 @@ Here is the caller graph for this function:</div>
 <div class="line">}</div>
 </div><!-- fragment --><p class="DocNodeLTR">Used to catch if a MW burst is correctly transmit or not Modulated wave configuration </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html#l00079">79</a> of file <a class="el" href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html">mgr_at_cmd_list_certif.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html#l00083">83</a> of file <a class="el" href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html">mgr_at_cmd_list_certif.c</a>.</p>
 
 </div>
 </div>
@@ -2642,7 +2645,7 @@ Here is the caller graph for this function:</div>
 <p class="DocNodeLTR">Used for optional periodic transmission. This is the delay introduced between end of previous transmission and beginning of the next one</p>
 <dl class="section attention DocNodeLTR"><dt>Attention</dt><dd>&#x202A;If this delay is over 1s, the TXCOWU will be re-done at each transmit. It will also reply +OK at each transmit </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html#l00096">96</a> of file <a class="el" href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html">mgr_at_cmd_list_certif.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html#l00100">100</a> of file <a class="el" href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html">mgr_at_cmd_list_certif.c</a>.</p>
 
 </div>
 </div>
@@ -2667,7 +2670,7 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 <p class="DocNodeLTR">A FIFO used to store AT commands received from UART </p>
 
-<p class="definition">Definition at line <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html#l00059">59</a> of file <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html">mgr_at_cmd.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html#l00063">63</a> of file <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html">mgr_at_cmd.c</a>.</p>
 
 </div>
 </div>
@@ -2693,10 +2696,10 @@ Here is the caller graph for this function:</div>
 <div class="ttc" id="agroup___m_g_r___a_t___c_m_d_html_gaa812cce71d8b2bd1981a47fad748fc3b"><div class="ttname"><a href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#gaa812cce71d8b2bd1981a47fad748fc3b">&#x202A;bMGR_AT_CMD_ID_cmd</a></div><div class="ttdeci">&#x202A;bool bMGR_AT_CMD_ID_cmd(uint8_t *pu8_cmdParamString, enum atcmd_type_t e_exec_mode)</div><div class="ttdoc">&#x202A;Process AT command &quot;AT+ID&quot; get the ID of module.</div></div>
 <div class="ttc" id="agroup___m_g_r___a_t___c_m_d_html_gafc6724f99a2ebf10587c9c8f52c8b45d"><div class="ttname"><a href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#gafc6724f99a2ebf10587c9c8f52c8b45d">&#x202A;bMGR_AT_CMD_RCONF_cmd</a></div><div class="ttdeci">&#x202A;bool bMGR_AT_CMD_RCONF_cmd(uint8_t *pu8_cmdParamString, enum atcmd_type_t e_exec_mode)</div><div class="ttdoc">&#x202A;Process AT command &quot;AT+RCONF&quot; get the radio configuration of module.</div></div>
 <div class="ttc" id="agroup___m_g_r___a_t___c_m_d_html_ga641dc49b0ebf1301cf25e5af9dfadaaa"><div class="ttname"><a href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#ga641dc49b0ebf1301cf25e5af9dfadaaa">&#x202A;bMGR_AT_CMD_FW_cmd</a></div><div class="ttdeci">&#x202A;bool bMGR_AT_CMD_FW_cmd(uint8_t *pu8_cmdParamString, enum atcmd_type_t e_exec_mode)</div><div class="ttdoc">&#x202A;Process AT command &quot;AT+FW&quot; to get the FW version.</div></div>
+<div class="ttc" id="agroup___m_g_r___a_t___c_m_d_html_gacc6b6479b50b0c5aed24b2e62448bde0"><div class="ttname"><a href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#gacc6b6479b50b0c5aed24b2e62448bde0">&#x202A;bMGR_AT_CMD_KMAC_cmd</a></div><div class="ttdeci">&#x202A;bool bMGR_AT_CMD_KMAC_cmd(uint8_t *pu8_cmdParamString, enum atcmd_type_t e_exec_mode)</div><div class="ttdoc">&#x202A;Process AT command &quot;AT+KMAC&quot; get/set the Kineis MAC profile.</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/de0/mgr__at__cmd__list__mac_8c_source.html#l00031">mgr_at_cmd_list_mac.c:31</a></div></div>
 <div class="ttc" id="agroup___m_g_r___a_t___c_m_d_html_gaed54481dc013fb7e0aa7e0e4cac69fe8"><div class="ttname"><a href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#gaed54481dc013fb7e0aa7e0e4cac69fe8">&#x202A;bMGR_AT_CMD_LPM_cmd</a></div><div class="ttdeci">&#x202A;bool bMGR_AT_CMD_LPM_cmd(uint8_t *pu8_cmdParamString, enum atcmd_type_t e_exec_mode)</div><div class="ttdoc">&#x202A;Set/Get low power mode &quot;AT+LPM&quot;.</div></div>
-<div class="ttc" id="agroup___m_g_r___a_t___c_m_d_html_ga292621f6d8d6617d0f06907bae52a96f"><div class="ttname"><a href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#ga292621f6d8d6617d0f06907bae52a96f">&#x202A;bMGR_AT_CMD_ATXRP_cmd</a></div><div class="ttdeci">&#x202A;bool bMGR_AT_CMD_ATXRP_cmd(uint8_t *pu8_cmdParamString, enum atcmd_type_t e_exec_mode)</div><div class="ttdoc">&#x202A;Process AT command &quot;AT+ATXRP&quot; get/set the repetition number and the period between 2 transmissions.</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/de0/mgr__at__cmd__list__mac_8c_source.html#l00025">mgr_at_cmd_list_mac.c:25</a></div></div>
 <div class="ttc" id="agroup___m_g_r___a_t___c_m_d_html_gaa3cd3e43291e81e795d642b79b6088e6"><div class="ttname"><a href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#gaa3cd3e43291e81e795d642b79b6088e6">&#x202A;SystemCoreClock</a></div><div class="ttdeci">&#x202A;uint32_t SystemCoreClock</div></div>
-<div class="ttc" id="agroup___k_n_s___t_y_p_e_s_html_gga764ae321f6325dd5a76e57926b21732ba3f6b5448b87719fd193e450ef70e1424"><div class="ttname"><a href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#gga764ae321f6325dd5a76e57926b21732ba3f6b5448b87719fd193e450ef70e1424">&#x202A;KNS_TX_MOD_LDA2</a></div><div class="ttdeci">&#x202A;@ KNS_TX_MOD_LDA2</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d85/kns__types_8h_source.html#l00082">kns_types.h:82</a></div></div>
+<div class="ttc" id="agroup___k_n_s___t_y_p_e_s_html_gga764ae321f6325dd5a76e57926b21732ba3f6b5448b87719fd193e450ef70e1424"><div class="ttname"><a href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#gga764ae321f6325dd5a76e57926b21732ba3f6b5448b87719fd193e450ef70e1424">&#x202A;KNS_TX_MOD_LDA2</a></div><div class="ttdeci">&#x202A;@ KNS_TX_MOD_LDA2</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d85/kns__types_8h_source.html#l00083">kns_types.h:83</a></div></div>
 <div class="ttc" id="agroup___m_g_r___a_t___c_m_d_html_gafa3e80f7aedfa74c8d16d0202a3f4f07"><div class="ttname"><a href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#gafa3e80f7aedfa74c8d16d0202a3f4f07">&#x202A;bMGR_AT_CMD_PREPASS_EN_cmd</a></div><div class="ttdeci">&#x202A;bool bMGR_AT_CMD_PREPASS_EN_cmd(uint8_t *pu8_cmdParamString, enum atcmd_type_t e_exec_mode)</div><div class="ttdoc">&#x202A;Process AT command &quot;AT+PREPASS_EN&quot; Enabling/disabling PREVIPASS (sat pass prediction) computation,...</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/d4a/mgr__at__cmd__list__previpass_8c_source.html#l00024">mgr_at_cmd_list_previpass.c:24</a></div></div>
 <div class="ttc" id="agroup___m_g_r___a_t___c_m_d_html_gafd0e415f3fba36bb24b1ba2c9a681ac7"><div class="ttname"><a href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#gafd0e415f3fba36bb24b1ba2c9a681ac7">&#x202A;bMGR_AT_CMD_VERSION_cmd</a></div><div class="ttdeci">&#x202A;bool bMGR_AT_CMD_VERSION_cmd(uint8_t *pu8_cmdParamString, enum atcmd_type_t e_exec_mode)</div><div class="ttdoc">&#x202A;Process AT command &quot;AT+VERSION&quot; to get the version of AT commands supported by the FW.</div></div>
 <div class="ttc" id="agroup___m_g_r___a_t___c_m_d_html_ga41ba905089e723b997769b3fe7c8c465"><div class="ttname"><a href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#ga41ba905089e723b997769b3fe7c8c465">&#x202A;bMGR_AT_CMD_SN_cmd</a></div><div class="ttdeci">&#x202A;bool bMGR_AT_CMD_SN_cmd(uint8_t *pu8_cmdParamString, enum atcmd_type_t e_exec_mode)</div><div class="ttdoc">&#x202A;Process AT command &quot;AT+SN&quot; get the serial number of module.</div></div>
@@ -2705,8 +2708,8 @@ Here is the caller graph for this function:</div>
 <div class="ttc" id="agroup___m_g_r___a_t___c_m_d_html_ga889fa837f7eb2fe456a76c2f08f3aa74"><div class="ttname"><a href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#ga889fa837f7eb2fe456a76c2f08f3aa74">&#x202A;FOR_LOOP_CYCLE_NB</a></div><div class="ttdeci">&#x202A;#define FOR_LOOP_CYCLE_NB</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html#l00047">mgr_at_cmd_list_certif.c:47</a></div></div>
 <div class="ttc" id="agroup___m_g_r___a_t___c_m_d_html_gac26c4703ebc4154a3d44c9fb01c366da"><div class="ttname"><a href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#gac26c4703ebc4154a3d44c9fb01c366da">&#x202A;bMGR_AT_CMD_UDATE_cmd</a></div><div class="ttdeci">&#x202A;bool bMGR_AT_CMD_UDATE_cmd(uint8_t *pu8_cmdParamString, enum atcmd_type_t e_exec_mode)</div><div class="ttdoc">&#x202A;Process AT command &quot;AT+UDATE&quot; get/set the current user date and UTC time.</div></div>
 <div class="ttc" id="agroup___m_g_r___a_t___c_m_d_html_gab1114ad88a3a8ef9482d6b08fd55c0ab"><div class="ttname"><a href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#gab1114ad88a3a8ef9482d6b08fd55c0ab">&#x202A;bMGR_AT_CMD_PING_cmd</a></div><div class="ttdeci">&#x202A;bool bMGR_AT_CMD_PING_cmd(uint8_t *pu8_cmdParamString, enum atcmd_type_t e_exec_mode)</div><div class="ttdoc">&#x202A;Process AT command &quot;AT+PING&quot; to test the UART communication.</div></div>
-<div class="ttc" id="agroup___m_g_r___a_t___c_m_d_html_ga0a4332fc4f8bad99c421588fe542a2bd"><div class="ttname"><a href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#ga0a4332fc4f8bad99c421588fe542a2bd">&#x202A;bMGR_AT_CMD_TX_cmd</a></div><div class="ttdeci">&#x202A;bool bMGR_AT_CMD_TX_cmd(uint8_t *pu8_cmdParamString, enum atcmd_type_t e_exec_mode)</div><div class="ttdoc">&#x202A;Process AT command &quot;AT+TX&quot; send user data.</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d11/mgr__at__cmd__list__user__data_8c_source.html#l00249">mgr_at_cmd_list_user_data.c:249</a></div></div>
-<div class="ttc" id="agroup___m_g_r___a_t___c_m_d_html_gafccf5cd6468be2c39af4c4c599d48ef8"><div class="ttname"><a href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#gafccf5cd6468be2c39af4c4c599d48ef8">&#x202A;bMGR_AT_CMD_CW_cmd</a></div><div class="ttdeci">&#x202A;bool bMGR_AT_CMD_CW_cmd(uint8_t *pu8_cmdParamString, enum atcmd_type_t e_exec_mode)</div><div class="ttdoc">&#x202A;Process AT command &quot;AT+CW&quot;.</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html#l00348">mgr_at_cmd_list_certif.c:348</a></div></div>
+<div class="ttc" id="agroup___m_g_r___a_t___c_m_d_html_ga0a4332fc4f8bad99c421588fe542a2bd"><div class="ttname"><a href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#ga0a4332fc4f8bad99c421588fe542a2bd">&#x202A;bMGR_AT_CMD_TX_cmd</a></div><div class="ttdeci">&#x202A;bool bMGR_AT_CMD_TX_cmd(uint8_t *pu8_cmdParamString, enum atcmd_type_t e_exec_mode)</div><div class="ttdoc">&#x202A;Process AT command &quot;AT+TX&quot; send user data.</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d11/mgr__at__cmd__list__user__data_8c_source.html#l00252">mgr_at_cmd_list_user_data.c:252</a></div></div>
+<div class="ttc" id="agroup___m_g_r___a_t___c_m_d_html_gafccf5cd6468be2c39af4c4c599d48ef8"><div class="ttname"><a href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#gafccf5cd6468be2c39af4c4c599d48ef8">&#x202A;bMGR_AT_CMD_CW_cmd</a></div><div class="ttdeci">&#x202A;bool bMGR_AT_CMD_CW_cmd(uint8_t *pu8_cmdParamString, enum atcmd_type_t e_exec_mode)</div><div class="ttdoc">&#x202A;Process AT command &quot;AT+CW&quot;.</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html#l00361">mgr_at_cmd_list_certif.c:361</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

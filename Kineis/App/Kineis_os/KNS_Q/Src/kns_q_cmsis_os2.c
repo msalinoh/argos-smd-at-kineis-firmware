@@ -37,7 +37,7 @@ static void *qPoolHandle[KNS_Q_MAX];
 #ifndef UNIT_TEST
 __attribute((__weak__))
 #endif
-enum KNS_status_t KNS_Q_create(enum KNS_Q_handle_t qHandle, uint8_t qLength, uint8_t qEltByteSize)
+enum KNS_status_t KNS_Q_create(enum KNS_Q_handle_t qHandle, uint8_t qLength, uint16_t qEltByteSize)
 {
 
 	osMessageQueueId_t osMessageQueueId;

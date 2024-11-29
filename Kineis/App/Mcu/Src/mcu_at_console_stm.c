@@ -31,8 +31,13 @@
 #define USART_ISR_RXNE USART_ISR_RXNE_RXFNE
 #endif
 
+#ifdef USE_HDA4
+#define TXBUF_SIZE 2560
+#define RXBUF_SIZE 2560
+#else
 #define TXBUF_SIZE 256
 #define RXBUF_SIZE 256
+#endif
 
 /* Variables -----------------------------------------------------------------*/
 

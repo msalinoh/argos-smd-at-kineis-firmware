@@ -134,7 +134,7 @@ static bool bMGR_AT_CMD_handleNewTxData(uint8_t *pu8_cmdParamString, const char 
 	int16_t i16_scan_param_res;
 	uint16_t u16UserDataCharNb;
 	uint16_t u16UserDataBitlen;
-	uint8_t idx;
+	uint16_t idx;
 
 //	enum KNS_status_t knsStatus;
 	struct KNS_MAC_appEvt_t appEvt = {
@@ -152,12 +152,15 @@ static bool bMGR_AT_CMD_handleNewTxData(uint8_t *pu8_cmdParamString, const char 
 		for (idx = 0; idx < sizeof(spUserDataMsg->u8DataBuf); idx++)
 			spUserDataMsg->u8DataBuf[idx] = 0;
 		pu8UserDataBuf =  spUserDataMsg->u8DataBuf;
+		kns_assert(pu8UserDataBuf != NULL);
+
 
 		/** Extract USER DATA from pu8_cmdParamString */
 		i16_scan_param_res = sscanf((const char *)pu8_cmdParamString, pcAtCmdPattern,
 					    pu8UserDataBuf,
 					    &u8UserDataAttr.u8_raw);
 		u16UserDataCharNb = strlen((const char *)pu8UserDataBuf);
+		MGR_LOG_VERBOSE("[%s %d] %d %d\r\n", __func__, __LINE__, i16_scan_param_res, u16UserDataCharNb);
 
 		/** Assert when the number of characters received from AT command is bigger than
 		 * authorized
@@ -253,7 +256,11 @@ bool bMGR_AT_CMD_TX_cmd(uint8_t *pu8_cmdParamString, enum atcmd_type_t e_exec_mo
 	 *
 	 * So far, here in LDA2 example; limit size to 48 chars, i.e. 24 bytes
 	 */
+#ifdef USE_HDA4
+	static const char cAtCmdPattern[] = "AT+TX=%1265[0-9A-Fa-f],0x%hX";
+#else
 	static const char cAtCmdPattern[] = "AT+TX=%49[0-9A-Fa-f],0x%hX";
+#endif
 
 	if (e_exec_mode == ATCMD_STATUS_MODE) {
 		MGR_LOG_VERBOSE("[ERROR] Status mode is unauthorized for this AT cmd\r\n");
@@ -270,7 +277,7 @@ bool bMGR_AT_CMD_TX_cmd(uint8_t *pu8_cmdParamString, enum atcmd_type_t e_exec_mo
 bool bMGR_AT_CMD_RX_cmd(uint8_t *pu8_cmdParamString, enum atcmd_type_t e_exec_mode)
 {
 	int16_t scanParamRes;
-	uint8_t rxMode = 0;
+	uint16_t rxMode = 0;
 	struct KNS_MAC_appEvt_t appEvt;
 	enum KNS_status_t status = KNS_STATUS_OK;
 
@@ -280,7 +287,7 @@ bool bMGR_AT_CMD_RX_cmd(uint8_t *pu8_cmdParamString, enum atcmd_type_t e_exec_mo
 	}
 
 	scanParamRes = sscanf((const char *)pu8_cmdParamString,
-			(const char *)"AT+RX=%u",
+			(const char *)"AT+RX=%hd",
 			&rxMode);
 
 	if (scanParamRes == 1) {
@@ -543,6 +550,8 @@ enum KNS_status_t MGR_AT_CMD_macEvtProcess(void)
 		bMGR_AT_CMD_logSucceedMsg();
 		if (srvcEvt.app_evt == KNS_MAC_SEND_DATA)
 			Set_TX_LED(1);
+		if (srvcEvt.app_evt == KNS_MAC_STOP_SEND_DATA)
+			kns_assert(USERDATA_txFifoFlush() == true);
 		cbStatus = KNS_STATUS_OK;
 	break;
 	case (KNS_MAC_ERROR):

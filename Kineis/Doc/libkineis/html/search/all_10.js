@@ -1,10 +1,17 @@
 var searchData=
 [
-  ['sat_5fdetected_296',['SAT_DETECTED',['../d7/d3a/group___k_n_s___r_f.html#gga3198d989f99288f10d2854934dbe4a3cae9bf67821ebcd2e4f969de5b5fe7323e',1,'kns_rf.h']]],
-  ['sat_5flost_297',['SAT_LOST',['../d7/d3a/group___k_n_s___r_f.html#gga3198d989f99288f10d2854934dbe4a3cac8bf0d18b44ea9d798e5a2f6679a6e9f',1,'kns_rf.h']]],
-  ['satdettimeout_298',['satDetTimeout',['../dc/d32/union_k_n_s___m_a_c__rsrc_status__t.html#a9fb95a7250b2d5d08ae65bf90b0bf343',1,'KNS_MAC_rsrcStatus_t']]],
-  ['satpassend_299',['satPassEnd',['../dc/d32/union_k_n_s___m_a_c__rsrc_status__t.html#a6ae1e29c4979eaf92f8c5152424322fb',1,'KNS_MAC_rsrcStatus_t']]],
-  ['satpassstart_300',['satPassStart',['../dc/d32/union_k_n_s___m_a_c__rsrc_status__t.html#ad90af439b6a2ea150dd79967afd965f2',1,'KNS_MAC_rsrcStatus_t']]],
-  ['sdet_5fctxt_301',['sdet_ctxt',['../db/de1/struct_k_n_s___r_f__evt__t.html#a2a57c5bc825e80519fb8758c60dbb27a',1,'KNS_RF_evt_t']]],
-  ['sf_302',['sf',['../d0/de9/struct_k_n_s___m_a_c__send__data__ctxt__t.html#a1e7634bb486a16e714f4f05ca84feeb2',1,'KNS_MAC_send_data_ctxt_t::sf()'],['../d1/d73/struct_k_n_s___t_x__cfg__t.html#a1e7634bb486a16e714f4f05ca84feeb2',1,'KNS_TX_cfg_t::sf()']]]
+  ['raw_286',['raw',['../dc/d32/union_k_n_s___m_a_c__rsrc_status__t.html#a0a595268561edc58e347ca8387000bc6',1,'KNS_MAC_rsrcStatus_t']]],
+  ['retx_5fnb_5fmin_287',['RETX_NB_MIN',['../db/daa/group___k_n_s___m_a_c___p_r_f_l.html#gaa5d8addcaf5fb8226498eb2576453b56',1,'kns_mac_prfl_cfg.h']]],
+  ['retx_5fperiod_5fmax_5fs_288',['RETX_PERIOD_MAX_S',['../db/daa/group___k_n_s___m_a_c___p_r_f_l.html#gab930633311a6b3e232c05bfcac35f536',1,'kns_mac_prfl_cfg.h']]],
+  ['retx_5fperiod_5fmin_5fs_289',['RETX_PERIOD_MIN_S',['../db/daa/group___k_n_s___m_a_c___p_r_f_l.html#ga07e1cc0c613ab607d61cc29c40e5c890',1,'kns_mac_prfl_cfg.h']]],
+  ['rf_5faborted_290',['RF_ABORTED',['../d7/d3a/group___k_n_s___r_f.html#gga3198d989f99288f10d2854934dbe4a3caf35a1f7df19171af5d2bf67ab239a9af',1,'kns_rf.h']]],
+  ['rf_5fcfg_291',['rf_cfg',['../d1/d73/struct_k_n_s___t_x__cfg__t.html#af989ea00f3108e95144c2fd045495905',1,'KNS_TX_cfg_t']]],
+  ['rf_5flevel_292',['rf_level',['../d6/df8/struct_k_n_s___c_f_g__radio__t.html#ab1ec31b283240880ba4139c9b0e20330',1,'KNS_CFG_radio_t']]],
+  ['ridx_293',['rIdx',['../d2/d12/structq__desc__t.html#ad5442623abc8c6157d7686889000f094',1,'q_desc_t']]],
+  ['rx_5fctxt_294',['rx_ctxt',['../d1/d8a/struct_k_n_s___m_a_c__srvc_evt__t.html#a7b63d2191004ac0768afa6b764dd0ab4',1,'KNS_MAC_srvcEvt_t::rx_ctxt()'],['../db/de1/struct_k_n_s___r_f__evt__t.html#a6fdf58922e74bb0036f2bb6df42c83b6',1,'KNS_RF_evt_t::rx_ctxt()']]],
+  ['rx_5fdecode_295',['RX_DECODE',['../d7/d3a/group___k_n_s___r_f.html#ggad102ecf1fcc18f139caf70bef3fdc229a23fbcd455b1502a60be9466d45c6c05b',1,'kns_rf.h']]],
+  ['rx_5fdetect_296',['RX_DETECT',['../d7/d3a/group___k_n_s___r_f.html#ggad102ecf1fcc18f139caf70bef3fdc229a6f71b3621c9259d7a5bc29d1091336cd',1,'kns_rf.h']]],
+  ['rx_5fmod_5fvd401_297',['RX_MOD_VD401',['../d7/d3a/group___k_n_s___r_f.html#gga00c08f8bebc0a9f0d470ced6d92da8afab14afb2f78be1a59ff896a1754b17a72',1,'kns_rf.h']]],
+  ['rx_5freceived_298',['RX_RECEIVED',['../d7/d3a/group___k_n_s___r_f.html#gga3198d989f99288f10d2854934dbe4a3ca1fa25344b70808588790cf17c0be3fd7',1,'kns_rf.h']]],
+  ['rxtimeout_299',['rxTimeout',['../dc/d32/union_k_n_s___m_a_c__rsrc_status__t.html#ab2d46b548fee0f039895240727f349c7',1,'KNS_MAC_rsrcStatus_t']]]
 ];

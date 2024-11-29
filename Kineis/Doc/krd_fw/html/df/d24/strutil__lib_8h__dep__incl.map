@@ -1,17 +1,17 @@
 <map id="Kineis/App/Libs/STRUTIL/Inc/strutil_lib.h" name="Kineis/App/Libs/STRUTIL/Inc/strutil_lib.h">
-<area shape="rect" id="node1" title="small utilities to manipulate strings" alt="" coords="645,5,824,47"/>
-<area shape="rect" id="node2" href="$d5/d43/strutil__lib_8c.html" title="Application general purpose routines for data conversion / generation." alt="" coords="545,102,724,143"/>
-<area shape="rect" id="node3" href="$d5/d58/mgr__at__cmd__common_8h.html" title="header file for common part of the AT cmd manager" alt="" coords="749,95,921,151"/>
-<area shape="rect" id="node4" href="$d4/ddf/mgr__at__cmd__list__general_8h.html" title="subset of AT commands concerning general purpose (get ID, FW version, ...)" alt="" coords="749,199,921,255"/>
+<area shape="rect" id="node1" title="small utilities to manipulate strings" alt="" coords="601,5,780,47"/>
+<area shape="rect" id="node2" href="$d5/d43/strutil__lib_8c.html" title="Application general purpose routines for data conversion / generation." alt="" coords="501,102,680,143"/>
+<area shape="rect" id="node3" href="$d5/d58/mgr__at__cmd__common_8h.html" title="header file for common part of the AT cmd manager" alt="" coords="705,95,877,151"/>
+<area shape="rect" id="node4" href="$d4/ddf/mgr__at__cmd__list__general_8h.html" title="subset of AT commands concerning general purpose (get ID, FW version, ...)" alt="" coords="501,199,673,255"/>
 <area shape="rect" id="node5" href="$da/df9/mgr__at__cmd__list_8c.html" title="AT commands list main file." alt="" coords="413,303,587,359"/>
-<area shape="rect" id="node6" href="$d1/dfd/mgr__at__cmd__list__general_8c.html" title="subset of AT commands concerning general purpose (get ID, FW version, ...)" alt="" coords="821,303,995,359"/>
-<area shape="rect" id="node7" href="$d9/dc9/mgr__at__cmd__list__mac_8h.html" title="subset of AT commands concerning Kinéis Medium Acces Channel (MAC)." alt="" coords="79,199,251,255"/>
-<area shape="rect" id="node9" href="$da/da4/mgr__at__cmd__list__previpass_8h.html" title="subset of AT commands concerning satellite PASS predictions, usefull for Medium Acces" alt="" coords="276,199,463,255"/>
-<area shape="rect" id="node11" href="$de/de6/mgr__at__cmd__list__user__data_8h.html" title="subset of AT commands concerning user data manipulation such as TX" alt="" coords="537,199,724,255"/>
-<area shape="rect" id="node13" href="$da/d77/mgr__at__cmd_8c.html" title="APIs Implementation used to parse the UART ASCII data stream and extract AT commands." alt="" coords="996,199,1169,255"/>
-<area shape="rect" id="node14" href="$d5/dd7/mgr__at__cmd__common_8c.html" title="common part of the AT cmd manager (logging, AT cmd response api)" alt="" coords="1193,199,1367,255"/>
-<area shape="rect" id="node15" href="$d2/d04/mgr__at__cmd__list__certif_8c.html" title="subset of AT commands concerning specifics for certification" alt="" coords="1391,199,1564,255"/>
+<area shape="rect" id="node6" href="$d1/dfd/mgr__at__cmd__list__general_8c.html" title="subset of AT commands concerning general purpose (get ID, FW version, ...)" alt="" coords="611,303,784,359"/>
+<area shape="rect" id="node7" href="$d9/dc9/mgr__at__cmd__list__mac_8h.html" title="subset of AT commands concerning Kinéis Medium Acces Channel (MAC)." alt="" coords="42,199,214,255"/>
+<area shape="rect" id="node9" href="$da/da4/mgr__at__cmd__list__previpass_8h.html" title="subset of AT commands concerning satellite PASS predictions, usefull for Medium Acces" alt="" coords="697,199,884,255"/>
+<area shape="rect" id="node11" href="$de/de6/mgr__at__cmd__list__user__data_8h.html" title="subset of AT commands concerning user data manipulation such as TX" alt="" coords="239,199,425,255"/>
+<area shape="rect" id="node13" href="$da/d77/mgr__at__cmd_8c.html" title="APIs Implementation used to parse the UART ASCII data stream and extract AT commands." alt="" coords="959,199,1132,255"/>
+<area shape="rect" id="node14" href="$d5/dd7/mgr__at__cmd__common_8c.html" title="common part of the AT cmd manager (logging, AT cmd response api)" alt="" coords="1156,199,1329,255"/>
+<area shape="rect" id="node15" href="$d2/d04/mgr__at__cmd__list__certif_8c.html" title="subset of AT commands concerning specifics for certification" alt="" coords="1353,199,1527,255"/>
 <area shape="rect" id="node8" href="$d1/de0/mgr__at__cmd__list__mac_8c.html" title="subset of AT commands concerning Kinéis Medium Acces Channel (MAC)." alt="" coords="5,303,179,359"/>
-<area shape="rect" id="node10" href="$d0/d4a/mgr__at__cmd__list__previpass_8c.html" title="subset of AT commands concerning satellite PASS predictions, usefull for Medium Acces" alt="" coords="203,303,389,359"/>
-<area shape="rect" id="node12" href="$d8/d11/mgr__at__cmd__list__user__data_8c.html" title="subset of AT commands concerning user data manipulation such as TX" alt="" coords="611,303,797,359"/>
+<area shape="rect" id="node10" href="$d0/d4a/mgr__at__cmd__list__previpass_8c.html" title="subset of AT commands concerning satellite PASS predictions, usefull for Medium Acces" alt="" coords="809,303,994,359"/>
+<area shape="rect" id="node12" href="$d8/d11/mgr__at__cmd__list__user__data_8c.html" title="subset of AT commands concerning user data manipulation such as TX" alt="" coords="203,303,389,359"/>
 </map>

@@ -71,7 +71,11 @@ struct mwCfg_t {
 
 /* Private variables -----------------------------------------------------------------------------*/
 
+#ifdef USE_HDA4
+static uint8_t bitstream[700] = {0};
+#else
 static uint8_t bitstream[40] = {0};
+#endif
 static uint16_t bitstream_bitlen = 304;
 static bool isToBeTransmit = false; /** Used to catch if a MW burst is correctly transmit or not */
 
@@ -93,7 +97,7 @@ struct mwCfg_t mw_cfg = {
  * @attention If this delay is over 1s, the TXCOWU will be re-done at each transmit. It will also
  * reply +OK at each transmit
  */
-uint16_t repPeriod_s = 10;
+uint16_t repPeriod_s = 0;
 #endif
 
 /* Private function prototypes (usefull for later internal functions) --------*/
@@ -143,14 +147,13 @@ static enum KNS_status_t eoAtMW_isr_cb(struct KNS_RF_evt_t *evt)
 	/** Start new TX if continuous wave is still requested */
 	if ((evt->id == TX_DONE) && (mw_cfg.valid == true)) {
 		isToBeTransmit = false;
-		KNS_RF_PowerOff(NULL);
+		KNS_RFTX_powerOff(NULL);
 #ifdef SUPPORT_MW_WITH_DELAYED_RETX
 		if (repPeriod_s > 1)
 			mw_cfg.isRfAlreadyOn = false; // clear to force TCXOWU again
 		if (repPeriod_s != 0)
 			DELAY_MS(repPeriod_s * 1000);
 #endif
-		DELAY_MS(5000);
 		if (MGR_AT_CMD_sendRandomTxData(NULL))
 			return KNS_STATUS_OK;
 		else
@@ -204,7 +207,7 @@ static enum ERROR_RETURN_T convKnsStatusToAtErr(enum KNS_status_t knsStatus)
 static bool MGR_AT_CMD_sendRandomTxData(struct KNS_tx_rf_cfg_t *rf_cfg)
 {
 	struct KNS_tx_rf_cfg_t rf_cfg_local;
-	uint8_t idx;
+	uint16_t idx;
 	enum KNS_status_t status;
 	enum KNS_status_t (*eop_isr_cb)(struct KNS_RF_evt_t *evt_ctxt);
 
@@ -222,10 +225,10 @@ static bool MGR_AT_CMD_sendRandomTxData(struct KNS_tx_rf_cfg_t *rf_cfg)
 	if (isToBeTransmit) {
 		MGR_LOG_VERBOSE("[%s] Abort transmission of previous frame\r\n", __func__);
 		isToBeTransmit = false;
-		status = KNS_RF_abortRf(NULL);
+		status = KNS_RFTX_abortRf(NULL);
 		if (status != KNS_STATUS_OK)
 			return bMGR_AT_CMD_logFailedMsg(convKnsStatusToAtErr(status));
-		status = KNS_RF_PowerOff(NULL);
+		status = KNS_RFTX_powerOff(NULL);
 		if (status != KNS_STATUS_OK)
 			return bMGR_AT_CMD_logFailedMsg(convKnsStatusToAtErr(status));
 	}
@@ -261,6 +264,15 @@ static bool MGR_AT_CMD_sendRandomTxData(struct KNS_tx_rf_cfg_t *rf_cfg)
 		eop_isr_cb = eoAtMW_isr_cb;
 #endif
 		break;
+#ifdef USE_HDA4
+	case KNS_TX_MOD_HDA4:
+		mw_cfg.valid = true;
+		bitstream_bitlen =  5551; // 5519-128-256=5135
+#ifndef KNS_RF_IN_BLOCKING_MODE
+		eop_isr_cb = eoAtMW_isr_cb;
+#endif
+		break;
+#endif
 	case KNS_TX_MOD_CW:
 		mw_cfg.valid = false; // invalidate modulated wave config
 		/** @attention For CW:
@@ -288,25 +300,25 @@ static bool MGR_AT_CMD_sendRandomTxData(struct KNS_tx_rf_cfg_t *rf_cfg)
 		bMGR_AT_CMD_logSucceedMsg();
 
 	/** ---- Send frame ---- */
-	status = KNS_RF_PowerOn(NULL);
+	status = KNS_RFTX_powerOn(NULL);
 	if (status != KNS_STATUS_OK)
 		return bMGR_AT_CMD_logFailedMsg(convKnsStatusToAtErr(status));
 
-	status = KNS_RF_setTxCfg(&rf_cfg_local);
+	status = KNS_RFTX_setCfg(&rf_cfg_local);
 	if (status != KNS_STATUS_OK) {
 		isToBeTransmit = false;
-		KNS_RF_abortRf(NULL);
-		KNS_RF_PowerOff(NULL);
+		KNS_RFTX_abortRf(NULL);
+		KNS_RFTX_powerOff(NULL);
 		return bMGR_AT_CMD_logFailedMsg(convKnsStatusToAtErr(status));
 	}
 
 	/** Keep pushing a bitstream, even with NULL length for CW */
 	kns_assert(bitstream_bitlen <= (sizeof(bitstream) * 8));
-	status = KNS_RF_pushBitstream(bitstream, bitstream_bitlen);
+	status = KNS_RFTX_pushBitstream(bitstream, bitstream_bitlen);
 	if (status != KNS_STATUS_OK) {
 		isToBeTransmit = false;
-		KNS_RF_abortRf(NULL);
-		KNS_RF_PowerOff(NULL);
+		KNS_RFTX_abortRf(NULL);
+		KNS_RFTX_powerOff(NULL);
 		return bMGR_AT_CMD_logFailedMsg(convKnsStatusToAtErr(status));
 	}
 
@@ -314,18 +326,18 @@ static bool MGR_AT_CMD_sendRandomTxData(struct KNS_tx_rf_cfg_t *rf_cfg)
 	 * power OFF/ON sequence between burst is saud to be very quick
 	 */
 	if ((mw_cfg.valid == true) && (!mw_cfg.isRfAlreadyOn))
-		status = KNS_RF_tcxoWarmup(NULL);
+		status = KNS_RFTX_tcxoWarmup(NULL);
 	if (status != KNS_STATUS_OK) {
 		isToBeTransmit = false;
-		KNS_RF_abortRf(NULL);
-		KNS_RF_PowerOff(NULL);
+		KNS_RFTX_abortRf(NULL);
+		KNS_RFTX_powerOff(NULL);
 		return bMGR_AT_CMD_logFailedMsg(convKnsStatusToAtErr(status));
 	}
 
 	MGR_LOG_DEBUG("[%s] TX bitstream: 0x", __func__);
 	MGR_LOG_array(bitstream, ((bitstream_bitlen + 7) / 8));
 
-	status = KNS_RF_startImmediateTx(eop_isr_cb);
+	status = KNS_RFTX_startImmediate(eop_isr_cb);
 	if (status == KNS_STATUS_OK) {
 		if (mw_cfg.valid == true)
 			mw_cfg.isRfAlreadyOn = true;
@@ -335,8 +347,8 @@ static bool MGR_AT_CMD_sendRandomTxData(struct KNS_tx_rf_cfg_t *rf_cfg)
 	/** Stop RF and Send delayed error reply if failure during send process
 	 */
 	isToBeTransmit = false;
-	KNS_RF_abortRf(NULL);
-	KNS_RF_PowerOff(NULL);
+	KNS_RFTX_abortRf(NULL);
+	KNS_RFTX_powerOff(NULL);
 	return bMGR_AT_CMD_logFailedMsg(ERROR_TRCVR);
 
 	// should never reach this point
@@ -349,7 +361,9 @@ static bool MGR_AT_CMD_sendRandomTxData(struct KNS_tx_rf_cfg_t *rf_cfg)
 bool bMGR_AT_CMD_CW_cmd(uint8_t *pu8_cmdParamString, enum atcmd_type_t e_exec_mode)
 {
 	enum KNS_status_t status;
+#ifdef KNS_RF_IN_BLOCKING_MODE
 	bool bool_status;
+#endif
 	int16_t scan_param_res;
 	uint16_t cwMode = 0;
 	uint16_t cwPwr = 0;
@@ -402,6 +416,11 @@ bool bMGR_AT_CMD_CW_cmd(uint8_t *pu8_cmdParamString, enum atcmd_type_t e_exec_mo
 	case (5):
 		rf_cfg.modulation = KNS_TX_MOD_LDK;
 		break;
+#ifdef USE_HDA4
+	case (6):
+		rf_cfg.modulation = KNS_TX_MOD_HDA4;
+		break;
+#endif
 	case (0):
 	default:
 		rf_cfg.modulation = KNS_TX_MOD_NONE;
@@ -418,7 +437,11 @@ bool bMGR_AT_CMD_CW_cmd(uint8_t *pu8_cmdParamString, enum atcmd_type_t e_exec_mo
 	case (2):
 	case (3):
 	case (4):
-	case (5): {
+	case (5):
+#ifdef USE_HDA4
+	case (6):
+#endif
+	{
 		rf_cfg.center_freq = cwFrq;
 		rf_cfg.power = cwPwr;
 #ifdef KNS_RF_IN_BLOCKING_MODE
@@ -426,7 +449,7 @@ bool bMGR_AT_CMD_CW_cmd(uint8_t *pu8_cmdParamString, enum atcmd_type_t e_exec_mo
 		// Transmit modulated burst contiunuously, but try to ccatch any new AT cmd received
 		while (bool_status && !MGR_AT_CMD_isPendingAt()) {
 			isToBeTransmit = false;
-			KNS_RF_PowerOff(NULL);
+			KNS_RFTX_powerOff(NULL);
 #ifdef SUPPORT_MW_WITH_DELAYED_RETX
 			if (repPeriod_s > 1)
 				mw_cfg.isRfAlreadyOn = false; // clear to force TCXOWU again
@@ -455,19 +478,22 @@ bool bMGR_AT_CMD_CW_cmd(uint8_t *pu8_cmdParamString, enum atcmd_type_t e_exec_mo
 		case KNS_TX_MOD_LDA2L:
 		case KNS_TX_MOD_VLDA4:
 		case KNS_TX_MOD_LDK:
+		case KNS_TX_MOD_HDA4:
+#ifndef KNS_RF_IN_BLOCKING_MODE
 			/** Invalidate modulated wave configuration,
 			 * Will stop infinite loop at next end-of-TX callback
 			 */
 			return bMGR_AT_CMD_logSucceedMsg(); // send immediate response
 			break;
+#endif
 		case KNS_TX_MOD_CW:
 		case KNS_TX_MOD_NONE:
 		default:
 			isToBeTransmit = false;
-			status = KNS_RF_abortRf(NULL);
+			status = KNS_RFTX_abortRf(NULL);
 			if (status != KNS_STATUS_OK)
 				return bMGR_AT_CMD_logFailedMsg(convKnsStatusToAtErr(status));
-			status = KNS_RF_PowerOff(NULL);
+			status = KNS_RFTX_powerOff(NULL);
 			if (status != KNS_STATUS_OK)
 				return bMGR_AT_CMD_logFailedMsg(convKnsStatusToAtErr(status));
 			else

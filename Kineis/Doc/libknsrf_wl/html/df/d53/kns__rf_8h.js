@@ -20,14 +20,18 @@ var kns__rf_8h =
     [ "\u202AKNS_RF_rx_mod_t", "d7/d3a/group___k_n_s___r_f.html#ga00c08f8bebc0a9f0d470ced6d92da8af", [
       [ "\u202ARX_MOD_VD401", "d7/d3a/group___k_n_s___r_f.html#gga00c08f8bebc0a9f0d470ced6d92da8afab14afb2f78be1a59ff896a1754b17a72", null ]
     ] ],
-    [ "\u202AKNS_RF_abortRf", "d7/d3a/group___k_n_s___r_f.html#gaa84375c34c9507c0cbab963f506dad5b", null ],
-    [ "\u202AKNS_RF_PowerOff", "d7/d3a/group___k_n_s___r_f.html#ga033aa6b275db02f80da176ff8d61283e", null ],
-    [ "\u202AKNS_RF_PowerOn", "d7/d3a/group___k_n_s___r_f.html#ga836ae8de400c6a3eade149163f525d77", null ],
-    [ "\u202AKNS_RF_pushBitstream", "d7/d3a/group___k_n_s___r_f.html#ga27a155fef00030187c03c6b68e01b7e4", null ],
-    [ "\u202AKNS_RF_setRxCfg", "d7/d3a/group___k_n_s___r_f.html#ga842b064a2b091a7df598b8f277b729e5", null ],
-    [ "\u202AKNS_RF_setTxCfg", "d7/d3a/group___k_n_s___r_f.html#gafb94c39480f1dddf5589fc6683547605", null ],
-    [ "\u202AKNS_RF_startImmediateRx", "d7/d3a/group___k_n_s___r_f.html#ga11b5a03fb4283e2c198232be19d3118e", null ],
-    [ "\u202AKNS_RF_startImmediateSatDetect", "d7/d3a/group___k_n_s___r_f.html#ga5c526e258624633dd20877313fce2733", null ],
-    [ "\u202AKNS_RF_startImmediateTx", "d7/d3a/group___k_n_s___r_f.html#gaf1ef01cc0838db2d7da3fd45d011a547", null ],
-    [ "\u202AKNS_RF_tcxoWarmup", "d7/d3a/group___k_n_s___r_f.html#ga1ef284f0eb6b7fb2c6ed9bbb05a8cff5", null ]
+    [ "\u202AKNS_RFRX_abortRf", "d7/d3a/group___k_n_s___r_f.html#gae3c1820115c2ded211f03cb78d26c770", null ],
+    [ "\u202AKNS_RFRX_powerOff", "d7/d3a/group___k_n_s___r_f.html#ga2776b091ade9330588e1e17100602268", null ],
+    [ "\u202AKNS_RFRX_powerOn", "d7/d3a/group___k_n_s___r_f.html#gaa9c736fbac9f46ca1e46e99aac4e1848", null ],
+    [ "\u202AKNS_RFRX_setCfg", "d7/d3a/group___k_n_s___r_f.html#gaf18ea413db1dde465faaff4701ab11aa", null ],
+    [ "\u202AKNS_RFRX_startImmediate", "d7/d3a/group___k_n_s___r_f.html#ga37dee1706c5e24d2b9da64e9dddae1e5", null ],
+    [ "\u202AKNS_RFRX_startSatDetect", "d7/d3a/group___k_n_s___r_f.html#ga079090692b5ec1c9ca7d996bc130606a", null ],
+    [ "\u202AKNS_RFRX_tcxoWarmup", "d7/d3a/group___k_n_s___r_f.html#gaa3d2a3be97d3e626ee9fea9f61aa0488", null ],
+    [ "\u202AKNS_RFTX_abortRf", "d7/d3a/group___k_n_s___r_f.html#ga4d708d28e77ccbd85afd3efe8242e2ff", null ],
+    [ "\u202AKNS_RFTX_powerOff", "d7/d3a/group___k_n_s___r_f.html#ga52c7f4638ef321b41724a0fc88498d06", null ],
+    [ "\u202AKNS_RFTX_powerOn", "d7/d3a/group___k_n_s___r_f.html#ga0b871589a9702968087c3cb5d42d3382", null ],
+    [ "\u202AKNS_RFTX_pushBitstream", "d7/d3a/group___k_n_s___r_f.html#ga602a906128ed6586ef9de06a800aa52b", null ],
+    [ "\u202AKNS_RFTX_setCfg", "d7/d3a/group___k_n_s___r_f.html#ga34294206ef3097155fa358116d413a39", null ],
+    [ "\u202AKNS_RFTX_startImmediate", "d7/d3a/group___k_n_s___r_f.html#ga8389adb73a411a65a9ae68a6ff0815a8", null ],
+    [ "\u202AKNS_RFTX_tcxoWarmup", "d7/d3a/group___k_n_s___r_f.html#gaa259215b78a757967e3a30b5c30120df", null ]
 ];

@@ -46,7 +46,7 @@ if (edges && edges.length) {
         </defs>
 
 <script type="text/javascript">
-var viewWidth = 674;
+var viewWidth = 822;
 var viewHeight = 106;
 var sectionId = 'dynsection-1';
 </script>
@@ -54,13 +54,13 @@ var sectionId = 'dynsection-1';
 <svg id="graph" class="graph">
 <g id="viewport">
 <title>Kineis/Lib/kns_mac.h</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-102 669.5,-102 669.5,4 -4,4"/>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-102 817.5,-102 817.5,4 -4,4"/>
 <!-- Node1 -->
 <g id="node1" class="node">
 <title>Node1</title>
 <g id="a_node1"><a xlink:title="Main header file for MAC layer of Kineis stack.">
-<polygon fill="#bfbfbf" stroke="black" points="255,-78.5 255,-97.5 374,-97.5 374,-78.5 255,-78.5"/>
-<text text-anchor="middle" x="314.5" y="-85.5" font-family="Helvetica,sans-Serif" font-size="10.00">Kineis/Lib/kns_mac.h</text>
+<polygon fill="#bfbfbf" stroke="black" points="329,-78.5 329,-97.5 448,-97.5 448,-78.5 329,-78.5"/>
+<text text-anchor="middle" x="388.5" y="-85.5" font-family="Helvetica,sans-Serif" font-size="10.00">Kineis/Lib/kns_mac.h</text>
 </a>
 </g>
 </g>
@@ -76,8 +76,8 @@ var sectionId = 'dynsection-1';
 <!-- Node1&#45;&gt;Node2 -->
 <g id="edge1" class="edge">
 <title>Node1&#45;&gt;Node2</title>
-<path fill="none" stroke="midnightblue" d="M255.24,-76.62C212.44,-68.6 153.44,-56.43 102.5,-42 91.08,-38.76 78.62,-34.4 68.36,-30.57"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="254.74,-80.09 265.21,-78.47 256.01,-73.21 254.74,-80.09"/>
+<path fill="none" stroke="midnightblue" d="M318.75,-79.72C260.38,-72.75 175.21,-60.53 102.5,-42 90.7,-38.99 77.88,-34.51 67.48,-30.55"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="318.62,-83.23 328.96,-80.92 319.44,-76.28 318.62,-83.23"/>
 </g>
 <!-- Node3 -->
 <g id="node3" class="node">
@@ -91,8 +91,8 @@ var sectionId = 'dynsection-1';
 <!-- Node1&#45;&gt;Node3 -->
 <g id="edge2" class="edge">
 <title>Node1&#45;&gt;Node3</title>
-<path fill="none" stroke="midnightblue" d="M286.15,-74.11C257.83,-61.24 215.07,-41.81 190.57,-30.67"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="284.96,-77.42 295.51,-78.37 287.86,-71.04 284.96,-77.42"/>
+<path fill="none" stroke="midnightblue" d="M349.87,-75.43C306.9,-62.56 238.5,-42.07 200.09,-30.56"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="349.1,-78.85 359.68,-78.37 351.11,-72.15 349.1,-78.85"/>
 </g>
 <!-- Node4 -->
 <g id="node4" class="node">
@@ -108,41 +108,58 @@ var sectionId = 'dynsection-1';
 <!-- Node1&#45;&gt;Node4 -->
 <g id="edge3" class="edge">
 <title>Node1&#45;&gt;Node4</title>
-<path fill="none" stroke="midnightblue" d="M314.5,-68.04C314.5,-59.71 314.5,-49.94 314.5,-41.54"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="311,-68.23 314.5,-78.23 318,-68.23 311,-68.23"/>
+<path fill="none" stroke="midnightblue" d="M371,-71.62C360.75,-62.63 347.72,-51.18 336.75,-41.54"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="368.7,-74.26 378.52,-78.23 373.32,-69 368.7,-74.26"/>
 </g>
 <!-- Node5 -->
 <g id="node5" class="node">
 <title>Node5</title>
-<g id="a_node5"><a xlink:href="../../d8/d11/mgr__at__cmd__list__user__data_8c.html" target="_top" xlink:title="subset of AT commands concerning user data manipulation such as TX">
-<polygon fill="white" stroke="black" points="397.5,-0.5 397.5,-41.5 537.5,-41.5 537.5,-0.5 397.5,-0.5"/>
+<g id="a_node5"><a xlink:href="../../d1/de0/mgr__at__cmd__list__mac_8c.html" target="_top" xlink:title="subset of AT commands concerning Kinéis Medium Acces Channel (MAC).">
+<polygon fill="white" stroke="black" points="397.5,-0.5 397.5,-41.5 527.5,-41.5 527.5,-0.5 397.5,-0.5"/>
 <text text-anchor="start" x="405.5" y="-29.5" font-family="Helvetica,sans-Serif" font-size="10.00">Kineis/App/Managers</text>
 <text text-anchor="start" x="405.5" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">/MGR_AT_CMD/Src/mgr</text>
-<text text-anchor="middle" x="467.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">_at_cmd_list_user_data.c</text>
+<text text-anchor="middle" x="462.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">_at_cmd_list_mac.c</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node5 -->
 <g id="edge4" class="edge">
 <title>Node1&#45;&gt;Node5</title>
-<path fill="none" stroke="midnightblue" d="M344.24,-74.36C366.13,-65.07 396.29,-52.25 421.3,-41.63"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="342.65,-71.24 334.82,-78.37 345.39,-77.68 342.65,-71.24"/>
+<path fill="none" stroke="midnightblue" d="M406,-71.62C416.25,-62.63 429.28,-51.18 440.25,-41.54"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="403.68,-69 398.48,-78.23 408.3,-74.26 403.68,-69"/>
 </g>
 <!-- Node6 -->
 <g id="node6" class="node">
 <title>Node6</title>
-<g id="a_node6"><a xlink:href="../../df/d53/lpm__cli__kstk_8c.html" target="_top" xlink:title="Kineis stack&#39;s LPM client. It is implementing APIs needed to interface with the low power manager (MG...">
-<polygon fill="white" stroke="black" points="555.5,-6 555.5,-36 665.5,-36 665.5,-6 555.5,-6"/>
-<text text-anchor="start" x="563.5" y="-24" font-family="Helvetica,sans-Serif" font-size="10.00">Kineis/Lpm/Src/lpm</text>
-<text text-anchor="middle" x="610.5" y="-13" font-family="Helvetica,sans-Serif" font-size="10.00">_cli_kstk.c</text>
+<g id="a_node6"><a xlink:href="../../d8/d11/mgr__at__cmd__list__user__data_8c.html" target="_top" xlink:title="subset of AT commands concerning user data manipulation such as TX">
+<polygon fill="white" stroke="black" points="545.5,-0.5 545.5,-41.5 685.5,-41.5 685.5,-0.5 545.5,-0.5"/>
+<text text-anchor="start" x="553.5" y="-29.5" font-family="Helvetica,sans-Serif" font-size="10.00">Kineis/App/Managers</text>
+<text text-anchor="start" x="553.5" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">/MGR_AT_CMD/Src/mgr</text>
+<text text-anchor="middle" x="615.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">_at_cmd_list_user_data.c</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node6 -->
 <g id="edge5" class="edge">
 <title>Node1&#45;&gt;Node6</title>
-<path fill="none" stroke="midnightblue" d="M377.4,-76.75C424.31,-68.64 489.8,-56.31 546.5,-42 553.5,-40.23 560.86,-38.15 568,-36.01"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="376.65,-73.33 367.39,-78.47 377.84,-80.23 376.65,-73.33"/>
+<path fill="none" stroke="midnightblue" d="M428.31,-75.6C461.05,-66.23 508.18,-52.73 546.96,-41.63"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="427.29,-72.25 418.64,-78.37 429.22,-78.98 427.29,-72.25"/>
+</g>
+<!-- Node7 -->
+<g id="node7" class="node">
+<title>Node7</title>
+<g id="a_node7"><a xlink:href="../../df/d53/lpm__cli__kstk_8c.html" target="_top" xlink:title="Kineis stack&#39;s LPM client. It is implementing APIs needed to interface with the low power manager (MG...">
+<polygon fill="white" stroke="black" points="703.5,-6 703.5,-36 813.5,-36 813.5,-6 703.5,-6"/>
+<text text-anchor="start" x="711.5" y="-24" font-family="Helvetica,sans-Serif" font-size="10.00">Kineis/Lpm/Src/lpm</text>
+<text text-anchor="middle" x="758.5" y="-13" font-family="Helvetica,sans-Serif" font-size="10.00">_cli_kstk.c</text>
+</a>
+</g>
+</g>
+<!-- Node1&#45;&gt;Node7 -->
+<g id="edge6" class="edge">
+<title>Node1&#45;&gt;Node7</title>
+<path fill="none" stroke="midnightblue" d="M458.37,-79.89C520.77,-72.78 614.41,-60.28 694.5,-42 701.76,-40.34 709.4,-38.26 716.76,-36.08"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="457.79,-76.43 448.25,-81.02 458.57,-83.38 457.79,-76.43"/>
 </g>
 </g>
 </svg>

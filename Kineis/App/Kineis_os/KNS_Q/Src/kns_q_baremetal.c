@@ -54,7 +54,7 @@ static void MGR_LOG_VERBOSE_array(__attribute__((unused)) uint8_t *data, uint16_
 #ifndef UNIT_TEST
 __attribute((__weak__))
 #endif
-enum KNS_status_t KNS_Q_create(enum KNS_Q_handle_t qHandle, uint8_t qLength, uint8_t qEltByteSize)
+enum KNS_status_t KNS_Q_create(enum KNS_Q_handle_t qHandle, uint8_t qLength, uint16_t qEltByteSize)
 {
 	struct q_desc_t *q = qPool[qHandle];
 
@@ -70,12 +70,11 @@ __attribute((__weak__))
 #endif
 enum KNS_status_t KNS_Q_push(enum KNS_Q_handle_t qHandle, void *qItem)
 {
-	uint8_t eltIdx, wIdxNext;
+	uint16_t eltIdx;
+	uint8_t wIdxNext;
 	uint8_t *qEltPtr, *qItemPtr;
 	struct q_desc_t *q = qPool[qHandle];
-#if (defined(VERBOSE))
 	uint8_t wIdxPrev = q->wIdx;
-#endif
 
 	/** Get queue's mutex to write into FIFO
 	 */
@@ -92,7 +91,7 @@ enum KNS_status_t KNS_Q_push(enum KNS_Q_handle_t qHandle, void *qItem)
 	if (wIdxNext == q->rIdx) {
 		q->mutex = false;
 		KNS_CS_exit();
-		MGR_LOG_VERBOSE("[KNS_Q] push QFULL %s, idx %d, evt=0x%x\r\n", qIdx2Str[qHandle],
+		MGR_LOG_DEBUG("[KNS_Q] push QFULL %s, idx %d, evt=0x%x\r\n", qIdx2Str[qHandle],
 			wIdxPrev, ((uint8_t *)qItem)[0]);
 		return KNS_STATUS_QFULL;
 	}
@@ -119,7 +118,7 @@ __attribute((__weak__))
 #endif
 enum KNS_status_t KNS_Q_pop(enum KNS_Q_handle_t qHandle, void *qItem)
 {
-	uint8_t eltIdx;
+	uint16_t eltIdx;
 	uint8_t *qEltPtr, *qItemPtr;
 	struct q_desc_t *q = qPool[qHandle];
 #if (defined(VERBOSE))

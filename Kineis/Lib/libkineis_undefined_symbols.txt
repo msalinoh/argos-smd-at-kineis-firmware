@@ -4,12 +4,12 @@ KNS_CS_enter
 KNS_CS_exit
 KNS_Q_pop
 KNS_Q_push
-KNS_RF_PowerOff
-KNS_RF_PowerOn
-KNS_RF_pushBitstream
-KNS_RF_setTxCfg
-KNS_RF_startImmediateTx
-KNS_RF_tcxoWarmup
+KNS_RFTX_powerOff
+KNS_RFTX_powerOn
+KNS_RFTX_pushBitstream
+KNS_RFTX_setCfg
+KNS_RFTX_startImmediate
+KNS_RFTX_tcxoWarmup
 MCU_AES_128_cbc_decrypt
 MCU_AES_128_cbc_encrypt
 MCU_AES_128_init
@@ -26,3 +26,4 @@ MCU_TIM_init
 MCU_TIM_start
 MCU_TIM_stop
 memset
+__popcountsi2

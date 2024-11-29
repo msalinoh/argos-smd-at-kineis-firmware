@@ -1,4 +1,7 @@
 <map id="Kineis/Lib/kns_mac_prfl_cfg.h" name="Kineis/Lib/kns_mac_prfl_cfg.h">
-<area shape="rect" id="node1" title="Header file describing the ser settings required to configure a MAC protocol." alt="" coords="11,5,158,47"/>
-<area shape="rect" id="node2" href="$d7/d1a/kns__mac_8h.html" title="Main header file for MAC layer of Kineis stack." alt="" coords="5,95,164,121"/>
+<area shape="rect" id="node1" title="Header file describing the ser settings required to configure a MAC protocol." alt="" coords="131,5,277,47"/>
+<area shape="rect" id="node2" href="$df/d64/kns__mac__evt_8h.html" title=" " alt="" coords="76,95,223,136"/>
+<area shape="rect" id="node5" href="$d7/d1a/kns__mac_8h.html" title="Main header file for MAC layer of Kineis stack." alt="" coords="181,191,339,218"/>
+<area shape="rect" id="node3" href="$d8/dd1/kns__q__conf_8h.html" title="Configuration of queues used in kineis_sw." alt="" coords="11,184,157,225"/>
+<area shape="rect" id="node4" href="$d0/d84/kns__q_8h.html" title="Configuration of queues used in kineis_swr." alt="" coords="5,273,163,315"/>
 </map>

@@ -1,16 +1,16 @@
 <map id="eoAtMW_isr_cb" name="eoAtMW_isr_cb">
 <area shape="rect" id="node1" title="Callback function notifying end of TX processing in case of modulated wave." alt="" coords="5,233,128,260"/>
-<area shape="rect" id="node2" href="$d7/d3a/group___k_n_s___r_f.html#ga033aa6b275db02f80da176ff8d61283e" title="This function powers off the LDO for the KNS_RF. cb is called when done." alt="" coords="524,5,664,32"/>
+<area shape="rect" id="node2" href="$d7/d3a/group___k_n_s___r_f.html#ga52c7f4638ef321b41724a0fc88498d06" title="This function powers off the LDO for the KNS_RF TX part. cb is called when done." alt="" coords="515,5,673,32"/>
 <area shape="rect" id="node3" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#ga60486b23c6850d01bbb1e29875cd24f4" title="Send random TX data as per RF configuration." alt="" coords="176,233,431,260"/>
 <area shape="rect" id="node4" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#ga3d564aff9653e8bdc572d189093f1acc" title="Log in debug interface a failed message." alt="" coords="486,56,702,83"/>
 <area shape="rect" id="node6" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#gabef580da46cf82ca74ba3e5217cf3ffa" title=": Log in debug interface a succeed message" alt="" coords="479,107,709,133"/>
 <area shape="rect" id="node7" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#ga3cafca118878601afaac95a1b3dc75af" title="This function converts kineis stack status into AT cmd error code." alt="" coords="512,157,676,184"/>
-<area shape="rect" id="node8" href="$d7/d3a/group___k_n_s___r_f.html#gaa84375c34c9507c0cbab963f506dad5b" title="This function starts aborting the current RF processing (TX, SAT_detect, RX, ...)" alt="" coords="530,208,658,235"/>
-<area shape="rect" id="node9" href="$d7/d3a/group___k_n_s___r_f.html#ga836ae8de400c6a3eade149163f525d77" title="This function powers on the LDO for the KNS_RF." alt="" coords="525,259,663,285"/>
-<area shape="rect" id="node10" href="$d7/d3a/group___k_n_s___r_f.html#ga27a155fef00030187c03c6b68e01b7e4" title="This function loads the bitstream to send with the radio." alt="" coords="507,309,681,336"/>
-<area shape="rect" id="node11" href="$d7/d3a/group___k_n_s___r_f.html#gafb94c39480f1dddf5589fc6683547605" title="This function fills the internal TX configuration structure for all TX RF parameters." alt="" coords="525,360,663,387"/>
-<area shape="rect" id="node12" href="$d7/d3a/group___k_n_s___r_f.html#gaf1ef01cc0838db2d7da3fd45d011a547" title="This function starts the transmission immediately of the bitstream set into the tx buffer during the ..." alt="" coords="495,411,693,437"/>
-<area shape="rect" id="node13" href="$d7/d3a/group___k_n_s___r_f.html#ga1ef284f0eb6b7fb2c6ed9bbb05a8cff5" title="This function switch on the tcxo for the right time and callback is called when tcxo is considered re..." alt="" coords="513,461,675,488"/>
+<area shape="rect" id="node8" href="$d7/d3a/group___k_n_s___r_f.html#ga4d708d28e77ccbd85afd3efe8242e2ff" title="This function starts aborting the current TX RF processing." alt="" coords="521,208,667,235"/>
+<area shape="rect" id="node9" href="$d7/d3a/group___k_n_s___r_f.html#ga0b871589a9702968087c3cb5d42d3382" title="This function powers on the LDO for the KNS_RF TX part." alt="" coords="517,259,671,285"/>
+<area shape="rect" id="node10" href="$d7/d3a/group___k_n_s___r_f.html#ga602a906128ed6586ef9de06a800aa52b" title="This function loads the bitstream to send with the radio." alt="" coords="498,309,690,336"/>
+<area shape="rect" id="node11" href="$d7/d3a/group___k_n_s___r_f.html#ga34294206ef3097155fa358116d413a39" title="This function fills the internal TX configuration structure for all TX RF parameters." alt="" coords="525,360,663,387"/>
+<area shape="rect" id="node12" href="$d7/d3a/group___k_n_s___r_f.html#ga8389adb73a411a65a9ae68a6ff0815a8" title="This function starts the transmission immediately of the bitstream set into the tx buffer during the ..." alt="" coords="495,411,693,437"/>
+<area shape="rect" id="node13" href="$d7/d3a/group___k_n_s___r_f.html#gaa259215b78a757967e3a30b5c30120df" title="This function switch on the TCXO for the right time and callback is called when tcxo is considered re..." alt="" coords="504,461,684,488"/>
 <area shape="rect" id="node14" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#gaa9d6835fa67d6e39b880e04688f7ece9" title="Log array of uint8_t." alt="" coords="530,512,658,539"/>
 <area shape="rect" id="node5" href="$d8/d62/group___m_c_u___a_p_p___w_r_a_p_p_e_r_s.html#gae14ee3e1d2a9b459c0d89c451a4bc470" title="Send AT CMD response to console." alt="" coords="757,81,941,108"/>
 </map>

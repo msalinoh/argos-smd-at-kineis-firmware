@@ -1,0 +1,9 @@
+<map id="bMGR_AT_CMD_KMAC_cmd" name="bMGR_AT_CMD_KMAC_cmd">
+<area shape="rect" id="node1" title="Process AT command &quot;AT+KMAC&quot; get/set the Kineis MAC profile." alt="" coords="5,107,209,133"/>
+<area shape="rect" id="node2" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#ga3d564aff9653e8bdc572d189093f1acc" title="Log in debug interface a failed message." alt="" coords="263,5,479,32"/>
+<area shape="rect" id="node3" href="$d8/d62/group___m_c_u___a_p_p___w_r_a_p_p_e_r_s.html#gae14ee3e1d2a9b459c0d89c451a4bc470" title="Send AT CMD response to console." alt="" coords="553,31,737,57"/>
+<area shape="rect" id="node4" href="$df/dbc/group___k_n_s___m_a_c.html#ga98ce77ebaea4371a0845ef7b4e916763" title="Get current MAC profile info." alt="" coords="290,107,451,133"/>
+<area shape="rect" id="node5" href="$d1/ddb/group___k_n_s___q.html#gac9a2be7939be73c32fd7eefb0d3ab3b3" title="This function is used to push an element into a queue." alt="" coords="319,157,423,184"/>
+<area shape="rect" id="node6" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#ga474b262632007c7cdccc1c36d53d3d00" title=": convert the input form ASCII to binary." alt="" coords="257,209,484,250"/>
+<area shape="rect" id="node7" href="$d8/da3/group___s_t_r_u_t_i_l_s.html#ga84065a55b8ebeb12a5e2a8e8ce2833fb" title="convert an hexadecimal ASCII digit to a 4bits integer" alt="" coords="532,216,757,243"/>
+</map>

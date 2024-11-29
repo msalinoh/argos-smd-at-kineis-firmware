@@ -18,7 +18,8 @@ var group___k_n_s___m_a_c =
     ] ],
     [ "\u202AKNS_MAC_appEvt_t", "d4/d98/struct_k_n_s___m_a_c__app_evt__t.html", [
       [ "\u202Adata_ctxt", "d4/d98/struct_k_n_s___m_a_c__app_evt__t.html#a8be19f26a65ab87a49e73161e351fcee", null ],
-      [ "\u202Aid", "d4/d98/struct_k_n_s___m_a_c__app_evt__t.html#a89b37437db8f989cd642aca11972e96f", null ]
+      [ "\u202Aid", "d4/d98/struct_k_n_s___m_a_c__app_evt__t.html#a89b37437db8f989cd642aca11972e96f", null ],
+      [ "\u202Ainit_prfl_ctxt", "d4/d98/struct_k_n_s___m_a_c__app_evt__t.html#a8fdd6bbcae417fa82ed6768c6aa9495a", null ]
     ] ],
     [ "\u202AKNS_MAC_TX_cplt_ctxt_t", "d6/da7/struct_k_n_s___m_a_c___t_x__cplt__ctxt__t.html", [
       [ "\u202Adata", "d6/da7/struct_k_n_s___m_a_c___t_x__cplt__ctxt__t.html#aa11a1fa4191f6aad427c2d6cca17a2f9", null ],
@@ -50,6 +51,7 @@ var group___k_n_s___m_a_c =
     [ "\u202AKNS_MAC_USRDATA_MAXLEN", "df/dbc/group___k_n_s___m_a_c.html#ga3aba3360c7da2577d06c7046815ebfbd", null ],
     [ "\u202AKNS_MAC_appEvtId_t", "df/dbc/group___k_n_s___m_a_c.html#ga2c539a27eacae4bd329a890b9bf7ba5e", [
       [ "\u202AKNS_MAC_APP_NONE_EVT", "df/dbc/group___k_n_s___m_a_c.html#gga2c539a27eacae4bd329a890b9bf7ba5ead911ccbe1dbb3aad20cf6a08f7f2ca68", null ],
+      [ "\u202AKNS_MAC_INIT", "df/dbc/group___k_n_s___m_a_c.html#gga2c539a27eacae4bd329a890b9bf7ba5ea471e8a7ae040d01b8554fd8531c488a8", null ],
       [ "\u202AKNS_MAC_SEND_DATA", "df/dbc/group___k_n_s___m_a_c.html#gga2c539a27eacae4bd329a890b9bf7ba5ea47e31c217a82d0bfc8b9eb9c7fc47790", null ],
       [ "\u202AKNS_MAC_STOP_SEND_DATA", "df/dbc/group___k_n_s___m_a_c.html#gga2c539a27eacae4bd329a890b9bf7ba5eaa19f9115f895ccd159a195a882b4be4e", null ],
       [ "\u202AKNS_MAC_RX_START", "df/dbc/group___k_n_s___m_a_c.html#gga2c539a27eacae4bd329a890b9bf7ba5eaad037c1204b0d2c2c4db4768f6113b71", null ],
@@ -75,8 +77,8 @@ var group___k_n_s___m_a_c =
       [ "\u202AKNS_MAC_OK", "df/dbc/group___k_n_s___m_a_c.html#gga7f0ef07515c67b901308bc51617cf13cacba727e269bc6350fbcd5ddc72461c44", null ],
       [ "\u202AKNS_MAC_ERROR", "df/dbc/group___k_n_s___m_a_c.html#gga7f0ef07515c67b901308bc51617cf13caa9bcaee4754cb38bce07b46cf8be437c", null ]
     ] ],
+    [ "\u202AKNS_MAC_getPrflInfo", "df/dbc/group___k_n_s___m_a_c.html#ga98ce77ebaea4371a0845ef7b4e916763", null ],
     [ "\u202AKNS_MAC_getRsrcStatus", "df/dbc/group___k_n_s___m_a_c.html#ga1e6821888801d73da05a5303c5682268", null ],
-    [ "\u202AKNS_MAC_init", "df/dbc/group___k_n_s___m_a_c.html#gad92570d201be381ae61c37a705bbfe7d", null ],
     [ "\u202AKNS_MAC_lpmEnter", "df/dbc/group___k_n_s___m_a_c.html#gacf10fe5320607b6c4ae12687212c6b4b", null ],
     [ "\u202AKNS_MAC_lpmExit", "df/dbc/group___k_n_s___m_a_c.html#gaa6db9e16f1ad630d79881ab615de3028", null ],
     [ "\u202AKNS_MAC_task", "df/dbc/group___k_n_s___m_a_c.html#ga62f6e4a65f4287ba549d8802bc98f074", null ]

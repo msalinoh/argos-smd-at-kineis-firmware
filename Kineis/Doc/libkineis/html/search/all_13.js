@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['vmgr_5flog_5fprintf_314',['vMGR_LOG_printf',['../d8/dca/group___m_g_r___l_o_g.html#gae0ea9ea6d3bdae15d910705473830124',1,'mgr_log.h']]]
+  ['usrdata_316',['usrdata',['../d0/de9/struct_k_n_s___m_a_c__send__data__ctxt__t.html#a508e58a37d4e0f92270f40a00fdf0035',1,'KNS_MAC_send_data_ctxt_t']]],
+  ['usrdata_5fbitlen_317',['usrdata_bitlen',['../d0/de9/struct_k_n_s___m_a_c__send__data__ctxt__t.html#aa9d2ec133a40c3c008a2809c26e71811',1,'KNS_MAC_send_data_ctxt_t']]]
 ];

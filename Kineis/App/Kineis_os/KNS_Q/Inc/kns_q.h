@@ -89,7 +89,7 @@
  * @param[in] qEltByteSize: length of each element of the queue (in bytes).
  * @retval KNS_STATUS_OK if creation was ok, KNS_STATUS_ERROR otherwise.
  */
-enum KNS_status_t KNS_Q_create(enum KNS_Q_handle_t qHandle, uint8_t qLength, uint8_t qEltByteSize);
+enum KNS_status_t KNS_Q_create(enum KNS_Q_handle_t qHandle, uint8_t qLength, uint16_t qEltByteSize);
 
 /**
  * @brief This function is used to push an element into a queue

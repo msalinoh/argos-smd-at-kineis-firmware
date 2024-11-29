@@ -36,7 +36,11 @@
  *            3+1 minimum if you want to avoid overflow.
  */
 #define FIFO_MAX_SIZE                                   4
+#ifdef USE_HDA4
+#define FRAME_MAX_LEN                                   1280
+#else
 #define FRAME_MAX_LEN                                   128
+#endif
 
 #if FIFO_MAX_SIZE < 2
 #error "FIFO_MAX_SIZE must be superior or equal to 2"
@@ -88,6 +92,11 @@ static bool MGR_AT_CMD_parseStreamCb(uint8_t *pu8_RxBuffer, int16_t *pi16_nbRxVa
 	int16_t i16_atcmdLen = 0;
 	bool isEOLdetected = false;
 	bool isFirstCharDetected = false;
+
+	char C = (char)(pu8_RxBuffer[*pi16_nbRxValidChar - 1]);
+	/* Process buffer only once termination caracter has been found */
+	if (C != '\n')
+	  return false;
 
 	/* AT cmd starts with 'AT+' and ends with '\r\n'. Minimum packet length is ("AT+\r\n") */
 	if (*pi16_nbRxValidChar < 5)

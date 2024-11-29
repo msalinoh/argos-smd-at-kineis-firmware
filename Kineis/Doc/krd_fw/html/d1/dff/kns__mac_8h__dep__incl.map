@@ -1,8 +1,9 @@
 <map id="Kineis/Lib/kns_mac.h" name="Kineis/Lib/kns_mac.h">
-<area shape="rect" id="node1" title="Main header file for MAC layer of Kineis stack." alt="" coords="345,5,504,32"/>
+<area shape="rect" id="node1" title="Main header file for MAC layer of Kineis stack." alt="" coords="444,5,603,32"/>
 <area shape="rect" id="node2" href="$d0/d29/main_8c.html" title=": Main program body" alt="" coords="5,95,129,121"/>
 <area shape="rect" id="node3" href="$d4/d0d/kns__app_8c.html" title=" " alt="" coords="154,95,314,121"/>
 <area shape="rect" id="node4" href="$d5/dd7/mgr__at__cmd__common_8c.html" title="common part of the AT cmd manager (logging, AT cmd response api)" alt="" coords="338,80,511,136"/>
-<area shape="rect" id="node5" href="$d8/d11/mgr__at__cmd__list__user__data_8c.html" title="subset of AT commands concerning user data manipulation such as TX" alt="" coords="535,80,722,136"/>
-<area shape="rect" id="node6" href="$df/d53/lpm__cli__kstk_8c.html" title="Kineis stack&#39;s LPM client. It is implementing APIs needed to interface with the low power manager (MG..." alt="" coords="746,87,893,129"/>
+<area shape="rect" id="node5" href="$d1/de0/mgr__at__cmd__list__mac_8c.html" title="subset of AT commands concerning Kinéis Medium Acces Channel (MAC)." alt="" coords="535,80,709,136"/>
+<area shape="rect" id="node6" href="$d8/d11/mgr__at__cmd__list__user__data_8c.html" title="subset of AT commands concerning user data manipulation such as TX" alt="" coords="733,80,919,136"/>
+<area shape="rect" id="node7" href="$df/d53/lpm__cli__kstk_8c.html" title="Kineis stack&#39;s LPM client. It is implementing APIs needed to interface with the low power manager (MG..." alt="" coords="943,87,1090,129"/>
 </map>

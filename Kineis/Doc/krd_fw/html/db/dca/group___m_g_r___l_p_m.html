@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="../../kineis_logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">&#x202A;Krd firmware
-   &#160;<span id="projectnumber">&#x202A;v6.2.1</span>
+   &#160;<span id="projectnumber">&#x202A;v8.5.1</span>
    </div>
    <div id="projectbrief">&#x202A;Firmware application for Kinéis reference design project</div>
   </td>
@@ -361,7 +361,7 @@ Variables</h2></td></tr>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/dca/group___m_g_r___l_p_m_ga64b281d5b49b69bcc99344d5dd614493_icgraph.svg" width="516" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../db/dca/group___m_g_r___l_p_m_ga64b281d5b49b69bcc99344d5dd614493_icgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 
@@ -384,7 +384,7 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>&#x202A;Disable all GPIO as not used for the moment. </p>
-<dl class="todo DocNodeLTR"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000024">Todo:</a></b></dt><dd>&#x202A;Use this fct for LPM optimization (especially when LPM standby)</dd></dl>
+<dl class="todo DocNodeLTR"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000023">Todo:</a></b></dt><dd>&#x202A;Use this fct for LPM optimization (especially when LPM standby)</dd></dl>
 <p class="DocNodeLTR">This function disables GPIOs by:</p><ul class="DocNodeLTR">
 <li>&#x202A;clocking all ports</li>
 <li>&#x202A;Configure all GPIO port pins in Analog Input mode (floating input trigger OFF)</li>
@@ -395,7 +395,7 @@ Here is the caller graph for this function:</div>
 <dl class="section note DocNodeLTR"><dt>Note</dt><dd>&#x202A;This GPIO could be disabled back at end of RF any action (RX/TX/SAT_DETECT). So far, it will only go back disabled when entering LPM shutdown mode.</dd>
 <dd>
 &#x202A;GPIOs used by peripherals, such as SPI, SWD.JTAG, LPTIM are not disabled here.</dd></dl>
-<dl class="todo DocNodeLTR"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000025">Todo:</a></b></dt><dd>&#x202A;Disable SWD GPIOs (used for ST-Link debugging) in release build. Note, this will:<ul class="DocNodeLTR">
+<dl class="todo DocNodeLTR"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000024">Todo:</a></b></dt><dd>&#x202A;Disable SWD GPIOs (used for ST-Link debugging) in release build. Note, this will:<ul class="DocNodeLTR">
 <li>&#x202A;disable SWD attach/debug on a running build</li>
 <li>&#x202A;but it remains possible to reflash by pressing RESET pin/button of the uC at the start of flashing procedure </li>
 </ul>
@@ -588,7 +588,7 @@ Here is the call graph for this function:</div>
 <li>&#x202A;WKUP2 (PC13, blue user button) falling edge.</li>
 </ul>
 </dd></dl>
-<dl class="todo DocNodeLTR"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000026">Todo:</a></b></dt><dd>&#x202A;Need to add input parameter to make it generic regarding the wakeup pins configuration. </dd></dl>
+<dl class="todo DocNodeLTR"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000025">Todo:</a></b></dt><dd>&#x202A;Need to add input parameter to make it generic regarding the wakeup pins configuration. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="../../d5/db5/lpm_8c_source.html#l00191">191</a> of file <a class="el" href="../../d5/db5/lpm_8c_source.html">lpm.c</a>.</p>
 <div class="dynheader">
@@ -696,6 +696,12 @@ Here is the caller graph for this function:</div>
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../db/dca/group___m_g_r___l_p_m_ga349cbb2c24fd0bd7f2c24bd063734660_cgraph.svg" width="100%" height="556"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/dca/group___m_g_r___l_p_m_ga349cbb2c24fd0bd7f2c24bd063734660_icgraph.svg" width="339" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -1070,7 +1076,7 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>&#x202A;Specific system function to configure some clock behaviours during LPM (e.g. UART) </p>
-<dl class="todo DocNodeLTR"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000023">Todo:</a></b></dt><dd>&#x202A;can be removed if IDLE task wo/ BAREMETAL OS </dd></dl>
+<dl class="todo DocNodeLTR"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000022">Todo:</a></b></dt><dd>&#x202A;can be removed if IDLE task wo/ BAREMETAL OS </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="../../d5/db5/lpm_8c_source.html#l00323">323</a> of file <a class="el" href="../../d5/db5/lpm_8c_source.html">lpm.c</a>.</p>
 <div class="dynheader">
@@ -1136,7 +1142,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/dca/group___m_g_r___l_p_m_ga7bf128e76e6a14840b3c8d74946c37f1_icgraph.svg" width="278" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/dca/group___m_g_r___l_p_m_ga7bf128e76e6a14840b3c8d74946c37f1_icgraph.svg" width="515" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -1288,7 +1294,7 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/dca/group___m_g_r___l_p_m_ga52e2359a25b281d9fc80097bc2eae3c2_icgraph.svg" width="538" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../db/dca/group___m_g_r___l_p_m_ga52e2359a25b281d9fc80097bc2eae3c2_icgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 
@@ -1332,7 +1338,7 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/dca/group___m_g_r___l_p_m_gac44963210fbbc4095bab272f5b382b3a_icgraph.svg" width="528" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../db/dca/group___m_g_r___l_p_m_gac44963210fbbc4095bab272f5b382b3a_icgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 
@@ -1368,7 +1374,7 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/dca/group___m_g_r___l_p_m_gabbe558bca2d35870d29e614dd72c63c5_icgraph.svg" width="526" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../db/dca/group___m_g_r___l_p_m_gabbe558bca2d35870d29e614dd72c63c5_icgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 
@@ -1404,7 +1410,7 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/dca/group___m_g_r___l_p_m_gae9eed692d36867fa1fa8d825e57d3926_icgraph.svg" width="498" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../db/dca/group___m_g_r___l_p_m_gae9eed692d36867fa1fa8d825e57d3926_icgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 
@@ -1440,7 +1446,7 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/dca/group___m_g_r___l_p_m_gacba2a0ba5b0d79aee8e65edc76451e48_icgraph.svg" width="516" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../db/dca/group___m_g_r___l_p_m_gacba2a0ba5b0d79aee8e65edc76451e48_icgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 
@@ -1482,7 +1488,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/dca/group___m_g_r___l_p_m_ga394c596cc344e87c088527daba299c8d_icgraph.svg" width="491" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../db/dca/group___m_g_r___l_p_m_ga394c596cc344e87c088527daba299c8d_icgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 

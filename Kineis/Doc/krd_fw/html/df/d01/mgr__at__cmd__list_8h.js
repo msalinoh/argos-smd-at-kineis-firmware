@@ -15,7 +15,7 @@ var mgr__at__cmd__list_8h =
       [ "\u202AAT_CW", "d0/d0f/group___m_g_r___a_t___c_m_d.html#gga2bb84f2b5291e6b0019cc5248e8c638ea030e1e70ed5c7deceaaa55da056e248e", null ],
       [ "\u202AAT_PREPASS_EN", "d0/d0f/group___m_g_r___a_t___c_m_d.html#gga2bb84f2b5291e6b0019cc5248e8c638eabbc4efb97e264b5e2e8df8303ad4be9e", null ],
       [ "\u202AAT_UDATE", "d0/d0f/group___m_g_r___a_t___c_m_d.html#gga2bb84f2b5291e6b0019cc5248e8c638eaa5595e7b3409315150027366849f3b58", null ],
-      [ "\u202AAT_ATXRP", "d0/d0f/group___m_g_r___a_t___c_m_d.html#gga2bb84f2b5291e6b0019cc5248e8c638ea5a219628cb80faa6e9b9a458ca1fa933", null ],
+      [ "\u202AAT_KMAC", "d0/d0f/group___m_g_r___a_t___c_m_d.html#gga2bb84f2b5291e6b0019cc5248e8c638ea38c0e7c4f511bb0e63e848b6ed344850", null ],
       [ "\u202AATCMD_MAX_COUNT", "d0/d0f/group___m_g_r___a_t___c_m_d.html#gga2bb84f2b5291e6b0019cc5248e8c638eaf6cd7f2c23912c5c72efc15b0d2676c1", null ],
       [ "\u202AATCMD_UNKNOWN_COMMAND", "d0/d0f/group___m_g_r___a_t___c_m_d.html#gga2bb84f2b5291e6b0019cc5248e8c638ea875366ec6a3651f6715e7ce904143a28", null ]
     ] ],

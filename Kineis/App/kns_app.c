@@ -18,8 +18,6 @@
 #include "kns_cfg.h"
 #include "mgr_at_cmd.h"
 #include "kineis_sw_conf.h"
-#include "mcu_nvm.h"
-
 #include KINEIS_SW_ASSERT_H
 #include "mgr_log.h"
 
@@ -32,7 +30,7 @@
 /** Uncomment below depending on Kineis MAC protocol to be used by Kineis stack. */
 #if !defined(USE_MAC_PRFL_BASIC) && !defined(USE_MAC_PRFL_BLIND)
 //#define USE_MAC_PRFL_BASIC // immediate TX
-#define USE_MAC_PRFL_BLIND // period TX for few repetitions
+//#define USE_MAC_PRFL_BLIND // period TX for few repetitions
 #endif
 
 #if defined(USE_MAC_PRFL_BASIC) && defined(USE_MAC_PRFL_BLIND)
@@ -112,28 +110,27 @@ static void MGR_LOG_array(__attribute__((unused)) uint8_t *data, uint16_t len)
 void KNS_APP_stdln_init(__attribute__((unused)) void *context)
 {
 	enum KNS_status_t status;
+	struct KNS_MAC_appEvt_t appEvt;
 
 	kns_assert(context == NULL);
 
 	/** Initialize Kineis MAC profile */
+	appEvt.id =  KNS_MAC_INIT;
+	appEvt.init_prfl_ctxt.id = KNS_MAC_PRFL_NONE;
 #ifdef USE_MAC_PRFL_BASIC
-	status = KNS_MAC_init(KNS_MAC_PRFL_BASIC, NULL);
-	if (status != KNS_STATUS_OK) {
-		MGR_LOG_DEBUG("[ERROR] Cannot initialize MAC BASIC protocol: Error code 0x%x\r\n",
-			status);
-		MGR_LOG_DEBUG("[ERROR] Check protocol capabilities of the build\r\n");
-		kns_assert(0);
-	}
+	appEvt.init_prfl_ctxt.id = KNS_MAC_PRFL_BASIC;
 #endif
 #ifdef USE_MAC_PRFL_BLIND
-	status = KNS_MAC_init(KNS_MAC_PRFL_BLIND, (void *)&prflBlindUserCfg);
+	appEvt.init_prfl_ctxt.id = KNS_MAC_PRFL_BLIND;
+	appEvt.init_prfl_ctxt.blindCfg = prflBlindUserCfg;
+#endif
+
+	status = KNS_Q_push(KNS_Q_DL_APP2MAC, (void *)&appEvt);
 	if (status != KNS_STATUS_OK) {
-		MGR_LOG_DEBUG("[ERROR] Cannot initialize MAC BLIND protocol: Error code 0x%x\r\n",
-			status);
-		MGR_LOG_DEBUG("[ERROR] Check protocol capabilities of the build\r\n");
+		MGR_LOG_DEBUG("[ERROR] Cannot initialize MAC protocol: Error code 0x%x\r\n", status);
+		MGR_LOG_DEBUG("[ERROR] Check protocol capabilities of the build and/or config.\r\n");
 		kns_assert(0);
 	}
-#endif
 }
 
 void KNS_APP_stdln_loop(void)
@@ -156,7 +153,7 @@ void KNS_APP_stdln_loop(void)
 	__attribute__((__section__(".retentionRamData")))
 	uint32_t seed;
 
-	uint8_t idx;
+	uint16_t idx;
 	struct KNS_MAC_appEvt_t appEvt;
 	uint8_t buffer_tx[KNS_MAC_USRDATA_MAXLEN];
 
@@ -267,37 +264,33 @@ void KNS_APP_stdln_loop(void)
 		break;
 	}
 }
-
 void KNS_APP_gui_init(void *context)
 {
-	enum KNS_status_t status;
+//	enum KNS_status_t status;
+//	struct KNS_MAC_appEvt_t appEvt;
 
 	kns_assert(context != NULL); // context should contain pointer to UART handle
 
 	/** Initialize AT command manager */
 	MGR_AT_CMD_start(context);
 
-	/** Initialize Kineis MAC profile
-	 * @todo to be moved in "AT+KMAC=<PRFL>,<prfl context>" AT command once implemented
-	 * */
-#ifdef USE_MAC_PRFL_BASIC
-	status = KNS_MAC_init(KNS_MAC_PRFL_BASIC, NULL);
-	if (status != KNS_STATUS_OK) {
-		MGR_LOG_DEBUG("[ERROR] Cannot initialize MAC BASIC protocol: Error code 0x%x\r\n",
-			status);
-		MGR_LOG_DEBUG("[ERROR] Check protocol capabilities of the build\r\n");
-		kns_assert(0);
-	}
-#endif
-#ifdef USE_MAC_PRFL_BLIND
-	status = KNS_MAC_init(KNS_MAC_PRFL_BLIND, (void *)&prflBlindUserCfg);
-	if (status != KNS_STATUS_OK) {
-		MGR_LOG_DEBUG("[ERROR] Cannot initialize MAC BLIND protocol: Error code 0x%x\r\n",
-			status);
-		MGR_LOG_DEBUG("[ERROR] Check protocol capabilities of the build\r\n");
-		kns_assert(0);
-	}
-#endif
+//	/** Initialize Kineis MAC profile */
+//	/** @todo PRODEV-97: move to AT+KMAC command */
+//	appEvt.id =  KNS_MAC_INIT;
+//#ifdef USE_MAC_PRFL_BASIC
+//	appEvt.init_prfl_ctxt.id = KNS_MAC_PRFL_BASIC;
+//#endif
+//#ifdef USE_MAC_PRFL_BLIND
+//	appEvt.init_prfl_ctxt.id = KNS_MAC_PRFL_BLIND;
+//	appEvt.init_prfl_ctxt.blindCfg = prflBlindUserCfg;
+//#endif
+//
+//	status = KNS_Q_push(KNS_Q_DL_APP2MAC, (void *)&appEvt);
+//	if (status != KNS_STATUS_OK) {
+//		MGR_LOG_DEBUG("[ERROR] Cannot initialize MAC protocol: Error code 0x%x\r\n", status);
+//		MGR_LOG_DEBUG("[ERROR] Check protocol capabilities of the build and/or config.\r\n");
+//		kns_assert(0);
+//	}
 }
 
 void KNS_APP_gui_loop(void)

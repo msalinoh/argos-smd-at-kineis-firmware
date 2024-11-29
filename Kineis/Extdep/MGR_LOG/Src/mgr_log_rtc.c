@@ -52,7 +52,7 @@ void MGR_LOG_RtcDateTime(void)
 
 	/* Display date Format : mm-dd-yy */
 	sprintf((char *)aShowDate,
-			"%02d/%02d/%02d",
+			"%04d/%02d/%02d",
 			2000 + sdatestructureget.Year,
 			sdatestructureget.Month,
 			sdatestructureget.Date);

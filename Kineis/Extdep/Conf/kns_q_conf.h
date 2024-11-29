@@ -51,9 +51,9 @@
 
 /**< @attention queue length should be one more than expected in case of baremetal KNS OS */
 #ifdef USE_BAREMETAL
-#define KNS_Q_UL_MAC2APP_LEN           4
+#define KNS_Q_UL_MAC2APP_LEN           6
 #else // else of USE_BAREMETAL
-#define KNS_Q_UL_MAC2APP_LEN           3
+#define KNS_Q_UL_MAC2APP_LEN           5
 #endif // end of USE_BAREMETAL
 #define KNS_Q_UL_MAC2APP_ITEM_BYTESIZE sizeof(struct KNS_MAC_srvcEvt_t)
 

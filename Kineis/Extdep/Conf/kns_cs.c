@@ -29,22 +29,29 @@
 
 #pragma GCC visibility push(default)
 
+/* Defines ------------------------------------------------------------------------------------- */
+#define PRIM_ARRAY_SIZE 8 // define the depth of inner critical sections. MUST be 4 at minimum
+
+
 /* Private variables --------------------------------------------------------------------------- */
 
-static uint32_t prim;
+static uint32_t prim[PRIM_ARRAY_SIZE];
+uint8_t idx = 0;
 
 /* Function ------------------------------------------------------------------------------------ */
 
 void KNS_CS_enter()
 {
 
-	prim = __get_PRIMASK();
+	prim[idx % PRIM_ARRAY_SIZE] = __get_PRIMASK();
 	__disable_irq();
+	idx++; // make prim pointing on next empty plac in array
 }
 
 void KNS_CS_exit()
 {
-	if (!prim) {
+	idx--; // decrement idx in a way to point on last valid data
+	if (!prim[idx % PRIM_ARRAY_SIZE]) {
 		__enable_irq();
 	}
 }
