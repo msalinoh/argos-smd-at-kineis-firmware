@@ -61,7 +61,7 @@ extern "C" {
  */
 bool MGR_AT_CMD_start(void *context);
 
-bool MGR_AT_SPI_CMD_start(void *context); 
+//bool MGR_AT_SPI_CMD_start(void *context);
 /**
  * @brief API used to check there is some AT command in internal fifo
  *

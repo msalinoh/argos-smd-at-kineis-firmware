@@ -19,7 +19,6 @@
 #include "mgr_at_cmd_common.h"
 #include "mgr_at_cmd_list.h"
 #include "mcu_at_console.h"
-#include "mcu_at_console_spi.h"
 #include "kineis_sw_conf.h"
 #include KINEIS_SW_ASSERT_H
 #include "mgr_log.h"
@@ -233,11 +232,11 @@ bool MGR_AT_CMD_start(void *context)
 	return MCU_AT_CONSOLE_register(context, MGR_AT_CMD_parseStreamCb);
 
 }
-bool MGR_AT_SPI_CMD_start(void *context)
-{
-	return MCU_AT_SPI_register(context, MGR_AT_CMD_parseStreamCb);
-
-}
+//bool MGR_AT_SPI_CMD_start(void *context)
+//{
+//	return MCU_AT_SPI_register(context, MGR_AT_CMD_parseStreamCb);
+//
+//}
 
 bool MGR_AT_CMD_isPendingAt(void)
 {

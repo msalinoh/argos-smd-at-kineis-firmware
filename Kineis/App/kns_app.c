@@ -356,7 +356,7 @@ void KNS_APP_gui_init(void *context)
 //#if defined(USE_UART_DRIVER)
 	MGR_AT_CMD_start(context);
 //#elif defined(USE_SPI_DRIVER)
-	MGR_AT_SPI_CMD_start(context);
+	//MGR_AT_SPI_CMD_start(context);
 //#endif
 
 //	/** Initialize Kineis MAC profile */

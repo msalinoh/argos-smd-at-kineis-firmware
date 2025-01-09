@@ -27,6 +27,7 @@
 #include "kineis_sw_conf.h" // for assert include below
 #include KINEIS_SW_ASSERT_H
 #include "mgr_log.h"
+
 /* Defines -------------------------------------------------------------------*/
 #if defined(STM32WLE5xx) || defined(STM32WL55xx)
 #define USART_ISR_RXNE USART_ISR_RXNE_RXFNE
@@ -213,7 +214,7 @@ static HAL_StatusTypeDef SPI_StartRx_IT(SPI_HandleTypeDef *hspi, uint8_t *pData,
 
 /* Functions -----------------------------------------------------------------*/
 
-bool MCU_AT_SPI_register(void *handle, bool (*rx_evt_cb)(uint8_t *pu8_RxBuffer,
+bool MCU_AT_CONSOLE_register(void *handle, bool (*rx_evt_cb)(uint8_t *pu8_RxBuffer,
 	int16_t *pi16_nbRxValidChar))
 {
 	hspi_handle = (SPI_HandleTypeDef *)handle;
@@ -229,7 +230,7 @@ bool MCU_AT_SPI_register(void *handle, bool (*rx_evt_cb)(uint8_t *pu8_RxBuffer,
 		return false;
 }
 
-void MCU_AT_SPI_send(const char *format, ...)
+void MCU_AT_CONSOLE_send(const char *format, ...)
 {
 	va_list args;
 
@@ -246,11 +247,13 @@ void MCU_AT_SPI_send(const char *format, ...)
 	/* Send log message via SPI */
 	if (hspi_handle != NULL)
 	{
+        hspi_handle->State = HAL_SPI_STATE_READY;
 		if (HAL_SPI_Transmit(hspi_handle, (uint8_t *)spiTxBuf, strlen(spiTxBuf), 500) != HAL_OK)
 		{
 			/* Transmission error handling */
-			kns_assert(0);
+			//kns_assert(0);
 		}
+		MCU_AT_CONSOLE_register(hspi_handle, NULL);
 	}
 	else
 	{
@@ -259,7 +262,7 @@ void MCU_AT_SPI_send(const char *format, ...)
 	}
 }
 
-void MCU_AT_SPI_send_dataBuf(uint8_t *pu8_inDataBuff, uint16_t u16_dataLenBit)
+void MCU_AT_CONSOLE_send_dataBuf(uint8_t *pu8_inDataBuff, uint16_t u16_dataLenBit)
 {
 	uint16_t u16_remainingBits;
 	const uint16_t u16_dataLenByte_trunc = u16_dataLenBit >> 3;
@@ -278,13 +281,13 @@ void MCU_AT_SPI_send_dataBuf(uint8_t *pu8_inDataBuff, uint16_t u16_dataLenBit)
 	for (pu8_hex = pu8_inDataBuff;
 			(pu8_hex < (pu8_inDataBuff + u16_dataLenByte_trunc));
 			pu8_hex++)
-		MCU_AT_SPI_send("%02X", *pu8_hex);
+		MCU_AT_CONSOLE_send("%02X", *pu8_hex);
 
 	u16_remainingBits = u16_dataLenBit - (u16_dataLenByte_trunc << 3);
 	if (u16_remainingBits > 4)
-		MCU_AT_SPI_send("%02X", *pu8_hex);
+		MCU_AT_CONSOLE_send("%02X", *pu8_hex);
 	else if (u16_remainingBits > 0)
-		MCU_AT_SPI_send("%01X", *pu8_hex);
+		MCU_AT_CONSOLE_send("%01X", *pu8_hex);
 	/* else no additional bits */
 }
 
@@ -302,7 +305,7 @@ void HAL_SPI_ErrorCallback(__attribute__((unused)) SPI_HandleTypeDef *hspi)
 {
 	//MGR_LOG("\r\n+SPI_ERROR (OVR, RX error) => PLEASE RESET MODULE.\r\n\r\n");
     MGR_LOG_DEBUG("SPI_ERROR (OVR, RX error)\r\n");
-    MCU_AT_SPI_register(hspi, NULL);
+    MCU_AT_CONSOLE_register(hspi, NULL);
 	//kns_assert(0);
 }
 
