@@ -6,7 +6,7 @@
  */
 
 /**
- * @addtogroup MGR_AT_CMD
+ * @addtogroup MGR_AT_SPI_CMD
  * @{
  */
 
@@ -19,7 +19,6 @@
 #include "mgr_at_cmd_common.h"
 #include "mgr_at_cmd_list.h"
 #include "mcu_at_console.h"
-#include "mcu_at_console_spi.h"
 #include "kineis_sw_conf.h"
 #include KINEIS_SW_ASSERT_H
 #include "mgr_log.h"
@@ -48,45 +47,25 @@
 #endif
 
 /* Structure Declaration ------------------------------------------------------------------------*/
-struct atcmdfifo_t {
+struct atspicmdfifo_t {
 	uint8_t au8_fifo[FIFO_MAX_SIZE][FRAME_MAX_LEN];
 	uint8_t u8_widx;
 	uint8_t u8_ridx;
 };
 
-struct atcmd_info_t {
-	enum atcmd_idx_t ATcmdIndex; /**< the At command Index */
-	enum atcmd_type_t ATcmdExecType; /**< the At command typr */
+struct atspicmdinfo_t {
+	enum atspicmdidx_t ATSPIcmdIndex; /**< the At command Index */
+	enum atspicmdtype_t ATSPIcmdExecType; /**< the At command typr */
 };
 
 /* Private variables ----------------------------------------------------------------------------*/
 
-static struct atcmdfifo_t s_atcmdfifo; /**< A FIFO used to store AT commands received from UART */
+static struct atspicmdfifo_t s_atspicmdfifo; /**< A FIFO used to store AT commands received from UART */
 
 /* Private functions ----------------------------------------------------------------------------*/
 
-/**
- * @brief API used to extract the latest AT cmds from the incoming received data stream.
- *
- * This fct is looking for the start pattern ("AT+") and the end pattern ("\r\n") in the stream.
- * If several frames are received in a row, only the last AT cmd is extracted
- *
- * Once AT cmd is found, it is removed from the stream and stored into the FIFO if not full.
- *
- * As this fct is the entry point into FW, it is real-time critical and may be more robust. Some
- * design limitations are describerd below.
- *
- * @attention This fct may be called from ISR context
- *
- * @note Any garbage after the found AT cmd is also removed from stream. But the garbage before
- *       remains in the original stream.
- *
- * @param[in,out] pu8_RxBuffer pointer to start of RX buffer
- * @param[in,out] pi16_nbRxValidChar number of valid charecters in RX buffer
- *
- * @retval true if a valid frame was extracted, false if nothing was extracted
- */
-static bool MGR_AT_CMD_parseStreamCb(uint8_t *pu8_RxBuffer, int16_t *pi16_nbRxValidChar)
+
+static bool MGR_AT_SPI_CMD_parseStreamCb(uint8_t *pu8_RxBuffer, int16_t *pi16_nbRxValidChar)
 {
 	int16_t idxEnd = 0;
 	int16_t idxStart = 0;
@@ -137,7 +116,7 @@ static bool MGR_AT_CMD_parseStreamCb(uint8_t *pu8_RxBuffer, int16_t *pi16_nbRxVa
 	/* In case FIFO is full (read index is reached), skip this new AT CMD. We need to wait for
 	 * FW to consume the previous AT CMDs before.
 	 */
-	if ( ((s_atcmdfifo.u8_widx+1) % FIFO_MAX_SIZE) == (s_atcmdfifo.u8_ridx % FIFO_MAX_SIZE))
+	if ( ((s_atspicmdfifo.u8_widx+1) % FIFO_MAX_SIZE) == (s_atspicmdfifo.u8_ridx % FIFO_MAX_SIZE))
 		return true;
 	/* Set the frame in the UART fifo */
 	i16_atcmdLen = idxEnd - idxStart;
@@ -146,16 +125,16 @@ static bool MGR_AT_CMD_parseStreamCb(uint8_t *pu8_RxBuffer, int16_t *pi16_nbRxVa
 	 */
 	if ((i16_atcmdLen + 1) > FRAME_MAX_LEN)
 		i16_atcmdLen = FRAME_MAX_LEN - 1;
-	memcpy(s_atcmdfifo.au8_fifo[s_atcmdfifo.u8_widx % FIFO_MAX_SIZE],
+	memcpy(s_atspicmdfifo.au8_fifo[s_atspicmdfifo.u8_widx % FIFO_MAX_SIZE],
 		&pu8_RxBuffer[idxStart], i16_atcmdLen);
-	s_atcmdfifo.au8_fifo[s_atcmdfifo.u8_widx % FIFO_MAX_SIZE][i16_atcmdLen] = '\0';
+	s_atspicmdfifo.au8_fifo[s_atspicmdfifo.u8_widx % FIFO_MAX_SIZE][i16_atcmdLen] = '\0';
 	/* Increment write index to next free position */
-	s_atcmdfifo.u8_widx++;
+	s_atspicmdfifo.u8_widx++;
 
 	/* In case read index is reached, skip oldest stored AT cmd to let a newest one to come */
-	if (s_atcmdfifo.u8_widx % FIFO_MAX_SIZE == s_atcmdfifo.u8_ridx % FIFO_MAX_SIZE)
+	if (s_atspicmdfifo.u8_widx % FIFO_MAX_SIZE == s_atspicmdfifo.u8_ridx % FIFO_MAX_SIZE)
 		kns_assert(0); // should no more happen
-		// s_atcmdfifo.u8_ridx++;
+		// s_atspicmdfifo.u8_ridx++;
 
 	return true;
 }
@@ -175,32 +154,32 @@ static bool MGR_AT_CMD_parseStreamCb(uint8_t *pu8_RxBuffer, int16_t *pi16_nbRxVa
  *
  * @returns AT cmd info (e.g. index and execution type)
  */
-static struct atcmd_info_t MGR_AT_CMD_getAtType(uint8_t *pu8_atcmd)
+static struct atspicmdinfo_t MGR_AT_SPI_CMD_getAtType(uint8_t *pu8_atcmd)
 {
 	uint8_t __u8_k;
-	uint8_t *p_atcmd_start;
+	uint8_t *p_atspicmdstart;
 	uint8_t u8foundCmdIndex = ATCMD_UNKNOWN_COMMAND;
 	uint16_t u16_offset_search = 0;
-	struct atcmd_info_t atcmd_info;
+	struct atspicmdinfo_t atspicmdinfo;
 
 
-	atcmd_info.ATcmdIndex = u8foundCmdIndex;
+	atspicmdinfo.ATSPIcmdIndex = u8foundCmdIndex;
 
 	/* Loop over table and check for match */
 	for (__u8_k = 0; __u8_k < ATCMD_MAX_COUNT; __u8_k++) {
-		u16_offset_search = cas_atcmd_list_array[__u8_k].u8_cmdNameLen;
+		u16_offset_search = cas_atspicmdlist_array[__u8_k].u8_cmdNameLen;
 
-		if (bUTIL_strcmp((uint8_t *)cas_atcmd_list_array[__u8_k].pu8_cmdNameString,
+		if (bUTIL_strcmp((uint8_t *)cas_atspicmdlist_array[__u8_k].pu8_cmdNameString,
 					pu8_atcmd,
 					u16_offset_search)) {
-			u8foundCmdIndex = (enum atcmd_idx_t)__u8_k;
+			u8foundCmdIndex = (enum atspicmdidx_t)__u8_k;
 			break;
 		}
 	}
 	/* If command is found in list, check type */
 	if (u8foundCmdIndex < ATCMD_UNKNOWN_COMMAND) {
-		u16_offset_search = cas_atcmd_list_array[u8foundCmdIndex].u8_cmdNameLen;
-		p_atcmd_start = pu8_atcmd;
+		u16_offset_search = cas_atspicmdlist_array[u8foundCmdIndex].u8_cmdNameLen;
+		p_atspicmdstart = pu8_atcmd;
 
 		/* Checks if next characters after command are either "=?\r", "=?\n" or
 		 * "=<params>\r" or "=<params>\n"
@@ -208,75 +187,70 @@ static struct atcmd_info_t MGR_AT_CMD_getAtType(uint8_t *pu8_atcmd)
 		 * @note "AT+<cmd>\r\n" is considered as action mode. it will be filtered in the
 		 * next parsing level.
 		 */
-		if ((p_atcmd_start[u16_offset_search] == '=')
-				&& (p_atcmd_start[u16_offset_search+1] == '?')
-				&& ((p_atcmd_start[u16_offset_search+2] == '\r')
-					|| (p_atcmd_start[u16_offset_search+2] == '\n'))) {
-			atcmd_info.ATcmdExecType = ATCMD_STATUS_MODE;
-			atcmd_info.ATcmdIndex = u8foundCmdIndex;
-		} else if ((p_atcmd_start[u16_offset_search] == '=')
-				|| (p_atcmd_start[u16_offset_search] == '\r')
-				|| (p_atcmd_start[u16_offset_search] == '\n')) {
-			atcmd_info.ATcmdExecType = ATCMD_ACTION_MODE;
-			atcmd_info.ATcmdIndex = u8foundCmdIndex;
+		if ((p_atspicmdstart[u16_offset_search] == '=')
+				&& (p_atspicmdstart[u16_offset_search+1] == '?')
+				&& ((p_atspicmdstart[u16_offset_search+2] == '\r')
+					|| (p_atspicmdstart[u16_offset_search+2] == '\n'))) {
+			atspicmdinfo.ATSPIcmdExecType = ATCMD_STATUS_MODE;
+			atspicmdinfo.ATSPIcmdIndex = u8foundCmdIndex;
+		} else if ((p_atspicmdstart[u16_offset_search] == '=')
+				|| (p_atspicmdstart[u16_offset_search] == '\r')
+				|| (p_atspicmdstart[u16_offset_search] == '\n')) {
+			atspicmdinfo.ATSPIcmdExecType = ATCMD_ACTION_MODE;
+			atspicmdinfo.ATSPIcmdIndex = u8foundCmdIndex;
 		} else
-			atcmd_info.ATcmdIndex = ATCMD_UNKNOWN_COMMAND;
+			atspicmdinfo.ATSPIcmdIndex = ATCMD_UNKNOWN_COMMAND;
 	}
-	return atcmd_info;
+	return atspicmdinfo;
 }
 
 /* Functions ------------------------------------------------------------------------------------*/
 
-bool MGR_AT_CMD_start(void *context)
-{
-	return MCU_AT_CONSOLE_register(context, MGR_AT_CMD_parseStreamCb);
-
-}
 bool MGR_AT_SPI_CMD_start(void *context)
 {
-	return MCU_AT_SPI_register(context, MGR_AT_CMD_parseStreamCb);
+	return MCU_AT_SPI_register(context, MGR_AT_SPI_CMD_parseStreamCb);
 
 }
 
-bool MGR_AT_CMD_isPendingAt(void)
+bool MGR_AT_SPI_CMD_isPendingAt(void)
 {
-	return (s_atcmdfifo.u8_ridx % FIFO_MAX_SIZE != s_atcmdfifo.u8_widx % FIFO_MAX_SIZE);
+	return (s_atspicmdfifo.u8_ridx % FIFO_MAX_SIZE != s_atspicmdfifo.u8_widx % FIFO_MAX_SIZE);
 }
 
-uint8_t *MGR_AT_CMD_popNextAt(void)
+uint8_t *MGR_AT_SPI_CMD_popNextAt(void)
 {
-	if (s_atcmdfifo.u8_ridx % FIFO_MAX_SIZE != s_atcmdfifo.u8_widx % FIFO_MAX_SIZE)
-		return s_atcmdfifo.au8_fifo[s_atcmdfifo.u8_ridx++ % FIFO_MAX_SIZE];
+	if (s_atspicmdfifo.u8_ridx % FIFO_MAX_SIZE != s_atspicmdfifo.u8_widx % FIFO_MAX_SIZE)
+		return s_atspicmdfifo.au8_fifo[s_atspicmdfifo.u8_ridx++ % FIFO_MAX_SIZE];
 	else
 		return NULL;
 }
 
-bool MGR_AT_CMD_decodeAt(uint8_t *pu8_atcmd)
+bool MGR_AT_SPI_CMD_decodeAt(uint8_t *pu8_atcmd)
 {
 	bool status = false;
-	struct atcmd_info_t atcmdInfo;
+	struct atspicmdinfo_t atcmdInfo;
 
 	if (pu8_atcmd != NULL) {
-		atcmdInfo = MGR_AT_CMD_getAtType(pu8_atcmd);
+		atcmdInfo = MGR_AT_SPI_CMD_getAtType(pu8_atcmd);
 
-		if ((atcmdInfo.ATcmdIndex < ATCMD_UNKNOWN_COMMAND) &&
-		    (cas_atcmd_list_array[atcmdInfo.ATcmdIndex].f_ht_cmd_fun_proc != NULL))
-			status = (cas_atcmd_list_array[atcmdInfo.ATcmdIndex].f_ht_cmd_fun_proc)(
+		if ((atcmdInfo.ATSPIcmdIndex < ATCMD_UNKNOWN_COMMAND) &&
+		    (cas_atspicmdlist_array[atcmdInfo.ATSPIcmdIndex].f_ht_cmd_fun_proc != NULL))
+			status = (cas_atspicmdlist_array[atcmdInfo.ATSPIcmdIndex].f_ht_cmd_fun_proc)(
 					pu8_atcmd,
-					atcmdInfo.ATcmdExecType);
+					atcmdInfo.ATSPIcmdExecType);
 		else {
-			bMGR_AT_CMD_logFailedMsg(ERROR_UNKNOWN_AT_CMD);
+			bMGR_AT_SPI_CMD_logFailedMsg(ERROR_UNKNOWN_AT_CMD);
 			MGR_LOG_VERBOSE("[ERROR] Unknown AT command\r\n");
 		}
 	} else {
-		bMGR_AT_CMD_logFailedMsg(ERROR_UNKNOWN);
+		bMGR_AT_SPI_CMD_logFailedMsg(ERROR_UNKNOWN);
 		MGR_LOG_DEBUG("[ERROR] input param is Nil\r\n");
 	}
 	return status;
 }
 
 __attribute((__weak__))
-enum KNS_status_t MGR_AT_CMD_macEvtProcess(void)
+enum KNS_status_t MGR_AT_SPI_CMD_macEvtProcess(void)
 {
 	/** Empty weak core, can be overwritten, depending on AT cmd processed */
 	return KNS_STATUS_OK;

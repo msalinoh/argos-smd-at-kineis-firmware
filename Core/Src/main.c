@@ -42,9 +42,9 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "i2c.h"
 #include "usart.h"
 #include "rtc.h"
+#include "spi.h"
 #include "subghz.h"
 #include "tim.h"
 #include "gpio.h"
@@ -310,11 +310,11 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_LPUART1_UART_Init();
   MX_SUBGHZ_Init();
   MX_TIM16_Init();
   MX_RTC_Init();
-  MX_I2C1_Init();
+  MX_LPUART1_UART_Init();
+  MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
 
 #ifdef DEBUG
@@ -413,7 +413,11 @@ int main(void)
   assert_param(KNS_OS_registerTask(KNS_OS_TASK_APP, KNS_APP_stdln_loop) == KNS_STATUS_OK);
   //assert_param(KNS_OS_registerTask(KNS_OS_TASK_APP, KNS_APP_stdalone_stressTest) == KNS_STATUS_OK);
 #elif defined (USE_GUI_APP)
+#if defined(USE_UART_DRIVER)
   KNS_APP_gui_init(&hlpuart1);
+#elif defined(USE_SPI_DRIVER)
+  KNS_APP_gui_init(&hspi1);
+#endif
   assert_param(KNS_OS_registerTask(KNS_OS_TASK_APP, KNS_APP_gui_loop) == KNS_STATUS_OK);
 #endif
   assert_param(KNS_OS_registerTask(KNS_OS_TASK_IDLE, IDLE_task) == KNS_STATUS_OK);

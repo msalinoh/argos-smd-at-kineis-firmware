@@ -33,6 +33,9 @@ USE_BAREMETAL = 1
 # * GUI: for the application using the AT commands from UART link
 APP = GUI
 
+# Select output port
+COMM = SPI
+
 # Select Kineis stack MAC profile. Can be:
 # * BASIC: basic profile, sending message once immediately 
 # * BLIND: blind profile, sending message sevral times periodically 
@@ -42,6 +45,7 @@ MAC_PRFL = BASIC
 # NONE, SLEEP, STOP, STANDBY, SHUTDOWN
 LPM = NONE
 
+SPI_DRIVER = 1
 # * KRD board: choose between: KRD_FW_LP, KRD_FW_MP
 KRD_BOARD = KRD_FW_MP
 
@@ -87,8 +91,7 @@ Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_rcc_ex.c \
 Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_flash.c \
 Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_flash_ex.c \
 Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_gpio.c \
-Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_i2c.c \
-Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_i2c_ex.c \
+Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_spi.c \
 Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_dma.c \
 Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_dma_ex.c \
 Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_pwr.c \
@@ -103,13 +106,14 @@ Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_uart.c \
 Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_uart_ex.c \
 Core/Src/system_stm32wlxx.c \
 Core/Src/gpio.c \
-Core/Src/i2c.c \
+Core/Src/spi.c \
+Core/Src/syscalls.c \
 Core/Src/usart.c \
 Core/Src/subghz.c \
 Core/Src/tim.c \
 Core/Src/rtc.c \
 Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_rtc.c \
-Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_rtc_ex.c
+Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_rtc_ex.c \
 
 C_SOURCES += \
 $(BUILD_INFO_FILE) \
@@ -127,6 +131,7 @@ $(KINEIS_DIR)/App/Kineis_os/KNS_Q/Src/kns_q.c \
 $(KINEIS_DIR)/App/Kineis_os/KNS_OS/Src/kns_os.c \
 $(KINEIS_DIR)/App/kns_app.c \
 $(KINEIS_DIR)/App/Mcu/Src/mcu_at_console.c \
+$(KINEIS_DIR)/App/Mcu/Src/mcu_at_console_spi.c \
 $(KINEIS_DIR)/App/Managers/MGR_AT_CMD/Src/mgr_at_cmd.c \
 $(KINEIS_DIR)/App/Managers/MGR_AT_CMD/Src/mgr_at_cmd_common.c \
 $(KINEIS_DIR)/App/Managers/MGR_AT_CMD/Src/mgr_at_cmd_list.c \
@@ -251,6 +256,15 @@ C_DEFS +=  \
 BUILD_VERSION := $(BUILD_VERSION)_gui
 endif
 
+ifeq ($(COMM),UART)
+C_DEFS +=  \
+-DUSE_UART_DRIVER
+endif
+ifeq ($(COMM),SPI)
+C_DEFS +=  \
+-DUSE_SPI_DRIVER
+endif
+
 ifeq ($(MAC_PRFL), BASIC)
 C_DEFS +=  \
 -DUSE_MAC_PRFL_BASIC
@@ -289,7 +303,8 @@ C_INCLUDES =  \
 -I$(KINEIS_DIR)/App/Mcu/Inc \
 -I$(KINEIS_DIR)/App/Libs/STRUTIL/Inc \
 -I$(KINEIS_DIR)/App/Libs/USERDATA/Inc \
--I$(KINEIS_DIR)/Lpm/Inc
+-I$(KINEIS_DIR)/Lpm/Inc \
+#-IApplication/User/KineisSpi/Inc
 
 C_INCLUDES += #$(libknsrf_wl_INCLUDES)
 

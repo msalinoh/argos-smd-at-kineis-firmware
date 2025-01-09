@@ -74,6 +74,7 @@ static void Core_Error_Handler(void)
 /* External variables --------------------------------------------------------*/
 extern UART_HandleTypeDef hlpuart1;
 extern RTC_HandleTypeDef hrtc;
+extern SPI_HandleTypeDef hspi1;
 extern SUBGHZ_HandleTypeDef hsubghz;
 extern TIM_HandleTypeDef htim16;
 /* USER CODE BEGIN EV */
@@ -249,6 +250,20 @@ void TIM16_IRQHandler(void)
   /* USER CODE BEGIN TIM16_IRQn 1 */
 
   /* USER CODE END TIM16_IRQn 1 */
+}
+
+/**
+  * @brief This function handles SPI1 Interrupt.
+  */
+void SPI1_IRQHandler(void)
+{
+  /* USER CODE BEGIN SPI1_IRQn 0 */
+
+  /* USER CODE END SPI1_IRQn 0 */
+  HAL_SPI_IRQHandler(&hspi1);
+  /* USER CODE BEGIN SPI1_IRQn 1 */
+
+  /* USER CODE END SPI1_IRQn 1 */
 }
 
 /**
