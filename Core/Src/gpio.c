@@ -40,6 +40,8 @@
         * EXTI
         * Free pins are configured automatically as Analog (this feature is enabled through
         * the Code Generation settings)
+     PA10   ------> I2C1_SDA
+     PA9   ------> I2C1_SCL
 */
 void MX_GPIO_Init(void)
 {
@@ -55,35 +57,39 @@ void MX_GPIO_Init(void)
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(PA_PSU_EN_GPIO_Port, PA_PSU_EN_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pins : PA12 PA15 PA11 PA0
-                           PA6 PA1 PA7 PA4
-                           PA5 */
-  GPIO_InitStruct.Pin = GPIO_PIN_12|GPIO_PIN_15|GPIO_PIN_11|GPIO_PIN_0
-                          |GPIO_PIN_6|GPIO_PIN_1|GPIO_PIN_7|GPIO_PIN_4
-                          |GPIO_PIN_5|GPIO_PIN_8;
+  /*Configure GPIO pins : PA12 PA11 PA0 PA6
+                           PA7 PA4 PA5 */
+  GPIO_InitStruct.Pin = GPIO_PIN_12|GPIO_PIN_11|GPIO_PIN_0|GPIO_PIN_6
+                          |GPIO_PIN_7|GPIO_PIN_4|GPIO_PIN_5;
   GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : PB15 PB4 PB7 PB9
-                           PB14 PB5 PB8 PB13
-                           PB2 PB6 PB12 PB1
-                           PB11 PB10 */
-  GPIO_InitStruct.Pin = GPIO_PIN_15|GPIO_PIN_4|GPIO_PIN_7|GPIO_PIN_9
-                          |GPIO_PIN_14|GPIO_PIN_5|GPIO_PIN_8|GPIO_PIN_3
-                          |GPIO_PIN_2|GPIO_PIN_6|GPIO_PIN_12|GPIO_PIN_1
-                          |GPIO_PIN_11|GPIO_PIN_10;
+  /*Configure GPIO pins : PB15 PB7 PB9 PB14
+                           PB8 PB13 PB2 PB6
+                           PB12 PB1 PB11 PB10 */
+  GPIO_InitStruct.Pin = GPIO_PIN_15|GPIO_PIN_7|GPIO_PIN_9|GPIO_PIN_14
+                          |GPIO_PIN_8|GPIO_PIN_13|GPIO_PIN_2|GPIO_PIN_6
+                          |GPIO_PIN_12|GPIO_PIN_1|GPIO_PIN_11|GPIO_PIN_10;
   GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
   /*Configure GPIO pins : PC13 PC2 PC3 PC5
-                           PC1 PC4 PC6 */
+                           PC1 PC0 PC4 PC6 */
   GPIO_InitStruct.Pin = GPIO_PIN_13|GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_5
-                          |GPIO_PIN_1|GPIO_PIN_4|GPIO_PIN_6;
+                          |GPIO_PIN_1|GPIO_PIN_0|GPIO_PIN_4|GPIO_PIN_6;
   GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : PA10 PA9 */
+  GPIO_InitStruct.Pin = GPIO_PIN_10|GPIO_PIN_9;
+  GPIO_InitStruct.Mode = GPIO_MODE_AF_OD;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  GPIO_InitStruct.Alternate = GPIO_AF4_I2C1;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
   /*Configure GPIO pin : PtPin */
   GPIO_InitStruct.Pin = PA_PSU_EN_Pin;

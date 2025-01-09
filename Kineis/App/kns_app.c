@@ -353,7 +353,11 @@ void KNS_APP_gui_init(void *context)
 	kns_assert(context != NULL); // context should contain pointer to UART handle
 
 	/** Initialize AT command manager */
+//#if defined(USE_UART_DRIVER)
 	MGR_AT_CMD_start(context);
+//#elif defined(USE_SPI_DRIVER)
+	MGR_AT_SPI_CMD_start(context);
+//#endif
 
 //	/** Initialize Kineis MAC profile */
 //	/** @todo PRODEV-97: move to AT+KMAC command */
