@@ -131,7 +131,6 @@ $(KINEIS_DIR)/App/Kineis_os/KNS_Q/Src/kns_q.c \
 $(KINEIS_DIR)/App/Kineis_os/KNS_OS/Src/kns_os.c \
 $(KINEIS_DIR)/App/kns_app.c \
 $(KINEIS_DIR)/App/Mcu/Src/mcu_at_console.c \
-$(KINEIS_DIR)/App/Mcu/Src/mcu_at_console_spi.c \
 $(KINEIS_DIR)/App/Managers/MGR_AT_CMD/Src/mgr_at_cmd.c \
 $(KINEIS_DIR)/App/Managers/MGR_AT_CMD/Src/mgr_at_cmd_common.c \
 $(KINEIS_DIR)/App/Managers/MGR_AT_CMD/Src/mgr_at_cmd_list.c \
