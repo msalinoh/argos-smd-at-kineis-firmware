@@ -20,13 +20,12 @@
 #endif
 #include "mcu_at_console_axm0.c"
 #else
-	#if defined(USE_UART_DRIVER)
-	#include "mcu_at_console_stm.c"
-	#elif defined(USE_SPI_DRIVER)
-	#include "mcu_at_console_spi.c"
-	#endif
+#include "mcu_at_console_stm.c"
 #endif
 
+#if (defined(USE_SPI_DRIVER))
+#include "mcu_spi_driver.c"
+#endif
 /**
  * @}
  */

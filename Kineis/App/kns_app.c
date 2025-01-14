@@ -17,6 +17,7 @@
 #include "kns_mac.h"
 #include "kns_cfg.h"
 #include "mgr_at_cmd.h"
+#include "mgr_spi_cmd.h"
 #include "kineis_sw_conf.h"
 #include KINEIS_SW_ASSERT_H
 #include "mgr_log.h"
@@ -354,10 +355,11 @@ void KNS_APP_gui_init(void *context)
 
 	/** Initialize AT command manager */
 //#if defined(USE_UART_DRIVER)
+#if defined(USE_SPI_DRIVER)
+	MGR_SPI_CMD_start(context);
+#else
 	MGR_AT_CMD_start(context);
-//#elif defined(USE_SPI_DRIVER)
-	//MGR_AT_SPI_CMD_start(context);
-//#endif
+#endif
 
 //	/** Initialize Kineis MAC profile */
 //	/** @todo PRODEV-97: move to AT+KMAC command */
@@ -386,7 +388,11 @@ void KNS_APP_gui_loop(void)
 	pu8_atcmd = MGR_AT_CMD_popNextAt();
 	if (pu8_atcmd != NULL)
 		MGR_AT_CMD_decodeAt(pu8_atcmd);  // @todo: return code is not used ?
+#if defined(USE_SPI_DRIVER)
+	MGR_SPI_CMD_macEvtProcess();
+#else
 	MGR_AT_CMD_macEvtProcess();
+#endif
 }
 
 /**

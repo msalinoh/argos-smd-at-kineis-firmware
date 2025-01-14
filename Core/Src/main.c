@@ -77,6 +77,9 @@
 #include "mgr_at_cmd.h" /* Needed for MGR_AT_CMD_isPendingAt()) in case of BAREMETAL OS to check no
                          * there is no pending AT cmd before entring low power mode
                          */
+#ifdef USE_SPI_DRIVER
+#include "mgr_spi_cmd.h"
+#endif
 #endif
 #include "mcu_at_console.h"
 #endif
@@ -481,7 +484,9 @@ int main(void)
   default:
   /** Start from RESET or POWER OFF, log few indications (FW version, Kineis MAc protocol info) */
 #if defined (USE_GUI_APP)
-    MCU_AT_CONSOLE_send("+FW=%s\r\n", uc_fw_vers_commit_id);
+#if defined (USE_UART_DRIVER)
+    MCU_AT_CONSOLE_send("+FW=%s,%s_%s\r\n", uc_fw_vers_commit_id, __DATE__, __TIME__);
+#endif
 #endif
     break;
   }
@@ -574,7 +579,11 @@ void Error_Handler(void)
   MGR_LOG_DEBUG("Error_Handler\r\n");
 #ifdef DEBUG
 #ifdef USE_GUI_APP
+#ifdef USE_UART_DRIVER
   MCU_AT_CONSOLE_send("+ASSERT=\r\n");
+#else
+  MGR_LOG_DEBUG("+ASSERT=\r\n");
+#endif
   HAL_Delay(500);
 #endif
   __disable_irq();
@@ -583,7 +592,11 @@ void Error_Handler(void)
   }
 #else // end of DEBUG
 #ifdef USE_GUI_APP
+#ifdef USE_UART_DRIVER
   MCU_AT_CONSOLE_send("+RST=\r\n");
+#else
+  MGR_LOG_DEBUG("+RST=\r\n");
+#endif
   HAL_Delay(500);
 #endif
   __disable_irq();

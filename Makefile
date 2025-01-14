@@ -34,7 +34,7 @@ USE_BAREMETAL = 1
 APP = GUI
 
 # Select output port
-COMM = SPI
+COMM = UART
 
 # Select Kineis stack MAC profile. Can be:
 # * BASIC: basic profile, sending message once immediately 
@@ -45,7 +45,6 @@ MAC_PRFL = BASIC
 # NONE, SLEEP, STOP, STANDBY, SHUTDOWN
 LPM = NONE
 
-SPI_DRIVER = 1
 # * KRD board: choose between: KRD_FW_LP, KRD_FW_MP
 KRD_BOARD = KRD_FW_MP
 
@@ -140,6 +139,7 @@ $(KINEIS_DIR)/App/Kineis_os/KNS_Q/Src/kns_q.c \
 $(KINEIS_DIR)/App/Kineis_os/KNS_OS/Src/kns_os.c \
 $(KINEIS_DIR)/App/kns_app.c \
 $(KINEIS_DIR)/App/Mcu/Src/mcu_at_console.c \
+$(KINEIS_DIR)/App/Managers/MGR_SPI_CMD/Src/mgr_spi_cmd.c \
 $(KINEIS_DIR)/App/Managers/MGR_AT_CMD/Src/mgr_at_cmd.c \
 $(KINEIS_DIR)/App/Managers/MGR_AT_CMD/Src/mgr_at_cmd_common.c \
 $(KINEIS_DIR)/App/Managers/MGR_AT_CMD/Src/mgr_at_cmd_list.c \
@@ -330,6 +330,7 @@ C_INCLUDES =  \
 -I$(KINEIS_DIR)/App/Kineis_os/KNS_OS/Inc \
 -I$(KINEIS_DIR)/App/. \
 -I$(KINEIS_DIR)/App/Managers/MGR_AT_CMD/Inc \
+-I$(KINEIS_DIR)/App/Managers/MGR_SPI_CMD/Inc \
 -I$(KINEIS_DIR)/App/Mcu/Inc \
 -I$(KINEIS_DIR)/App/Libs/STRUTIL/Inc \
 -I$(KINEIS_DIR)/App/Libs/USERDATA/Inc \
