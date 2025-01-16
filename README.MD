@@ -7,6 +7,7 @@ The project is based on `krd_fw_package_v8.2.1` from CLS and has been adapted fo
 
 In GUI mode, the module responds to AT commands and interacts with the KimGUI from CLS.
 
+To start, look at the [Arduino sample](https://github.com/arribada/argos-smd-test-arduino) code used for certification or the [Zephyr UART driver](https://github.com/arribada/argos-smd-driver-zephyr) tested with Feather nRF52840.
 
 ⚠️ Warning : Since version v8.2.1, the MAC profile is not loaded at startup reload it thanks to KMAC commands (AT+KMAC=0 and AT+KMAC=1).
 
