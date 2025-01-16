@@ -1,93 +1,114 @@
 ![N|Solid](https://arribada.org/wp-content/uploads/2022/01/arribada_web_logo_g.svg)
 # Argos SMD AT Kineis Firmware
 
-This repository contains the STM32WL firmware for the Argos SMD module with the Kineis stack. It provides two demo-application examples (standalone or AT commands) on an STM32WL55xx-based hardware reference design (KRD_MP).
-This project is based on krd_fw_package_v6.2.1 from CLS adapted for the [argos-smd](https://github.com/arribada/argos-smd-hw) module
+This repository contains the STM32WL firmware for the Argos SMD module using the Kineis stack. It provides two demo application examples (standalone or AT commands) for STM32WL55xx-based hardware reference designs (KRD_MP). 
 
-In GUI mode, the module can answer to AT command and interact with KimGUI from CLS.
+The project is based on `krd_fw_package_v8.2.1` from CLS and has been adapted for the [argos-smd](https://github.com/arribada/argos-smd-hw) module.
+
+In GUI mode, the module responds to AT commands and interacts with the KimGUI from CLS.
+
+
+⚠️ Warning : Since version v8.2.1, the MAC profile is not loaded at startup reload it thanks to KMAC commands (AT+KMAC=0 and AT+KMAC=1).
 
 ## Features
 
-    - Compiles standalone/GUI application by default
-    - Supports periodic SAT message transmission
-    - Configurable MAC profiles and radio settings
-    - Low Power Mode (LPM) management
+- Compiles standalone or GUI applications by default
+- Supports periodic SAT message transmission (Standalone)
+- Configurable MAC profiles and radio settings
+- Low Power Mode (LPM) management
 
 ## Getting Started
+
 ### Configuration
+
 #### Credentials Management
 
-    Contact Kinéis for credentials (ID, address, secret key) necessary for the stack.
-    Credentials should be securely stored; the provided package stores them in RAM/FLASH without protection.
-    Update device_id and address in mcu_nvm.c file
+⚠️ Warning
+This firmware requires proper configuration of **credentials** and **radio settings**.  
+Misconfigured settings may lead to improper operation or device malfunction.  
+
+
+- Contact Kinéis to obtain the required credentials (ID, address, secret key) for the stack.
+- Securely store the credentials. The provided package stores them in RAM/FLASH without protection.
+- Update `device_id` and `address` in the `mcu_nvm.c` file.
+
+Note: Currently, the ID must be changed at build time. A command to modify it will be added soon.
+
 
 #### Radio Configuration Management
 
-    Obtain radio configuration binary files from Kinéis.
-    Store configuration data securely; in the provided package, it's hardcoded as a byte table in mcu_nvm.c.
-    or
-    Use AT+RCONF= command 
-    or
-    Change it diretly by comment/uncomment correspoindg configuration inside mcu_nvm.c file
+- Obtain radio configuration binary files from Kinéis or used one defined into mcu_nvm.c file.
+- Store configuration data securely. In the provided package, the configuration is hardcoded as a byte table in `mcu_nvm.c`.
+- Alternatively:
+  - Use the `AT+RCONF=` command.
+  - Modify the configuration directly by commenting/uncommenting the corresponding settings in the `mcu_nvm.c` file.
 
 ### MAC Profile Configuration Management
 
-    Choose between BASIC and BLIND MAC profiles by setting compilation flags in kns_app.c.
-    Configure specific parameters like repetition period and number of repetitions for the BLIND profile.
+- Choose between **BASIC** and **BLIND** MAC profiles by setting compilation flags in makefile .
+- Configure parameters such as the repetition period and the number of repetitions for the BLIND profile.
 
 ## Building the Project
 
 ### From STM32CubeIDE
 
-    Install STM32CubeIDE.
-    Open the project from the Kinéis package archive.
-    Clean the project before rebuilding.
-    Build the project to generate the binary file.
+1. Install STM32CubeIDE.
+2. Open the project from the Kinéis package archive.
+3. Clean the project before rebuilding.
+4. Build the project to generate the binary file.
 
-###From Terminal
+### From Terminal
 
-    Ensure the GNU Make and ARM toolchain are available.
-    Clean the current build before rebuilding.
-    Run make clean and make in the root directory to build the binary.
+1. Ensure the GNU Make and ARM toolchain are available.
+2. Clean the current build before rebuilding: `make Clean`
+3. Run `make`from the root directory
 
-###Compilation Flags
 
-    Adjust log levels, LPM levels, and board types in the makefile as needed.
+### Compilation Flags
+
+- Adjust log levels, LPM levels, and board types in the `Makefile` as needed.
 
 ## AT Commands
 
-The available AT commands for the GUI application are managed by the AT command manager and include:
+The available AT commands for the GUI application are managed by the AT command manager. Key commands include:
 
-    General Commands:
-        AT+VERSION: Get AT commands version
-        AT+PING: Ping command
-        AT+FW: Get firmware version
-        AT+ADDR: Get device address
-        AT+ID: Get device ID
-        AT+SN: Get device serial number
-        AT+RCONF: Get/Set radio configuration
-        AT+SAVE_RCONF: Save radio configuration into Flash
-        AT+LPM: Get/Set low power mode
-        AT+UDATE: Update UTC date/time
-
-    Forward message
-        AT+TX: Transmit data
-        AT+ATXRP: Get/Set TX repetition commands
-
-    Certification Commands:
-        AT+CW: Continuous Wave/MW commands
-
-    Satellite Pass Predictions Commands:
-        AT+PREPASS_EN: Get/Set PREVIPASS algorithm
+### General Commands:
+- `AT+VERSION`: Get the AT commands version
+- `AT+PING`: Ping command
+- `AT+FW`: Get the firmware version
+- `AT+ADDR`: Get the device address
+- `AT+ID`: Get the device ID
+- `AT+SN`: Get the device serial number
+- `AT+RCONF`: Get/Set radio configuration
+- `AT+SAVE_RCONF`: Save the radio configuration to Flash
+- `AT+LPM`: Get/Set low power mode
 
 
+### Forward Message Commands:
+- `AT+TX`: Transmit data
 
-Refer to the mgr_at_cmd_list.h file for a complete list of supported AT commands.
-##Documentation
+### Certification Commands:
+- `AT+CW`: Continuous Wave/MW commands
 
-    Auto-generated Doxygen documentation is available in the Kineis/Doc folder, open index.html
+### Satellite Pass Predictions Commands:
+- `AT+PREPASS_EN`: Get/Set the PREVIPASS algorithm
+- `AT+UDATE`: Update UTC date/time
 
-##License
+### MAC command
+- `AT+KMAC`: Get/Set the MAC profile
 
-This project is licensed under the GNU General Public License v3. See the LICENSE file for details.
+Refer to the `mgr_at_cmd_list.h` file for the complete list of supported AT commands.
 
+## Documentation
+
+Auto-generated Doxygen documentation is available in the `Kineis/Doc` folder. Open `index.html` for detailed information.
+
+## License
+
+This project is licensed under the GNU General Public License v3. See the `LICENSE` file for details.
+
+# Todo / in progress
+
+- SPI driver instead of UART
+- Add and manage CLS ID
+- Programming firmware by SPI
