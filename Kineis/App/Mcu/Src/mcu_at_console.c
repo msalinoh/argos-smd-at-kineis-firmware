@@ -23,9 +23,6 @@
 #include "mcu_at_console_stm.c"
 #endif
 
-#if (defined(USE_SPI_DRIVER))
-#include "mcu_spi_driver.c"
-#endif
 /**
  * @}
  */

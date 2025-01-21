@@ -24,7 +24,7 @@ TARGET = argos-smd-at-kineis-firmware
 # building variables
 ######################################
 # debug build?
-DEBUG = 1
+DEBUG = 0
 VERBOSE = 0
 USE_BAREMETAL = 1
 
@@ -35,6 +35,7 @@ APP = GUI
 
 # Select output port
 COMM = UART
+
 
 # Select Kineis stack MAC profile. Can be:
 # * BASIC: basic profile, sending message once immediately 
@@ -140,6 +141,11 @@ $(KINEIS_DIR)/App/Kineis_os/KNS_OS/Src/kns_os.c \
 $(KINEIS_DIR)/App/kns_app.c \
 $(KINEIS_DIR)/App/Mcu/Src/mcu_at_console.c \
 $(KINEIS_DIR)/App/Managers/MGR_SPI_CMD/Src/mgr_spi_cmd.c \
+$(KINEIS_DIR)/App/Managers/MGR_SPI_CMD/Src/mgr_spi_cmd_common.c \
+$(KINEIS_DIR)/App/Managers/MGR_SPI_CMD/Src/mgr_spi_cmd_list.c \
+$(KINEIS_DIR)/App/Managers/MGR_SPI_CMD/Src/mgr_spi_cmd_list_user_data.c \
+$(KINEIS_DIR)/App/Managers/MGR_SPI_CMD/Src/mgr_spi_cmd_list_general.c \
+$(KINEIS_DIR)/App/Managers/MGR_SPI_CMD/Src/mgr_spi_cmd_list_mac.c \
 $(KINEIS_DIR)/App/Managers/MGR_AT_CMD/Src/mgr_at_cmd.c \
 $(KINEIS_DIR)/App/Managers/MGR_AT_CMD/Src/mgr_at_cmd_common.c \
 $(KINEIS_DIR)/App/Managers/MGR_AT_CMD/Src/mgr_at_cmd_list.c \

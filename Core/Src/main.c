@@ -77,9 +77,7 @@
 #include "mgr_at_cmd.h" /* Needed for MGR_AT_CMD_isPendingAt()) in case of BAREMETAL OS to check no
                          * there is no pending AT cmd before entring low power mode
                          */
-#ifdef USE_SPI_DRIVER
 #include "mgr_spi_cmd.h"
-#endif
 #endif
 #include "mcu_at_console.h"
 #endif
@@ -455,11 +453,13 @@ int main(void)
   assert_param(KNS_OS_registerTask(KNS_OS_TASK_APP, KNS_APP_stdln_loop) == KNS_STATUS_OK);
   //assert_param(KNS_OS_registerTask(KNS_OS_TASK_APP, KNS_APP_stdalone_stressTest) == KNS_STATUS_OK);
 #elif defined (USE_GUI_APP)
-#if defined(USE_UART_DRIVER)
-  KNS_APP_gui_init(&hlpuart1);
-#elif defined(USE_SPI_DRIVER)
+
+#if defined(USE_SPI_DRIVER)
   KNS_APP_gui_init(&hspi1);
+#else
+  KNS_APP_gui_init(&hlpuart1);
 #endif
+
   assert_param(KNS_OS_registerTask(KNS_OS_TASK_APP, KNS_APP_gui_loop) == KNS_STATUS_OK);
 #endif
   assert_param(KNS_OS_registerTask(KNS_OS_TASK_IDLE, IDLE_task) == KNS_STATUS_OK);
@@ -484,7 +484,7 @@ int main(void)
   default:
   /** Start from RESET or POWER OFF, log few indications (FW version, Kineis MAc protocol info) */
 #if defined (USE_GUI_APP)
-#if defined (USE_UART_DRIVER)
+#if defined(USE_UART_DRIVER)
     MCU_AT_CONSOLE_send("+FW=%s,%s_%s\r\n", uc_fw_vers_commit_id, __DATE__, __TIME__);
 #endif
 #endif

@@ -33,8 +33,8 @@
  */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __MCU_AT_CONSOLE_H
-#define __MCU_AT_CONSOLE_H
+#ifndef __MCU_SPI_CONSOLE_H
+#define __MCU_SPI_CONSOLE_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -61,17 +61,8 @@ typedef struct {
     uint8_t next_req; // Number of elements to read/send next
 } SPI_Buffer;
 
-// SPI Status Enum
-typedef enum {
-    SPI_OK          = 0x01,  // Bit 0: SPI OK
-	//SPI_WAITING_RADIOCONF = 0x02,
-    SPI_RX_WAITING  = 0x02,  // Bit 1: SPI RX WAITING
-    SPI_TX_WAITING  = 0x04   // Bit 2: SPI TX WAITING
-} SPIStatusFlags;
-
-// SPI Status Byte Declaration
-extern uint8_t spi_status;
-
+extern SPI_Buffer rxBuf;
+extern SPI_Buffer txBuf;
 /* Functions prototypes ------------------------------------------------------*/
 
 /** @brief Start AT CMD console for AT cmd reception
@@ -109,8 +100,8 @@ bool MCU_SPI_DRIVER_register(void *context,
  */
 void MCU_SPI_DRIVER_send(const char *format, ...);
 
-HAL_StatusTypeDef MCU_SPI_DRIVER_wait_next(uint8_t cmd);
-HAL_StatusTypeDef MCU_SPI_DRIVER_resp(uint8_t cmd);
+HAL_StatusTypeDef MCU_SPI_DRIVER_wait_next();
+HAL_StatusTypeDef MCU_SPI_DRIVER_resp();
 /** @brief Write content of a binary data buffer as AT cmd response
  *
  * @param[in] pu8_inDataBuff: pointer to data buffer
@@ -118,7 +109,7 @@ HAL_StatusTypeDef MCU_SPI_DRIVER_resp(uint8_t cmd);
  */
 void MCU_SPI_DRIVER_send_dataBuf(uint8_t *pu8_inDataBuff, uint16_t u16_dataLenBit);
 
-#endif /* __MCU_AT_CONSOLE_H */
+#endif /* __MCU_SPI_CONSOLE_H */
 
 /**
  * @}

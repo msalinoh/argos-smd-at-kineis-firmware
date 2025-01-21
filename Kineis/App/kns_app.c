@@ -352,7 +352,6 @@ void KNS_APP_gui_init(void *context)
 //	struct KNS_MAC_appEvt_t appEvt;
 
 	kns_assert(context != NULL); // context should contain pointer to UART handle
-
 	/** Initialize AT command manager */
 //#if defined(USE_UART_DRIVER)
 #if defined(USE_SPI_DRIVER)
@@ -382,15 +381,16 @@ void KNS_APP_gui_init(void *context)
 
 void KNS_APP_gui_loop(void)
 {
-	uint8_t *pu8_atcmd = NULL;
 
 	/** ---- Look for AT cmds ---- */
+#if defined(USE_SPI_DRIVER)
+	MGR_SPI_CMD_state_handler();
+	MGR_SPI_CMD_macEvtProcess();
+#else
+	uint8_t *pu8_atcmd = NULL;
 	pu8_atcmd = MGR_AT_CMD_popNextAt();
 	if (pu8_atcmd != NULL)
 		MGR_AT_CMD_decodeAt(pu8_atcmd);  // @todo: return code is not used ?
-#if defined(USE_SPI_DRIVER)
-	MGR_SPI_CMD_macEvtProcess();
-#else
 	MGR_AT_CMD_macEvtProcess();
 #endif
 }
