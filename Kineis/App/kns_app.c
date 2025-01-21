@@ -16,8 +16,12 @@
 #include "kns_q.h"
 #include "kns_mac.h"
 #include "kns_cfg.h"
+#ifdef USE_UART_DRIVER
 #include "mgr_at_cmd.h"
+#endif
+#ifdef USE_SPI_DRIVER
 #include "mgr_spi_cmd.h"
+#endif
 #include "kineis_sw_conf.h"
 #include KINEIS_SW_ASSERT_H
 #include "mgr_log.h"
@@ -352,6 +356,7 @@ void KNS_APP_gui_init(void *context)
 //	struct KNS_MAC_appEvt_t appEvt;
 
 	kns_assert(context != NULL); // context should contain pointer to UART handle
+
 	/** Initialize AT command manager */
 //#if defined(USE_UART_DRIVER)
 #if defined(USE_SPI_DRIVER)
@@ -386,7 +391,8 @@ void KNS_APP_gui_loop(void)
 #if defined(USE_SPI_DRIVER)
 	MGR_SPI_CMD_state_handler();
 	MGR_SPI_CMD_macEvtProcess();
-#else
+#endif
+#if defined(USE_UART_DRIVER)
 	uint8_t *pu8_atcmd = NULL;
 	pu8_atcmd = MGR_AT_CMD_popNextAt();
 	if (pu8_atcmd != NULL)

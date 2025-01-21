@@ -77,9 +77,10 @@
 #include "mgr_at_cmd.h" /* Needed for MGR_AT_CMD_isPendingAt()) in case of BAREMETAL OS to check no
                          * there is no pending AT cmd before entring low power mode
                          */
-#include "mgr_spi_cmd.h"
 #endif
+#ifdef USE_UART_DRIVER
 #include "mcu_at_console.h"
+#endif
 #endif
 #include "lpm.h"
 #include "mgr_log.h"
@@ -351,10 +352,10 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_LPUART1_UART_Init();
   MX_SUBGHZ_Init();
   MX_TIM16_Init();
   MX_RTC_Init();
-  MX_LPUART1_UART_Init();
   MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
 

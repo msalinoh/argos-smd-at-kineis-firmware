@@ -24,7 +24,7 @@ TARGET = argos-smd-at-kineis-firmware
 # building variables
 ######################################
 # debug build?
-DEBUG = 0
+DEBUG = 1
 VERBOSE = 0
 USE_BAREMETAL = 1
 
@@ -34,7 +34,7 @@ USE_BAREMETAL = 1
 APP = GUI
 
 # Select output port
-COMM = UART
+COMM = SPI
 
 
 # Select Kineis stack MAC profile. Can be:
@@ -122,7 +122,7 @@ Core/Src/subghz.c \
 Core/Src/tim.c \
 Core/Src/rtc.c \
 Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_rtc.c \
-Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_rtc_ex.c \
+Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_rtc_ex.c 
 
 C_SOURCES += \
 $(KINEIS_DIR)/Extdep/Conf/kns_assert.c \
@@ -136,10 +136,8 @@ $(KINEIS_DIR)/Extdep/Mcu/Src/mcu_aes.c \
 $(KINEIS_DIR)/Extdep/Mcu/Src/aes.c \
 $(KINEIS_DIR)/Extdep/Mcu/Src/mcu_nvm.c \
 $(KINEIS_DIR)/Extdep/Mcu/Src/mcu_tim.c \
-$(KINEIS_DIR)/App/Kineis_os/KNS_Q/Src/kns_q.c \
-$(KINEIS_DIR)/App/Kineis_os/KNS_OS/Src/kns_os.c \
-$(KINEIS_DIR)/App/kns_app.c \
 $(KINEIS_DIR)/App/Mcu/Src/mcu_at_console.c \
+$(KINEIS_DIR)/App/Mcu/Src/mcu_spi_driver.c \
 $(KINEIS_DIR)/App/Managers/MGR_SPI_CMD/Src/mgr_spi_cmd.c \
 $(KINEIS_DIR)/App/Managers/MGR_SPI_CMD/Src/mgr_spi_cmd_common.c \
 $(KINEIS_DIR)/App/Managers/MGR_SPI_CMD/Src/mgr_spi_cmd_list.c \
@@ -154,6 +152,9 @@ $(KINEIS_DIR)/App/Managers/MGR_AT_CMD/Src/mgr_at_cmd_list_general.c \
 $(KINEIS_DIR)/App/Managers/MGR_AT_CMD/Src/mgr_at_cmd_list_mac.c \
 $(KINEIS_DIR)/App/Managers/MGR_AT_CMD/Src/mgr_at_cmd_list_certif.c \
 $(KINEIS_DIR)/App/Managers/MGR_AT_CMD/Src/mgr_at_cmd_list_previpass.c \
+$(KINEIS_DIR)/App/Kineis_os/KNS_Q/Src/kns_q.c \
+$(KINEIS_DIR)/App/Kineis_os/KNS_OS/Src/kns_os.c \
+$(KINEIS_DIR)/App/kns_app.c \
 $(KINEIS_DIR)/App/Libs/STRUTIL/Src/strutil_lib.c \
 $(KINEIS_DIR)/App/Libs/USERDATA/Src/user_data.c \
 $(KINEIS_DIR)/Lpm/Src/mgr_lpm.c \
@@ -331,12 +332,12 @@ C_INCLUDES =  \
 -I$(KINEIS_DIR)/Extdep/Conf \
 -I$(KINEIS_DIR)/Extdep/Mcu/Inc \
 -I$(KINEIS_DIR)/Extdep/MGR_LOG/Inc \
+-I$(KINEIS_DIR)/App/Managers/MGR_AT_CMD/Inc \
+-I$(KINEIS_DIR)/App/Managers/MGR_SPI_CMD/Inc \
 -I$(KINEIS_DIR)/Appconf \
 -I$(KINEIS_DIR)/App/Kineis_os/KNS_Q/Inc \
 -I$(KINEIS_DIR)/App/Kineis_os/KNS_OS/Inc \
 -I$(KINEIS_DIR)/App/. \
--I$(KINEIS_DIR)/App/Managers/MGR_AT_CMD/Inc \
--I$(KINEIS_DIR)/App/Managers/MGR_SPI_CMD/Inc \
 -I$(KINEIS_DIR)/App/Mcu/Inc \
 -I$(KINEIS_DIR)/App/Libs/STRUTIL/Inc \
 -I$(KINEIS_DIR)/App/Libs/USERDATA/Inc \
@@ -345,6 +346,15 @@ C_INCLUDES =  \
 
 C_INCLUDES += #$(libknsrf_wl_INCLUDES)
 
+ifeq ($(COMM),UART)
+C_DEFS +=  \
+-DUSE_UART_DRIVER
+endif
+
+ifeq ($(COMM),SPI)
+C_DEFS +=  \
+-DUSE_SPI_DRIVER
+endif
 
 # compile gcc flags
 ASFLAGS += $(MCU) $(AS_DEFS) $(AS_INCLUDES) $(OPT) -Wall -Wextra -Wno-unused-parameter -Wimplicit-fallthrough=1 -Werror -Wtype-limits -fdata-sections -Wwrite-strings -ffunction-sections -fstack-usage
