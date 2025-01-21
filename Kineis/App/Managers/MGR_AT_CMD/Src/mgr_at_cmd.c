@@ -231,11 +231,6 @@ bool MGR_AT_CMD_start(void *context)
 	return MCU_AT_CONSOLE_register(context, MGR_AT_CMD_parseStreamCb);
 
 }
-//bool MGR_AT_SPI_CMD_start(void *context)
-//{
-//	return MCU_AT_SPI_register(context, MGR_AT_CMD_parseStreamCb);
-//
-//}
 
 bool MGR_AT_CMD_isPendingAt(void)
 {
