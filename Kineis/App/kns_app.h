@@ -48,7 +48,6 @@
 #define KNS_APP_H
 
 /* Functions prototypes ------------------------------------------------------*/
-
 /** @brief Init function for the standalone application SW using the Kineis stack
  *
  * It initializes the Kineis MAC protocol

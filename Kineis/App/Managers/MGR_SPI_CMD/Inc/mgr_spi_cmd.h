@@ -35,60 +35,10 @@ extern "C" {
 #include "kns_types.h"
 #include "kineis_sw_conf.h" // get ERROR_RETURN_T types
 #include "mcu_spi_driver.h"
+#include "mgr_spi_cmd_list.h"
 
 
-typedef enum {
-	CMD_UNKNOWN        = 0x00,  // Cmd unknoiwn
-    CMD_READ           = 0x01,  // Ping command
-    CMD_PING           = 0x02,  // Ping command
-    CMD_MAC_STATUS     = 0x03,  // Read MAC status
-    CMD_SPI_STATUS     = 0x04,  // Read SPI status
-    CMD_READ_VERSION   = 0x05,  // Read version
-    CMD_READ_FIRMWARE  = 0x06,  // Read firmware
-    CMD_READ_ADDR      = 0x07,  // Read address
-    CMD_READ_ID        = 0x08,  // Read ID
-    CMD_READ_SN        = 0x09,  // Read serial number
-    CMD_READ_RCONF     = 0x0A,  // Read configuration
-    CMD_WRITE_RCONF_REQ= 0x0B,  // Write configuration
-    CMD_WRITE_RCONF    = 0x0C,  // Write configuration
-    CMD_SAVE_RCONF     = 0x0D,  // Save configuration
-    CMD_READ_KMAC      = 0x0E,  // Reload configuration
-    CMD_WRITE_KMAC_REQ = 0x0F,  // Reload configuration
-    CMD_WRITE_KMAC     = 0x10,  // Reload configuration
-    CMD_READ_LPM       = 0x11,  // Read low power mode
-    CMD_WRITE_LPM_REQ  = 0x12,  // Set low power mode
-    CMD_WRITE_LPM      = 0x13,  // Set low power mode
-    CMD_WRITE_TX_REQ   = 0x14,  // Read low power mode
-    CMD_WRITE_TX_SIZE  = 0x15,  // Read low power mode
-    CMD_WRITE_TX       = 0x16,  // Set low power mode
-	CMD_READ_CW        = 0x17,  // Set low power mode
-	CMD_WRITE_CW_REQ   = 0x18,  // Read low power mode
-	CMD_WRITE_CW       = 0x19,  // Set low power mode
-	CMD_READ_PREPASSEN        = 0x1A,  // Set low power mode
-	CMD_WRITE_PREPASSEN_REQ   = 0x1B,  // Read low power mode
-	CMD_WRITE_PREPASSEN       = 0x1C,  // Set low power mode
-	CMD_READ_UDATE        = 0x1D,  // Set low power mode
-	CMD_WRITE_UDATE_REQ   = 0x1E,  // Read low power mode
-	CMD_WRITE_UDATE       = 0x1F,  // Set low power mode
-
-} CmdValue;
-
-typedef enum {
-    MAC_OK            = 0x01,
-    MAC_TX_DONE       = 0x02,
-    MAC_TX_SIZE_ERROR = 0x03,
-    MAC_TXACK_DONE    = 0x04,
-    MAC_TX_TIMEOUT    = 0x05,
-    MAC_TXACK_TIMEOUT = 0x06,
-    MAC_RX_ERROR      = 0x07,
-    MAC_RX_TIMEOUT    = 0x08,
-    MAC_ERROR         = 0x10
-} MACStatusFlags;
-
-extern const uint8_t spicmd_version;
-extern uint16_t txBytesWaiting;
-
-
+extern CmdValue cmdInProgress;
 /*Functions ------------------------------------------------------------------*/
 
 
@@ -122,16 +72,6 @@ bool MGR_SPI_CMD_start(void *context);
 //uint8_t *MGR_AT_CMD_popNextAt(void);
 
 /**
- * @brief Decode and exectue AT cmd if valid
- *
- * @param[in] pu8_atcmd pointer to AT command
- *
- * @retval true if command was decoded and correctly executed, false otherwise
- */
-//bool MGR_AT_CMD_decodeAt(uint8_t *pu8_atcmd);
-
-int8_t bMGR_SPI_CMD_logFailedMsg(enum ERROR_RETURN_T eErrorType, SPI_Buffer *tx);
-/**
  * @brief Fct used to retreive and process event coming from kineis stack as answers to AT commands
  *
  * Typically, this is about processing TX events such as TX-done, TX-timeout, RX-timeout in case of
@@ -141,6 +81,7 @@ int8_t bMGR_SPI_CMD_logFailedMsg(enum ERROR_RETURN_T eErrorType, SPI_Buffer *tx)
  */
 enum KNS_status_t MGR_SPI_CMD_macEvtProcess(void);
 
+void MGR_SPI_CMD_state_handler(void);
 #endif /* __MGR_SPI_CMD_H */
 
 /**
