@@ -28,13 +28,9 @@
 #include "mcu_spi_driver.h"
 
 /* Defines -------------------------------------------------------------------*/
-#if defined(STM32WLE5xx) || defined(STM32WL55xx)
-#define USART_ISR_RXNE USART_ISR_RXNE_RXFNE
-#endif
 
 
 /* Variables -----------------------------------------------------------------*/
-
 static SPI_HandleTypeDef *hspi_handle = NULL;
 
 static uint8_t spiTxBuf[TXBUF_SIZE];
@@ -84,29 +80,21 @@ void HAL_SPI_TxCpltCallback(SPI_HandleTypeDef *hspi) {
     }
 }
 
-HAL_StatusTypeDef MCU_SPI_DRIVER_resp()
+HAL_StatusTypeDef MCU_SPI_DRIVER_writeread()
 {
 	HAL_StatusTypeDef ret = HAL_OK;
 	// waiting Read request
 	ret = HAL_SPI_TransmitReceive_IT(hspi_handle, txBuf.data, rxBuf.data, txBuf.next_req);
 	return ret;
 }
-HAL_StatusTypeDef MCU_SPI_DRIVER_wait_next()
+
+HAL_StatusTypeDef MCU_SPI_DRIVER_read()
 {
-	HAL_StatusTypeDef ret = HAL_OK;
-	if(rxBuf.next_req == 1)
-	{
-		ret = HAL_SPI_Receive_IT(hspi_handle, rxBuf.data, rxBuf.next_req);
-		ret = HAL_OK;
-	}
-	if(rxBuf.next_req > 0)
-	{
-		ret = HAL_SPI_Receive_IT(hspi_handle, rxBuf.data, rxBuf.next_req);
-	} else {
+	if(rxBuf.next_req < 1) {
 		MGR_LOG_DEBUG("%s:: Waiting RX is %u should be greater than 0\n\r",__func__, rxBuf.next_req);
-		ret = HAL_ERROR;
+		rxBuf.next_req = 1; // next request forced to 1
 	}
-	return ret;
+	return(HAL_SPI_Receive_IT(hspi_handle, rxBuf.data, rxBuf.next_req));
 }
 
 

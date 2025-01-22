@@ -116,7 +116,7 @@ bool bMGR_SPI_CMD_WRITETXREQ_cmd(SPI_Buffer *rx, SPI_Buffer *tx)
 	tx->data[0] = rx->data[0];
 	rx->next_req = CMD_WRITETX_WAIT_LEN; // Waiting TX_Size req
 	userTxPayloadSize = 0;
-	ret = bMGR_SPI_DRIVER_wait_next();
+	ret = bMGR_SPI_DRIVER_read();
 	if (ret == HAL_OK)
 	{
 		return true;
@@ -139,7 +139,7 @@ bool bMGR_SPI_CMD_WRITETXSIZE_cmd(SPI_Buffer *rx, SPI_Buffer *tx)
 	if(userTxPayloadSize <= (USERDATA_TX_PAYLOAD_MAX_SIZE))
 	{
 		rx->next_req = userTxPayloadSize + 1; // Command + user mesage to send
-		ret = bMGR_SPI_DRIVER_wait_next();
+		ret = bMGR_SPI_DRIVER_read();
 	} else {
 		macStatus = MAC_TX_SIZE_ERROR;
 		return bMGR_SPI_CMD_logFailedMsg(ERROR_PARAMETER_FORMAT, tx);
@@ -236,7 +236,7 @@ bool bMGR_SPI_CMD_WRITETX_cmd(SPI_Buffer *rx, SPI_Buffer *tx)
 	tx->data[0] = 1;
 	tx->next_req = 1;
 	rx->next_req = 1;
-	ret = bMGR_SPI_DRIVER_wait_next();
+	ret = bMGR_SPI_DRIVER_read();
 
 	if (ret == HAL_OK)
 	{

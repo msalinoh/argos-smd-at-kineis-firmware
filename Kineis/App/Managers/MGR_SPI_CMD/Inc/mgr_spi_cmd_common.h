@@ -61,8 +61,8 @@ extern MACStatus macStatus;
  */
 bool bMGR_SPI_CMD_logFailedMsg(enum ERROR_RETURN_T eErrorType, SPI_Buffer *tx);
 
-uint8_t bMGR_SPI_DRIVER_wait_next();
-uint8_t bMGR_SPI_DRIVER_resp();
+uint8_t bMGR_SPI_DRIVER_read();
+uint8_t bMGR_SPI_DRIVER_writeread();
 #endif /* __MGR_SPI_CMD_COMMON_H */
 
 /**
