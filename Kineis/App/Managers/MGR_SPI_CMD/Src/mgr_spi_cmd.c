@@ -38,15 +38,8 @@
 SpiState spiState = SPICMD_INIT;
 MACStatus macStatus = MAC_OK;
 CmdValue cmdInProgress = CMD_NONE;
-//spiState state = INIT;
+
 /* Private functions ----------------------------------------------------------------------------*/
-bool handleInit();
-bool handleIdle();
-bool handleProcessCmd();
-bool handleWaitingRx();
-bool handleWaitingTx();
-bool handleWaitingMacEvt();
-bool handleError();
 /**
  * @brief
  *
@@ -77,18 +70,19 @@ static int8_t MGR_SPI_CMD_parseStreamCb(SPI_Buffer *rx, SPI_Buffer *tx)
 
 
 
-static uint8_t MGR_SPI_CMD_process_cmd(uint8_t cmd)
+static bool MGR_SPI_CMD_process_cmd(uint8_t cmd)
 {
 	bool ret = true;
 
 	if ((cmd > 0) && cmd < SPICMD_MAX_COUNT)
 	{
-		if (cas_spicmd_list_array[cmdInProgress].next_cmd != cmd)
-		{
-			MGR_LOG_DEBUG("Command %u was waiting but received %u, previous command canceled", 
-				cas_spicmd_list_array[cmd].next_cmd, 
-				cmd);
-		}
+//		if ((cas_spicmd_list_array[cmdInProgress].next_cmd != cmd) &&
+//				(cas_spicmd_list_array[cmdInProgress].next_cmd != CMD_NONE))
+//		{
+//			MGR_LOG_DEBUG("Command %u was waiting but received %u, previous command canceled\r\n",
+//				cas_spicmd_list_array[cmd].next_cmd,
+//				cmd);
+//		}
 
 		ret = cas_spicmd_list_array[cmd].f_ht_cmd_fun_proc(&rxBuf, &txBuf);
 
@@ -106,9 +100,7 @@ bool MGR_SPI_CMD_start(void *context)
 {
 	//spi handler stored and receive interrupt one byte running
 	bool ret = MCU_SPI_DRIVER_register(context, MGR_SPI_CMD_parseStreamCb);
-	if (ret) {
-		spiState = SPICMD_IDLE;
-	} else {
+	if (!ret) {
 		spiState = SPICMD_ERROR;
 	}
 	return ret;
@@ -116,10 +108,12 @@ bool MGR_SPI_CMD_start(void *context)
 
 
 void MGR_SPI_CMD_state_handler() {
-   switch (spiState) {
+	bool ret = true;
+   	switch (spiState) {
        case SPICMD_INIT:
 	   	   // Only in case of restart service and spi ptr should not be changed.
-		   if (handleInit())
+    	   MGR_LOG_DEBUG("SPI_CMD_INIT\n\r");
+		   if (MGR_SPI_CMD_start(NULL))
 		   {
 				spiState = SPICMD_IDLE;
 		   } else {
@@ -127,32 +121,75 @@ void MGR_SPI_CMD_state_handler() {
 		   }
            break;
        case SPICMD_IDLE:
+    	   MGR_LOG_DEBUG("SPI_CMD_IDLE\n\r");
     	   // start RX IT for waiting command:
-
+		   rxBuf.next_req = 1;
+		   cmdInProgress = CMD_NONE;
+		   HAL_StatusTypeDef res = bMGR_SPI_DRIVER_read();
+		   if (res != HAL_OK)
+		   {
+			    MGR_LOG_DEBUG("%s:: Failed to start RX IT, resetting...\n\r", __func__);
+				spiState = SPICMD_ERROR;	
+		   }
            break;
        case SPICMD_PROCESS_CMD:
-			MGR_SPI_CMD_process_cmd(cmdInProgress);
+    	    MGR_LOG_DEBUG("SPI_CMD_PROCESSCMD\n\r");
+			ret = MGR_SPI_CMD_process_cmd(cmdInProgress);
+			if (!ret)
+			{
+				MGR_LOG_DEBUG("%s:: failed to process cmd %u\n\r", __func__, cmdInProgress);		
+				spiState = SPICMD_IDLE;
+			}
            break;
        case SPICMD_WAITING_RX:
+    	   //add timeout if req is >1, don't block the driver.
+    	   if(rxBuf.next_req > 1)
+    	   {
+				MGR_LOG_DEBUG("SPI_CMD_WAITING_RX\n\r");
+    		   if (startTickTimeout == 0)
+    		   {
+    			   startTickTimeout = HAL_GetTick();
+    		   }
+
+    		   if ((HAL_GetTick() - startTickTimeout) > CMD_IT_TIMEOUT)
+			   {
+				   MGR_LOG_DEBUG("%s::SPICMD_WAITING_RX::Read timeout occurred!\n\r", __func__);
+				   spiState = SPICMD_ERROR;
+			   }
+    	   }
            break;
        case SPICMD_WAITING_TX:
+    	   if(txBuf.next_req > 1)
+    	   {
+			MGR_LOG_DEBUG("SPI_CMD_WAITING_TX\n\r");
+    		   if (startTickTimeout == 0)
+    		   {
+    			   startTickTimeout = HAL_GetTick();
+    		   }
+
+    		   if ((HAL_GetTick() - startTickTimeout) > CMD_IT_TIMEOUT)
+			   {
+				   MGR_LOG_DEBUG("%s::SPICMD_WAITING_TX::Write timeout occurred!\n\r", __func__);
+				   spiState = SPICMD_ERROR;
+			   }
+    	   }
            break;
        case SPICMD_ERROR:
+		    MGR_LOG_DEBUG("%s:: SPI error, resetting...\n\r", __func__);
+		    ret = MCU_SPI_DRIVER_reset(NULL);
+			if (!ret)
+			{
+				MGR_LOG_DEBUG("%s:: failed to reset %u\n\r", __func__, cmdInProgress);
+			}
            break;
        default:
-           printf("Unknown spiState\n");
+           MGR_LOG_DEBUG("%s:: Unknown spiState: %u\n\r", __func__, spiState);
+		   spiState = SPICMD_ERROR;
            break;
    }
 }
 
 
-bool handleInit() 
-{
-	return (MGR_SPI_CMD_start(NULL)); // Pass NULL since the spi handle should already be initialized and passed in.
-}
-
-
-//__attribute((__weak__))
 enum KNS_status_t MGR_SPI_CMD_macEvtProcess(void)
 {
 	/** Empty weak core, can be overwritten, depending on AT cmd processed */

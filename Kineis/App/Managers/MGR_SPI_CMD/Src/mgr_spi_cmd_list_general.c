@@ -295,6 +295,7 @@ bool bMGR_SPI_CMD_READLPM_cmd(SPI_Buffer *rx, SPI_Buffer *tx)
 
 	tx->data[0] = lpm_config.allowedLPMbitmap;
 	tx->next_req = 1;
+	rx->next_req = 1;
 	ret = bMGR_SPI_DRIVER_writeread();
 
 	if (ret == HAL_OK)

@@ -37,7 +37,7 @@ extern "C" {
 #include "mcu_spi_driver.h"
 #include "mgr_spi_cmd_list.h"
 
-
+#define CMD_IT_TIMEOUT 1000
 extern CmdValue cmdInProgress;
 /*Functions ------------------------------------------------------------------*/
 

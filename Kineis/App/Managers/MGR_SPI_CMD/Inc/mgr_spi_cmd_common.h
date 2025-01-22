@@ -26,17 +26,6 @@ extern "C" {
 #include "mcu_spi_driver.h"
 #include "kns_mac.h"
 /* Defines ------------------------------------------------------------------*/
-typedef enum {
-    SPICMD_INIT,                // Register SPI command manager
-    SPICMD_IDLE,                // Idle waiting TX request
-    SPICMD_PROCESS_CMD,         // Process incoming command
-    SPICMD_WAITING_RX,          // Waiting for RX data with specified length
-    SPICMD_WAITING_TX,          // Waiting for TX data to be sent
-    SPICMD_WAITING_MAC_EVT,     // Waiting for MAC event (e.g., TX done, RX done)
-    SPICMD_ERROR                // Error state
-} SpiState;
-
-extern SpiState spiState;
 
 typedef enum {
     MAC_OK            = 0x01,

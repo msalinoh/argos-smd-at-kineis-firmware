@@ -63,6 +63,20 @@ typedef struct {
 
 extern SPI_Buffer rxBuf;
 extern SPI_Buffer txBuf;
+
+typedef enum {
+    SPICMD_INIT,                // Register SPI command manager
+    SPICMD_IDLE,                // Idle waiting TX request
+    SPICMD_PROCESS_CMD,         // Process incoming command
+    SPICMD_WAITING_RX,          // Waiting for RX data with specified length
+    SPICMD_WAITING_TX,          // Waiting for TX data to be sent
+    SPICMD_WAITING_MAC_EVT,     // Waiting for MAC event (e.g., TX done, RX done)
+    SPICMD_ERROR                // Error state
+} SpiState;
+
+extern SpiState spiState;
+
+extern uint32_t startTickTimeout;
 /* Functions prototypes ------------------------------------------------------*/
 
 /** @brief Start AT CMD console for AT cmd reception
@@ -108,6 +122,8 @@ HAL_StatusTypeDef MCU_SPI_DRIVER_writeread();
  * @param[in] u16_dataLenBit: length of data buffer in bit
  */
 void MCU_SPI_DRIVER_send_dataBuf(uint8_t *pu8_inDataBuff, uint16_t u16_dataLenBit);
+
+bool MCU_SPI_DRIVER_reset(SPI_HandleTypeDef *hspi);
 
 #endif /* __MCU_SPI_CONSOLE_H */
 

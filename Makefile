@@ -25,7 +25,7 @@ TARGET = argos-smd-at-kineis-firmware
 ######################################
 # debug build?
 DEBUG = 1
-VERBOSE = 0
+VERBOSE = 1
 USE_BAREMETAL = 1
 
 # Select APPlication. Can be:
