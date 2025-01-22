@@ -40,7 +40,7 @@ bool bMGR_SPI_CMD_READKMAC_cmd(SPI_Buffer *rx, SPI_Buffer *tx)
 	tx->data[0] = prfl_info.id;
 	memcpy(&(tx->data[1]), prflCfgPtr, sizeof(prfl_info) - 1);
 	tx->next_req = sizeof(prfl_info);
-	ret = bMGR_SPI_DRIVER_resp();
+	ret = bMGR_SPI_DRIVER_writeread();
 	if (ret == HAL_OK)
 	{
 		return true;
@@ -54,7 +54,7 @@ bool bMGR_SPI_CMD_WRITEKMACREQ_cmd(SPI_Buffer *rx, SPI_Buffer *tx)
 	HAL_StatusTypeDef ret = HAL_OK;
 	tx->data[0] = rx->data[0];
 	rx->next_req = CMD_WRITEKMAC_WAIT_LEN; // Only waiting profile id for the moment
-	ret = bMGR_SPI_DRIVER_wait_next();
+	ret = bMGR_SPI_DRIVER_read();
 	if (ret == HAL_OK)
 	{
 		return true;
@@ -89,7 +89,7 @@ bool bMGR_SPI_CMD_WRITEKMAC_cmd(SPI_Buffer *rx, SPI_Buffer *tx)
 	}
 
 	rx->next_req = 1;
-	ret = bMGR_SPI_DRIVER_wait_next();
+	ret = bMGR_SPI_DRIVER_read();
 	if (ret == HAL_OK)
 	{
 		return true;

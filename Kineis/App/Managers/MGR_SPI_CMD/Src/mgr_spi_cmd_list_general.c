@@ -40,7 +40,7 @@ bool bMGR_SPI_CMD_READ_cmd(SPI_Buffer *rx, SPI_Buffer *tx)
 	tx->data[0] = 1;
 	tx->next_req = 1;
 	rx->next_req = 1;
-	ret = bMGR_SPI_DRIVER_resp();
+	ret = bMGR_SPI_DRIVER_writeread();
 
 	if (ret == HAL_OK)
 	{
@@ -57,7 +57,7 @@ bool bMGR_SPI_CMD_PING_cmd(SPI_Buffer *rx, SPI_Buffer *tx)
 	tx->data[0] = 1;
 	tx->next_req = 1;
 	rx->next_req = 1;
-	ret = bMGR_SPI_DRIVER_resp();
+	ret = bMGR_SPI_DRIVER_writeread();
 
 	if (ret == HAL_OK)
 	{
@@ -74,7 +74,7 @@ bool bMGR_SPI_CMD_MACSTATUS_cmd(SPI_Buffer *rx, SPI_Buffer *tx)
 	tx->data[0] = macStatus;
 	tx->next_req = 1;
 	rx->next_req = 1;
-	ret = bMGR_SPI_DRIVER_resp();
+	ret = bMGR_SPI_DRIVER_writeread();
 	//Reset tx/rx state if MAC_OK
 	if (ret == HAL_OK)
 	{
@@ -93,7 +93,7 @@ bool bMGR_SPI_CMD_SPISTATE_cmd(SPI_Buffer *rx, SPI_Buffer *tx)
 	tx->data[0] = spiState;
 	tx->next_req = 1;
 	rx->next_req = 1;
-	ret = bMGR_SPI_DRIVER_resp();
+	ret = bMGR_SPI_DRIVER_writeread();
 	//Reset tx/rx state if MAC_OK
 	if (ret == HAL_OK)
 	{
@@ -110,7 +110,7 @@ bool bMGR_SPI_CMD_READSPIVERSION_cmd(SPI_Buffer *rx, SPI_Buffer *tx)
 	tx->data[0] = spicmd_version;
 	tx->next_req = 1;
 	rx->next_req = 1;
-	ret = bMGR_SPI_DRIVER_resp();
+	ret = bMGR_SPI_DRIVER_writeread();
 	//Reset tx/rx state if MAC_OK
 	if (ret == HAL_OK)
 	{
@@ -126,7 +126,7 @@ bool bMGR_SPI_CMD_READFIRMWARE_cmd(SPI_Buffer *rx, SPI_Buffer *tx)
 
 	memcpy(&tx->data[0], uc_fw_vers_commit_id, FW_VERSION_LENGTH);  // Copy the entire fixed-length string
 	tx->next_req = FW_VERSION_LENGTH;  // Total bytes to send
-	ret = bMGR_SPI_DRIVER_resp();
+	ret = bMGR_SPI_DRIVER_writeread();
 	//Reset tx/rx state if MAC_OK
 	if (ret == HAL_OK)
 	{
@@ -147,7 +147,7 @@ bool bMGR_SPI_CMD_READADDRESS_cmd(SPI_Buffer *rx, SPI_Buffer *tx)
 	}
 	memcpy(&tx->data[0], dev_addr, DEVICE_ADDR_LENGTH);
 	tx->next_req = DEVICE_ADDR_LENGTH;
-	ret = bMGR_SPI_DRIVER_resp();
+	ret = bMGR_SPI_DRIVER_writeread();
 	//Reset tx/rx state if MAC_OK
 	if (ret == HAL_OK)
 	{
@@ -172,7 +172,7 @@ bool bMGR_SPI_CMD_READID_cmd(SPI_Buffer *rx, SPI_Buffer *tx)
 	tx->next_req = sizeof(dev_id);
 	memcpy(&tx->data[0], &dev_id, tx->next_req);
 
-	ret = bMGR_SPI_DRIVER_resp();
+	ret = bMGR_SPI_DRIVER_writeread();
 	//Reset tx/rx state if MAC_OK
 	if (ret == HAL_OK)
 	{
@@ -195,7 +195,7 @@ bool bMGR_SPI_CMD_READSN_cmd(SPI_Buffer *rx, SPI_Buffer *tx)
 	memcpy(&tx->data[0], dev_sn, sizeof(dev_sn));  // Copy the entire fixed-length string
 	tx->next_req = sizeof(dev_sn);  // Total bytes to send
 
-	ret = bMGR_SPI_DRIVER_resp();
+	ret = bMGR_SPI_DRIVER_writeread();
 	//Reset tx/rx state if MAC_OK
 	if (ret == HAL_OK)
 	{
@@ -218,7 +218,7 @@ bool bMGR_SPI_CMD_READRCONF_cmd(SPI_Buffer *rx, SPI_Buffer *tx)
 	memcpy(&tx->data[0], &radio_cfg, sizeof(radio_cfg));  // Copy the entire fixed-length string
 	tx->next_req = sizeof(radio_cfg);  // Total bytes to send
 
-	ret = bMGR_SPI_DRIVER_resp();
+	ret = bMGR_SPI_DRIVER_writeread();
 	//Reset tx/rx state if MAC_OK
 	if (ret == HAL_OK)
 	{
@@ -234,7 +234,7 @@ bool bMGR_SPI_CMD_WRITERCONFREQ_cmd(SPI_Buffer *rx, SPI_Buffer *tx)
 	HAL_StatusTypeDef ret = HAL_OK;
 	tx->data[0] = rx->data[0];
 	rx->next_req = CMD_WRITERCONF_WAIT_LEN;
-	ret = bMGR_SPI_DRIVER_wait_next();
+	ret = bMGR_SPI_DRIVER_read();
 
 	//Reset tx/rx state if MAC_OK
 	if (ret == HAL_OK)
@@ -258,7 +258,7 @@ bool bMGR_SPI_CMD_WRITERCONF_cmd(SPI_Buffer *rx, SPI_Buffer *tx)
 		return bMGR_AT_CMD_logFailedMsg(ERROR_INVALID_ID);
 
 	rx->next_req = 1;
-	ret = bMGR_SPI_DRIVER_wait_next();
+	ret = bMGR_SPI_DRIVER_read();
 
 	//Reset tx/rx state if MAC_OK
 	if (ret == HAL_OK)
@@ -278,7 +278,7 @@ bool bMGR_SPI_CMD_SAVERCONF_cmd(SPI_Buffer *rx, SPI_Buffer *tx)
 		return bMGR_SPI_CMD_logFailedMsg(ERROR_INVALID_ID, tx);
 	tx->data[0] = 1;
 	tx->next_req = 1;
-	ret = bMGR_SPI_DRIVER_resp();
+	ret = bMGR_SPI_DRIVER_writeread();
 
 	//Reset tx/rx state if MAC_OK
 	if (ret == HAL_OK)
@@ -295,7 +295,7 @@ bool bMGR_SPI_CMD_READLPM_cmd(SPI_Buffer *rx, SPI_Buffer *tx)
 
 	tx->data[0] = lpm_config.allowedLPMbitmap;
 	tx->next_req = 1;
-	ret = bMGR_SPI_DRIVER_resp();
+	ret = bMGR_SPI_DRIVER_writeread();
 
 	if (ret == HAL_OK)
 	{
@@ -310,7 +310,7 @@ bool bMGR_SPI_CMD_WRITELPMREQ_cmd(SPI_Buffer *rx, SPI_Buffer *tx)
 	HAL_StatusTypeDef ret = HAL_OK;
 	txBuf.data[0] = rx->data[0];
 	rxBuf.next_req = CMD_WRITELPM_WAIT_LEN; // Only waiting profile id for the moment
-	ret = bMGR_SPI_DRIVER_wait_next();
+	ret = bMGR_SPI_DRIVER_read();
 	//Reset tx/rx state if MAC_OK
 	if (ret == HAL_OK)
 	{
@@ -340,7 +340,7 @@ bool bMGR_SPI_CMD_WRITELPM_cmd(SPI_Buffer *rx, SPI_Buffer *tx)
 	lpm_config.allowedLPMbitmap = lpm;
 	tx->data[0] = rx->data[0];
 	rx->next_req = 1; // Only waiting profile id for the moment
-	ret = bMGR_SPI_DRIVER_wait_next();
+	ret = bMGR_SPI_DRIVER_read();
 
 	//Reset tx/rx state if MAC_OK
 	if (ret == HAL_OK)

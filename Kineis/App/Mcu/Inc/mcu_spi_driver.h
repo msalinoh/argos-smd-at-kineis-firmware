@@ -100,8 +100,8 @@ bool MCU_SPI_DRIVER_register(void *context,
  */
 void MCU_SPI_DRIVER_send(const char *format, ...);
 
-HAL_StatusTypeDef MCU_SPI_DRIVER_wait_next();
-HAL_StatusTypeDef MCU_SPI_DRIVER_resp();
+HAL_StatusTypeDef MCU_SPI_DRIVER_read();
+HAL_StatusTypeDef MCU_SPI_DRIVER_writeread();
 /** @brief Write content of a binary data buffer as AT cmd response
  *
  * @param[in] pu8_inDataBuff: pointer to data buffer

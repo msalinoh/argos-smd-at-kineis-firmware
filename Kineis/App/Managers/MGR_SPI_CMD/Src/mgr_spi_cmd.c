@@ -80,50 +80,23 @@ static int8_t MGR_SPI_CMD_parseStreamCb(SPI_Buffer *rx, SPI_Buffer *tx)
 static uint8_t MGR_SPI_CMD_process_cmd(uint8_t cmd)
 {
 	bool ret = true;
+
 	if ((cmd > 0) && cmd < SPICMD_MAX_COUNT)
 	{
+		if (cas_spicmd_list_array[cmdInProgress].next_cmd != cmd)
+		{
+			MGR_LOG_DEBUG("Command %u was waiting but received %u, previous command canceled", 
+				cas_spicmd_list_array[cmd].next_cmd, 
+				cmd);
+		}
+
 		ret = cas_spicmd_list_array[cmd].f_ht_cmd_fun_proc(&rxBuf, &txBuf);
 
 	} else {
 		MGR_LOG_DEBUG("NONE/Unknown command %u", cmd);
 		rxBuf.next_req = 1;
-		bMGR_SPI_DRIVER_wait_next();
+		bMGR_SPI_DRIVER_read();
 	}
-//			break;
-//		case CMD_READ_CW:
-//			MGR_LOG_DEBUG("Handling READ_CW command : TBD\n\r");
-//			break;
-//		case CMD_WRITE_CW_REQ:
-//			MGR_LOG_DEBUG("Handling WRITE_CW_REQ command : TBD\n\r");
-//			break;
-//		case CMD_WRITE_CW:
-//			MGR_LOG_DEBUG("Handling WRITE_CW command : TBD\n\r");
-//			break;
-//		case CMD_READ_PREPASSEN:
-//			MGR_LOG_DEBUG("Handling READ_PREPASSEN command : TBD\n\r");
-//			break;
-//		case CMD_WRITE_PREPASSEN_REQ:
-//			MGR_LOG_DEBUG("Handling WRITE_PREPASSEN_REQ command : TBD\n\r");
-//			break;
-//		case CMD_WRITE_PREPASSEN:
-//			MGR_LOG_DEBUG("Handling WRITE_CW command : TBD\n\r");
-//			break;
-//		case CMD_READ_UDATE:
-//			MGR_LOG_DEBUG("Handling READ_UDATE command : TBD\n\r");
-//			break;
-//		case CMD_WRITE_UDATE_REQ:
-//			MGR_LOG_DEBUG("Handling WRITE_UDATE_REQ command : TBD\n\r");
-//			break;
-//		case CMD_WRITE_UDATE:
-//			MGR_LOG_DEBUG("Handling WRITE_UDATE command : TBD\n\r");
-//			break;
-//		default:
-//			MGR_LOG_DEBUG("Unknown command: 0x%02X\n\r", cmd);
-//			rxBuf.next_req = 1;
-//			ret = bMGR_SPI_DRIVER_wait_next(cmd);
-//			break;
-//	}
-
 	return (ret);
 }
 

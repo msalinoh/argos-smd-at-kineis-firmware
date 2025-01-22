@@ -144,6 +144,8 @@ $(KINEIS_DIR)/App/Managers/MGR_SPI_CMD/Src/mgr_spi_cmd_list.c \
 $(KINEIS_DIR)/App/Managers/MGR_SPI_CMD/Src/mgr_spi_cmd_list_user_data.c \
 $(KINEIS_DIR)/App/Managers/MGR_SPI_CMD/Src/mgr_spi_cmd_list_general.c \
 $(KINEIS_DIR)/App/Managers/MGR_SPI_CMD/Src/mgr_spi_cmd_list_mac.c \
+$(KINEIS_DIR)/App/Managers/MGR_SPI_CMD/Src/mgr_spi_cmd_list_certif.c \
+$(KINEIS_DIR)/App/Managers/MGR_SPI_CMD/Src/mgr_spi_cmd_list_previpass.c \
 $(KINEIS_DIR)/App/Managers/MGR_AT_CMD/Src/mgr_at_cmd.c \
 $(KINEIS_DIR)/App/Managers/MGR_AT_CMD/Src/mgr_at_cmd_common.c \
 $(KINEIS_DIR)/App/Managers/MGR_AT_CMD/Src/mgr_at_cmd_list.c \
