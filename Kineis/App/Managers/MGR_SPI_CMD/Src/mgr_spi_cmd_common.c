@@ -30,7 +30,6 @@ uint8_t bMGR_SPI_DRIVER_read()
 {
 	uint8_t ret = 0;
 	ret = MCU_SPI_DRIVER_read();
-	spiState = SPICMD_IDLE;
 	return ret;
 
 }
@@ -38,7 +37,6 @@ uint8_t bMGR_SPI_DRIVER_writeread()
 {
 	uint8_t ret = 0;
 	ret = MCU_SPI_DRIVER_writeread();
-	spiState = SPICMD_IDLE;
 	return ret;
 
 }
