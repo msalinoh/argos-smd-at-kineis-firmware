@@ -77,9 +77,11 @@ void HAL_SPI_TxRxCpltCallback(SPI_HandleTypeDef *hspi) {
     }
 }
 
+// Callback not used
 void HAL_SPI_TxCpltCallback(SPI_HandleTypeDef *hspi) {
     if (hspi->Instance == SPI1) {
-        MGR_LOG_DEBUG("TX completed\n\r");
+        MGR_LOG_DEBUG("TX completed\r\n");
+		startTickTimeout = 0;
 		startTickTimeout = 0;
     } else {
 		MGR_LOG_DEBUG("%s::ERROR SPI interrupt from other SPI instance\r\n", __func__);
@@ -103,7 +105,7 @@ HAL_StatusTypeDef MCU_SPI_DRIVER_writeread()
 HAL_StatusTypeDef MCU_SPI_DRIVER_read()
 {
 	if(rxBuf.next_req < 1) {
-		MGR_LOG_DEBUG("%s:: Waiting RX is %u should be greater than 0\n\r",__func__, rxBuf.next_req);
+		MGR_LOG_DEBUG("%s:: Waiting RX is %u should be greater than 0\r\n",__func__, rxBuf.next_req);
 		rxBuf.next_req = 1; // next request forced to 1
 	}
 	HAL_StatusTypeDef ret = HAL_SPI_Receive_IT(hspi_handle, rxBuf.data, rxBuf.next_req);
@@ -120,14 +122,14 @@ HAL_StatusTypeDef MCU_SPI_DRIVER_read()
 bool MCU_SPI_DRIVER_register(void *handle, int8_t (*rx_spi_evt_cb)(SPI_Buffer *rx, SPI_Buffer *tx))
 {
 	HAL_StatusTypeDef ret = HAL_OK;
-	MGR_LOG_DEBUG("%s:: called\n\r", __func__);
+	MGR_LOG_DEBUG("%s:: called\r\n", __func__);
     // Check if we save spi handle or if we already have a valid value
 	if (handle != NULL && hspi_handle == NULL) // Handle is not set yet
 	{
 		hspi_handle = (SPI_HandleTypeDef *)handle;
     } else if (handle == NULL && hspi_handle == NULL) // Handle is already set
 	{
-	    MGR_LOG_DEBUG("%s::ERROR failed to register: invalid hspi ptr \n\r", __func__);
+	    MGR_LOG_DEBUG("%s::ERROR failed to register: invalid hspi ptr \r\n", __func__);
         kns_assert(0);
 	}
 
@@ -137,7 +139,7 @@ bool MCU_SPI_DRIVER_register(void *handle, int8_t (*rx_spi_evt_cb)(SPI_Buffer *r
         rxSpiEvtCb = rx_spi_evt_cb;
     } else if (rx_spi_evt_cb == NULL && rxSpiEvtCb == NULL) // Handle is already set
 	{
-	    MGR_LOG_DEBUG("%s::ERROR failed to register: invalid rx_spi_evt_cb ptr \n\r", __func__);
+	    MGR_LOG_DEBUG("%s::ERROR failed to register: invalid rx_spi_evt_cb ptr \r\n", __func__);
         kns_assert(0);
 	}
 
@@ -158,35 +160,35 @@ bool MCU_SPI_DRIVER_register(void *handle, int8_t (*rx_spi_evt_cb)(SPI_Buffer *r
 bool MCU_SPI_DRIVER_reset(SPI_HandleTypeDef *hspi)
 {
 	// Set SPI OK and TX WAITING flags
-	MGR_LOG_DEBUG("%s:: called\n\r", __func__);
+	MGR_LOG_DEBUG("%s:: called\r\n", __func__);
 
 	if (hspi != NULL && hspi_handle == NULL) // Handle is not set yet
 	{
 		hspi_handle = (SPI_HandleTypeDef *)hspi;
     } else if ((hspi == NULL) && (hspi_handle == NULL)) // Handle is already set
 	{
-	    MGR_LOG_DEBUG("%s::ERROR invalid hspi ptr \n\r", __func__);
+	    MGR_LOG_DEBUG("%s::ERROR invalid hspi ptr \r\n", __func__);
         kns_assert(0);
 	}
 
     // Check for Overrun Error
     if (hspi_handle->ErrorCode & HAL_SPI_ERROR_OVR) {
         // Clear the Overrun flag
-		MGR_LOG_DEBUG("%s:: Clear Overrun flag\n\r", __func__);
+		MGR_LOG_DEBUG("%s:: Clear Overrun flag\r\n", __func__);
         __HAL_SPI_CLEAR_OVRFLAG(hspi_handle);
     }
 
     // Check for Mode Fault Error
     if (hspi_handle->ErrorCode & HAL_SPI_ERROR_MODF) {
         // Clear the Mode Fault flag
-		MGR_LOG_DEBUG("%s:: Clear Mode Fault flag\n\r", __func__);
+		MGR_LOG_DEBUG("%s:: Clear Mode Fault flag\r\n", __func__);
         __HAL_SPI_CLEAR_MODFFLAG(hspi_handle);
     }
 
     // Check for Frame Error
     if (hspi_handle->ErrorCode & HAL_SPI_ERROR_FRE) {
         // Clear the Frame Error flag
-		MGR_LOG_DEBUG("%s:: Clear Frame Error flag\n\r", __func__);
+		MGR_LOG_DEBUG("%s:: Clear Frame Error flag\r\n", __func__);
         __HAL_SPI_CLEAR_FREFLAG(hspi_handle);
     }
 
@@ -196,7 +198,7 @@ bool MCU_SPI_DRIVER_reset(SPI_HandleTypeDef *hspi)
 	ret = HAL_SPI_Abort(hspi_handle);
 	if (ret != HAL_OK)
 	{
-	  MGR_LOG_DEBUG("Failed to abort SPI transfers.\n\r");
+	  MGR_LOG_DEBUG("Failed to abort SPI transfers.\r\n");
 	}
 
    // Step 2: Disable the SPI peripheral clock (Force hardware reset)
@@ -216,7 +218,7 @@ bool MCU_SPI_DRIVER_reset(SPI_HandleTypeDef *hspi)
 	ret = HAL_SPI_DeInit(hspi_handle);
 	if (ret != HAL_OK)
 	{
-		MGR_LOG_DEBUG("Failed to deinitialize SPI.\n\r");
+		MGR_LOG_DEBUG("Failed to deinitialize SPI.\r\n");
 		return ret;
 	}
 
@@ -224,7 +226,7 @@ bool MCU_SPI_DRIVER_reset(SPI_HandleTypeDef *hspi)
 	ret = HAL_SPI_Init(hspi_handle);
 	if (ret != HAL_OK)
 	{
-		MGR_LOG_DEBUG("Failed to reinitialize SPI.\n\r");
+		MGR_LOG_DEBUG("Failed to reinitialize SPI.\r\n");
 		return ret;
 	}
     __HAL_SPI_ENABLE(hspi_handle);
@@ -246,11 +248,11 @@ void HAL_SPI_ErrorCallback(SPI_HandleTypeDef *hspi)
 {
 
 	// Set SPI OK and TX WAITING flags
-	MGR_LOG_DEBUG("%s:: called\n\r", __func__);
+	MGR_LOG_DEBUG("%s:: called\r\n", __func__);
     bool ret = MCU_SPI_DRIVER_reset(hspi);
     if (!ret) {
         // Retry to register
-        MGR_LOG_DEBUG("%s::ERROR Failed to reset SPI_driver...\n\r", __func__);
+        MGR_LOG_DEBUG("%s::ERROR Failed to reset SPI_driver...\r\n", __func__);
         kns_assert(0);
     }
 }

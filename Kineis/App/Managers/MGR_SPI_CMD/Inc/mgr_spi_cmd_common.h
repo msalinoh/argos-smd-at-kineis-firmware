@@ -1,6 +1,6 @@
 /* SPDX-License-Identifier: no SPDX license */
 /**
- * @file mgr_at_cmd_common.h
+ * @file mgr_spi_cmd_common.h
  * @author Kineis
  * @brief header file for common part of the AT cmd manager
  */
