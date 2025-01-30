@@ -28,6 +28,7 @@
 #include "lpm.h" // used for AT+LPM command all is hardcoded so far
 #include "build_info.h"
 #include "mgr_log.h"
+#include "mcu_nvm.h"
 
 
 /* Functions -----------------------------------------------------------------*/
@@ -79,6 +80,7 @@ bool bMGR_AT_CMD_ADDR_cmd(uint8_t *pu8_cmdParamString __attribute__((unused)),
 	enum atcmd_type_t e_exec_mode)
 {
 	uint8_t dev_addr[DEVICE_ADDR_LENGTH];
+	uint16_t nbBits;
 
 	if (e_exec_mode == ATCMD_STATUS_MODE) {
 		if (KNS_CFG_getAddr(dev_addr) != KNS_STATUS_OK)
@@ -88,15 +90,37 @@ bool bMGR_AT_CMD_ADDR_cmd(uint8_t *pu8_cmdParamString __attribute__((unused)),
 								  dev_addr[2], dev_addr[3]);
 
 		return true;
+	} else if (e_exec_mode == ATCMD_ACTION_MODE) {
+		while(pu8_cmdParamString[strlen((char*)pu8_cmdParamString) - 1] == '\r' ||
+				pu8_cmdParamString[strlen((char*)pu8_cmdParamString) - 1] == '\n')
+		{
+			pu8_cmdParamString[strlen((char*)pu8_cmdParamString) - 1] = '\0';
+		}
+			nbBits = u16MGR_AT_CMD_convertAsciiBinary(pu8_cmdParamString + 8,
+				strlen((char*)(pu8_cmdParamString + 8)));
+			
+			if (nbBits != 32)
+			{
+				MGR_LOG_DEBUG("%s::nbBits error %u\r\n", __func__, nbBits);
+				return bMGR_AT_CMD_logFailedMsg(ERROR_INVALID_ID);
+			}
+			
+			if (MCU_NVM_setAddr(pu8_cmdParamString + 8) != KNS_STATUS_OK)
+			{
+				return bMGR_AT_CMD_logFailedMsg(ERROR_INVALID_ID);
+			}
+			return bMGR_AT_CMD_logSucceedMsg();	
+	} else {
+		return bMGR_AT_CMD_logFailedMsg(ERROR_UNKNOWN_AT_CMD);
 	}
-	return bMGR_AT_CMD_logFailedMsg(ERROR_UNKNOWN_AT_CMD);
 }
 
 bool bMGR_AT_CMD_ID_cmd(uint8_t *pu8_cmdParamString __attribute__((unused)),
 	enum atcmd_type_t e_exec_mode)
 {
 	uint32_t dev_id;
-
+	uint16_t nbBits;
+	uint16_t nbChar;
 	if (e_exec_mode == ATCMD_STATUS_MODE) {
 		if (KNS_CFG_getId(&dev_id) != KNS_STATUS_OK)
 			return bMGR_AT_CMD_logFailedMsg(ERROR_INVALID_ID);
@@ -106,8 +130,36 @@ bool bMGR_AT_CMD_ID_cmd(uint8_t *pu8_cmdParamString __attribute__((unused)),
 		MCU_AT_CONSOLE_send("+ID=%d\r\n", dev_id);
 
 		return true;
+	} else if (e_exec_mode == ATCMD_ACTION_MODE) {
+		while(pu8_cmdParamString[strlen((char*)pu8_cmdParamString) - 1] == '\r' ||
+				pu8_cmdParamString[strlen((char*)pu8_cmdParamString) - 1] == '\n')
+		{
+			pu8_cmdParamString[strlen((char*)pu8_cmdParamString) - 1] = '\0';
+		}
+
+			nbChar = strlen((char*)pu8_cmdParamString+6);
+			if (nbChar > 6)
+			{
+				MGR_LOG_DEBUG("[ERROR] Invalid ID length\r\n");	
+				return bMGR_AT_CMD_logFailedMsg(ERROR_INVALID_ID);
+			}
+			
+			nbBits = u16MGR_AT_CMD_convertAsciiToInt32(pu8_cmdParamString + 6, &dev_id);
+
+			if ((nbBits > 32) && (nbBits < 1))
+			{
+				return bMGR_AT_CMD_logFailedMsg(ERROR_INVALID_ID);
+			}
+
+			
+			if (MCU_NVM_setID(&dev_id) != KNS_STATUS_OK)
+			{
+				return bMGR_AT_CMD_logFailedMsg(ERROR_INVALID_ID);
+			}
+			return bMGR_AT_CMD_logSucceedMsg();	
+	} else {
+		return bMGR_AT_CMD_logFailedMsg(ERROR_UNKNOWN_AT_CMD);
 	}
-	return bMGR_AT_CMD_logFailedMsg(ERROR_UNKNOWN_AT_CMD);
 }
 
 bool bMGR_AT_CMD_SN_cmd(uint8_t *pu8_cmdParamString __attribute__((unused)),
@@ -133,9 +185,9 @@ bool bMGR_AT_CMD_RCONF_cmd(uint8_t *pu8_cmdParamString __attribute__((unused)),
 	struct KNS_CFG_radio_t radio_cfg;
 	uint8_t modulation[8];
 	uint16_t nbBits;
-#if defined(KRD_FW_MP) ||  defined(KRD_FW_LP)
+	#if defined(KRD_FW_MP) ||  defined(KRD_FW_LP)
 	struct rfSettings_t hwSettings;
-#endif
+	#endif
 
 	if (e_exec_mode == ATCMD_STATUS_MODE) {
 		if (KNS_CFG_getRadioInfo(&radio_cfg) != KNS_STATUS_OK)
@@ -157,13 +209,13 @@ bool bMGR_AT_CMD_RCONF_cmd(uint8_t *pu8_cmdParamString __attribute__((unused)),
 			radio_cfg.max_frequency, radio_cfg.rf_level, modulation);
 
 		/** @todo PRODEV-68: check radio conf versus HW settings for other platforms */
-#if defined(KRD_FW_MP) ||  defined(KRD_FW_LP)
+	#if defined(KRD_FW_MP) ||  defined(KRD_FW_LP)
 		if (MCU_MISC_getSettingsHwRf(radio_cfg.rf_level, &hwSettings) == KNS_STATUS_OK)
 			return bMGR_AT_CMD_logSucceedMsg();
 		return bMGR_AT_CMD_logFailedMsg(ERROR_INCOMPATIBLE_VALUE);
-#else
+	#else
 		return bMGR_AT_CMD_logSucceedMsg();
-#endif
+	#endif
 	}
 	if (e_exec_mode == ATCMD_ACTION_MODE) {
 		while(pu8_cmdParamString[strlen((char*)pu8_cmdParamString) - 1] == '\r' ||
@@ -189,8 +241,9 @@ bool bMGR_AT_CMD_SAVE_RCONF_cmd(uint8_t *pu8_cmdParamString __attribute__((unuse
 {
 	if (e_exec_mode == ATCMD_ACTION_MODE) {
 		if (KNS_CFG_saveRadioInfo() != KNS_STATUS_OK)
-			/* TODO: add a new error code ? */
+		{
 			return bMGR_AT_CMD_logFailedMsg(ERROR_INVALID_ID);
+		}
 		return bMGR_AT_CMD_logSucceedMsg();
 	}
 	return bMGR_AT_CMD_logFailedMsg(ERROR_UNKNOWN_AT_CMD);

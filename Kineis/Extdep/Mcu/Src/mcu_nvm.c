@@ -46,10 +46,17 @@ __attribute__((__section__(".radioConfSection")))
 uint32_t radioConfZoneSaved[16];
 
 /** The device identifier may be stored in a secured way (encryption, etc.) */
-static const uint32_t device_id = 214012;
+static
+__attribute__((__section__(".deviceIdSection")))
+//uint32_t device_id = 214012;
+uint32_t device_id;
 
 /** The device address may be stored in a secured way (encryption, etc.) */
-static const uint8_t device_addr[4] = { 0x22, 0x67, 0x5C, 0x70 };
+static
+__attribute__((__section__(".deviceAddrSection")))
+//uint8_t device_addr[4] = { 0x22, 0x67, 0x5C, 0x70 };
+//uint8_t device_addr[4];
+uint32_t device_addr;
 
 /** Radio configuration : Ensure radio configuration is valid when Kineis stack is called.
  *
@@ -173,16 +180,68 @@ enum KNS_status_t MCU_NVM_getID(uint32_t *id)
 	return KNS_STATUS_OK;
 }
 
-enum KNS_status_t MCU_NVM_getAddr(uint8_t addr[])
+enum KNS_status_t MCU_NVM_setID(uint32_t *id)
 {
-	uint16_t i;
-
-	for (i = 0 ; i < 4 ; i++)
-		addr[i] = device_addr[i];
+	device_id = *id;
 
 	return KNS_STATUS_OK;
 }
 
+// enum KNS_status_t MCU_NVM_getAddr(uint8_t addr[])
+// {
+// 	uint16_t i;
+
+// 	for (i = 0 ; i < 4 ; i++)
+// 		addr[i] = (uint8_t) device_addr[i];
+
+// 	return KNS_STATUS_OK;
+// }
+// enum KNS_status_t MCU_NVM_setAddr(uint8_t addr[])
+// {
+// 	uint16_t i;
+
+// 	for (i = 0 ; i < 4 ; i++)
+// 		//device_addr[i] = addr[i];
+// 		device_addr[i] = (uint32_t)((uint8_t*)addr)[i];
+
+// 	return KNS_STATUS_OK;
+// }
+
+/**
+ * @brief Retrieves the stored address into a byte array.
+ *
+ * @param addr Pointer to a 4-byte array where the address will be stored.
+ * @return KNS_status_t Status of the operation.
+ */
+enum KNS_status_t MCU_NVM_getAddr(uint8_t addr[4])
+{
+    if (!addr) return KNS_STATUS_ERROR; // Null check
+
+    addr[0] = (device_addr >> 24) & 0xFF;
+    addr[1] = (device_addr >> 16) & 0xFF;
+    addr[2] = (device_addr >> 8) & 0xFF;
+    addr[3] = device_addr & 0xFF;
+
+    return KNS_STATUS_OK;
+}
+
+/**
+ * @brief Stores a 4-byte address from an array into a uint32_t variable.
+ *
+ * @param addr Pointer to a 4-byte array containing the address.
+ * @return KNS_status_t Status of the operation.
+ */
+enum KNS_status_t MCU_NVM_setAddr(uint8_t addr[4])
+{
+    if (!addr) return KNS_STATUS_ERROR; // Null check
+
+    device_addr = ((uint32_t)addr[0] << 24) |
+                  ((uint32_t)addr[1] << 16) |
+                  ((uint32_t)addr[2] << 8)  |
+                  ((uint32_t)addr[3]);
+
+    return KNS_STATUS_OK;
+}
 enum KNS_status_t MCU_NVM_getSN(uint8_t sn[])
 {
     uint16_t i;

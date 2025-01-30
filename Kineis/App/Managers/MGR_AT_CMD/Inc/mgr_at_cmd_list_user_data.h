@@ -44,6 +44,7 @@
  */
 uint16_t u16MGR_AT_CMD_convertAsciiBinary(uint8_t *pu8InputBuffer, uint16_t u16_charNb);
 
+uint16_t u16MGR_AT_CMD_convertAsciiToInt32(uint8_t *pu8InputBuffer, uint32_t *u32OutputValue);
 /**
  * @brief Process AT command "AT+TX" send user data.
  *

@@ -218,15 +218,15 @@ SECTIONS
   /* RTC backup domain register section (32 32-bit-long registers), retention during shutdown and standby modes */
   .rtc_bkpr :
   {
-    //*(.radioConfSection)   /* .radioConfSection section */
     . = ALIGN(4);
     _srtc_bkpr = .;        /* create a global symbol at rtc_bkpr start */
     *(.lpmSection)         /* LPM context section, used to store data what ever the low power mode is */
     *(.msgCntSectionData)
     *(.rtc_bkpr)           /* .rtc_bkpr sections */
     *(.rtc_bkpr*)          /* .rtc_bkpr* sections */
-    *(.radioConfFlag)   /* .radioConfSection section */
-
+    *(.radioConfFlag)      /* .radioConfSection section */
+    *(.deviceIdSection)           /* .deviceIdSection section */
+    *(.deviceAddrSection)      /* .deviceIdSection section */
     . = ALIGN(4);
     . = ALIGN(1);
    	*(.radioConfSection)   /* Include the .radioConfSection data */

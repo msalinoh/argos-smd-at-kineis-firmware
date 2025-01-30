@@ -249,6 +249,41 @@ uint16_t u16MGR_AT_CMD_convertAsciiBinary(uint8_t *pu8InputBuffer, uint16_t u16_
 	return (((u16_charNb / 2) * 8) + ((u16_charNb % 2) ? 4 : 0));
 }
 
+
+/**
+ * @brief Converts an ASCII numeric string to a uint32_t integer.
+ *
+ * @param pu8InputBuffer Pointer to the numeric ASCII string.
+ * @param u32OutputValue Pointer to store the converted integer.
+ * @return uint16_t Number of bits required to represent the value, or 0 if overflow occurs.
+ */
+uint16_t u16MGR_AT_CMD_convertAsciiToInt32(uint8_t *pu8InputBuffer, uint32_t *u32OutputValue)
+{
+    char *endPtr;
+    unsigned long int tempValue;
+
+    // Convert ASCII string to unsigned long integer
+    tempValue = strtoul((char *)pu8InputBuffer, &endPtr, 10);
+
+    // Check for conversion errors (no valid digits, or overflow)
+    if (*endPtr != '\0' || tempValue > UINT32_MAX) {
+        *u32OutputValue = 0;
+        return 0; // Overflow occurred
+    }
+
+    *u32OutputValue = (uint32_t)tempValue;
+
+    // Compute the number of bits required to represent the value
+    uint16_t bitCount = 0;
+    uint32_t temp = *u32OutputValue;
+    while (temp > 0) {
+        temp >>= 1;
+        bitCount++;
+    }
+
+    return (bitCount > 32) ? 0 : bitCount; // Redundant check, but ensures safety
+}
+
 bool bMGR_AT_CMD_TX_cmd(uint8_t *pu8_cmdParamString, enum atcmd_type_t e_exec_mode)
 {
 	/** @attention pattern length below shall not be longer than the length defined by
