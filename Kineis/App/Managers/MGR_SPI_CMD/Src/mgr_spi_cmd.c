@@ -57,10 +57,15 @@ static int8_t MGR_SPI_CMD_parseStreamCb(SPI_Buffer *rx, SPI_Buffer *tx)
 	if (rx->size > 0)
 	{
 		cmdInProgress = rx->data[0];
+
+		// Do not update
+		if (cmdInProgress == CMD_SPI_STATUS){
+			tx->data[0] = spiState;
+		}
 		spiState = SPICMD_PROCESS_CMD;
 	}
 	else {
-		MGR_LOG_DEBUG("%s: RX size less than 0\n\r",__func__);
+		MGR_LOG_DEBUG("%s: RX size less than 0\r\n",__func__);
 		cmdInProgress = CMD_NONE;
 		spiState = SPICMD_IDLE;
 	}
@@ -74,6 +79,7 @@ static bool MGR_SPI_CMD_process_cmd(uint8_t cmd)
 {
 	bool ret = true;
 
+	MGR_LOG_DEBUG("%s:: Process %u \r\n",__func__, cmd);
 	if ((cmd > 0) && cmd < SPICMD_MAX_COUNT)
 	{
 //		if ((cas_spicmd_list_array[cmdInProgress].next_cmd != cmd) &&
@@ -87,7 +93,7 @@ static bool MGR_SPI_CMD_process_cmd(uint8_t cmd)
 		ret = cas_spicmd_list_array[cmd].f_ht_cmd_fun_proc(&rxBuf, &txBuf);
 
 	} else {
-		MGR_LOG_DEBUG("NONE/Unknown command %u", cmd);
+		MGR_LOG_DEBUG("NONE/Unknown command %u\r\n", cmd);
 		rxBuf.next_req = 1;
 		bMGR_SPI_DRIVER_read();
 	}
@@ -112,7 +118,7 @@ void MGR_SPI_CMD_state_handler() {
    	switch (spiState) {
        case SPICMD_INIT:
 	   	   // Only in case of restart service and spi ptr should not be changed.
-    	   MGR_LOG_DEBUG("SPI_CMD_INIT\n\r");
+    	   MGR_LOG_DEBUG("SPI_CMD_INIT\r\n");
 		   if (MGR_SPI_CMD_start(NULL))
 		   {
 				spiState = SPICMD_IDLE;
@@ -121,23 +127,23 @@ void MGR_SPI_CMD_state_handler() {
 		   }
            break;
        case SPICMD_IDLE:
-    	   MGR_LOG_DEBUG("SPI_CMD_IDLE\n\r");
+    	   MGR_LOG_DEBUG("SPI_CMD_IDLE\r\n");
     	   // start RX IT for waiting command:
 		   rxBuf.next_req = 1;
 		   cmdInProgress = CMD_NONE;
 		   HAL_StatusTypeDef res = bMGR_SPI_DRIVER_read();
 		   if (res != HAL_OK)
 		   {
-			    MGR_LOG_DEBUG("%s:: Failed to start RX IT, resetting...\n\r", __func__);
+			    MGR_LOG_DEBUG("%s:: Failed to start RX IT, resetting...\r\n", __func__);
 				spiState = SPICMD_ERROR;	
 		   }
            break;
        case SPICMD_PROCESS_CMD:
-    	    MGR_LOG_DEBUG("SPI_CMD_PROCESSCMD\n\r");
+    	    MGR_LOG_DEBUG("SPI_CMD_PROCESSCMD\r\n");
 			ret = MGR_SPI_CMD_process_cmd(cmdInProgress);
 			if (!ret)
 			{
-				MGR_LOG_DEBUG("%s:: failed to process cmd %u\n\r", __func__, cmdInProgress);		
+				MGR_LOG_DEBUG("%s:: failed to process cmd %u\r\n", __func__, cmdInProgress);
 				spiState = SPICMD_IDLE;
 			}
            break;
@@ -145,7 +151,7 @@ void MGR_SPI_CMD_state_handler() {
     	   //add timeout if req is >1, don't block the driver.
     	   if(rxBuf.next_req > 1)
     	   {
-				MGR_LOG_DEBUG("SPI_CMD_WAITING_RX\n\r");
+				MGR_LOG_DEBUG("SPI_CMD_WAITING_RX\r\n");
     		   if (startTickTimeout == 0)
     		   {
     			   startTickTimeout = HAL_GetTick();
@@ -153,7 +159,7 @@ void MGR_SPI_CMD_state_handler() {
 
     		   if ((HAL_GetTick() - startTickTimeout) > CMD_IT_TIMEOUT)
 			   {
-				   MGR_LOG_DEBUG("%s::SPICMD_WAITING_RX::Read timeout occurred!\n\r", __func__);
+				   MGR_LOG_DEBUG("%s::SPICMD_WAITING_RX::Read timeout occurred!\r\n", __func__);
 				   spiState = SPICMD_ERROR;
 			   }
     	   }
@@ -161,7 +167,7 @@ void MGR_SPI_CMD_state_handler() {
        case SPICMD_WAITING_TX:
     	   if(txBuf.next_req > 1)
     	   {
-			MGR_LOG_DEBUG("SPI_CMD_WAITING_TX\n\r");
+			MGR_LOG_DEBUG("SPI_CMD_WAITING_TX\r\n");
     		   if (startTickTimeout == 0)
     		   {
     			   startTickTimeout = HAL_GetTick();
@@ -169,21 +175,21 @@ void MGR_SPI_CMD_state_handler() {
 
     		   if ((HAL_GetTick() - startTickTimeout) > CMD_IT_TIMEOUT)
 			   {
-				   MGR_LOG_DEBUG("%s::SPICMD_WAITING_TX::Write timeout occurred!\n\r", __func__);
+				   MGR_LOG_DEBUG("%s::SPICMD_WAITING_TX::Write timeout occurred!\r\n", __func__);
 				   spiState = SPICMD_ERROR;
 			   }
     	   }
            break;
        case SPICMD_ERROR:
-		    MGR_LOG_DEBUG("%s:: SPI error, resetting...\n\r", __func__);
+		    MGR_LOG_DEBUG("%s:: SPI error, resetting...\r\n", __func__);
 		    ret = MCU_SPI_DRIVER_reset(NULL);
 			if (!ret)
 			{
-				MGR_LOG_DEBUG("%s:: failed to reset %u\n\r", __func__, cmdInProgress);
+				MGR_LOG_DEBUG("%s:: failed to reset %u\r\n", __func__, cmdInProgress);
 			}
            break;
        default:
-           MGR_LOG_DEBUG("%s:: Unknown spiState: %u\n\r", __func__, spiState);
+           MGR_LOG_DEBUG("%s:: Unknown spiState: %u\r\n", __func__, spiState);
 		   spiState = SPICMD_ERROR;
            break;
    }

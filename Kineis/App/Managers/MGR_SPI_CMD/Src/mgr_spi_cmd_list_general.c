@@ -90,7 +90,7 @@ bool bMGR_SPI_CMD_SPISTATE_cmd(SPI_Buffer *rx, SPI_Buffer *tx)
 {
 	HAL_StatusTypeDef ret = HAL_OK;
 
-	tx->data[0] = spiState;
+	//tx->data[0] = spiState; // do not write spiState, at this step it should be CMD_IN_PROGRESS
 	tx->next_req = 1;
 	rx->next_req = 1;
 	ret = bMGR_SPI_DRIVER_writeread();
