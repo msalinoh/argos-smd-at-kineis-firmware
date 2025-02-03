@@ -27,8 +27,9 @@ enum  atcmd_idx_t {
 	AT_VERSION,      /**< Get AT commands version */
 	AT_PING,         /**< Ping command */
 	AT_FW,           /**< Get fw version command */
-	AT_ADDR,         /**< Get device address command */
-	AT_ID,           /**< Get device ID command */
+	AT_ADDR,         /**< Get/set device address command */
+	AT_ID,           /**< Get/set device ID command */
+	AT_SECKEY,       /**< Get/set device secret key */
 	AT_SN,           /**< Get device serial number command */
 	AT_RCONF,        /**< Get/Set radio configuration command */
 	AT_SAVE_RCONF,   /**< Save radio configuration into Flash command */

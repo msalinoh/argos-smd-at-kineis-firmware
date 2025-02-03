@@ -10,16 +10,17 @@ ENTRY(Reset_Handler)
 /* Highest address of the user mode stack */
 _estack = ORIGIN(RAM1) + LENGTH(RAM1); /* end of "SRAM1" Ram type memory */
 
-_Min_Heap_Size = 0x200;      /* required amount of heap  */
-_Min_Stack_Size = 0x400; /* required amount of stack */
+_Min_Heap_Size = 0x600;      /* required amount of heap  */
+_Min_Stack_Size = 0x2000; /* required amount of stack */
 
 /* Memories definition */
 MEMORY
 {
-  ROM    (rx)    : ORIGIN = 0x08000000, LENGTH = 256K
-  RAM1   (xrw)   : ORIGIN = 0x20000000, LENGTH = 32K    /* Non-backup SRAM1 */
-  RAM2   (xrw)   : ORIGIN = 0x20008000, LENGTH = 32K    /* Backup SRAM2 */
-  RTC_BKPR (xrw) : ORIGIN = 0x4000B100, LENGTH = 128     /* TAMP_BKPR register used to backup over LPM */
+  ROM    (rx)      : ORIGIN = 0x08000000, LENGTH = 254K
+  FLASH_USER (rw) : ORIGIN = 0x0803F800, LENGTH = 2K
+  RAM1   (xrw)     : ORIGIN = 0x20000000, LENGTH = 32K    /* Non-backup SRAM1 */
+  RAM2   (xrw)     : ORIGIN = 0x20008000, LENGTH = 32K    /* Backup SRAM2 */
+  RTC_BKPR (xrw)   : ORIGIN = 0x4000B100, LENGTH = 128     /* TAMP_BKPR register used to backup over LPM */
 
 }
 
@@ -103,7 +104,11 @@ SECTIONS
     . = ALIGN(8);
   } >ROM
 
-
+  .user_data :
+  {
+    *(.user_data)           /* .deviceIdSection section */
+    *(.user_data*)           /* .deviceIdSection section */
+  } > FLASH_USER
   /* ------------------------------------------------------------------------------ 
    * ---- Initialized data sections goes into RAM1, load LMA copy after code   ---- 
    * ---- so far, put all into RAM1 section                                    ---- 
@@ -120,7 +125,6 @@ SECTIONS
 
     *(.knsCtxtData)
     *(.retentionRamData)
-    
 
     . = ALIGN(4);
     
@@ -142,11 +146,11 @@ SECTIONS
     _edata = .;        /* define a global symbol at data end */
   } >RAM1 AT> ROM
 
-  /* ------------------------------------------------------------------------------ 
-   * ---- Uninitialized data sections goes into RAM                            ---- 
-   * ---- so far, put all into RAM section                                     ---- 
-   * ---- RAM3 is empty so far, RAM2 contains kineis stack lpm retention data  ---- 
-   * ------------------------------------------------------------------------------ 
+  /* ------------------------------------------------------------------------------
+   * ---- Uninitialized data sections goes into RAM                            ----
+   * ---- so far, put all into RAM section                                     ----
+   * ---- RAM3 is empty so far, RAM2 contains kineis stack lpm retention data  ----
+   * ------------------------------------------------------------------------------
    */
 
   . = ALIGN(4);
@@ -225,16 +229,14 @@ SECTIONS
     *(.rtc_bkpr)           /* .rtc_bkpr sections */
     *(.rtc_bkpr*)          /* .rtc_bkpr* sections */
     *(.radioConfFlag)      /* .radioConfSection section */
-    *(.deviceIdSection)           /* .deviceIdSection section */
-    *(.deviceAddrSection)      /* .deviceIdSection section */
     . = ALIGN(4);
     . = ALIGN(1);
    	*(.radioConfSection)   /* Include the .radioConfSection data */
-   	. = ALIGN(1);
-   	
+    . = ALIGN(1);
     _ertc_bkpr = .;        /* define a global symbol at rtc_bkpr end */
   } >RTC_BKPR
 
+  /* ------------------------------------------------------------------------------ */
 
   /* Remove information from the compiler libraries */
   /DISCARD/ :

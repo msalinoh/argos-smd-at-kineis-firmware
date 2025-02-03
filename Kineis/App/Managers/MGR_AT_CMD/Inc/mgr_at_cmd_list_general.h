@@ -56,7 +56,7 @@ bool bMGR_AT_CMD_PING_cmd(uint8_t *pu8_cmdParamString, enum atcmd_type_t e_exec_
  */
 bool bMGR_AT_CMD_FW_cmd(uint8_t *pu8_cmdParamString, enum atcmd_type_t e_exec_mode);
 
-/** @brief Process AT command "AT+ID" get the ID of module
+/** @brief Process AT command "AT+ID" get/set the ID of module
  *
  * 1) "AT+ID=<ID>"
  * N/A Response format: "+ERROR=<error_code>". (See \ref ERROR_RETURN_T)
@@ -73,6 +73,22 @@ bool bMGR_AT_CMD_FW_cmd(uint8_t *pu8_cmdParamString, enum atcmd_type_t e_exec_mo
  */
 bool bMGR_AT_CMD_ID_cmd(uint8_t *pu8_cmdParamString, enum atcmd_type_t e_exec_mode);
 
+/** @brief Process AT command "AT+SECKEY" get/set the device secret key
+ *
+ * 1) "AT+SECKEY=<SECKEY>"
+ * N/A Response format: "+ERROR=<error_code>". (See \ref ERROR_RETURN_T)
+ *
+ * 2) "AT+SECKEY=?" returns the secret key of module
+ * Response format: "+ID=<SECKEY>" or "+ID=<error_code>". (See \ref ERROR_RETURN_T)
+ * \<SECKEY\> is an 16bytes secret key, representing the secret key used to encrypt/
+ * decrypt message forwared to the satellite
+ *
+ * @param[in] pu8_cmdParamString: string containing AT command
+ * @param[in] e_exec_mode: type of the command (status command or action command)
+ *
+ * @return true if command is correctly received and processed, false if error
+ */
+bool bMGR_AT_CMD_SECKEY_cmd(uint8_t *pu8_cmdParamString, enum atcmd_type_t e_exec_mode);
 /** @brief Process AT command "AT+ADDR" get the address of module
  *
  * 1) "AT+ADDR=<address>"

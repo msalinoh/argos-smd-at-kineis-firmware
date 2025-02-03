@@ -23,7 +23,6 @@
 #include "kineis_sw_conf.h"  // for assert include below and ERROR_RETURN_T type
 #include KINEIS_SW_ASSERT_H
 #include "mgr_log.h"
-
 #ifdef USE_TX_LED // Light on a GPIO when TX occurs
 #include "main.h"
 #endif

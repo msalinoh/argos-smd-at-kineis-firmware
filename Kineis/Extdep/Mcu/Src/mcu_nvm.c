@@ -3,6 +3,8 @@
  * @file    mcu_nvm.c
  * @brief   MCU wrapper for any access to the non volatile memory accesses
  *
+ * TODO: move Confradio into flash .
+ *
  * @author  shamard
  * @date    Creation 2022/11/18
  * @version 1.0
@@ -21,7 +23,10 @@
 #include "mcu_aes.h"
 #include "mcu_nvm.h"
 #include <stdbool.h>
-
+#include "mcu_flash.h"
+#include "stm32wlxx_hal.h"
+#include "mgr_log.h"
+#include <string.h>
 /* Variables ---------------------------------------------------------*/
 
 /** @note The message counter be stored in a non volatile memory (flash, RTC backup reg, etc.).
@@ -35,6 +40,9 @@
  * If you use a flash memory, be careful about the storage of this data. The message counter is
  * updated at each message transmission, so this implies a lot of erase/write cycles.
  */
+/* Variable used for Erase procedure*/
+//static FLASH_EraseInitTypeDef EraseInitStruct;
+
 __attribute__((__section__(".msgCntSectionData")))
 static uint16_t message_counter;
 
@@ -46,20 +54,14 @@ __attribute__((__section__(".radioConfSection")))
 uint32_t radioConfZoneSaved[16];
 
 /** The device identifier may be stored in a secured way (encryption, etc.) */
-static
-__attribute__((__section__(".deviceIdSection")))
-//uint32_t device_id = 214012;
-uint32_t device_id;
+//uint32_t device_id; Stored in flash memory
+
 
 /** The device address may be stored in a secured way (encryption, etc.) */
-static
-__attribute__((__section__(".deviceAddrSection")))
-//uint8_t device_addr[4] = { 0x22, 0x67, 0x5C, 0x70 };
-//uint8_t device_addr[4];
-uint32_t device_addr;
+//uint8_t device_addr[4] = { 0x22, 0x67, 0x5C, 0x70 }; // stored in flash
 
 /** Radio configuration : Ensure radio configuration is valid when Kineis stack is called.
- *
+ 
  * Depending on the application, before calling the stack, you can:
  * * set it in your application through MCU_NVM_setRadioConfZone()
  * * load it in RAM at startup
@@ -113,7 +115,6 @@ static uint8_t radioConfZone[16] = {
 static const uint8_t device_sn[DEVICE_SN_LENGTH] = { 'S', 'M', 'D', '_', '1', '0', '_', \
 					      '_', 'T', 'E', 'S', 'T', '0', '2' };
 /* Functions -------------------------------------------------------------*/
-
 enum KNS_status_t MCU_NVM_getMC(uint16_t *mc_ptr)
 {
 	*mc_ptr = message_counter;
@@ -172,40 +173,24 @@ enum KNS_status_t MCU_NVM_saveRadioConfZone(void)
 	return KNS_STATUS_OK;
 }
 
-
 enum KNS_status_t MCU_NVM_getID(uint32_t *id)
 {
-	*id = device_id;
+    if (id == NULL) {
+        return KNS_STATUS_ERROR;
+    }
 
-	return KNS_STATUS_OK;
+    return (MCU_FLASH_read(FLASH_USER_DATA_ADDR + FLASH_ID_OFFSET, id, FLASH_ID_BYTE_SIZE));
 }
 
 enum KNS_status_t MCU_NVM_setID(uint32_t *id)
 {
-	device_id = *id;
+    if (id == NULL) {
+        return KNS_STATUS_ERROR;
+    }
 
-	return KNS_STATUS_OK;
+	return(MCU_FLASH_write(FLASH_USER_DATA_ADDR + FLASH_ID_OFFSET, id, FLASH_ID_BYTE_SIZE));
 }
 
-// enum KNS_status_t MCU_NVM_getAddr(uint8_t addr[])
-// {
-// 	uint16_t i;
-
-// 	for (i = 0 ; i < 4 ; i++)
-// 		addr[i] = (uint8_t) device_addr[i];
-
-// 	return KNS_STATUS_OK;
-// }
-// enum KNS_status_t MCU_NVM_setAddr(uint8_t addr[])
-// {
-// 	uint16_t i;
-
-// 	for (i = 0 ; i < 4 ; i++)
-// 		//device_addr[i] = addr[i];
-// 		device_addr[i] = (uint32_t)((uint8_t*)addr)[i];
-
-// 	return KNS_STATUS_OK;
-// }
 
 /**
  * @brief Retrieves the stored address into a byte array.
@@ -213,34 +198,18 @@ enum KNS_status_t MCU_NVM_setID(uint32_t *id)
  * @param addr Pointer to a 4-byte array where the address will be stored.
  * @return KNS_status_t Status of the operation.
  */
-enum KNS_status_t MCU_NVM_getAddr(uint8_t addr[4])
+
+
+enum KNS_status_t MCU_NVM_getAddr(uint8_t addr[])
 {
-    if (!addr) return KNS_STATUS_ERROR; // Null check
+    if (!addr) return KNS_STATUS_ERROR; // Vérification des pointeurs
 
-    addr[0] = (device_addr >> 24) & 0xFF;
-    addr[1] = (device_addr >> 16) & 0xFF;
-    addr[2] = (device_addr >> 8) & 0xFF;
-    addr[3] = device_addr & 0xFF;
-
-    return KNS_STATUS_OK;
+    return MCU_FLASH_read(FLASH_USER_DATA_ADDR + FLASH_ADDR_OFFSET, addr, FLASH_ADDR_BYTE_SIZE);
 }
 
-/**
- * @brief Stores a 4-byte address from an array into a uint32_t variable.
- *
- * @param addr Pointer to a 4-byte array containing the address.
- * @return KNS_status_t Status of the operation.
- */
-enum KNS_status_t MCU_NVM_setAddr(uint8_t addr[4])
+enum KNS_status_t MCU_NVM_setAddr(uint8_t addr[])
 {
-    if (!addr) return KNS_STATUS_ERROR; // Null check
-
-    device_addr = ((uint32_t)addr[0] << 24) |
-                  ((uint32_t)addr[1] << 16) |
-                  ((uint32_t)addr[2] << 8)  |
-                  ((uint32_t)addr[3]);
-
-    return KNS_STATUS_OK;
+    return MCU_FLASH_write(FLASH_USER_DATA_ADDR + FLASH_ADDR_OFFSET, addr, FLASH_ADDR_BYTE_SIZE);
 }
 enum KNS_status_t MCU_NVM_getSN(uint8_t sn[])
 {

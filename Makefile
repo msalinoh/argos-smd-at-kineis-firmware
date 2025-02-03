@@ -104,6 +104,7 @@ Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_uart_ex.c \
 Core/Src/system_stm32wlxx.c \
 Core/Src/gpio.c \
 Core/Src/i2c.c \
+Core/Src/syscalls.c \
 Core/Src/usart.c \
 Core/Src/subghz.c \
 Core/Src/tim.c \
@@ -119,6 +120,7 @@ $(KINEIS_DIR)/Extdep/Conf/kns_q_conf.c \
 $(KINEIS_DIR)/Extdep/MGR_LOG/Src/mgr_log.c \
 $(KINEIS_DIR)/Extdep/MGR_LOG/Src/mgr_log_rtc.c \
 $(KINEIS_DIR)/Extdep/Mcu/Src/mcu_misc.c \
+$(KINEIS_DIR)/Extdep/Mcu/Src/mcu_flash.c \
 $(KINEIS_DIR)/Extdep/Mcu/Src/mcu_aes.c \
 $(KINEIS_DIR)/Extdep/Mcu/Src/aes.c \
 $(KINEIS_DIR)/Extdep/Mcu/Src/mcu_nvm.c \

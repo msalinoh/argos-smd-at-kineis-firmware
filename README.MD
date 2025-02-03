@@ -77,8 +77,9 @@ The available AT commands for the GUI application are managed by the AT command 
 - `AT+VERSION`: Get the AT commands version
 - `AT+PING`: Ping command
 - `AT+FW`: Get the firmware version
-- `AT+ADDR`: Get the device address
-- `AT+ID`: Get the device ID
+- `AT+ADDR`: Get/Set the device address
+- `AT+SECKEY`: Get/Set the device secret key (Warning No AES encryption for the moment)
+- `AT+ID`: Get/Set the device ID
 - `AT+SN`: Get the device serial number
 - `AT+RCONF`: Get/Set radio configuration
 - `AT+SAVE_RCONF`: Save the radio configuration to Flash

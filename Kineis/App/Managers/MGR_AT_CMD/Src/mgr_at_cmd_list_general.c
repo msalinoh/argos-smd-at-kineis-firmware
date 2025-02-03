@@ -29,6 +29,7 @@
 #include "build_info.h"
 #include "mgr_log.h"
 #include "mcu_nvm.h"
+#include "mcu_aes.h"
 
 
 /* Functions -----------------------------------------------------------------*/
@@ -76,6 +77,49 @@ bool bMGR_AT_CMD_FW_cmd(uint8_t *pu8_cmdParamString __attribute__((unused)),
 	return true;
 }
 
+bool bMGR_AT_CMD_SECKEY_cmd(uint8_t *pu8_cmdParamString __attribute__((unused)),
+	enum atcmd_type_t e_exec_mode)
+{
+	uint8_t sec_key[DSK_BYTE_LENGTH];
+	uint16_t nbBits;
+
+	if (e_exec_mode == ATCMD_STATUS_MODE) {
+		if (MCU_AES_get_device_sec_key(sec_key) != KNS_STATUS_OK)
+			/* TODO: add a new error code ? */
+			return bMGR_AT_CMD_logFailedMsg(ERROR_INVALID_ID);
+		char sec_key_str[33];
+		for (int i = 0; i < 16; i++) {
+			sprintf(&sec_key_str[i * 2], "%02x", sec_key[i]);
+		}
+		sec_key_str[32] = '\0';
+		MCU_AT_CONSOLE_send("+SECKEY=%s\r\n", sec_key_str);
+
+		return true;
+	} else if (e_exec_mode == ATCMD_ACTION_MODE) {
+		while(pu8_cmdParamString[strlen((char*)pu8_cmdParamString) - 1] == '\r' ||
+				pu8_cmdParamString[strlen((char*)pu8_cmdParamString) - 1] == '\n')
+		{
+			pu8_cmdParamString[strlen((char*)pu8_cmdParamString) - 1] = '\0';
+		}
+			nbBits = u16MGR_AT_CMD_convertAsciiBinary(pu8_cmdParamString + 10,
+				strlen((char*)(pu8_cmdParamString + 10)));
+			
+			if (nbBits != DSK_BYTE_LENGTH*8)
+			{
+				MGR_LOG_DEBUG("%s::nbBits error %u should be %u\r\n", __func__, nbBits, DSK_BYTE_LENGTH*8);
+				return bMGR_AT_CMD_logFailedMsg(ERROR_INVALID_ID);
+			}
+			
+			if (MCU_AES_set_device_sec_key(pu8_cmdParamString + 10) != KNS_STATUS_OK)
+			{
+				return bMGR_AT_CMD_logFailedMsg(ERROR_INVALID_ID);
+			}
+			return bMGR_AT_CMD_logSucceedMsg();	
+	} else {
+		return bMGR_AT_CMD_logFailedMsg(ERROR_UNKNOWN_AT_CMD);
+	}
+}
+
 bool bMGR_AT_CMD_ADDR_cmd(uint8_t *pu8_cmdParamString __attribute__((unused)),
 	enum atcmd_type_t e_exec_mode)
 {
@@ -114,7 +158,6 @@ bool bMGR_AT_CMD_ADDR_cmd(uint8_t *pu8_cmdParamString __attribute__((unused)),
 		return bMGR_AT_CMD_logFailedMsg(ERROR_UNKNOWN_AT_CMD);
 	}
 }
-
 bool bMGR_AT_CMD_ID_cmd(uint8_t *pu8_cmdParamString __attribute__((unused)),
 	enum atcmd_type_t e_exec_mode)
 {
@@ -137,6 +180,7 @@ bool bMGR_AT_CMD_ID_cmd(uint8_t *pu8_cmdParamString __attribute__((unused)),
 			pu8_cmdParamString[strlen((char*)pu8_cmdParamString) - 1] = '\0';
 		}
 
+			MGR_LOG_DEBUG("%s",__func__);
 			nbChar = strlen((char*)pu8_cmdParamString+6);
 			if (nbChar > 6)
 			{
@@ -148,12 +192,14 @@ bool bMGR_AT_CMD_ID_cmd(uint8_t *pu8_cmdParamString __attribute__((unused)),
 
 			if ((nbBits > 32) && (nbBits < 1))
 			{
+				MGR_LOG_DEBUG("[ERROR] Invalid ID length conversion\r\n");
 				return bMGR_AT_CMD_logFailedMsg(ERROR_INVALID_ID);
 			}
 
 			
 			if (MCU_NVM_setID(&dev_id) != KNS_STATUS_OK)
 			{
+				MGR_LOG_DEBUG("[ERROR] failed to set ID\r\n");
 				return bMGR_AT_CMD_logFailedMsg(ERROR_INVALID_ID);
 			}
 			return bMGR_AT_CMD_logSucceedMsg();	

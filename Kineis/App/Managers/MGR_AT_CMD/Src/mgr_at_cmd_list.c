@@ -29,6 +29,7 @@ const struct atcmd_desc_t cas_atcmd_list_array[ATCMD_MAX_COUNT] = {
 	{ "AT+FW",            5, bMGR_AT_CMD_FW_cmd},
 	{ "AT+ADDR",          7, bMGR_AT_CMD_ADDR_cmd},
 	{ "AT+ID",            5, bMGR_AT_CMD_ID_cmd},
+	{ "AT+SECKEY",        9, bMGR_AT_CMD_SECKEY_cmd},
 	{ "AT+SN",            5, bMGR_AT_CMD_SN_cmd},
 	{ "AT+RCONF",         8, bMGR_AT_CMD_RCONF_cmd},
 	{ "AT+SAVE_RCONF",   13, bMGR_AT_CMD_SAVE_RCONF_cmd},

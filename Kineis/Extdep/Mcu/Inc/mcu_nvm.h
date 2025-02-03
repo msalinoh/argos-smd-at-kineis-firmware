@@ -113,8 +113,8 @@ enum KNS_status_t MCU_NVM_setID(uint32_t *id);
  * @return Status @ref KNS_status_t
  */
 //enum KNS_status_t MCU_NVM_getAddr(uint8_t dev_addr[]);
-enum KNS_status_t MCU_NVM_setAddr(uint8_t addr[4]);
-enum KNS_status_t MCU_NVM_getAddr(uint8_t addr[4]);
+enum KNS_status_t MCU_NVM_setAddr(uint8_t addr[]);
+enum KNS_status_t MCU_NVM_getAddr(uint8_t addr[]);
 //enum KNS_status_t MCU_NVM_setAddr(uint8_t dev_addr[]);
 
 /**
