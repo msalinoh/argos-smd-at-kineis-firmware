@@ -182,7 +182,7 @@ bool bMGR_AT_CMD_ID_cmd(uint8_t *pu8_cmdParamString __attribute__((unused)),
 
 			MGR_LOG_DEBUG("%s",__func__);
 			nbChar = strlen((char*)pu8_cmdParamString+6);
-			if (nbChar > 6)
+			if (nbChar > 7)
 			{
 				MGR_LOG_DEBUG("[ERROR] Invalid ID length\r\n");	
 				return bMGR_AT_CMD_logFailedMsg(ERROR_INVALID_ID);
