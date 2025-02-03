@@ -40,9 +40,6 @@
  * If you use a flash memory, be careful about the storage of this data. The message counter is
  * updated at each message transmission, so this implies a lot of erase/write cycles.
  */
-/* Variable used for Erase procedure*/
-//static FLASH_EraseInitTypeDef EraseInitStruct;
-
 __attribute__((__section__(".msgCntSectionData")))
 static uint16_t message_counter;
 

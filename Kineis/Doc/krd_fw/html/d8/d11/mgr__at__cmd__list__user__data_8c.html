@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="../../kineis_logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">&#x202A;Krd firmware
-   &#160;<span id="projectnumber">&#x202A;v8.5.1</span>
+   &#160;<span id="projectnumber">&#x202A;v9.1.2</span>
    </div>
    <div id="projectbrief">&#x202A;Firmware application for Kinéis reference design project</div>
   </td>
@@ -118,6 +118,9 @@ Functions</h2></td></tr>
 <tr class="separator:gacc929e5b70f2d6fefaa89d8aabf18773"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga36f229bbda63818246ec86181b1fdd42"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#ga36f229bbda63818246ec86181b1fdd42">__attribute__</a> ((unused))</td></tr>
 <tr class="separator:ga36f229bbda63818246ec86181b1fdd42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3cafca118878601afaac95a1b3dc75af"><td class="memItemLeft" align="right" valign="top">static enum <a class="el" href="../../d9/d2f/group___k_i_n_e_i_s___s_w___c_o_n_f.html#ga6ec2d413abf2c80e1b9ccf121d2be60e">ERROR_RETURN_T</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d11/mgr__at__cmd__list__user__data_8c.html#ga3cafca118878601afaac95a1b3dc75af">convKnsStatusToAtErr</a> (enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a> knsStatus)</td></tr>
+<tr class="memdesc:ga3cafca118878601afaac95a1b3dc75af"><td class="mdescLeft">&#160;</td><td class="mdescRight">&#x202A;This function converts kineis stack status into AT cmd error code.  <a href="../../d8/d11/mgr__at__cmd__list__user__data_8c.html#ga3cafca118878601afaac95a1b3dc75af">More...</a><br /></td></tr>
+<tr class="separator:ga3cafca118878601afaac95a1b3dc75af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaaa9bdf10c9ac69ef778eea22f8225343"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#gaaa9bdf10c9ac69ef778eea22f8225343">bMGR_AT_CMD_handleNewTxData</a> (uint8_t *pu8_cmdParamString, const char *pcAtCmdPattern)</td></tr>
 <tr class="memdesc:gaaa9bdf10c9ac69ef778eea22f8225343"><td class="mdescLeft">&#160;</td><td class="mdescRight">&#x202A;Handle new TX data, this is the core function of AT+TX cmd.  <a href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#gaaa9bdf10c9ac69ef778eea22f8225343">More...</a><br /></td></tr>
 <tr class="separator:gaaa9bdf10c9ac69ef778eea22f8225343"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -136,7 +139,52 @@ Functions</h2></td></tr>
 <dl class="section author DocNodeLTR"><dt>Author</dt><dd>&#x202A;Kineis </dd></dl>
 
 <p class="definition">Definition in file <a class="el" href="../../d8/d11/mgr__at__cmd__list__user__data_8c_source.html">mgr_at_cmd_list_user_data.c</a>.</p>
-</div></div><!-- contents -->
+</div><h2 class="groupheader">Function Documentation</h2>
+<a id="ga3cafca118878601afaac95a1b3dc75af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga3cafca118878601afaac95a1b3dc75af">&#9670;&nbsp;</a></span>convKnsStatusToAtErr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static enum <a class="el" href="../../d9/d2f/group___k_i_n_e_i_s___s_w___c_o_n_f.html#ga6ec2d413abf2c80e1b9ccf121d2be60e">ERROR_RETURN_T</a> convKnsStatusToAtErr </td>
+          <td>(</td>
+          <td class="paramtype">enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a>&#160;</td>
+          <td class="paramname"><em>knsStatus</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>&#x202A;This function converts kineis stack status into AT cmd error code. </p>
+<p class="DocNodeLTR">param[in] knsStatus: KNS libraries status</p>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">ERROR_RETURN_T</td><td>&#x202A;KIM error code </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="todo DocNodeLTR"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000010">Todo:</a></b></dt><dd>&#x202A;create specific Error code for this </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="../../d8/d11/mgr__at__cmd__list__user__data_8c_source.html#l00072">72</a> of file <a class="el" href="../../d8/d11/mgr__at__cmd__list__user__data_8c_source.html">mgr_at_cmd_list_user_data.c</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d8/d11/mgr__at__cmd__list__user__data_8c_ga3cafca118878601afaac95a1b3dc75af_icgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

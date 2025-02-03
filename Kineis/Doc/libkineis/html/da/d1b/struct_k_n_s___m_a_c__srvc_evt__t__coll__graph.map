@@ -1,6 +1,7 @@
 <map id="KNS_MAC_srvcEvt_t" name="KNS_MAC_srvcEvt_t">
-<area shape="rect" id="node1" title="Generic structure/union describing events coming from SERVICE layer." alt="" coords="231,95,384,121"/>
-<area shape="rect" id="node2" href="$d6/df0/struct_k_n_s___m_a_c___r_x__frm__ctxt__t.html" title="RX&#45;frameè&#45;received event context structure." alt="" coords="5,5,191,32"/>
-<area shape="rect" id="node3" href="$d6/da7/struct_k_n_s___m_a_c___t_x__cplt__ctxt__t.html" title="TX&#45;done/TX&#45;timeout event context structure." alt="" coords="215,5,400,32"/>
-<area shape="rect" id="node4" href="$de/dd2/struct_k_n_s___m_a_c___r_x__dl__msg__ctxt__t.html" title=" " alt="" coords="424,5,633,32"/>
+<area shape="rect" id="node1" title="Generic structure/union describing events coming from SERVICE layer." alt="" coords="340,81,493,108"/>
+<area shape="rect" id="node2" href="$d5/d52/struct_k_n_s___m_a_c___s_a_t_d_e_t__ctxt__t.html" title="SATellite DETected event context structure." alt="" coords="15,5,205,32"/>
+<area shape="rect" id="node3" href="$d6/df0/struct_k_n_s___m_a_c___r_x__frm__ctxt__t.html" title="RX&#45;frame&#45;received event context structure." alt="" coords="17,56,203,83"/>
+<area shape="rect" id="node4" href="$d6/da7/struct_k_n_s___m_a_c___t_x__cplt__ctxt__t.html" title="TX&#45;done/TX&#45;timeout event context structure." alt="" coords="17,107,203,133"/>
+<area shape="rect" id="node5" href="$de/dd2/struct_k_n_s___m_a_c___r_x__dl__msg__ctxt__t.html" title=" " alt="" coords="5,157,215,184"/>
 </map>

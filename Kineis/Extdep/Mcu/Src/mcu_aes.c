@@ -79,20 +79,6 @@ enum KNS_status_t MCU_AES_128_cbc_decrypt(const uint8_t *in, uint8_t *out, int32
 
 	return KNS_STATUS_OK;
 }
-//static inline uint32_t bytes_to_uint32(const uint8_t *bytes) {
-//    return ((uint32_t)bytes[0] << 24) |
-//           ((uint32_t)bytes[1] << 16) |
-//           ((uint32_t)bytes[2] << 8)  |
-//           ((uint32_t)bytes[3]);
-//}
-//
-//// Function to convert a uint32_t into 4 bytes (handling endianness)
-//static inline void uint32_to_bytes(uint32_t value, uint8_t *bytes) {
-//    bytes[0] = (value >> 24) & 0xFF;
-//    bytes[1] = (value >> 16) & 0xFF;
-//    bytes[2] = (value >> 8)  & 0xFF;
-//    bytes[3] = value & 0xFF;
-//}
 
 enum KNS_status_t MCU_AES_set_device_sec_key(const uint8_t *key) {
     if (!key) return KNS_STATUS_ERROR;

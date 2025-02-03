@@ -9,6 +9,8 @@ var kns__rf_8h =
       [ "\u202ARX_RECEIVED", "d7/d3a/group___k_n_s___r_f.html#gga3198d989f99288f10d2854934dbe4a3ca1fa25344b70808588790cf17c0be3fd7", null ],
       [ "\u202ASAT_DETECTED", "d7/d3a/group___k_n_s___r_f.html#gga3198d989f99288f10d2854934dbe4a3cae9bf67821ebcd2e4f969de5b5fe7323e", null ],
       [ "\u202ASAT_LOST", "d7/d3a/group___k_n_s___r_f.html#gga3198d989f99288f10d2854934dbe4a3cac8bf0d18b44ea9d798e5a2f6679a6e9f", null ],
+      [ "\u202ASAT_DETECT_TIMEOUT", "d7/d3a/group___k_n_s___r_f.html#gga3198d989f99288f10d2854934dbe4a3ca478bedeace9e83437497a8f97597dbdd", null ],
+      [ "\u202AFREQ_DETECTED", "d7/d3a/group___k_n_s___r_f.html#gga3198d989f99288f10d2854934dbe4a3ca54fad5914841720ae56bd8bc12a83ccc", null ],
       [ "\u202ARF_ABORTED", "d7/d3a/group___k_n_s___r_f.html#gga3198d989f99288f10d2854934dbe4a3caf35a1f7df19171af5d2bf67ab239a9af", null ]
     ] ],
     [ "\u202AKNS_RF_mode_t", "d7/d3a/group___k_n_s___r_f.html#gad102ecf1fcc18f139caf70bef3fdc229", [

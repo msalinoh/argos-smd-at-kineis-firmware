@@ -231,7 +231,7 @@ static void vMGR_LPM_enterSleep(struct MgrLpm_EnvConfig_t env_config)
 	if (env_config.fp_sleep_enter != NULL)
 		env_config.fp_sleep_enter();
 	
-	HAL_PWR_EnterSLEEPMode(PWR_LOWPOWERREGULATOR_ON, PWR_SLEEPENTRY_WFI);
+	HAL_PWR_EnterSLEEPMode(PWR_MAINREGULATOR_ON, PWR_SLEEPENTRY_WFI);
 
 	if (env_config.fp_sleep_exit != NULL)
 		env_config.fp_sleep_exit();

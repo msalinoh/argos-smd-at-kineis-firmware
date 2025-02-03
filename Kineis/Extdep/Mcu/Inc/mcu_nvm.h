@@ -96,13 +96,22 @@ enum KNS_status_t MCU_NVM_saveRadioConfZone(void);
  *
  * This is a read-only operation.
  *
- * @param[out] dev_id : Kineis identifier
+ * @param[out] id : Kineis identifier
  *
  * @return Status @ref KNS_status_t
  */
 enum KNS_status_t MCU_NVM_getID(uint32_t *id);
 
+/**
+ * @brief Set the Kineis identifier (32-bits long)
+ *
+ *
+ * @param[out] id : Kineis identifier
+ *
+ * @return Status @ref KNS_status_t
+ */
 enum KNS_status_t MCU_NVM_setID(uint32_t *id);
+
 /**
  * @brief get the Kineis address (4-bytes long)
  *
@@ -112,10 +121,17 @@ enum KNS_status_t MCU_NVM_setID(uint32_t *id);
  *
  * @return Status @ref KNS_status_t
  */
-//enum KNS_status_t MCU_NVM_getAddr(uint8_t dev_addr[]);
 enum KNS_status_t MCU_NVM_setAddr(uint8_t addr[]);
+
+/**
+ * @brief set the Kineis address (4-bytes long)
+ *
+ *
+ * @param[out] dev_addr : Kineis address
+ *
+ * @return Status @ref KNS_status_t
+ */
 enum KNS_status_t MCU_NVM_getAddr(uint8_t addr[]);
-//enum KNS_status_t MCU_NVM_setAddr(uint8_t dev_addr[]);
 
 /**
  * @brief get the device serial number (14-bytes null terminated ASCII string)

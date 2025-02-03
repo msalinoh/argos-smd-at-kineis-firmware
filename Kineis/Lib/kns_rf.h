@@ -85,6 +85,8 @@ enum KNS_RF_eventId_t {
 	RX_RECEIVED,  /**< RX frame received */
 	SAT_DETECTED, /**< SATellite detection complete */
 	SAT_LOST,    /**< SATellite signal lost */
+	SAT_DETECT_TIMEOUT, /**< SATellite detection timeout */
+	FREQ_DETECTED, /**< SATellite detection complete */
 	RF_ABORTED    /**< RF action fully aborted */
 };
 
@@ -121,6 +123,7 @@ struct KNS_RF_ctxt_tx_done_t {
 struct KNS_RF_ctxt_rx_received_t {
 	uint32_t dl_freq;
 	uint32_t dl_rx_det_duration;
+	float dl_mean_iq_mag;
 	uint8_t *bitstream;	/**< Pointer on received frame
 				  * @todo Pointed buffer should be configured by upper layer
 				  * (RX FIFO?)
@@ -137,6 +140,7 @@ struct KNS_RF_ctxt_rx_received_t {
 struct KNS_RF_ctxt_sat_detected_t {
 	uint32_t dl_freq;
 	uint32_t dl_rx_det_duration;
+	float dl_mean_iq_mag;
 };
 
 /**

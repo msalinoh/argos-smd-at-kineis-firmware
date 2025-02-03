@@ -1,0 +1,4 @@
+<map id="LPM_stop_enter" name="LPM_stop_enter">
+<area shape="rect" id="node1" title="System callback invoked by MGR_LPM at STOP mode entering." alt="" coords="160,5,285,32"/>
+<area shape="rect" id="node2" href="$db/dca/group___m_g_r___l_p_m.html#ga5e3c04e1820c16433ff591dde81e7449" title=" " alt="" coords="5,5,112,32"/>
+</map>

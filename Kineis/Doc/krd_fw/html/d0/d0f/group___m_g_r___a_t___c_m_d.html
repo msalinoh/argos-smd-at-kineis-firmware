@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="../../kineis_logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">&#x202A;Krd firmware
-   &#160;<span id="projectnumber">&#x202A;v8.5.1</span>
+   &#160;<span id="projectnumber">&#x202A;v9.1.2</span>
    </div>
    <div id="projectbrief">&#x202A;Firmware application for Kinéis reference design project</div>
   </td>
@@ -140,8 +140,11 @@ Enumerations</h2></td></tr>
 <a class="el" href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#ggada632936e06a8dfc948b2b509484dce1a3f6abc393f8661d0d21892c4ef9ca313">ATCMD_RSP_TXACKNOTOK</a>, 
 <br />
 &#160;&#160;<a class="el" href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#ggada632936e06a8dfc948b2b509484dce1a212a2a976045da99bad08344c1439439">ATCMD_RSP_SATDET</a>, 
+<a class="el" href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#ggada632936e06a8dfc948b2b509484dce1a34b19800bc7b2f78177b316a5edf6c91">ATCMD_RSP_SATLOST</a>, 
+<a class="el" href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#ggada632936e06a8dfc948b2b509484dce1a487ef88d5f415aec72280052ec97c9bd">ATCMD_RSP_SATDETTO</a>, 
 <a class="el" href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#ggada632936e06a8dfc948b2b509484dce1ae4e9f0abba4a83c27499aa5d016266b0">ATCMD_RSP_RXOK</a>, 
-<a class="el" href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#ggada632936e06a8dfc948b2b509484dce1a216d95542cc61228718c0b6eb2be707f">ATCMD_RSP_DLOK</a>, 
+<br />
+&#160;&#160;<a class="el" href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#ggada632936e06a8dfc948b2b509484dce1a216d95542cc61228718c0b6eb2be707f">ATCMD_RSP_DLOK</a>, 
 <a class="el" href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#ggada632936e06a8dfc948b2b509484dce1aa87e61b2861d132de555fdb02c162ac4">ATCMD_RSP_RXTIMEOUT</a>
 <br />
  }</td></tr>
@@ -252,9 +255,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga60486b23c6850d01bbb1e29875cd24f4"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#ga60486b23c6850d01bbb1e29875cd24f4">MGR_AT_CMD_sendRandomTxData</a> (struct <a class="el" href="../../d3/d5d/struct_k_n_s__tx__rf__cfg__t.html">KNS_tx_rf_cfg_t</a> *rf_cfg)</td></tr>
 <tr class="memdesc:ga60486b23c6850d01bbb1e29875cd24f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">&#x202A;Send random TX data as per RF configuration.  <a href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#ga60486b23c6850d01bbb1e29875cd24f4">More...</a><br /></td></tr>
 <tr class="separator:ga60486b23c6850d01bbb1e29875cd24f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaa9d6835fa67d6e39b880e04688f7ece9"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#gaa9d6835fa67d6e39b880e04688f7ece9">MGR_LOG_array</a> (uint8_t *data, uint16_t len)</td></tr>
-<tr class="memdesc:gaa9d6835fa67d6e39b880e04688f7ece9"><td class="mdescLeft">&#160;</td><td class="mdescRight">&#x202A;Log array of uint8_t.  <a href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#gaa9d6835fa67d6e39b880e04688f7ece9">More...</a><br /></td></tr>
-<tr class="separator:gaa9d6835fa67d6e39b880e04688f7ece9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafe57cb4db4c278d9f302a4d5b41e3025"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#gafe57cb4db4c278d9f302a4d5b41e3025">MGR_LOG_array</a> (<a class="el" href="../../db/dca/group___m_g_r___l_p_m.html#ga9dff9827dd2b415ecdb4eff4e3d4c530">__attribute__</a>((unused)) uint8_t *data, uint16_t len)</td></tr>
+<tr class="memdesc:gafe57cb4db4c278d9f302a4d5b41e3025"><td class="mdescLeft">&#160;</td><td class="mdescRight">&#x202A;Log array of uint8_t.  <a href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#gafe57cb4db4c278d9f302a4d5b41e3025">More...</a><br /></td></tr>
+<tr class="separator:gafe57cb4db4c278d9f302a4d5b41e3025"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gafccb1dfaf28ab371bebd814a3abaa57c"><td class="memItemLeft" align="right" valign="top">static enum <a class="el" href="../../d3/df9/group___k_n_s___t_y_p_e_s.html#ga32a49ec3ea991c35828de5c747981245">KNS_status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#gafccb1dfaf28ab371bebd814a3abaa57c">eoAtMW_isr_cb</a> (struct <a class="el" href="../../db/de1/struct_k_n_s___r_f__evt__t.html">KNS_RF_evt_t</a> *evt)</td></tr>
 <tr class="memdesc:gafccb1dfaf28ab371bebd814a3abaa57c"><td class="mdescLeft">&#160;</td><td class="mdescRight">&#x202A;Callback function notifying end of TX processing in case of modulated wave.  <a href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#gafccb1dfaf28ab371bebd814a3abaa57c">More...</a><br /></td></tr>
 <tr class="separator:gafccb1dfaf28ab371bebd814a3abaa57c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -502,6 +505,10 @@ Variables</h2></td></tr>
 </td></tr>
 <tr><td class="fieldname"><a id="ggada632936e06a8dfc948b2b509484dce1a212a2a976045da99bad08344c1439439"></a>ATCMD_RSP_SATDET&#160;</td><td class="fielddoc"><p class="DocNodeLTR">At command delayed response for SAT detection </p>
 </td></tr>
+<tr><td class="fieldname"><a id="ggada632936e06a8dfc948b2b509484dce1a34b19800bc7b2f78177b316a5edf6c91"></a>ATCMD_RSP_SATLOST&#160;</td><td class="fielddoc"><p class="DocNodeLTR">At command delayed response for SAT lost </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggada632936e06a8dfc948b2b509484dce1a487ef88d5f415aec72280052ec97c9bd"></a>ATCMD_RSP_SATDETTO&#160;</td><td class="fielddoc"><p class="DocNodeLTR">At command delayed response for SAT detection timeout </p>
+</td></tr>
 <tr><td class="fieldname"><a id="ggada632936e06a8dfc948b2b509484dce1ae4e9f0abba4a83c27499aa5d016266b0"></a>ATCMD_RSP_RXOK&#160;</td><td class="fielddoc"><p class="DocNodeLTR">At command delayed response for RX frame reception </p>
 </td></tr>
 <tr><td class="fieldname"><a id="ggada632936e06a8dfc948b2b509484dce1a216d95542cc61228718c0b6eb2be707f"></a>ATCMD_RSP_DLOK&#160;</td><td class="fielddoc"><p class="DocNodeLTR">At command delayed response for RX frame reception </p>
@@ -553,7 +560,7 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 <p class="DocNodeLTR">Empty weak core, can be overwritten, depending on AT cmd processed</p>
 
-<p class="definition">Definition at line <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html#l00272">272</a> of file <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html">mgr_at_cmd.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html#l00273">273</a> of file <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html">mgr_at_cmd.c</a>.</p>
 
 </div>
 </div>
@@ -697,7 +704,7 @@ Here is the call graph for this function:</div>
 <p class="DocNodeLTR">Invalidate modulated wave configuration,</p>
 <p class="DocNodeLTR">Invalidate modulated wave configuration, Will stop infinite loop at next end-of-TX callback</p>
 
-<p class="definition">Definition at line <a class="el" href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html#l00361">361</a> of file <a class="el" href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html">mgr_at_cmd_list_certif.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html#l00362">362</a> of file <a class="el" href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html">mgr_at_cmd_list_certif.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -839,7 +846,7 @@ Here is the call graph for this function:</div>
 <p class="DocNodeLTR">Case ARGOS Message with user data + optional attribute: User data should be converted form string format to Hex format</p>
 <dl class="section note DocNodeLTR"><dt>Note</dt><dd>&#x202A;appEvt.send_ctxt already filled-up at declaration</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d8/d11/mgr__at__cmd__list__user__data_8c_source.html#l00128">128</a> of file <a class="el" href="../../d8/d11/mgr__at__cmd__list__user__data_8c_source.html">mgr_at_cmd_list_user_data.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d8/d11/mgr__at__cmd__list__user__data_8c_source.html#l00125">125</a> of file <a class="el" href="../../d8/d11/mgr__at__cmd__list__user__data_8c_source.html">mgr_at_cmd_list_user_data.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1599,7 +1606,7 @@ Here is the call graph for this function:</div>
 <dl class="section attention DocNodeLTR"><dt>Attention</dt><dd>&#x202A;pattern length below shall not be longer than the length defined by FRAME_MAX_LEN.</dd></dl>
 <p class="DocNodeLTR">So far, here in LDA2 example; limit size to 48 chars, i.e. 24 bytes</p>
 
-<p class="definition">Definition at line <a class="el" href="../../d8/d11/mgr__at__cmd__list__user__data_8c_source.html#l00252">252</a> of file <a class="el" href="../../d8/d11/mgr__at__cmd__list__user__data_8c_source.html">mgr_at_cmd_list_user_data.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d8/d11/mgr__at__cmd__list__user__data_8c_source.html#l00249">249</a> of file <a class="el" href="../../d8/d11/mgr__at__cmd__list__user__data_8c_source.html">mgr_at_cmd_list_user_data.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1797,7 +1804,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="todo DocNodeLTR"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000007">Todo:</a></b></dt><dd>&#x202A;create specific Error code for this </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html#l00173">173</a> of file <a class="el" href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html">mgr_at_cmd_list_certif.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html#l00174">174</a> of file <a class="el" href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html">mgr_at_cmd_list_certif.c</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1848,7 +1855,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <p class="DocNodeLTR">Start new TX if continuous wave is still requested</p>
 
-<p class="definition">Definition at line <a class="el" href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html#l00145">145</a> of file <a class="el" href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html">mgr_at_cmd_list_certif.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html#l00146">146</a> of file <a class="el" href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html">mgr_at_cmd_list_certif.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1894,7 +1901,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html#l00248">248</a> of file <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html">mgr_at_cmd.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html#l00249">249</a> of file <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html">mgr_at_cmd.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1946,7 +1953,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>&#x202A;AT cmd info (e.g. index and execution type) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html#l00177">177</a> of file <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html">mgr_at_cmd.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html#l00178">178</a> of file <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html">mgr_at_cmd.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1986,7 +1993,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html#l00235">235</a> of file <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html">mgr_at_cmd.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html#l00236">236</a> of file <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html">mgr_at_cmd.c</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -2023,19 +2030,19 @@ Here is the caller graph for this function:</div>
 <p class="DocNodeLTR">get pointer to user data FIFO element when possible</p>
 <p class="DocNodeLTR">process event</p>
 <p class="DocNodeLTR">Upon TX done of a mail request message, it means some DL_BC was received Thus, UL ACK of DL_BC will transmitted by lower layer internally just after the end of this callback. AT response "+TX=..." will be sent to UART once UL-ACK is really transmitted, cf TXACK_DONE below</p>
-<dl class="todo DocNodeLTR"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000010">Todo:</a></b></dt><dd>&#x202A;Should check integrity between data reported by event above and the one stored in user data buffer</dd></dl>
-<p class="DocNodeLTR">So far, as only one user data, consider this is the correct one:</p><ul class="DocNodeLTR">
-<li>&#x202A;notify host with AT cmd response then</li>
-<li>&#x202A;free element from user data buffer.</li>
-</ul>
-<p class="DocNodeLTR">Upon TX done of a mail request message, it means some DL_BC was received previously and UL ACK of DL_BC was just transmitted. Send +TX= instead of +TACK=, meaning this is the real end of TX data transmission</p>
 <dl class="todo DocNodeLTR"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000011">Todo:</a></b></dt><dd>&#x202A;Should check integrity between data reported by event above and the one stored in user data buffer</dd></dl>
 <p class="DocNodeLTR">So far, as only one user data, consider this is the correct one:</p><ul class="DocNodeLTR">
 <li>&#x202A;notify host with AT cmd response then</li>
 <li>&#x202A;free element from user data buffer.</li>
 </ul>
-<p class="DocNodeLTR">&lt; RX error during TRX frame, report TX failure then</p>
+<p class="DocNodeLTR">Upon TX done of a mail request message, it means some DL_BC was received previously and UL ACK of DL_BC was just transmitted. Send +TX= instead of +TACK=, meaning this is the real end of TX data transmission</p>
 <dl class="todo DocNodeLTR"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000012">Todo:</a></b></dt><dd>&#x202A;Should check integrity between data reported by event above and the one stored in user data buffer</dd></dl>
+<p class="DocNodeLTR">So far, as only one user data, consider this is the correct one:</p><ul class="DocNodeLTR">
+<li>&#x202A;notify host with AT cmd response then</li>
+<li>&#x202A;free element from user data buffer.</li>
+</ul>
+<p class="DocNodeLTR">&lt; RX error during TRX frame, report TX failure then</p>
+<dl class="todo DocNodeLTR"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000013">Todo:</a></b></dt><dd>&#x202A;Should check integrity between data reported by event above and the one stored in user data buffer</dd></dl>
 <p class="DocNodeLTR">So far, as only one user data, consider this is the correct one:</p><ul class="DocNodeLTR">
 <li>&#x202A;notify host with AT cmd response then</li>
 <li>&#x202A;free element from user data buffer.</li>
@@ -2046,13 +2053,13 @@ Here is the caller graph for this function:</div>
 <li>&#x202A;no DL-BC received for a TX mail request. Actually this may really occur as no BC was available on board (protocol to be discussed)</li>
 </ul>
 </dd></dl>
-<dl class="todo DocNodeLTR"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000013">Todo:</a></b></dt><dd>&#x202A;Should check integrity between data reported by event above and the one stored in user data buffer</dd></dl>
+<dl class="todo DocNodeLTR"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000014">Todo:</a></b></dt><dd>&#x202A;Should check integrity between data reported by event above and the one stored in user data buffer</dd></dl>
 <p class="DocNodeLTR">So far, as only one user data, consider this is the correct one:</p><ul class="DocNodeLTR">
 <li>&#x202A;notify host with AT cmd response then</li>
 <li>&#x202A;free element from user data buffer.</li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="../../d8/d11/mgr__at__cmd__list__user__data_8c_source.html#l00339">339</a> of file <a class="el" href="../../d8/d11/mgr__at__cmd__list__user__data_8c_source.html">mgr_at_cmd_list_user_data.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d8/d11/mgr__at__cmd__list__user__data_8c_source.html#l00336">336</a> of file <a class="el" href="../../d8/d11/mgr__at__cmd__list__user__data_8c_source.html">mgr_at_cmd_list_user_data.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2156,7 +2163,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html#l00240">240</a> of file <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html">mgr_at_cmd.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html#l00241">241</a> of file <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html">mgr_at_cmd.c</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -2215,7 +2222,7 @@ Here is the caller graph for this function:</div>
 <p class="DocNodeLTR">Do the TCXO wramp for first transmission. No need to do it for next burst as power OFF/ON sequence between burst is saud to be very quick</p>
 <p class="DocNodeLTR">Stop RF and Send delayed error reply if failure during send process</p>
 
-<p class="definition">Definition at line <a class="el" href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html#l00207">207</a> of file <a class="el" href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html">mgr_at_cmd_list_certif.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html#l00208">208</a> of file <a class="el" href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html">mgr_at_cmd_list_certif.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2263,7 +2270,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html#l00229">229</a> of file <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html">mgr_at_cmd.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html#l00230">230</a> of file <a class="el" href="../../da/d77/mgr__at__cmd_8c_source.html">mgr_at_cmd.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2279,8 +2286,8 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="gaa9d6835fa67d6e39b880e04688f7ece9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaa9d6835fa67d6e39b880e04688f7ece9">&#9670;&nbsp;</a></span>MGR_LOG_array()</h2>
+<a id="gafe57cb4db4c278d9f302a4d5b41e3025"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gafe57cb4db4c278d9f302a4d5b41e3025">&#9670;&nbsp;</a></span>MGR_LOG_array()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2291,7 +2298,7 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="memname">static void MGR_LOG_array </td>
           <td>(</td>
-          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramtype"><a class="el" href="../../db/dca/group___m_g_r___l_p_m.html#ga9dff9827dd2b415ecdb4eff4e3d4c530">__attribute__</a>((unused)) uint8_t *&#160;</td>
           <td class="paramname"><em>data</em>, </td>
         </tr>
         <tr>
@@ -2326,7 +2333,7 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d0/d0f/group___m_g_r___a_t___c_m_d_gaa9d6835fa67d6e39b880e04688f7ece9_icgraph.svg" width="100%" height="404"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d0/d0f/group___m_g_r___a_t___c_m_d_gafe57cb4db4c278d9f302a4d5b41e3025_icgraph.svg" width="100%" height="404"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 
@@ -2422,7 +2429,7 @@ Here is the caller graph for this function:</div>
 <p class="DocNodeLTR">Set other bytes to zero</p>
 <p class="DocNodeLTR">Return data length in bits</p>
 
-<p class="definition">Definition at line <a class="el" href="../../d8/d11/mgr__at__cmd__list__user__data_8c_source.html#l00220">220</a> of file <a class="el" href="../../d8/d11/mgr__at__cmd__list__user__data_8c_source.html">mgr_at_cmd_list_user_data.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d8/d11/mgr__at__cmd__list__user__data_8c_source.html#l00217">217</a> of file <a class="el" href="../../d8/d11/mgr__at__cmd__list__user__data_8c_source.html">mgr_at_cmd_list_user_data.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2708,8 +2715,8 @@ Here is the caller graph for this function:</div>
 <div class="ttc" id="agroup___m_g_r___a_t___c_m_d_html_ga889fa837f7eb2fe456a76c2f08f3aa74"><div class="ttname"><a href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#ga889fa837f7eb2fe456a76c2f08f3aa74">&#x202A;FOR_LOOP_CYCLE_NB</a></div><div class="ttdeci">&#x202A;#define FOR_LOOP_CYCLE_NB</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html#l00047">mgr_at_cmd_list_certif.c:47</a></div></div>
 <div class="ttc" id="agroup___m_g_r___a_t___c_m_d_html_gac26c4703ebc4154a3d44c9fb01c366da"><div class="ttname"><a href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#gac26c4703ebc4154a3d44c9fb01c366da">&#x202A;bMGR_AT_CMD_UDATE_cmd</a></div><div class="ttdeci">&#x202A;bool bMGR_AT_CMD_UDATE_cmd(uint8_t *pu8_cmdParamString, enum atcmd_type_t e_exec_mode)</div><div class="ttdoc">&#x202A;Process AT command &quot;AT+UDATE&quot; get/set the current user date and UTC time.</div></div>
 <div class="ttc" id="agroup___m_g_r___a_t___c_m_d_html_gab1114ad88a3a8ef9482d6b08fd55c0ab"><div class="ttname"><a href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#gab1114ad88a3a8ef9482d6b08fd55c0ab">&#x202A;bMGR_AT_CMD_PING_cmd</a></div><div class="ttdeci">&#x202A;bool bMGR_AT_CMD_PING_cmd(uint8_t *pu8_cmdParamString, enum atcmd_type_t e_exec_mode)</div><div class="ttdoc">&#x202A;Process AT command &quot;AT+PING&quot; to test the UART communication.</div></div>
-<div class="ttc" id="agroup___m_g_r___a_t___c_m_d_html_ga0a4332fc4f8bad99c421588fe542a2bd"><div class="ttname"><a href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#ga0a4332fc4f8bad99c421588fe542a2bd">&#x202A;bMGR_AT_CMD_TX_cmd</a></div><div class="ttdeci">&#x202A;bool bMGR_AT_CMD_TX_cmd(uint8_t *pu8_cmdParamString, enum atcmd_type_t e_exec_mode)</div><div class="ttdoc">&#x202A;Process AT command &quot;AT+TX&quot; send user data.</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d11/mgr__at__cmd__list__user__data_8c_source.html#l00252">mgr_at_cmd_list_user_data.c:252</a></div></div>
-<div class="ttc" id="agroup___m_g_r___a_t___c_m_d_html_gafccf5cd6468be2c39af4c4c599d48ef8"><div class="ttname"><a href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#gafccf5cd6468be2c39af4c4c599d48ef8">&#x202A;bMGR_AT_CMD_CW_cmd</a></div><div class="ttdeci">&#x202A;bool bMGR_AT_CMD_CW_cmd(uint8_t *pu8_cmdParamString, enum atcmd_type_t e_exec_mode)</div><div class="ttdoc">&#x202A;Process AT command &quot;AT+CW&quot;.</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html#l00361">mgr_at_cmd_list_certif.c:361</a></div></div>
+<div class="ttc" id="agroup___m_g_r___a_t___c_m_d_html_ga0a4332fc4f8bad99c421588fe542a2bd"><div class="ttname"><a href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#ga0a4332fc4f8bad99c421588fe542a2bd">&#x202A;bMGR_AT_CMD_TX_cmd</a></div><div class="ttdeci">&#x202A;bool bMGR_AT_CMD_TX_cmd(uint8_t *pu8_cmdParamString, enum atcmd_type_t e_exec_mode)</div><div class="ttdoc">&#x202A;Process AT command &quot;AT+TX&quot; send user data.</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d11/mgr__at__cmd__list__user__data_8c_source.html#l00249">mgr_at_cmd_list_user_data.c:249</a></div></div>
+<div class="ttc" id="agroup___m_g_r___a_t___c_m_d_html_gafccf5cd6468be2c39af4c4c599d48ef8"><div class="ttname"><a href="../../d0/d0f/group___m_g_r___a_t___c_m_d.html#gafccf5cd6468be2c39af4c4c599d48ef8">&#x202A;bMGR_AT_CMD_CW_cmd</a></div><div class="ttdeci">&#x202A;bool bMGR_AT_CMD_CW_cmd(uint8_t *pu8_cmdParamString, enum atcmd_type_t e_exec_mode)</div><div class="ttdoc">&#x202A;Process AT command &quot;AT+CW&quot;.</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/d04/mgr__at__cmd__list__certif_8c_source.html#l00362">mgr_at_cmd_list_certif.c:362</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

@@ -60,8 +60,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"d7/d1a/kns__mac_8h_source.html",
-"dc/d32/union_k_n_s___m_a_c__rsrc_status__t.html#a0a595268561edc58e347ca8387000bc6"
+"d7/d1a/group___k_n_s___s_r_v.html#ggafd65cad8a896bf995b163eaaa200d3a7acada39299cb8a9d0eebe2299660a554a",
+"db/daa/group___k_n_s___m_a_c___p_r_f_l.html#gga1a0e46b941815a0e9c18722186ff0050a4f96bcc167ad48b1a3636befc6b01543"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

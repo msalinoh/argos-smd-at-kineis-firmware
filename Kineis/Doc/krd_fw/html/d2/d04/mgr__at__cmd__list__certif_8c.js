@@ -7,7 +7,7 @@ var mgr__at__cmd__list__certif_8c =
     [ "\u202AconvKnsStatusToAtErr", "d0/d0f/group___m_g_r___a_t___c_m_d.html#ga3cafca118878601afaac95a1b3dc75af", null ],
     [ "\u202AeoAtMW_isr_cb", "d0/d0f/group___m_g_r___a_t___c_m_d.html#gafccb1dfaf28ab371bebd814a3abaa57c", null ],
     [ "\u202AMGR_AT_CMD_sendRandomTxData", "d0/d0f/group___m_g_r___a_t___c_m_d.html#ga60486b23c6850d01bbb1e29875cd24f4", null ],
-    [ "\u202AMGR_LOG_array", "d0/d0f/group___m_g_r___a_t___c_m_d.html#gaa9d6835fa67d6e39b880e04688f7ece9", null ],
+    [ "\u202AMGR_LOG_array", "d0/d0f/group___m_g_r___a_t___c_m_d.html#gafe57cb4db4c278d9f302a4d5b41e3025", null ],
     [ "\u202Abitstream", "d0/d0f/group___m_g_r___a_t___c_m_d.html#gadb0cfe339338892d94cb2f9a933f0334", null ],
     [ "\u202Abitstream_bitlen", "d0/d0f/group___m_g_r___a_t___c_m_d.html#ga26cd9708770f758be71cf334b236e588", null ],
     [ "\u202AisToBeTransmit", "d0/d0f/group___m_g_r___a_t___c_m_d.html#ga3d80a9f9656be94a39da76c1b8fa28ff", null ],

@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="../../kineis_logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">&#x202A;Krd firmware
-   &#160;<span id="projectnumber">&#x202A;v8.5.1</span>
+   &#160;<span id="projectnumber">&#x202A;v9.1.2</span>
    </div>
    <div id="projectbrief">&#x202A;Firmware application for Kinéis reference design project</div>
   </td>
@@ -87,8 +87,7 @@ $(document).ready(function(){initNavTree('d5/db5/lpm_8c.html','../../'); initRes
   <div class="summary">
 <a href="#nested-classes">Data Structures</a> &#124;
 <a href="#define-members">Macros</a> &#124;
-<a href="#func-members">Functions</a> &#124;
-<a href="#var-members">Variables</a>  </div>
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">lpm.c File Reference</div>  </div>
 </div><!--header-->
@@ -143,6 +142,8 @@ Functions</h2></td></tr>
 <tr class="memitem:ga8828ea85b626943b9d30c4dfabb0666a"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dca/group___m_g_r___l_p_m.html#ga8828ea85b626943b9d30c4dfabb0666a">LPM_shutdown_enter</a> ()</td></tr>
 <tr class="memdesc:ga8828ea85b626943b9d30c4dfabb0666a"><td class="mdescLeft">&#160;</td><td class="mdescRight">&#x202A;System callback invoked by MGR_LPM at STANDBY mode entering.  <a href="../../db/dca/group___m_g_r___l_p_m.html#ga8828ea85b626943b9d30c4dfabb0666a">More...</a><br /></td></tr>
 <tr class="separator:ga8828ea85b626943b9d30c4dfabb0666a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5e3c04e1820c16433ff591dde81e7449"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dca/group___m_g_r___l_p_m.html#ga5e3c04e1820c16433ff591dde81e7449">__attribute__</a> ((__section__(&quot;.retentionRamData&quot;)))</td></tr>
+<tr class="separator:ga5e3c04e1820c16433ff591dde81e7449"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga9dff9827dd2b415ecdb4eff4e3d4c530"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dca/group___m_g_r___l_p_m.html#ga9dff9827dd2b415ecdb4eff4e3d4c530">__attribute__</a> ((__section__(&quot;.lpmSection&quot;)))</td></tr>
 <tr class="separator:ga9dff9827dd2b415ecdb4eff4e3d4c530"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga3e50a711eb2eb868233364c9c0f1a577"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dca/group___m_g_r___l_p_m.html#ga3e50a711eb2eb868233364c9c0f1a577">LPM_configWakeUpUart</a> (void)</td></tr>
@@ -174,11 +175,6 @@ Functions</h2></td></tr>
 <tr class="memitem:gadce2d4f4f14f65b15b45c1621e7ad4b8"><td class="memItemLeft" align="right" valign="top">enum <a class="el" href="../../db/dca/group___m_g_r___l_p_m.html#ga6e0e2f99368c5130619220b7cad6262f">MgrLpm_LPM_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dca/group___m_g_r___l_p_m.html#gadce2d4f4f14f65b15b45c1621e7ad4b8">LPM_getMode</a> (void)</td></tr>
 <tr class="memdesc:gadce2d4f4f14f65b15b45c1621e7ad4b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">&#x202A;Get the current low power mode.  <a href="../../db/dca/group___m_g_r___l_p_m.html#gadce2d4f4f14f65b15b45c1621e7ad4b8">More...</a><br /></td></tr>
 <tr class="separator:gadce2d4f4f14f65b15b45c1621e7ad4b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
-Variables</h2></td></tr>
-<tr class="memitem:ga11bd3dd601f6883075a82116bd3e50dd"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="../../dc/d36/struct_mgr_lpm___env_config__t.html">MgrLpm_EnvConfig_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dca/group___m_g_r___l_p_m.html#ga11bd3dd601f6883075a82116bd3e50dd">lpm_config</a></td></tr>
-<tr class="separator:ga11bd3dd601f6883075a82116bd3e50dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p class="DocNodeLTR">This file contains some utilities and functions needed for a correct handling of LPM on the STM32WL55xx cortex M4 core This file conatins the. </p>

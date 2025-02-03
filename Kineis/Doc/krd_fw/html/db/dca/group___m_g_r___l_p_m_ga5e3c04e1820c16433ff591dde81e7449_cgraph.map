@@ -1,0 +1,16 @@
+<map id="__attribute__" name="__attribute__">
+<area shape="rect" id="node1" title=" " alt="" coords="5,157,112,184"/>
+<area shape="rect" id="node2" href="$db/dca/group___m_g_r___l_p_m.html#ga8828ea85b626943b9d30c4dfabb0666a" title="System callback invoked by MGR_LPM at STANDBY mode entering." alt="" coords="160,31,320,57"/>
+<area shape="rect" id="node6" href="$db/dca/group___m_g_r___l_p_m.html#ga417819706e6583b0e268368befe4cdbb" title="System callback invoked by MGR_LPM at SLEEP mode entering." alt="" coords="174,183,306,209"/>
+<area shape="rect" id="node7" href="$db/dca/group___m_g_r___l_p_m.html#gafd6b27155bf6c556515edc46ea62ac96" title="System callback invoked by MGR_LPM at SLEEP mode exit." alt="" coords="179,233,301,260"/>
+<area shape="rect" id="node8" href="$db/dca/group___m_g_r___l_p_m.html#gaa6d6e5889194fc0b5a37640ed3d53ef3" title="System callback invoked by MGR_LPM at STANDBY mode entering." alt="" coords="165,81,315,108"/>
+<area shape="rect" id="node9" href="$db/dca/group___m_g_r___l_p_m.html#gab196a8032ee24a710126fc16eec09ed8" title="System callback invoked by MGR_LPM at STOP mode entering." alt="" coords="177,132,303,159"/>
+<area shape="rect" id="node11" href="$db/dca/group___m_g_r___l_p_m.html#ga2dfaa58a8d7f90840153f1f06542fd13" title="System callback invoked by MGR_LPM at STOP mode exit." alt="" coords="182,284,298,311"/>
+<area shape="rect" id="node3" href="$db/dca/group___m_g_r___l_p_m.html#ga2a7197f71c2bd57494778d45b8e3dab2" title="Disable all GPIO as not used for the moment." alt="" coords="368,107,587,133"/>
+<area shape="rect" id="node4" href="$db/dca/group___m_g_r___l_p_m.html#ga2f442d07b917d5aaa9c7b1ca07b0c24b" title="Function used to configure the external wakeup pins to exit low power mode (standby and shutdown only..." alt="" coords="389,56,566,83"/>
+<area shape="rect" id="node5" href="$db/dca/group___m_g_r___l_p_m.html#ga3d23fbf0f20054b5bddbbf112200367a" title="Function used to configure the internal wakeup line to exit low power mode." alt="" coords="392,5,563,32"/>
+<area shape="rect" id="node10" href="$db/dca/group___m_g_r___l_p_m.html#ga3e50a711eb2eb868233364c9c0f1a577" title=" " alt="" coords="388,157,567,184"/>
+<area shape="rect" id="node12" href="$db/dca/group___m_g_r___l_p_m.html#gab502b89f35dcc87b365658836f69736e" title="System Clock Configuration when exit from stop mode." alt="" coords="382,277,573,318"/>
+<area shape="rect" id="node13" href="$d0/d29/main_8c.html#a1730ffe1e560465665eb47d9264826f9" title="This function is executed in case of error occurrence." alt="" coords="635,284,745,311"/>
+<area shape="rect" id="node14" href="$d8/d62/group___m_c_u___a_p_p___w_r_a_p_p_e_r_s.html#gae14ee3e1d2a9b459c0d89c451a4bc470" title="Send AT CMD response to console." alt="" coords="793,284,977,311"/>
+</map>

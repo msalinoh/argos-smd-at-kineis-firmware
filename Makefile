@@ -53,9 +53,8 @@ OPT =
 endif
 
 #######################################
-# paths
-#######################################
 # Kineis related
+#######################################
 KINEIS_DIR = Kineis
 KINEIS_VERSION = v1.0.0
 
@@ -63,10 +62,20 @@ KINEIS_VERSION = v1.0.0
 BUILD_DIR = build
 BUILD_INFO_FILE = build_info.c
 BUILD_VERSION :=
+BUILD_DATE = $(shell date +"%b %d %Y_%H:%M:%S")
 
 # doc/doxygen related
 DOC_DIR = $(KINEIS_DIR)/Doc/krd_fw
 DOXY_WARN_LOGFILE = $(KINEIS_DIR)/doxy_warn_log_file.txt
+
+# Get Library versions from listed sources
+LIB_INFO_SOURCES = \
+$(KINEIS_DIR)/Lib/libkineis_info.c \
+$(KINEIS_DIR)/Lib/libknsrf_wl_info.c
+
+#LIB_VERSIONS := $(foreach file, $(LIB_INFO_SOURCES), $(shell   if !(cat $(file) | grep "$(notdir $(file:.c=))\[\]" | sed  's/.*"\(.*\)".*/\1/'); then echo 'serach_$(notdir $(file:.c=))_variable'; fi))
+LIB_VERSIONS := $(foreach file, $(LIB_INFO_SOURCES), $(shell cat $(file) | grep "$(notdir $(file:.c=))\[\]" | sed  's/.*"\(.*\)".*/\1/'))  
+LIB_VERSIONS := $(shell echo $(LIB_VERSIONS)  | sed  's/ /,/g')
 
 #######################################
 # includes
@@ -87,8 +96,6 @@ Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_rcc_ex.c \
 Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_flash.c \
 Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_flash_ex.c \
 Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_gpio.c \
-Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_i2c.c \
-Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_i2c_ex.c \
 Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_dma.c \
 Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_dma_ex.c \
 Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_pwr.c \
@@ -103,7 +110,6 @@ Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_uart.c \
 Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_uart_ex.c \
 Core/Src/system_stm32wlxx.c \
 Core/Src/gpio.c \
-Core/Src/i2c.c \
 Core/Src/syscalls.c \
 Core/Src/usart.c \
 Core/Src/subghz.c \
@@ -113,7 +119,6 @@ Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_rtc.c \
 Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_rtc_ex.c
 
 C_SOURCES += \
-$(BUILD_INFO_FILE) \
 $(KINEIS_DIR)/Extdep/Conf/kns_assert.c \
 $(KINEIS_DIR)/Extdep/Conf/kns_cs.c \
 $(KINEIS_DIR)/Extdep/Conf/kns_q_conf.c \
@@ -141,12 +146,11 @@ $(KINEIS_DIR)/App/Libs/STRUTIL/Src/strutil_lib.c \
 $(KINEIS_DIR)/App/Libs/USERDATA/Src/user_data.c \
 $(KINEIS_DIR)/Lpm/Src/mgr_lpm.c \
 $(KINEIS_DIR)/Lpm/Src/lpm.c \
-$(KINEIS_DIR)/Lpm/Src/lpm_cli_kstk.c \
-$(KINEIS_DIR)/Lib/libkineis_info.c \
-$(KINEIS_DIR)/Lib/libknsrf_wl_info.c
+$(KINEIS_DIR)/Lpm/Src/lpm_cli_kstk.c
 
 C_SOURCES += #$(libknsrf_wl_SOURCES)
 
+C_SOURCES += $(LIB_INFO_SOURCES)
 
 # ASM sources
 ASM_SOURCES =  \
@@ -212,13 +216,46 @@ C_DEFS += #$(libknsrf_wl_C_DEFS)
 ifeq ($(DEBUG), 1)
 C_DEFS +=  \
 -DDEBUG
-BUILD_VERSION := $(BUILD_VERSION)D
 endif
 
 ifeq ($(VERBOSE), 1)
 C_DEFS +=  \
 -DVERBOSE
+endif
+
+ifeq ($(APP),STDLN)
+C_DEFS +=  \
+-DUSE_STDALONE_APP
+ifeq ($(MAC_PRFL), BASIC)
+C_DEFS +=  \
+-DUSE_MAC_PRFL_BASIC
+endif
+ifeq ($(MAC_PRFL), BLIND)
+C_DEFS +=  \
+-DUSE_MAC_PRFL_BLIND
+endif
+endif
+
+ifeq ($(APP),GUI)
+C_DEFS +=  \
+-DUSE_GUI_APP
+endif
+
+# Build version
+
+ifeq ($(DEBUG), 1)
+BUILD_VERSION := $(BUILD_VERSION)D
+endif
+ifeq ($(VERBOSE), 1)
 BUILD_VERSION := $(BUILD_VERSION)V
+endif
+ifeq ($(USE_RX_STACK), 1)
+BUILD_VERSION := $(BUILD_VERSION)Trx
+else
+BUILD_VERSION := $(BUILD_VERSION)Tx
+endif
+ifeq ($(USE_HDA4), 1)
+BUILD_VERSION := $(BUILD_VERSION)Hda4
 endif
 
 # NONE, SLEEP, STOP, STANDBY, SHUTDOWN
@@ -235,33 +272,26 @@ ifeq ($(LPM), SHUTDOWN)
 BUILD_VERSION := $(BUILD_VERSION)Shtdwn
 endif
 
-ifeq ($(KRD_BOARD),KRD_FW_MP)
-BUILD_VERSION := $(BUILD_VERSION)Mp
-endif
-ifeq ($(KRD_BOARD),KRD_FW_LP)
-BUILD_VERSION := $(BUILD_VERSION)Lp
-endif
-
 ifeq ($(APP),STDLN)
-C_DEFS +=  \
--DUSE_STDALONE_APP
 BUILD_VERSION := $(BUILD_VERSION)_stdln
-endif
-ifeq ($(APP),GUI)
-C_DEFS +=  \
--DUSE_GUI_APP
-BUILD_VERSION := $(BUILD_VERSION)_gui
-endif
-
 ifeq ($(MAC_PRFL), BASIC)
-C_DEFS +=  \
--DUSE_MAC_PRFL_BASIC
 BUILD_VERSION := $(BUILD_VERSION)_basic
 endif
 ifeq ($(MAC_PRFL), BLIND)
-C_DEFS +=  \
--DUSE_MAC_PRFL_BLIND
 BUILD_VERSION := $(BUILD_VERSION)_blind
+endif
+endif
+
+ifeq ($(APP),GUI)
+BUILD_VERSION := $(BUILD_VERSION)_gui
+endif
+
+
+ifeq ($(KRD_BOARD),KRD_FW_MP)
+BUILD_VERSION := $(BUILD_VERSION)_Mp
+endif
+ifeq ($(KRD_BOARD),KRD_FW_LP)
+BUILD_VERSION := $(BUILD_VERSION)_Lp
 endif
 
 #######################################
@@ -329,21 +359,8 @@ endif
 # default action: build all
 all: $(BUILD_DIR)/$(TARGET).elf $(BUILD_DIR)/$(TARGET).hex $(BUILD_DIR)/$(TARGET).bin
 	@echo '==== Build with libkineis.a and libknsrf_wl.a completed ===='
+	@echo '==== $(LIB_VERSIONS) ===='
 
-# generate SW version of the firmware from GIT commit ID
-$(BUILD_INFO_FILE):
-	@echo '#include "build_info.h"'                            > $(BUILD_INFO_FILE)
-	@echo ''                                                   >> $(BUILD_INFO_FILE)
-	@echo -n 'const char uc_fw_vers_commit_id[] = "'           >> $(BUILD_INFO_FILE)
-	@echo -n '$(current_repo_commit)'                          >> $(BUILD_INFO_FILE)
-	@echo "!$(current_repo_status)!"
-	@if [ -n "$(current_repo_status)" ]; then                                         \
-		echo -n '*'                                        >> $(BUILD_INFO_FILE); \
-	fi
-	@if [ -n "$(BUILD_VERSION)" ]; then                                               \
-		echo -n '_$(BUILD_VERSION)'                        >> $(BUILD_INFO_FILE); \
-	fi
-	@echo '";'                                                 >> $(BUILD_INFO_FILE)
 
 # generate doc (doxygen framework), configure some dynamic parameters from Makefile
 doc: Doxyfile $(DOC_DIR)
@@ -367,12 +384,34 @@ echo WARN_LOGFILE=$(DOXY_WARN_LOGFILE)) \
 #######################################
 # build the application
 #######################################
-# list of objects
+# list of objects from C files
 OBJECTS = $(addprefix $(BUILD_DIR)/,$(notdir $(C_SOURCES:.c=.o)))
+BUILD_INFO_OBJ = $(addprefix $(BUILD_DIR)/,$(notdir $(BUILD_INFO_FILE:.c=.o)))
 vpath %.c $(sort $(dir $(C_SOURCES)))
-# list of ASM program objects
+# list of objects from ASM files
 OBJECTS += $(addprefix $(BUILD_DIR)/,$(notdir $(ASM_SOURCES:.s=.o)))
 vpath %.s $(sort $(dir $(ASM_SOURCES)))
+
+# generate SW version of the firmware from GIT commit ID
+$(BUILD_INFO_FILE): $(OBJECTS)
+	@echo "-- Build file build_info.c --"
+	@echo '#include "build_info.h"'                            > $(BUILD_INFO_FILE)
+	@echo ''                                                   >> $(BUILD_INFO_FILE)
+	@echo -n 'const char uc_fw_vers_commit_id[] = "'           >> $(BUILD_INFO_FILE)
+	@echo -n '$(current_repo_commit)'                          >> $(BUILD_INFO_FILE)
+	@echo "!$(current_repo_status)!"
+	@if [ -n "$(current_repo_status)" ]; then                                         \
+		echo -n '*'                                        >> $(BUILD_INFO_FILE); \
+	fi
+	@if [ -n "$(BUILD_VERSION)" ]; then                                               \
+		echo -n '_$(BUILD_VERSION)'                        >> $(BUILD_INFO_FILE); \
+	fi
+	@if [ -n "$(LIB_VERSIONS)" ]; then                                               \
+		echo -n ',$(LIB_VERSIONS)'                        >> $(BUILD_INFO_FILE); \
+	fi
+	@echo -n ',$(BUILD_DATE)'                                  >> $(BUILD_INFO_FILE)
+	@echo '";'                                                 >> $(BUILD_INFO_FILE)
+
 
 $(BUILD_DIR)/%.o: %.c $(current_makefile) | $(BUILD_DIR)
 	$(CC) -c $(CFLAGS) -Wa,-a,-ad,-alms=$(BUILD_DIR)/$(notdir $(<:.c=.lst)) $< -o $@
@@ -380,8 +419,9 @@ $(BUILD_DIR)/%.o: %.c $(current_makefile) | $(BUILD_DIR)
 $(BUILD_DIR)/%.o: %.s $(current_makefile) | $(BUILD_DIR)
 	$(AS) -c $(CFLAGS) $< -o $@
 
-$(BUILD_DIR)/$(TARGET).elf: $(OBJECTS) $(current_makefile)
-	$(CC) $(OBJECTS) -L$(KINEIS_DIR)/Lib/. -Wl,--whole-archive -lkineis -lknsrf_wl -Wl,--no-whole-archive $(LDFLAGS) -o $@
+$(BUILD_DIR)/$(TARGET).elf: $(OBJECTS) $(BUILD_INFO_OBJ) $(current_makefile)
+	@echo "-- Build firmware --"
+	$(CC) $(OBJECTS) $(BUILD_INFO_OBJ) -L$(KINEIS_DIR)/Lib/. -Wl,--whole-archive -lkineis -lknsrf_wl -Wl,--no-whole-archive $(LDFLAGS) -o $@
 	$(SZ) -t $@
 
 $(BUILD_DIR)/%.hex: $(BUILD_DIR)/%.elf | $(BUILD_DIR)

@@ -12,6 +12,7 @@ var kns__srvc__common_8h =
       [ "\u202AKNS_SRVC_RX_TIMEOUT", "d7/d1a/group___k_n_s___s_r_v.html#ggafd65cad8a896bf995b163eaaa200d3a7a749609d55e1f3cda16841093554c8099", null ],
       [ "\u202AKNS_SRVC_SAT_DETECTED", "d7/d1a/group___k_n_s___s_r_v.html#ggafd65cad8a896bf995b163eaaa200d3a7acada39299cb8a9d0eebe2299660a554a", null ],
       [ "\u202AKNS_SRVC_SAT_LOST", "d7/d1a/group___k_n_s___s_r_v.html#ggafd65cad8a896bf995b163eaaa200d3a7af18050f3f3c96ff7f6ad15e66c48a64f", null ],
+      [ "\u202AKNS_SRVC_SAT_DETECT_TIMEOUT", "d7/d1a/group___k_n_s___s_r_v.html#ggafd65cad8a896bf995b163eaaa200d3a7a03f86609dc8c2870480901d6bba4133d", null ],
       [ "\u202AKNS_SRVC_RF_ABORTED", "d7/d1a/group___k_n_s___s_r_v.html#ggafd65cad8a896bf995b163eaaa200d3a7ac7a7f1c1a2d5d0a74b397ef5d785a2fe", null ],
       [ "\u202AKNS_SRVC_ERROR", "d7/d1a/group___k_n_s___s_r_v.html#ggafd65cad8a896bf995b163eaaa200d3a7abbec0737b4281017c34a1712baad5c95", null ]
     ] ],

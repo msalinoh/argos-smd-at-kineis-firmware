@@ -64,11 +64,6 @@ bool bMGR_AT_CMD_KMAC_cmd(uint8_t *pu8_cmdParamString, enum atcmd_type_t e_exec_
 			prflCtxtData);
 	prflCtxtCharNb = strlen((const char *)prflCtxtData);
 
-	/** Assert when the number of characters received from AT command is bigger than
-	 * authorized
-	 */
-	kns_assert(prflCtxtCharNb <= (sizeof(prflCtxtData) -1 ));
-
 	/* Only one Tr parameter */
 	if (scan_param_res == 0)
 		/* Tr and pmt_mode parameters */
@@ -82,6 +77,10 @@ bool bMGR_AT_CMD_KMAC_cmd(uint8_t *pu8_cmdParamString, enum atcmd_type_t e_exec_
 			return bMGR_AT_CMD_logFailedMsg(ERROR_PARAMETER_FORMAT);
 
 	} else if (scan_param_res == 2) {
+		/** Assert when the number of characters received from AT command is bigger than
+		 * authorized
+		 */
+		kns_assert(prflCtxtCharNb <= (sizeof(prflCtxtData) -1 ));
 		u16MGR_AT_CMD_convertAsciiBinary(prflCtxtData, prflCtxtCharNb);
 		memcpy(&appEvt.init_prfl_ctxt.prflCfgPtr, prflCtxtData,
 			sizeof(struct KNS_MAC_BLIND_usrCfg_t));

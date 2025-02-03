@@ -49,6 +49,8 @@ var group___m_g_r___a_t___c_m_d =
       [ "\u202AATCMD_RSP_TXACKOK", "d0/d0f/group___m_g_r___a_t___c_m_d.html#ggada632936e06a8dfc948b2b509484dce1a5545efb5ea52a85cf9639dc65aefc5cc", null ],
       [ "\u202AATCMD_RSP_TXACKNOTOK", "d0/d0f/group___m_g_r___a_t___c_m_d.html#ggada632936e06a8dfc948b2b509484dce1a3f6abc393f8661d0d21892c4ef9ca313", null ],
       [ "\u202AATCMD_RSP_SATDET", "d0/d0f/group___m_g_r___a_t___c_m_d.html#ggada632936e06a8dfc948b2b509484dce1a212a2a976045da99bad08344c1439439", null ],
+      [ "\u202AATCMD_RSP_SATLOST", "d0/d0f/group___m_g_r___a_t___c_m_d.html#ggada632936e06a8dfc948b2b509484dce1a34b19800bc7b2f78177b316a5edf6c91", null ],
+      [ "\u202AATCMD_RSP_SATDETTO", "d0/d0f/group___m_g_r___a_t___c_m_d.html#ggada632936e06a8dfc948b2b509484dce1a487ef88d5f415aec72280052ec97c9bd", null ],
       [ "\u202AATCMD_RSP_RXOK", "d0/d0f/group___m_g_r___a_t___c_m_d.html#ggada632936e06a8dfc948b2b509484dce1ae4e9f0abba4a83c27499aa5d016266b0", null ],
       [ "\u202AATCMD_RSP_DLOK", "d0/d0f/group___m_g_r___a_t___c_m_d.html#ggada632936e06a8dfc948b2b509484dce1a216d95542cc61228718c0b6eb2be707f", null ],
       [ "\u202AATCMD_RSP_RXTIMEOUT", "d0/d0f/group___m_g_r___a_t___c_m_d.html#ggada632936e06a8dfc948b2b509484dce1aa87e61b2861d132de555fdb02c162ac4", null ]
@@ -98,7 +100,7 @@ var group___m_g_r___a_t___c_m_d =
     [ "\u202AMGR_AT_CMD_popNextAt", "d0/d0f/group___m_g_r___a_t___c_m_d.html#gae0ad7a2cd1228d268e28d2fd9fcd4411", null ],
     [ "\u202AMGR_AT_CMD_sendRandomTxData", "d0/d0f/group___m_g_r___a_t___c_m_d.html#ga60486b23c6850d01bbb1e29875cd24f4", null ],
     [ "\u202AMGR_AT_CMD_start", "d0/d0f/group___m_g_r___a_t___c_m_d.html#ga8edd80aa91125cf8b5f711cd822df02a", null ],
-    [ "\u202AMGR_LOG_array", "d0/d0f/group___m_g_r___a_t___c_m_d.html#gaa9d6835fa67d6e39b880e04688f7ece9", null ],
+    [ "\u202AMGR_LOG_array", "d0/d0f/group___m_g_r___a_t___c_m_d.html#gafe57cb4db4c278d9f302a4d5b41e3025", null ],
     [ "\u202ASet_TX_LED", "d0/d0f/group___m_g_r___a_t___c_m_d.html#gacc929e5b70f2d6fefaa89d8aabf18773", null ],
     [ "\u202Au16MGR_AT_CMD_convertAsciiBinary", "d0/d0f/group___m_g_r___a_t___c_m_d.html#ga474b262632007c7cdccc1c36d53d3d00", null ],
     [ "\u202Aatcmd_version", "d0/d0f/group___m_g_r___a_t___c_m_d.html#ga7ec9860b587b8b258ea603ce18b21783", null ],

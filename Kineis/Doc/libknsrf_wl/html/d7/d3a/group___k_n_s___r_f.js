@@ -12,10 +12,12 @@ var group___k_n_s___r_f =
       [ "\u202Abitstream", "d3/dd6/struct_k_n_s___r_f__ctxt__rx__received__t.html#a78c35f42c4d765e5aa0b5e1320539c1b", null ],
       [ "\u202Abitstream_bitlen", "d3/dd6/struct_k_n_s___r_f__ctxt__rx__received__t.html#a26cd9708770f758be71cf334b236e588", null ],
       [ "\u202Adl_freq", "d3/dd6/struct_k_n_s___r_f__ctxt__rx__received__t.html#a55e804bea4fccd3bd62a80b33e94cee5", null ],
+      [ "\u202Adl_mean_iq_mag", "d3/dd6/struct_k_n_s___r_f__ctxt__rx__received__t.html#abd99b1e5442f32212fb77643c3fb1676", null ],
       [ "\u202Adl_rx_det_duration", "d3/dd6/struct_k_n_s___r_f__ctxt__rx__received__t.html#ab2d5fbaf43604b85bf6c23a9c10a1cc7", null ]
     ] ],
     [ "\u202AKNS_RF_ctxt_sat_detected_t", "d7/d5a/struct_k_n_s___r_f__ctxt__sat__detected__t.html", [
       [ "\u202Adl_freq", "d7/d5a/struct_k_n_s___r_f__ctxt__sat__detected__t.html#a55e804bea4fccd3bd62a80b33e94cee5", null ],
+      [ "\u202Adl_mean_iq_mag", "d7/d5a/struct_k_n_s___r_f__ctxt__sat__detected__t.html#abd99b1e5442f32212fb77643c3fb1676", null ],
       [ "\u202Adl_rx_det_duration", "d7/d5a/struct_k_n_s___r_f__ctxt__sat__detected__t.html#ab2d5fbaf43604b85bf6c23a9c10a1cc7", null ]
     ] ],
     [ "\u202AKNS_RF_evt_t", "db/de1/struct_k_n_s___r_f__evt__t.html", [
@@ -33,6 +35,8 @@ var group___k_n_s___r_f =
       [ "\u202ARX_RECEIVED", "d7/d3a/group___k_n_s___r_f.html#gga3198d989f99288f10d2854934dbe4a3ca1fa25344b70808588790cf17c0be3fd7", null ],
       [ "\u202ASAT_DETECTED", "d7/d3a/group___k_n_s___r_f.html#gga3198d989f99288f10d2854934dbe4a3cae9bf67821ebcd2e4f969de5b5fe7323e", null ],
       [ "\u202ASAT_LOST", "d7/d3a/group___k_n_s___r_f.html#gga3198d989f99288f10d2854934dbe4a3cac8bf0d18b44ea9d798e5a2f6679a6e9f", null ],
+      [ "\u202ASAT_DETECT_TIMEOUT", "d7/d3a/group___k_n_s___r_f.html#gga3198d989f99288f10d2854934dbe4a3ca478bedeace9e83437497a8f97597dbdd", null ],
+      [ "\u202AFREQ_DETECTED", "d7/d3a/group___k_n_s___r_f.html#gga3198d989f99288f10d2854934dbe4a3ca54fad5914841720ae56bd8bc12a83ccc", null ],
       [ "\u202ARF_ABORTED", "d7/d3a/group___k_n_s___r_f.html#gga3198d989f99288f10d2854934dbe4a3caf35a1f7df19171af5d2bf67ab239a9af", null ]
     ] ],
     [ "\u202AKNS_RF_mode_t", "d7/d3a/group___k_n_s___r_f.html#gad102ecf1fcc18f139caf70bef3fdc229", [

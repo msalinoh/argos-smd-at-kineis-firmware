@@ -49,19 +49,6 @@
 
 /* Functions prototypes ------------------------------------------------------*/
 
-/** @brief Init function for the standalone application SW using the Kineis stack
- *
- * It initializes the Kineis MAC protocol
- *
- * This fct is expected to run once at each uC's reset (start-up or LPM wakeup), and before the
- * KNS_APP_stdln_loop fct is started/resumed.
- *
- * @param[in] context some handler on required HW setting.
- *            @note this handler will be directly sent as is, to MGR_AT_CMD and MCU wrappers. Thus
- *            application can change its type as per needs.
- */
-void KNS_APP_stdln_init(void *context);
-
 /** @brief This fct is a very basic standalone application
  *
  * This application is posting some send-data event to MAC layer of Kineis software stack in loop as

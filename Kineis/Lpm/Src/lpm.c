@@ -68,6 +68,7 @@ static void LPM_shutdown_enter();
 
 /* Variables ----------------------------------------------------------------------------------- */
 
+__attribute__((__section__(".retentionRamData")))
 struct MgrLpm_EnvConfig_t lpm_config = {
 	.allowedLPMbitmap  = LOW_POWER_MODE_NONE
 #if defined(LPM_SLEEP_ENABLED)
@@ -345,6 +346,8 @@ void LPM_SystemClockConfig(void)
 	RCC->APB2SMENR  = 0x0;
 //	__HAL_RCC_LPTIM1_CLK_SLEEP_ENABLE();
 	__HAL_RCC_LPUART1_CLK_SLEEP_ENABLE();
+	__HAL_RCC_RTCAPB_CLK_SLEEP_ENABLE();
+
 
 	/* =================== STOP support ============================= */
 	/* Configure the wake up from stop clock, back to full speed HSI. From System clock MUX,

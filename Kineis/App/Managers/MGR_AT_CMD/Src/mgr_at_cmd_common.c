@@ -86,7 +86,28 @@ bool bMGR_AT_CMD_sendResponse(enum atcmd_rsp_type_t atcmd_response_type, void *a
 	break;
 	case ATCMD_RSP_SATDET:
 	{
-		MCU_AT_CONSOLE_send("+SATDET=\r\n");
+		if (atcmd_rsp_data != NULL) {
+			struct KNS_MAC_SATDET_ctxt_t *det_info =
+						(struct KNS_MAC_SATDET_ctxt_t *)atcmd_rsp_data;
+			uint32_t detected_freq = det_info->detected_freq;
+			uint32_t detect_duration = det_info->detect_duration;
+			float rssi = det_info->rssi;
+
+			MCU_AT_CONSOLE_send("+SATDET=%ld,%ld,%f\r\n", detect_duration,
+					detected_freq, rssi);
+		}
+		return true;
+	}
+	break;
+	case ATCMD_RSP_SATLOST:
+	{
+		MCU_AT_CONSOLE_send("+SATLOST=\r\n");
+		return true;
+	}
+	break;
+	case ATCMD_RSP_SATDETTO:
+	{
+		MCU_AT_CONSOLE_send("+SATDET=0,0,0\r\n");
 		return true;
 	}
 	break;
@@ -97,10 +118,11 @@ bool bMGR_AT_CMD_sendResponse(enum atcmd_rsp_type_t atcmd_response_type, void *a
 						(struct KNS_MAC_RX_frm_ctxt_t *)atcmd_rsp_data;
 			uint8_t *rxFrmDataPtr = receivedFrm->data;
 			uint16_t rxFrmDataBitlen = receivedFrm->data_bitlen;
+			float rssi = receivedFrm->rssi;
 
 			MCU_AT_CONSOLE_send("+RX=");
 			MCU_AT_CONSOLE_send_dataBuf(rxFrmDataPtr, rxFrmDataBitlen);
-			MCU_AT_CONSOLE_send("\r\n");
+			MCU_AT_CONSOLE_send(",%f\r\n", rssi);
 		}
 		return true;
 	}

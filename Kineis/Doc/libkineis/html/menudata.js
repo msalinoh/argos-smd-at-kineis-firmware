@@ -70,6 +70,7 @@ var menudata={children:[
 {text:"\u202Aa",url:"globals_a.html#index_a"},
 {text:"\u202Ad",url:"globals_d.html#index_d"},
 {text:"\u202Ae",url:"globals_e.html#index_e"},
+{text:"\u202Af",url:"globals_f.html#index_f"},
 {text:"\u202Ai",url:"globals_i.html#index_i"},
 {text:"\u202Ak",url:"globals_k.html#index_k"},
 {text:"\u202Al",url:"globals_l.html#index_l"},
@@ -90,6 +91,7 @@ var menudata={children:[
 {text:"\u202AEnumerator",url:"globals_eval.html",children:[
 {text:"\u202Ad",url:"globals_eval.html#index_d"},
 {text:"\u202Ae",url:"globals_eval.html#index_e"},
+{text:"\u202Af",url:"globals_eval.html#index_f"},
 {text:"\u202Ai",url:"globals_eval.html#index_i"},
 {text:"\u202Ak",url:"globals_eval.html#index_k"},
 {text:"\u202Am",url:"globals_eval.html#index_m"},

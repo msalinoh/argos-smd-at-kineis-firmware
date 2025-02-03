@@ -2,6 +2,7 @@ var lpm_8c =
 [
     [ "\u202AUSART_ISR_RXNE", "db/dca/group___m_g_r___l_p_m.html#ga39da7549976e5a5c91deff40e6044f03", null ],
     [ "\u202A__attribute__", "db/dca/group___m_g_r___l_p_m.html#ga9dff9827dd2b415ecdb4eff4e3d4c530", null ],
+    [ "\u202A__attribute__", "db/dca/group___m_g_r___l_p_m.html#ga5e3c04e1820c16433ff591dde81e7449", null ],
     [ "\u202AGPIO_DisableAllToAnalogInput", "db/dca/group___m_g_r___l_p_m.html#ga2a7197f71c2bd57494778d45b8e3dab2", null ],
     [ "\u202ALPM_configWakeUpPins", "db/dca/group___m_g_r___l_p_m.html#ga2f442d07b917d5aaa9c7b1ca07b0c24b", null ],
     [ "\u202ALPM_configWakeUpRtc", "db/dca/group___m_g_r___l_p_m.html#ga3d23fbf0f20054b5bddbbf112200367a", null ],
@@ -17,6 +18,5 @@ var lpm_8c =
     [ "\u202ALPM_stop_enter", "db/dca/group___m_g_r___l_p_m.html#gab196a8032ee24a710126fc16eec09ed8", null ],
     [ "\u202ALPM_stop_exit", "db/dca/group___m_g_r___l_p_m.html#ga2dfaa58a8d7f90840153f1f06542fd13", null ],
     [ "\u202ALPM_SystemClock_Config_RestoreFromStop", "db/dca/group___m_g_r___l_p_m.html#gab502b89f35dcc87b365658836f69736e", null ],
-    [ "\u202ALPM_SystemClockConfig", "db/dca/group___m_g_r___l_p_m.html#gaf1f90aff094eac58cd08abf46df4fe0f", null ],
-    [ "\u202Alpm_config", "db/dca/group___m_g_r___l_p_m.html#ga11bd3dd601f6883075a82116bd3e50dd", null ]
+    [ "\u202ALPM_SystemClockConfig", "db/dca/group___m_g_r___l_p_m.html#gaf1f90aff094eac58cd08abf46df4fe0f", null ]
 ];

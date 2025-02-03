@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="../../kineis_logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">&#x202A;Krd firmware
-   &#160;<span id="projectnumber">&#x202A;v8.5.1</span>
+   &#160;<span id="projectnumber">&#x202A;v9.1.2</span>
    </div>
    <div id="projectbrief">&#x202A;Firmware application for Kinéis reference design project</div>
   </td>
@@ -138,7 +138,9 @@ Enumerations</h2></td></tr>
 <a class="el" href="../../d7/d3a/group___k_n_s___r_f.html#gga3198d989f99288f10d2854934dbe4a3cae9bf67821ebcd2e4f969de5b5fe7323e">SAT_DETECTED</a>, 
 <a class="el" href="../../d7/d3a/group___k_n_s___r_f.html#gga3198d989f99288f10d2854934dbe4a3cac8bf0d18b44ea9d798e5a2f6679a6e9f">SAT_LOST</a>, 
 <br />
-&#160;&#160;<a class="el" href="../../d7/d3a/group___k_n_s___r_f.html#gga3198d989f99288f10d2854934dbe4a3caf35a1f7df19171af5d2bf67ab239a9af">RF_ABORTED</a>
+&#160;&#160;<a class="el" href="../../d7/d3a/group___k_n_s___r_f.html#gga3198d989f99288f10d2854934dbe4a3ca478bedeace9e83437497a8f97597dbdd">SAT_DETECT_TIMEOUT</a>, 
+<a class="el" href="../../d7/d3a/group___k_n_s___r_f.html#gga3198d989f99288f10d2854934dbe4a3ca54fad5914841720ae56bd8bc12a83ccc">FREQ_DETECTED</a>, 
+<a class="el" href="../../d7/d3a/group___k_n_s___r_f.html#gga3198d989f99288f10d2854934dbe4a3caf35a1f7df19171af5d2bf67ab239a9af">RF_ABORTED</a>
 <br />
  }</td></tr>
 <tr class="memdesc:ga3198d989f99288f10d2854934dbe4a3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">&#x202A;List events which could be reported by this driver.  <a href="../../d7/d3a/group___k_n_s___r_f.html#ga3198d989f99288f10d2854934dbe4a3c">More...</a><br /></td></tr>
@@ -206,7 +208,7 @@ Functions</h2></td></tr>
 
 <p>&#x202A;List events which could be reported by this driver. </p>
 <dl class="section note DocNodeLTR"><dt>Note</dt><dd>&#x202A;This enum should concatenate to all event used by Kineis OS event dispatcher </dd></dl>
-<dl class="todo DocNodeLTR"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000019">Todo:</a></b></dt><dd>&#x202A;To Be moved to common Kineis OS event list </dd></dl>
+<dl class="todo DocNodeLTR"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000020">Todo:</a></b></dt><dd>&#x202A;To Be moved to common Kineis OS event list </dd></dl>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga3198d989f99288f10d2854934dbe4a3caf55c879799af9181748c7d71009caf69"></a>INIT_DONE&#160;</td><td class="fielddoc"><p class="DocNodeLTR">Power ON complete </p>
 </td></tr>
@@ -223,6 +225,10 @@ Functions</h2></td></tr>
 <tr><td class="fieldname"><a id="gga3198d989f99288f10d2854934dbe4a3cae9bf67821ebcd2e4f969de5b5fe7323e"></a>SAT_DETECTED&#160;</td><td class="fielddoc"><p class="DocNodeLTR">SATellite detection complete </p>
 </td></tr>
 <tr><td class="fieldname"><a id="gga3198d989f99288f10d2854934dbe4a3cac8bf0d18b44ea9d798e5a2f6679a6e9f"></a>SAT_LOST&#160;</td><td class="fielddoc"><p class="DocNodeLTR">SATellite signal lost </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga3198d989f99288f10d2854934dbe4a3ca478bedeace9e83437497a8f97597dbdd"></a>SAT_DETECT_TIMEOUT&#160;</td><td class="fielddoc"><p class="DocNodeLTR">SATellite detection timeout </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga3198d989f99288f10d2854934dbe4a3ca54fad5914841720ae56bd8bc12a83ccc"></a>FREQ_DETECTED&#160;</td><td class="fielddoc"><p class="DocNodeLTR">SATellite detection complete </p>
 </td></tr>
 <tr><td class="fieldname"><a id="gga3198d989f99288f10d2854934dbe4a3caf35a1f7df19171af5d2bf67ab239a9af"></a>RF_ABORTED&#160;</td><td class="fielddoc"><p class="DocNodeLTR">RF action fully aborted </p>
 </td></tr>

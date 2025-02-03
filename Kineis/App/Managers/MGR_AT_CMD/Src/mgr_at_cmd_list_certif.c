@@ -118,12 +118,13 @@ static bool MGR_AT_CMD_sendRandomTxData(struct KNS_tx_rf_cfg_t *rf_cfg);
  * @param[in] data: pointer to table
  * @param[in] len: number of bytes to log from the table
  */
-static void MGR_LOG_array(uint8_t *data, uint16_t len)
+static void MGR_LOG_array(__attribute__((unused)) uint8_t *data, uint16_t len)
 {
 	uint16_t i;
 
-	for (i = 0; i < len; i++)
+	for (i = 0; i < len; i++) {
 		MGR_LOG_DEBUG_RAW("%02X", data[i]);
+	}
 	MGR_LOG_DEBUG_RAW("\r\n");
 }
 

@@ -27,6 +27,7 @@ var kns__mac__evt_8h =
       [ "\u202AKNS_MAC_DL_ACK", "df/dbc/group___k_n_s___m_a_c.html#gga7f0ef07515c67b901308bc51617cf13ca0024f53043f8bc11f6bc22de2c7b04d9", null ],
       [ "\u202AKNS_MAC_SAT_DETECTED", "df/dbc/group___k_n_s___m_a_c.html#gga7f0ef07515c67b901308bc51617cf13ca635a05fff4170849fe5da1ed28f316e3", null ],
       [ "\u202AKNS_MAC_SAT_LOST", "df/dbc/group___k_n_s___m_a_c.html#gga7f0ef07515c67b901308bc51617cf13ca66f31da363f8097511064df663f5ad40", null ],
+      [ "\u202AKNS_MAC_SAT_DETECT_TIMEOUT", "df/dbc/group___k_n_s___m_a_c.html#gga7f0ef07515c67b901308bc51617cf13ca81d1a0257245f4c3abaae30def443ff8", null ],
       [ "\u202AKNS_MAC_RF_ABORTED", "df/dbc/group___k_n_s___m_a_c.html#gga7f0ef07515c67b901308bc51617cf13caa824106345995608e436c46779ea39f5", null ],
       [ "\u202AKNS_MAC_OK", "df/dbc/group___k_n_s___m_a_c.html#gga7f0ef07515c67b901308bc51617cf13cacba727e269bc6350fbcd5ddc72461c44", null ],
       [ "\u202AKNS_MAC_ERROR", "df/dbc/group___k_n_s___m_a_c.html#gga7f0ef07515c67b901308bc51617cf13caa9bcaee4754cb38bce07b46cf8be437c", null ]

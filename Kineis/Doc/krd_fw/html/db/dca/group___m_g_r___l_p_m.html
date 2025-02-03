@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="../../kineis_logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">&#x202A;Krd firmware
-   &#160;<span id="projectnumber">&#x202A;v8.5.1</span>
+   &#160;<span id="projectnumber">&#x202A;v9.1.2</span>
    </div>
    <div id="projectbrief">&#x202A;Firmware application for Kinéis reference design project</div>
   </td>
@@ -192,6 +192,8 @@ Functions</h2></td></tr>
 <tr class="memitem:ga8828ea85b626943b9d30c4dfabb0666a"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dca/group___m_g_r___l_p_m.html#ga8828ea85b626943b9d30c4dfabb0666a">LPM_shutdown_enter</a> ()</td></tr>
 <tr class="memdesc:ga8828ea85b626943b9d30c4dfabb0666a"><td class="mdescLeft">&#160;</td><td class="mdescRight">&#x202A;System callback invoked by MGR_LPM at STANDBY mode entering.  <a href="../../db/dca/group___m_g_r___l_p_m.html#ga8828ea85b626943b9d30c4dfabb0666a">More...</a><br /></td></tr>
 <tr class="separator:ga8828ea85b626943b9d30c4dfabb0666a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5e3c04e1820c16433ff591dde81e7449"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dca/group___m_g_r___l_p_m.html#ga5e3c04e1820c16433ff591dde81e7449">__attribute__</a> ((__section__(&quot;.retentionRamData&quot;)))</td></tr>
+<tr class="separator:ga5e3c04e1820c16433ff591dde81e7449"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga9dff9827dd2b415ecdb4eff4e3d4c530"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dca/group___m_g_r___l_p_m.html#ga9dff9827dd2b415ecdb4eff4e3d4c530">__attribute__</a> ((__section__(&quot;.lpmSection&quot;)))</td></tr>
 <tr class="separator:ga9dff9827dd2b415ecdb4eff4e3d4c530"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga3e50a711eb2eb868233364c9c0f1a577"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dca/group___m_g_r___l_p_m.html#ga3e50a711eb2eb868233364c9c0f1a577">LPM_configWakeUpUart</a> (void)</td></tr>
@@ -237,8 +239,6 @@ Variables</h2></td></tr>
 <tr class="separator:ga11bd3dd601f6883075a82116bd3e50dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga955a6e9ccc816887e50f653863eed6d3"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="../../d9/dd4/struct_mgr_lpm_client_cb__t.html">MgrLpmClientCb_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dca/group___m_g_r___l_p_m.html#ga955a6e9ccc816887e50f653863eed6d3">mgrLpmCliKstk</a></td></tr>
 <tr class="separator:ga955a6e9ccc816887e50f653863eed6d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga11bd3dd601f6883075a82116bd3e50dd"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="../../dc/d36/struct_mgr_lpm___env_config__t.html">MgrLpm_EnvConfig_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dca/group___m_g_r___l_p_m.html#ga11bd3dd601f6883075a82116bd3e50dd">lpm_config</a></td></tr>
-<tr class="separator:ga11bd3dd601f6883075a82116bd3e50dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga955a6e9ccc816887e50f653863eed6d3"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="../../d9/dd4/struct_mgr_lpm_client_cb__t.html">MgrLpmClientCb_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dca/group___m_g_r___l_p_m.html#ga955a6e9ccc816887e50f653863eed6d3">mgrLpmCliKstk</a></td></tr>
 <tr class="separator:ga955a6e9ccc816887e50f653863eed6d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga968bc59387f001213cc900b4b6d3e0fa"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="../../d9/dd4/struct_mgr_lpm_client_cb__t.html">MgrLpmClientCb_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dca/group___m_g_r___l_p_m.html#ga968bc59387f001213cc900b4b6d3e0fa">mgrLpmClientTab</a> [<a class="el" href="../../db/dca/group___m_g_r___l_p_m.html#ga723c6dc4e154df9ba05b44f7a2cc6c2d">MGR_LPM_CLIENT_NBR_MAX</a>]</td></tr>
@@ -311,7 +311,7 @@ Variables</h2></td></tr>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="ga9dff9827dd2b415ecdb4eff4e3d4c530"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga9dff9827dd2b415ecdb4eff4e3d4c530">&#9670;&nbsp;</a></span>__attribute__()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9dff9827dd2b415ecdb4eff4e3d4c530">&#9670;&nbsp;</a></span>__attribute__() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -326,7 +326,33 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d5/db5/lpm_8c_source.html#l00096">96</a> of file <a class="el" href="../../d5/db5/lpm_8c_source.html">lpm.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d5/db5/lpm_8c_source.html#l00097">97</a> of file <a class="el" href="../../d5/db5/lpm_8c_source.html">lpm.c</a>.</p>
+
+</div>
+</div>
+<a id="ga5e3c04e1820c16433ff591dde81e7449"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5e3c04e1820c16433ff591dde81e7449">&#9670;&nbsp;</a></span>__attribute__() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__attribute__ </td>
+          <td>(</td>
+          <td class="paramtype">(__section__(&quot;.retentionRamData&quot;))&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../d5/db5/lpm_8c_source.html#l00071">71</a> of file <a class="el" href="../../d5/db5/lpm_8c_source.html">lpm.c</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../db/dca/group___m_g_r___l_p_m_ga5e3c04e1820c16433ff591dde81e7449_cgraph.svg" width="100%" height="543"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
 
 </div>
 </div>
@@ -384,7 +410,7 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>&#x202A;Disable all GPIO as not used for the moment. </p>
-<dl class="todo DocNodeLTR"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000023">Todo:</a></b></dt><dd>&#x202A;Use this fct for LPM optimization (especially when LPM standby)</dd></dl>
+<dl class="todo DocNodeLTR"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000024">Todo:</a></b></dt><dd>&#x202A;Use this fct for LPM optimization (especially when LPM standby)</dd></dl>
 <p class="DocNodeLTR">This function disables GPIOs by:</p><ul class="DocNodeLTR">
 <li>&#x202A;clocking all ports</li>
 <li>&#x202A;Configure all GPIO port pins in Analog Input mode (floating input trigger OFF)</li>
@@ -395,17 +421,17 @@ Here is the caller graph for this function:</div>
 <dl class="section note DocNodeLTR"><dt>Note</dt><dd>&#x202A;This GPIO could be disabled back at end of RF any action (RX/TX/SAT_DETECT). So far, it will only go back disabled when entering LPM shutdown mode.</dd>
 <dd>
 &#x202A;GPIOs used by peripherals, such as SPI, SWD.JTAG, LPTIM are not disabled here.</dd></dl>
-<dl class="todo DocNodeLTR"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000024">Todo:</a></b></dt><dd>&#x202A;Disable SWD GPIOs (used for ST-Link debugging) in release build. Note, this will:<ul class="DocNodeLTR">
+<dl class="todo DocNodeLTR"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000025">Todo:</a></b></dt><dd>&#x202A;Disable SWD GPIOs (used for ST-Link debugging) in release build. Note, this will:<ul class="DocNodeLTR">
 <li>&#x202A;disable SWD attach/debug on a running build</li>
 <li>&#x202A;but it remains possible to reflash by pressing RESET pin/button of the uC at the start of flashing procedure </li>
 </ul>
 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d5/db5/lpm_8c_source.html#l00358">358</a> of file <a class="el" href="../../d5/db5/lpm_8c_source.html">lpm.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d5/db5/lpm_8c_source.html#l00361">361</a> of file <a class="el" href="../../d5/db5/lpm_8c_source.html">lpm.c</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/dca/group___m_g_r___l_p_m_ga2a7197f71c2bd57494778d45b8e3dab2_icgraph.svg" width="438" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/dca/group___m_g_r___l_p_m_ga2a7197f71c2bd57494778d45b8e3dab2_icgraph.svg" width="592" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -588,13 +614,13 @@ Here is the call graph for this function:</div>
 <li>&#x202A;WKUP2 (PC13, blue user button) falling edge.</li>
 </ul>
 </dd></dl>
-<dl class="todo DocNodeLTR"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000025">Todo:</a></b></dt><dd>&#x202A;Need to add input parameter to make it generic regarding the wakeup pins configuration. </dd></dl>
+<dl class="todo DocNodeLTR"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000026">Todo:</a></b></dt><dd>&#x202A;Need to add input parameter to make it generic regarding the wakeup pins configuration. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d5/db5/lpm_8c_source.html#l00191">191</a> of file <a class="el" href="../../d5/db5/lpm_8c_source.html">lpm.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d5/db5/lpm_8c_source.html#l00192">192</a> of file <a class="el" href="../../d5/db5/lpm_8c_source.html">lpm.c</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/dca/group___m_g_r___l_p_m_ga2f442d07b917d5aaa9c7b1ca07b0c24b_icgraph.svg" width="396" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/dca/group___m_g_r___l_p_m_ga2f442d07b917d5aaa9c7b1ca07b0c24b_icgraph.svg" width="551" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -627,11 +653,11 @@ Here is the caller graph for this function:</div>
 <p>&#x202A;Function used to configure the internal wakeup line to exit low power mode. </p>
 <dl class="section note DocNodeLTR"><dt>Note</dt><dd>&#x202A;So far, our internal line needs is RTC alarms and wakeup timer </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d5/db5/lpm_8c_source.html#l00213">213</a> of file <a class="el" href="../../d5/db5/lpm_8c_source.html">lpm.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d5/db5/lpm_8c_source.html#l00214">214</a> of file <a class="el" href="../../d5/db5/lpm_8c_source.html">lpm.c</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/dca/group___m_g_r___l_p_m_ga3d23fbf0f20054b5bddbbf112200367a_icgraph.svg" width="390" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/dca/group___m_g_r___l_p_m_ga3d23fbf0f20054b5bddbbf112200367a_icgraph.svg" width="544" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -661,11 +687,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d5/db5/lpm_8c_source.html#l00103">103</a> of file <a class="el" href="../../d5/db5/lpm_8c_source.html">lpm.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d5/db5/lpm_8c_source.html#l00104">104</a> of file <a class="el" href="../../d5/db5/lpm_8c_source.html">lpm.c</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/dca/group___m_g_r___l_p_m_ga3e50a711eb2eb868233364c9c0f1a577_icgraph.svg" width="363" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/dca/group___m_g_r___l_p_m_ga3e50a711eb2eb868233364c9c0f1a577_icgraph.svg" width="518" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -691,7 +717,7 @@ Here is the caller graph for this function:</div>
 <p class="DocNodeLTR">This function will invoke the main entry point of the low power manager and backup set mode. Backing up the low power mode will be used at wake, because the wake upo sequence depends on what remained active during LPM</p>
 <dl class="section return"><dt>Returns</dt><dd>&#x202A;MgrLpm_LowPowerMode_t low power mode </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d5/db5/lpm_8c_source.html#l00381">381</a> of file <a class="el" href="../../d5/db5/lpm_8c_source.html">lpm.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d5/db5/lpm_8c_source.html#l00384">384</a> of file <a class="el" href="../../d5/db5/lpm_8c_source.html">lpm.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -726,7 +752,7 @@ Here is the caller graph for this function:</div>
 <p>&#x202A;Force the current low power mode manually. </p>
 <p class="DocNodeLTR">param[in] MgrLpm_LPM_t low power mode </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d5/db5/lpm_8c_source.html#l00386">386</a> of file <a class="el" href="../../d5/db5/lpm_8c_source.html">lpm.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d5/db5/lpm_8c_source.html#l00389">389</a> of file <a class="el" href="../../d5/db5/lpm_8c_source.html">lpm.c</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -763,7 +789,7 @@ Here is the caller graph for this function:</div>
 <p>&#x202A;Get the current low power mode. </p>
 <dl class="section return"><dt>Returns</dt><dd>&#x202A;MgrLpm_LowPowerMode_t low power mode </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d5/db5/lpm_8c_source.html#l00391">391</a> of file <a class="el" href="../../d5/db5/lpm_8c_source.html">lpm.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d5/db5/lpm_8c_source.html#l00394">394</a> of file <a class="el" href="../../d5/db5/lpm_8c_source.html">lpm.c</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -791,7 +817,7 @@ Here is the caller graph for this function:</div>
 
 <p>&#x202A;Initializes the LPM management and register clients such as the Kineis stack client. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d5/db5/lpm_8c_source.html#l00375">375</a> of file <a class="el" href="../../d5/db5/lpm_8c_source.html">lpm.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d5/db5/lpm_8c_source.html#l00378">378</a> of file <a class="el" href="../../d5/db5/lpm_8c_source.html">lpm.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -833,11 +859,17 @@ Here is the caller graph for this function:</div>
 <p>&#x202A;System callback invoked by MGR_LPM at STANDBY mode entering. </p>
 <p class="DocNodeLTR">Force pull down on wakeup pin: PB3, or PC13 or PA0</p>
 
-<p class="definition">Definition at line <a class="el" href="../../d5/db5/lpm_8c_source.html#l00307">307</a> of file <a class="el" href="../../d5/db5/lpm_8c_source.html">lpm.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d5/db5/lpm_8c_source.html#l00308">308</a> of file <a class="el" href="../../d5/db5/lpm_8c_source.html">lpm.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="../../db/dca/group___m_g_r___l_p_m_ga8828ea85b626943b9d30c4dfabb0666a_cgraph.svg" width="438" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/dca/group___m_g_r___l_p_m_ga8828ea85b626943b9d30c4dfabb0666a_icgraph.svg" width="326" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -870,7 +902,13 @@ Here is the call graph for this function:</div>
 <p class="DocNodeLTR">Function prototypes defined before variable as referenced in lpm_config variable </p>
 <p class="DocNodeLTR">force renabling interrupt as wakeup from UART is needed</p>
 
-<p class="definition">Definition at line <a class="el" href="../../d5/db5/lpm_8c_source.html#l00230">230</a> of file <a class="el" href="../../d5/db5/lpm_8c_source.html">lpm.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d5/db5/lpm_8c_source.html#l00231">231</a> of file <a class="el" href="../../d5/db5/lpm_8c_source.html">lpm.c</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/dca/group___m_g_r___l_p_m_ga417819706e6583b0e268368befe4cdbb_icgraph.svg" width="298" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
 
 </div>
 </div>
@@ -899,7 +937,13 @@ Here is the call graph for this function:</div>
 
 <p>&#x202A;System callback invoked by MGR_LPM at SLEEP mode exit. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d5/db5/lpm_8c_source.html#l00239">239</a> of file <a class="el" href="../../d5/db5/lpm_8c_source.html">lpm.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d5/db5/lpm_8c_source.html#l00240">240</a> of file <a class="el" href="../../d5/db5/lpm_8c_source.html">lpm.c</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/dca/group___m_g_r___l_p_m_gafd6b27155bf6c556515edc46ea62ac96_icgraph.svg" width="288" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
 
 </div>
 </div>
@@ -933,11 +977,17 @@ Here is the call graph for this function:</div>
 <dd>
 &#x202A;Only RX line of UART is disabled. Disabling UART peripheral entirely may leads to instabilities if not correctly disabled on host side as well. Refer to HAL_UART_MspDeInit for details about DeInit sequence</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d5/db5/lpm_8c_source.html#l00273">273</a> of file <a class="el" href="../../d5/db5/lpm_8c_source.html">lpm.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d5/db5/lpm_8c_source.html#l00274">274</a> of file <a class="el" href="../../d5/db5/lpm_8c_source.html">lpm.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="../../db/dca/group___m_g_r___l_p_m_gaa6d6e5889194fc0b5a37640ed3d53ef3_cgraph.svg" width="427" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/dca/group___m_g_r___l_p_m_gaa6d6e5889194fc0b5a37640ed3d53ef3_icgraph.svg" width="315" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -970,11 +1020,17 @@ Here is the call graph for this function:</div>
 <p class="DocNodeLTR">Configure and renable interrupt as wakeup from UART is needed in case of GUI APP.</p>
 <dl class="section attention DocNodeLTR"><dt>Attention</dt><dd>&#x202A;, This should not be done in case of standalone APP, as long as UART reception is not is fully configured (need to call UART_Start_Receive_IT or KINEIS_UART_StartRx_IT at init)</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d5/db5/lpm_8c_source.html#l00245">245</a> of file <a class="el" href="../../d5/db5/lpm_8c_source.html">lpm.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d5/db5/lpm_8c_source.html#l00246">246</a> of file <a class="el" href="../../d5/db5/lpm_8c_source.html">lpm.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="../../db/dca/group___m_g_r___l_p_m_gab196a8032ee24a710126fc16eec09ed8_cgraph.svg" width="403" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/dca/group___m_g_r___l_p_m_gab196a8032ee24a710126fc16eec09ed8_icgraph.svg" width="291" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -1006,11 +1062,17 @@ Here is the call graph for this function:</div>
 <p>&#x202A;System callback invoked by MGR_LPM at STOP mode exit. </p>
 <p class="DocNodeLTR">So far need to add some delay at exit before being able to receive a new AT command from UART link. </p><dl class="section note DocNodeLTR"><dt>Note</dt><dd>&#x202A;same delay used in STM32 examples</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d5/db5/lpm_8c_source.html#l00261">261</a> of file <a class="el" href="../../d5/db5/lpm_8c_source.html">lpm.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d5/db5/lpm_8c_source.html#l00262">262</a> of file <a class="el" href="../../d5/db5/lpm_8c_source.html">lpm.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../db/dca/group___m_g_r___l_p_m_ga2dfaa58a8d7f90840153f1f06542fd13_cgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/dca/group___m_g_r___l_p_m_ga2dfaa58a8d7f90840153f1f06542fd13_icgraph.svg" width="282" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -1043,7 +1105,7 @@ Here is the call graph for this function:</div>
 <p>&#x202A;System Clock Configuration when exit from stop mode. </p>
 <dl class="section note DocNodeLTR"><dt>Note</dt><dd>&#x202A;This function is inspired from SystemClock_Config Core function generated by STM32CubeMX in <a class="el" href="../../d0/d29/main_8c.html" title="&#x202A;: Main program body">main.c</a>. This version is trying to retreive original configuration instead of direct duplication. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d5/db5/lpm_8c_source.html#l00140">140</a> of file <a class="el" href="../../d5/db5/lpm_8c_source.html">lpm.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d5/db5/lpm_8c_source.html#l00141">141</a> of file <a class="el" href="../../d5/db5/lpm_8c_source.html">lpm.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1053,7 +1115,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/dca/group___m_g_r___l_p_m_gab502b89f35dcc87b365658836f69736e_icgraph.svg" width="366" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/dca/group___m_g_r___l_p_m_gab502b89f35dcc87b365658836f69736e_icgraph.svg" width="520" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -1076,9 +1138,9 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>&#x202A;Specific system function to configure some clock behaviours during LPM (e.g. UART) </p>
-<dl class="todo DocNodeLTR"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000022">Todo:</a></b></dt><dd>&#x202A;can be removed if IDLE task wo/ BAREMETAL OS </dd></dl>
+<dl class="todo DocNodeLTR"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000023">Todo:</a></b></dt><dd>&#x202A;can be removed if IDLE task wo/ BAREMETAL OS </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d5/db5/lpm_8c_source.html#l00323">323</a> of file <a class="el" href="../../d5/db5/lpm_8c_source.html">lpm.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d5/db5/lpm_8c_source.html#l00324">324</a> of file <a class="el" href="../../d5/db5/lpm_8c_source.html">lpm.c</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1496,7 +1558,7 @@ Here is the caller graph for this function:</div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
 <a id="ga11bd3dd601f6883075a82116bd3e50dd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga11bd3dd601f6883075a82116bd3e50dd">&#9670;&nbsp;</a></span>lpm_config <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ga11bd3dd601f6883075a82116bd3e50dd">&#9670;&nbsp;</a></span>lpm_config</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1506,48 +1568,6 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="../../d5/db5/lpm_8c_source.html#l00071">71</a> of file <a class="el" href="../../d5/db5/lpm_8c_source.html">lpm.c</a>.</p>
-
-</div>
-</div>
-<a id="ga11bd3dd601f6883075a82116bd3e50dd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga11bd3dd601f6883075a82116bd3e50dd">&#9670;&nbsp;</a></span>lpm_config <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">struct <a class="el" href="../../dc/d36/struct_mgr_lpm___env_config__t.html">MgrLpm_EnvConfig_t</a> lpm_config</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">= {</div>
-<div class="line">        .allowedLPMbitmap  = <a class="code" href="../../db/dca/group___m_g_r___l_p_m.html#gga6e0e2f99368c5130619220b7cad6262fa2dc15e17dbebb3547689d7cac91e5087">&#x202A;LOW_POWER_MODE_NONE</a></div>
-<div class="line"> </div>
-<div class="line"> </div>
-<div class="line"> </div>
-<div class="line"> </div>
-<div class="line"> </div>
-<div class="line"> </div>
-<div class="line"> </div>
-<div class="line">                             | <a class="code" href="../../db/dca/group___m_g_r___l_p_m.html#gga6e0e2f99368c5130619220b7cad6262fa4519e8bccdd746e1e96d3c3f81b41ac6">&#x202A;LOW_POWER_MODE_SLEEP</a> | <a class="code" href="../../db/dca/group___m_g_r___l_p_m.html#gga6e0e2f99368c5130619220b7cad6262fa4d50cb77c1eb3b9de8fc38310b7e3b34">&#x202A;LOW_POWER_MODE_STOP</a> | <a class="code" href="../../db/dca/group___m_g_r___l_p_m.html#gga6e0e2f99368c5130619220b7cad6262fa9aedc0a708180d629d1d7b2dcb9c9487">&#x202A;LOW_POWER_MODE_STANDBY</a></div>
-<div class="line">                             | <a class="code" href="../../db/dca/group___m_g_r___l_p_m.html#gga6e0e2f99368c5130619220b7cad6262fadd750536ea6b8e88885f81070300f866">&#x202A;LOW_POWER_MODE_SHUTDOWN</a></div>
-<div class="line"> </div>
-<div class="line">                             ,</div>
-<div class="line">        .fp_sleep_enter    = <a class="code" href="../../db/dca/group___m_g_r___l_p_m.html#ga417819706e6583b0e268368befe4cdbb">&#x202A;LPM_sleep_enter</a>,</div>
-<div class="line">        .fp_sleep_exit     = <a class="code" href="../../db/dca/group___m_g_r___l_p_m.html#gafd6b27155bf6c556515edc46ea62ac96">&#x202A;LPM_sleep_exit</a>,</div>
-<div class="line">        .fp_stop_enter     = <a class="code" href="../../db/dca/group___m_g_r___l_p_m.html#gab196a8032ee24a710126fc16eec09ed8">&#x202A;LPM_stop_enter</a>,</div>
-<div class="line">        .fp_stop_exit      = <a class="code" href="../../db/dca/group___m_g_r___l_p_m.html#ga2dfaa58a8d7f90840153f1f06542fd13">&#x202A;LPM_stop_exit</a>,</div>
-<div class="line">        .fp_standby_enter  = <a class="code" href="../../db/dca/group___m_g_r___l_p_m.html#gaa6d6e5889194fc0b5a37640ed3d53ef3">&#x202A;LPM_standby_enter</a>,</div>
-<div class="line"> </div>
-<div class="line">        .fp_shutdown_enter = <a class="code" href="../../db/dca/group___m_g_r___l_p_m.html#ga8828ea85b626943b9d30c4dfabb0666a">&#x202A;LPM_shutdown_enter</a></div>
-<div class="line"> </div>
-<div class="line"> </div>
-<div class="line"> </div>
-<div class="line">}</div>
-</div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="../../d5/db5/lpm_8c_source.html#l00071">71</a> of file <a class="el" href="../../d5/db5/lpm_8c_source.html">lpm.c</a>.</p>
 
 </div>
 </div>
@@ -1595,7 +1615,12 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-
+<b>Initial value:</b><div class="fragment"><div class="line">=</div>
+<div class="line">{     .fpMGR_LPM_LpmReqCb        = <a class="code" href="../../db/dca/group___m_g_r___l_p_m.html#ga6d8e2a9027832f189ef6c2472355eb2a">&#x202A;KSTK_lpmReq</a>,</div>
+<div class="line">      .fpMGR_LPM_LpmNotifEnterCb = <a class="code" href="../../db/dca/group___m_g_r___l_p_m.html#ga38c3a4fcd42e43c751b3f44e8cff9959">&#x202A;KSTK_lpmNotifEnter</a>,</div>
+<div class="line">      .fpMGR_LPM_LpmNotifExitCb  = <a class="code" href="../../db/dca/group___m_g_r___l_p_m.html#ga558e3a1b7b3578d848ecd33b1b102b37">&#x202A;KSTK_lpmNotifExit</a></div>
+<div class="line">}</div>
+</div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="../../df/d53/lpm__cli__kstk_8c_source.html#l00022">22</a> of file <a class="el" href="../../df/d53/lpm__cli__kstk_8c_source.html">lpm_cli_kstk.c</a>.</p>
 
 </div>
@@ -1611,32 +1636,16 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">=</div>
-<div class="line">{     .fpMGR_LPM_LpmReqCb        = <a class="code" href="../../db/dca/group___m_g_r___l_p_m.html#ga6d8e2a9027832f189ef6c2472355eb2a">&#x202A;KSTK_lpmReq</a>,</div>
-<div class="line">      .fpMGR_LPM_LpmNotifEnterCb = <a class="code" href="../../db/dca/group___m_g_r___l_p_m.html#ga38c3a4fcd42e43c751b3f44e8cff9959">&#x202A;KSTK_lpmNotifEnter</a>,</div>
-<div class="line">      .fpMGR_LPM_LpmNotifExitCb  = <a class="code" href="../../db/dca/group___m_g_r___l_p_m.html#ga558e3a1b7b3578d848ecd33b1b102b37">&#x202A;KSTK_lpmNotifExit</a></div>
-<div class="line">}</div>
-</div><!-- fragment -->
+
 <p class="definition">Definition at line <a class="el" href="../../df/d53/lpm__cli__kstk_8c_source.html#l00022">22</a> of file <a class="el" href="../../df/d53/lpm__cli__kstk_8c_source.html">lpm_cli_kstk.c</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="agroup___m_g_r___l_p_m_html_gga6e0e2f99368c5130619220b7cad6262fa4d50cb77c1eb3b9de8fc38310b7e3b34"><div class="ttname"><a href="../../db/dca/group___m_g_r___l_p_m.html#gga6e0e2f99368c5130619220b7cad6262fa4d50cb77c1eb3b9de8fc38310b7e3b34">&#x202A;LOW_POWER_MODE_STOP</a></div><div class="ttdeci">&#x202A;@ LOW_POWER_MODE_STOP</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d63/mgr__lpm_8h_source.html#l00069">mgr_lpm.h:69</a></div></div>
 <div class="ttc" id="agroup___m_g_r___l_p_m_html_ga6d8e2a9027832f189ef6c2472355eb2a"><div class="ttname"><a href="../../db/dca/group___m_g_r___l_p_m.html#ga6d8e2a9027832f189ef6c2472355eb2a">&#x202A;KSTK_lpmReq</a></div><div class="ttdeci">&#x202A;enum MgrLpm_LPM_t KSTK_lpmReq(void)</div><div class="ttdoc">&#x202A;Request deepest LPM allowed by the Kineis stack client.</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d53/lpm__cli__kstk_8c_source.html#l00030">lpm_cli_kstk.c:30</a></div></div>
-<div class="ttc" id="agroup___m_g_r___l_p_m_html_ga8828ea85b626943b9d30c4dfabb0666a"><div class="ttname"><a href="../../db/dca/group___m_g_r___l_p_m.html#ga8828ea85b626943b9d30c4dfabb0666a">&#x202A;LPM_shutdown_enter</a></div><div class="ttdeci">&#x202A;static void LPM_shutdown_enter()</div><div class="ttdoc">&#x202A;System callback invoked by MGR_LPM at STANDBY mode entering.</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/db5/lpm_8c_source.html#l00307">lpm.c:307</a></div></div>
-<div class="ttc" id="agroup___m_g_r___l_p_m_html_ga417819706e6583b0e268368befe4cdbb"><div class="ttname"><a href="../../db/dca/group___m_g_r___l_p_m.html#ga417819706e6583b0e268368befe4cdbb">&#x202A;LPM_sleep_enter</a></div><div class="ttdeci">&#x202A;static void LPM_sleep_enter()</div><div class="ttdoc">&#x202A;System callback invoked by MGR_LPM at SLEEP mode entering.</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/db5/lpm_8c_source.html#l00230">lpm.c:230</a></div></div>
-<div class="ttc" id="agroup___m_g_r___l_p_m_html_gga6e0e2f99368c5130619220b7cad6262fadd750536ea6b8e88885f81070300f866"><div class="ttname"><a href="../../db/dca/group___m_g_r___l_p_m.html#gga6e0e2f99368c5130619220b7cad6262fadd750536ea6b8e88885f81070300f866">&#x202A;LOW_POWER_MODE_SHUTDOWN</a></div><div class="ttdeci">&#x202A;@ LOW_POWER_MODE_SHUTDOWN</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d63/mgr__lpm_8h_source.html#l00071">mgr_lpm.h:71</a></div></div>
 <div class="ttc" id="agroup___m_g_r___l_p_m_html_ga558e3a1b7b3578d848ecd33b1b102b37"><div class="ttname"><a href="../../db/dca/group___m_g_r___l_p_m.html#ga558e3a1b7b3578d848ecd33b1b102b37">&#x202A;KSTK_lpmNotifExit</a></div><div class="ttdeci">&#x202A;bool KSTK_lpmNotifExit(__attribute__((unused)) enum MgrLpm_LPM_t exitingLpm)</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d53/lpm__cli__kstk_8c_source.html#l00062">lpm_cli_kstk.c:62</a></div></div>
-<div class="ttc" id="agroup___m_g_r___l_p_m_html_gafd6b27155bf6c556515edc46ea62ac96"><div class="ttname"><a href="../../db/dca/group___m_g_r___l_p_m.html#gafd6b27155bf6c556515edc46ea62ac96">&#x202A;LPM_sleep_exit</a></div><div class="ttdeci">&#x202A;static void LPM_sleep_exit()</div><div class="ttdoc">&#x202A;System callback invoked by MGR_LPM at SLEEP mode exit.</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/db5/lpm_8c_source.html#l00239">lpm.c:239</a></div></div>
-<div class="ttc" id="agroup___m_g_r___l_p_m_html_gab196a8032ee24a710126fc16eec09ed8"><div class="ttname"><a href="../../db/dca/group___m_g_r___l_p_m.html#gab196a8032ee24a710126fc16eec09ed8">&#x202A;LPM_stop_enter</a></div><div class="ttdeci">&#x202A;static void LPM_stop_enter()</div><div class="ttdoc">&#x202A;System callback invoked by MGR_LPM at STOP mode entering.</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/db5/lpm_8c_source.html#l00245">lpm.c:245</a></div></div>
-<div class="ttc" id="agroup___m_g_r___l_p_m_html_gga6e0e2f99368c5130619220b7cad6262fa9aedc0a708180d629d1d7b2dcb9c9487"><div class="ttname"><a href="../../db/dca/group___m_g_r___l_p_m.html#gga6e0e2f99368c5130619220b7cad6262fa9aedc0a708180d629d1d7b2dcb9c9487">&#x202A;LOW_POWER_MODE_STANDBY</a></div><div class="ttdeci">&#x202A;@ LOW_POWER_MODE_STANDBY</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d63/mgr__lpm_8h_source.html#l00070">mgr_lpm.h:70</a></div></div>
-<div class="ttc" id="agroup___m_g_r___l_p_m_html_gaa6d6e5889194fc0b5a37640ed3d53ef3"><div class="ttname"><a href="../../db/dca/group___m_g_r___l_p_m.html#gaa6d6e5889194fc0b5a37640ed3d53ef3">&#x202A;LPM_standby_enter</a></div><div class="ttdeci">&#x202A;static void LPM_standby_enter()</div><div class="ttdoc">&#x202A;System callback invoked by MGR_LPM at STANDBY mode entering.</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/db5/lpm_8c_source.html#l00273">lpm.c:273</a></div></div>
-<div class="ttc" id="agroup___m_g_r___l_p_m_html_gga6e0e2f99368c5130619220b7cad6262fa4519e8bccdd746e1e96d3c3f81b41ac6"><div class="ttname"><a href="../../db/dca/group___m_g_r___l_p_m.html#gga6e0e2f99368c5130619220b7cad6262fa4519e8bccdd746e1e96d3c3f81b41ac6">&#x202A;LOW_POWER_MODE_SLEEP</a></div><div class="ttdeci">&#x202A;@ LOW_POWER_MODE_SLEEP</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d63/mgr__lpm_8h_source.html#l00068">mgr_lpm.h:68</a></div></div>
 <div class="ttc" id="agroup___m_g_r___l_p_m_html_ga38c3a4fcd42e43c751b3f44e8cff9959"><div class="ttname"><a href="../../db/dca/group___m_g_r___l_p_m.html#ga38c3a4fcd42e43c751b3f44e8cff9959">&#x202A;KSTK_lpmNotifEnter</a></div><div class="ttdeci">&#x202A;bool KSTK_lpmNotifEnter(__attribute__((unused)) enum MgrLpm_LPM_t enteringLpm)</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d53/lpm__cli__kstk_8c_source.html#l00057">lpm_cli_kstk.c:57</a></div></div>
-<div class="ttc" id="agroup___m_g_r___l_p_m_html_gga6e0e2f99368c5130619220b7cad6262fa2dc15e17dbebb3547689d7cac91e5087"><div class="ttname"><a href="../../db/dca/group___m_g_r___l_p_m.html#gga6e0e2f99368c5130619220b7cad6262fa2dc15e17dbebb3547689d7cac91e5087">&#x202A;LOW_POWER_MODE_NONE</a></div><div class="ttdeci">&#x202A;@ LOW_POWER_MODE_NONE</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d63/mgr__lpm_8h_source.html#l00067">mgr_lpm.h:67</a></div></div>
-<div class="ttc" id="agroup___m_g_r___l_p_m_html_ga2dfaa58a8d7f90840153f1f06542fd13"><div class="ttname"><a href="../../db/dca/group___m_g_r___l_p_m.html#ga2dfaa58a8d7f90840153f1f06542fd13">&#x202A;LPM_stop_exit</a></div><div class="ttdeci">&#x202A;static void LPM_stop_exit()</div><div class="ttdoc">&#x202A;System callback invoked by MGR_LPM at STOP mode exit.</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/db5/lpm_8c_source.html#l00261">lpm.c:261</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

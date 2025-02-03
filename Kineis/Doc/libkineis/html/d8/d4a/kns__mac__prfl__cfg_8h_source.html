@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="../../kineis_logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">&#x202A;libkineis
-   &#160;<span id="projectnumber">&#x202A;v8.5.1_unknow_Tx0x6</span>
+   &#160;<span id="projectnumber">&#x202A;v9.1.2_unknow_0x6Tx</span>
    </div>
    <div id="projectbrief">&#x202A;Documentation for libkineis library</div>
   </td>
@@ -138,53 +138,70 @@ $(document).ready(function(){initNavTree('d8/d4a/kns__mac__prfl__cfg_8h_source.h
 <div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="../../db/daa/group___k_n_s___m_a_c___p_r_f_l.html#gga1a0e46b941815a0e9c18722186ff0050a4f96bcc167ad48b1a3636befc6b01543">   48</a></span>&#160;        <a class="code" href="../../db/daa/group___k_n_s___m_a_c___p_r_f_l.html#gga1a0e46b941815a0e9c18722186ff0050a4f96bcc167ad48b1a3636befc6b01543">&#x202A;KNS_MAC_PRFL_NONE</a>,  <span class="comment">/**&lt; no profile currently configured */</span></div>
 <div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="../../db/daa/group___k_n_s___m_a_c___p_r_f_l.html#gga1a0e46b941815a0e9c18722186ff0050a9f8132e161925ba5b933fb86da0fd0c7">   49</a></span>&#160;        <a class="code" href="../../db/daa/group___k_n_s___m_a_c___p_r_f_l.html#gga1a0e46b941815a0e9c18722186ff0050a9f8132e161925ba5b933fb86da0fd0c7">&#x202A;KNS_MAC_PRFL_BASIC</a>,  <span class="comment">/**&lt; basic profile */</span></div>
 <div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="../../db/daa/group___k_n_s___m_a_c___p_r_f_l.html#gga1a0e46b941815a0e9c18722186ff0050ae9517c0e76e778c160f7ada2a13ae389">   50</a></span>&#160;        <a class="code" href="../../db/daa/group___k_n_s___m_a_c___p_r_f_l.html#gga1a0e46b941815a0e9c18722186ff0050ae9517c0e76e778c160f7ada2a13ae389">&#x202A;KNS_MAC_PRFL_BLIND</a>,  <span class="comment">/**&lt; blind profile */</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="../../db/daa/group___k_n_s___m_a_c___p_r_f_l.html#gga1a0e46b941815a0e9c18722186ff0050a517b3f2608314e40d21d4566723398d6">   51</a></span>&#160;        <a class="code" href="../../db/daa/group___k_n_s___m_a_c___p_r_f_l.html#gga1a0e46b941815a0e9c18722186ff0050a517b3f2608314e40d21d4566723398d6">&#x202A;KNS_MAC_PRFL_MAX</a></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;};</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">/* Structures ---------------------------------------------------------------------------------- */</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">/**</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment"> * @struct KNS_MAC_send_data_ctxt_t</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment"> * @brief Event context structure containing usefull information for the APPlication to send data</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment"> * to Kineis</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment"> * @attention Need to pack the struct to ensure memory mapping whatever the uC/compiler used to</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment"> * compile the kineis stack library</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="../../db/daa/group___k_n_s___m_a_c___p_r_f_l.html#ga12316b1bc584a9298c9af04aa923d4da">   64</a></span>&#160;<span class="keyword">struct </span><a class="code" href="../../db/daa/group___k_n_s___m_a_c___p_r_f_l.html#ga12316b1bc584a9298c9af04aa923d4da">&#x202A;__attribute__</a>((packed)) KNS_MAC_BLIND_usrCfg_t {</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        int8_t retx_nb;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        uint8_t nb_parrallel_msg;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        uint32_t retx_period_s;</div>
-<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="../../d1/d6d/struct_k_n_s___m_a_c__prfl_info__t.html">   68</a></span>&#160;};</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">/**</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment"> * @struct KNS_MAC_prflInfo_t</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment"> * @brief structure describing current profil used by kineis stack MAC mayer</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="keyword">struct </span><a class="code" href="../../db/daa/group___k_n_s___m_a_c___p_r_f_l.html#ga12316b1bc584a9298c9af04aa923d4da">&#x202A;__attribute__</a>((packed)) <a class="code" href="../../d1/d6d/struct_k_n_s___m_a_c__prfl_info__t.html">&#x202A;KNS_MAC_prflInfo_t</a> {</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keyword">enum</span> <a class="code" href="../../db/daa/group___k_n_s___m_a_c___p_r_f_l.html#ga1a0e46b941815a0e9c18722186ff0050">&#x202A;KNS_MAC_prflId_t</a> id;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="keyword">union </span>{ <span class="comment">// empty for BASIC profile</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                uint8_t prflCfgPtr; <span class="comment">// dummy pointer to to profile context</span></div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                <span class="keyword">struct </span>KNS_MAC_BLIND_usrCfg_t blindCfg; <span class="comment">// config for BLIND profile</span></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        };</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;};</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor">#pragma GCC visibility pop</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* KNS_MAC_PRFL_CFG_H */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="../../db/daa/group___k_n_s___m_a_c___p_r_f_l.html#gga1a0e46b941815a0e9c18722186ff0050a3af4b9a08d48dfac4b0452ad363e00c0">   51</a></span>&#160;        <a class="code" href="../../db/daa/group___k_n_s___m_a_c___p_r_f_l.html#gga1a0e46b941815a0e9c18722186ff0050a3af4b9a08d48dfac4b0452ad363e00c0">&#x202A;KNS_MAC_PRFL_SATDET</a>,  <span class="comment">/**&lt; satdet profile */</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="../../db/daa/group___k_n_s___m_a_c___p_r_f_l.html#gga1a0e46b941815a0e9c18722186ff0050a517b3f2608314e40d21d4566723398d6">   52</a></span>&#160;        <a class="code" href="../../db/daa/group___k_n_s___m_a_c___p_r_f_l.html#gga1a0e46b941815a0e9c18722186ff0050a517b3f2608314e40d21d4566723398d6">&#x202A;KNS_MAC_PRFL_MAX</a></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;};</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">/* Structures ---------------------------------------------------------------------------------- */</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment"> * @struct KNS_MAC_send_data_ctxt_t</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment"> * @brief Event context structure containing usefull information for the APPlication to send data</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment"> * to Kineis</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment"> * @attention Need to pack the struct to ensure memory mapping whatever the uC/compiler used to</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment"> * compile the kineis stack library</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="../../db/daa/group___k_n_s___m_a_c___p_r_f_l.html#ga12316b1bc584a9298c9af04aa923d4da">   65</a></span>&#160;<span class="keyword">struct </span><a class="code" href="../../db/daa/group___k_n_s___m_a_c___p_r_f_l.html#ga12316b1bc584a9298c9af04aa923d4da">&#x202A;__attribute__</a>((packed)) KNS_MAC_BLIND_usrCfg_t {</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        int8_t retx_nb;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        uint8_t nb_parrallel_msg;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        uint32_t retx_period_s;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;};</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment"> * @struct KNS_MAC_send_data_ctxt_t</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment"> * @brief Event context structure containing usefull information for the APPlication to send data</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment"> * to Kineis</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment"> * @attention Need to pack the struct to ensure memory mapping whatever the uC/compiler used to</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment"> * compile the kineis stack library</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="keyword">struct </span><a class="code" href="../../db/daa/group___k_n_s___m_a_c___p_r_f_l.html#ga12316b1bc584a9298c9af04aa923d4da">&#x202A;__attribute__</a>((packed)) KNS_MAC_SATDET_usrCfg_t {</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        int8_t retx_nb;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        uint8_t nb_parrallel_msg;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        uint32_t retx_period_s;</div>
+<div class="line"><a name="l00083"></a><span class="lineno"><a class="line" href="../../d1/d6d/struct_k_n_s___m_a_c__prfl_info__t.html">   83</a></span>&#160;};</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment"></span> </div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="comment">/**</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment"> * @}</span></div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment"> * @struct KNS_MAC_prflInfo_t</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment"> * @brief structure describing current profil used by kineis stack MAC mayer</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="keyword">struct </span><a class="code" href="../../db/daa/group___k_n_s___m_a_c___p_r_f_l.html#ga12316b1bc584a9298c9af04aa923d4da">&#x202A;__attribute__</a>((packed)) <a class="code" href="../../d1/d6d/struct_k_n_s___m_a_c__prfl_info__t.html">&#x202A;KNS_MAC_prflInfo_t</a> {</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <span class="keyword">enum</span> <a class="code" href="../../db/daa/group___k_n_s___m_a_c___p_r_f_l.html#ga1a0e46b941815a0e9c18722186ff0050">&#x202A;KNS_MAC_prflId_t</a> id;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <span class="keyword">union </span>{ <span class="comment">// empty for BASIC profile</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                uint8_t prflCfgPtr; <span class="comment">// dummy pointer to to profile context</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                <span class="keyword">struct </span>KNS_MAC_BLIND_usrCfg_t blindCfg; <span class="comment">// config for BLIND profile</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                <span class="keyword">struct </span>KNS_MAC_SATDET_usrCfg_t satdetCfg; <span class="comment">// config for SATDET profile</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        };</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;};</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="preprocessor">#pragma GCC visibility pop</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* KNS_MAC_PRFL_CFG_H */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="comment"> * @}</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="comment"> */</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="agroup___k_n_s___m_a_c___p_r_f_l_html_gga1a0e46b941815a0e9c18722186ff0050a9f8132e161925ba5b933fb86da0fd0c7"><div class="ttname"><a href="../../db/daa/group___k_n_s___m_a_c___p_r_f_l.html#gga1a0e46b941815a0e9c18722186ff0050a9f8132e161925ba5b933fb86da0fd0c7">&#x202A;KNS_MAC_PRFL_BASIC</a></div><div class="ttdeci">&#x202A;@ KNS_MAC_PRFL_BASIC</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d4a/kns__mac__prfl__cfg_8h_source.html#l00049">kns_mac_prfl_cfg.h:49</a></div></div>
-<div class="ttc" id="agroup___k_n_s___m_a_c___p_r_f_l_html_gga1a0e46b941815a0e9c18722186ff0050a517b3f2608314e40d21d4566723398d6"><div class="ttname"><a href="../../db/daa/group___k_n_s___m_a_c___p_r_f_l.html#gga1a0e46b941815a0e9c18722186ff0050a517b3f2608314e40d21d4566723398d6">&#x202A;KNS_MAC_PRFL_MAX</a></div><div class="ttdeci">&#x202A;@ KNS_MAC_PRFL_MAX</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d4a/kns__mac__prfl__cfg_8h_source.html#l00051">kns_mac_prfl_cfg.h:51</a></div></div>
-<div class="ttc" id="astruct_k_n_s___m_a_c__prfl_info__t_html"><div class="ttname"><a href="../../d1/d6d/struct_k_n_s___m_a_c__prfl_info__t.html">&#x202A;KNS_MAC_prflInfo_t</a></div><div class="ttdoc">&#x202A;structure describing current profil used by kineis stack MAC mayer</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d4a/kns__mac__prfl__cfg_8h_source.html#l00068">kns_mac_prfl_cfg.h:68</a></div></div>
-<div class="ttc" id="agroup___k_n_s___m_a_c___p_r_f_l_html_ga12316b1bc584a9298c9af04aa923d4da"><div class="ttname"><a href="../../db/daa/group___k_n_s___m_a_c___p_r_f_l.html#ga12316b1bc584a9298c9af04aa923d4da">&#x202A;__attribute__</a></div><div class="ttdeci">&#x202A;struct __attribute__((packed)) KNS_MAC_BLIND_usrCfg_t</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d4a/kns__mac__prfl__cfg_8h_source.html#l00064">kns_mac_prfl_cfg.h:64</a></div></div>
+<div class="ttc" id="agroup___k_n_s___m_a_c___p_r_f_l_html_gga1a0e46b941815a0e9c18722186ff0050a517b3f2608314e40d21d4566723398d6"><div class="ttname"><a href="../../db/daa/group___k_n_s___m_a_c___p_r_f_l.html#gga1a0e46b941815a0e9c18722186ff0050a517b3f2608314e40d21d4566723398d6">&#x202A;KNS_MAC_PRFL_MAX</a></div><div class="ttdeci">&#x202A;@ KNS_MAC_PRFL_MAX</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d4a/kns__mac__prfl__cfg_8h_source.html#l00052">kns_mac_prfl_cfg.h:52</a></div></div>
+<div class="ttc" id="astruct_k_n_s___m_a_c__prfl_info__t_html"><div class="ttname"><a href="../../d1/d6d/struct_k_n_s___m_a_c__prfl_info__t.html">&#x202A;KNS_MAC_prflInfo_t</a></div><div class="ttdoc">&#x202A;structure describing current profil used by kineis stack MAC mayer</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d4a/kns__mac__prfl__cfg_8h_source.html#l00083">kns_mac_prfl_cfg.h:83</a></div></div>
+<div class="ttc" id="agroup___k_n_s___m_a_c___p_r_f_l_html_ga12316b1bc584a9298c9af04aa923d4da"><div class="ttname"><a href="../../db/daa/group___k_n_s___m_a_c___p_r_f_l.html#ga12316b1bc584a9298c9af04aa923d4da">&#x202A;__attribute__</a></div><div class="ttdeci">&#x202A;struct __attribute__((packed)) KNS_MAC_BLIND_usrCfg_t</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d4a/kns__mac__prfl__cfg_8h_source.html#l00065">kns_mac_prfl_cfg.h:65</a></div></div>
 <div class="ttc" id="agroup___k_n_s___m_a_c___p_r_f_l_html_ga1a0e46b941815a0e9c18722186ff0050"><div class="ttname"><a href="../../db/daa/group___k_n_s___m_a_c___p_r_f_l.html#ga1a0e46b941815a0e9c18722186ff0050">&#x202A;KNS_MAC_prflId_t</a></div><div class="ttdeci">&#x202A;KNS_MAC_prflId_t</div><div class="ttdoc">&#x202A;MAC profile list.</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d4a/kns__mac__prfl__cfg_8h_source.html#l00047">kns_mac_prfl_cfg.h:47</a></div></div>
 <div class="ttc" id="akns__types_8h_html"><div class="ttname"><a href="../../d8/d85/kns__types_8h.html">&#x202A;kns_types.h</a></div><div class="ttdoc">&#x202A;Kineis types definition.</div></div>
 <div class="ttc" id="agroup___k_n_s___m_a_c___p_r_f_l_html_gga1a0e46b941815a0e9c18722186ff0050ae9517c0e76e778c160f7ada2a13ae389"><div class="ttname"><a href="../../db/daa/group___k_n_s___m_a_c___p_r_f_l.html#gga1a0e46b941815a0e9c18722186ff0050ae9517c0e76e778c160f7ada2a13ae389">&#x202A;KNS_MAC_PRFL_BLIND</a></div><div class="ttdeci">&#x202A;@ KNS_MAC_PRFL_BLIND</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d4a/kns__mac__prfl__cfg_8h_source.html#l00050">kns_mac_prfl_cfg.h:50</a></div></div>
 <div class="ttc" id="agroup___k_n_s___m_a_c___p_r_f_l_html_gga1a0e46b941815a0e9c18722186ff0050a4f96bcc167ad48b1a3636befc6b01543"><div class="ttname"><a href="../../db/daa/group___k_n_s___m_a_c___p_r_f_l.html#gga1a0e46b941815a0e9c18722186ff0050a4f96bcc167ad48b1a3636befc6b01543">&#x202A;KNS_MAC_PRFL_NONE</a></div><div class="ttdeci">&#x202A;@ KNS_MAC_PRFL_NONE</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d4a/kns__mac__prfl__cfg_8h_source.html#l00048">kns_mac_prfl_cfg.h:48</a></div></div>
+<div class="ttc" id="agroup___k_n_s___m_a_c___p_r_f_l_html_gga1a0e46b941815a0e9c18722186ff0050a3af4b9a08d48dfac4b0452ad363e00c0"><div class="ttname"><a href="../../db/daa/group___k_n_s___m_a_c___p_r_f_l.html#gga1a0e46b941815a0e9c18722186ff0050a3af4b9a08d48dfac4b0452ad363e00c0">&#x202A;KNS_MAC_PRFL_SATDET</a></div><div class="ttdeci">&#x202A;@ KNS_MAC_PRFL_SATDET</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d4a/kns__mac__prfl__cfg_8h_source.html#l00051">kns_mac_prfl_cfg.h:51</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

@@ -1,9 +1,10 @@
 <map id="Error_Handler" name="Error_Handler">
-<area shape="rect" id="node1" title="This function is executed in case of error occurrence." alt="" coords="408,123,519,149"/>
-<area shape="rect" id="node2" href="$d9/d2f/group___k_i_n_e_i_s___s_w___c_o_n_f.html#ga530a6753c266d92335600fbc8c47da6d" title="Handle assert reported by Kineis stack,." alt="" coords="197,5,333,32"/>
-<area shape="rect" id="node3" href="$db/dca/group___m_g_r___l_p_m.html#gab502b89f35dcc87b365658836f69736e" title="System Clock Configuration when exit from stop mode." alt="" coords="169,57,360,98"/>
-<area shape="rect" id="node5" href="$d0/d29/main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="The application entry point." alt="" coords="36,173,91,200"/>
-<area shape="rect" id="node6" href="$d8/d5d/group___m_c_u___w_r_a_p_p_e_r_s.html#gaf68cb2253430ce4b7743a51d34430028" title="Function used to start the timer for a specific delay." alt="" coords="204,173,325,200"/>
-<area shape="rect" id="node7" href="$d0/d29/main_8c.html#a70af21c671abfcc773614a9a4f63d920" title="System Clock Configuration." alt="" coords="187,224,343,251"/>
-<area shape="rect" id="node4" href="$db/dca/group___m_g_r___l_p_m.html#ga2dfaa58a8d7f90840153f1f06542fd13" title="System callback invoked by MGR_LPM at STOP mode exit." alt="" coords="5,64,121,91"/>
+<area shape="rect" id="node1" title="This function is executed in case of error occurrence." alt="" coords="563,123,673,149"/>
+<area shape="rect" id="node2" href="$d9/d2f/group___k_i_n_e_i_s___s_w___c_o_n_f.html#ga530a6753c266d92335600fbc8c47da6d" title="Handle assert reported by Kineis stack,." alt="" coords="351,5,487,32"/>
+<area shape="rect" id="node3" href="$db/dca/group___m_g_r___l_p_m.html#gab502b89f35dcc87b365658836f69736e" title="System Clock Configuration when exit from stop mode." alt="" coords="324,57,515,98"/>
+<area shape="rect" id="node6" href="$d0/d29/main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="The application entry point." alt="" coords="191,173,245,200"/>
+<area shape="rect" id="node7" href="$d8/d5d/group___m_c_u___w_r_a_p_p_e_r_s.html#gaf68cb2253430ce4b7743a51d34430028" title="Function used to start the timer for a specific delay." alt="" coords="359,173,480,200"/>
+<area shape="rect" id="node8" href="$d0/d29/main_8c.html#a70af21c671abfcc773614a9a4f63d920" title="System Clock Configuration." alt="" coords="341,224,497,251"/>
+<area shape="rect" id="node4" href="$db/dca/group___m_g_r___l_p_m.html#ga2dfaa58a8d7f90840153f1f06542fd13" title="System callback invoked by MGR_LPM at STOP mode exit." alt="" coords="160,64,276,91"/>
+<area shape="rect" id="node5" href="$db/dca/group___m_g_r___l_p_m.html#ga5e3c04e1820c16433ff591dde81e7449" title=" " alt="" coords="5,64,112,91"/>
 </map>

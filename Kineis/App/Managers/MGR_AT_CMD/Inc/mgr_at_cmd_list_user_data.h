@@ -44,6 +44,18 @@
  */
 uint16_t u16MGR_AT_CMD_convertAsciiBinary(uint8_t *pu8InputBuffer, uint16_t u16_charNb);
 
+/** @brief : convert the input form ASCII to Int32.
+ *
+ * Output data (data after conversion) will be stored in the same buffer.
+ *
+ * 4Bytes received as ASCII transformed in uint32_T
+ *
+ * @param[in,out] *pu8InputBuffer: pointer to the buffer that contains ASCII data. binary data
+ * will be stored into the same buffer.
+ * @param[in] *uint32_t: output uint32_t value
+ *
+ * @return data length in bits if everything is OK, 0 otherwise.
+ */
 uint16_t u16MGR_AT_CMD_convertAsciiToInt32(uint8_t *pu8InputBuffer, uint32_t *u32OutputValue);
 /**
  * @brief Process AT command "AT+TX" send user data.

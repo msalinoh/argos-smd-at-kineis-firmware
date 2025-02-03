@@ -35,6 +35,7 @@ var menudata={children:[
 {text:"\u202AGlobals",url:"globals.html",children:[
 {text:"\u202AAll",url:"globals.html",children:[
 {text:"\u202Ad",url:"globals.html#index_d"},
+{text:"\u202Af",url:"globals.html#index_f"},
 {text:"\u202Ai",url:"globals.html#index_i"},
 {text:"\u202Ak",url:"globals.html#index_k"},
 {text:"\u202Al",url:"globals.html#index_l"},
@@ -47,6 +48,7 @@ var menudata={children:[
 {text:"\u202AEnumerations",url:"globals_enum.html"},
 {text:"\u202AEnumerator",url:"globals_eval.html",children:[
 {text:"\u202Ad",url:"globals_eval.html#index_d"},
+{text:"\u202Af",url:"globals_eval.html#index_f"},
 {text:"\u202Ai",url:"globals_eval.html#index_i"},
 {text:"\u202Ak",url:"globals_eval.html#index_k"},
 {text:"\u202Am",url:"globals_eval.html#index_m"},

@@ -85,10 +85,29 @@ enum KNS_status_t MCU_AES_128_cbc_encrypt(const uint8_t *in, uint8_t *out, int32
  */
 enum KNS_status_t MCU_AES_128_cbc_decrypt(const uint8_t *in, uint8_t *out, int32_t nb_block, uint8_t *iv);
 
-
+/**
+ * @brief Set the Device secret key in flash memory
+ *
+ * @note This function called when AT+SECKEY=XXX command is sent by the user
+ * WARNING: No AES key encryption used for the moment.
+ *
+ * @param[in]       in: pointer to SEC KEY to save
+ *
+ * @return Status @ref KNS_status_t
+ */
 enum KNS_status_t MCU_AES_set_device_sec_key(const uint8_t *key);
 
+/**
+ * @brief GET the Device secret key in flash memory
+ *
+ * @note This function called when AT+SECKEY=XXX command is sent by the user
+ * WARNING: No AES key encryption used for the moment.
+ * @param[in]       in: pointer to SEC KEY to save
+ *
+ * @return Status @ref KNS_status_t
+ */
 enum KNS_status_t MCU_AES_get_device_sec_key(uint8_t *key);
+
 #endif /* MCU_AES_H */
 
 /**

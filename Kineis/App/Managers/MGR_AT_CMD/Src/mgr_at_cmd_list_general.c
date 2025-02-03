@@ -72,7 +72,7 @@ bool bMGR_AT_CMD_FW_cmd(uint8_t *pu8_cmdParamString __attribute__((unused)),
 		return bMGR_AT_CMD_logFailedMsg(ERROR_UNKNOWN_AT_CMD);
 	}
 
-	MCU_AT_CONSOLE_send("+FW=%s,%s_%s\r\n", uc_fw_vers_commit_id, __DATE__, __TIME__);
+	MCU_AT_CONSOLE_send("+FW=%s\r\n", uc_fw_vers_commit_id);
 
 	return true;
 }
@@ -231,9 +231,9 @@ bool bMGR_AT_CMD_RCONF_cmd(uint8_t *pu8_cmdParamString __attribute__((unused)),
 	struct KNS_CFG_radio_t radio_cfg;
 	uint8_t modulation[8];
 	uint16_t nbBits;
-	#if defined(KRD_FW_MP) ||  defined(KRD_FW_LP)
+#if defined(KRD_FW_MP) ||  defined(KRD_FW_LP)
 	struct rfSettings_t hwSettings;
-	#endif
+#endif
 
 	if (e_exec_mode == ATCMD_STATUS_MODE) {
 		if (KNS_CFG_getRadioInfo(&radio_cfg) != KNS_STATUS_OK)
@@ -255,13 +255,13 @@ bool bMGR_AT_CMD_RCONF_cmd(uint8_t *pu8_cmdParamString __attribute__((unused)),
 			radio_cfg.max_frequency, radio_cfg.rf_level, modulation);
 
 		/** @todo PRODEV-68: check radio conf versus HW settings for other platforms */
-	#if defined(KRD_FW_MP) ||  defined(KRD_FW_LP)
+#if defined(KRD_FW_MP) ||  defined(KRD_FW_LP)
 		if (MCU_MISC_getSettingsHwRf(radio_cfg.rf_level, &hwSettings) == KNS_STATUS_OK)
 			return bMGR_AT_CMD_logSucceedMsg();
 		return bMGR_AT_CMD_logFailedMsg(ERROR_INCOMPATIBLE_VALUE);
-	#else
+#else
 		return bMGR_AT_CMD_logSucceedMsg();
-	#endif
+#endif
 	}
 	if (e_exec_mode == ATCMD_ACTION_MODE) {
 		while(pu8_cmdParamString[strlen((char*)pu8_cmdParamString) - 1] == '\r' ||
@@ -287,9 +287,8 @@ bool bMGR_AT_CMD_SAVE_RCONF_cmd(uint8_t *pu8_cmdParamString __attribute__((unuse
 {
 	if (e_exec_mode == ATCMD_ACTION_MODE) {
 		if (KNS_CFG_saveRadioInfo() != KNS_STATUS_OK)
-		{
+			/* TODO: add a new error code ? */
 			return bMGR_AT_CMD_logFailedMsg(ERROR_INVALID_ID);
-		}
 		return bMGR_AT_CMD_logSucceedMsg();
 	}
 	return bMGR_AT_CMD_logFailedMsg(ERROR_UNKNOWN_AT_CMD);

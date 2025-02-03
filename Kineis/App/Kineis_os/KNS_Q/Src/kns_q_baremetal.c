@@ -74,7 +74,9 @@ enum KNS_status_t KNS_Q_push(enum KNS_Q_handle_t qHandle, void *qItem)
 	uint8_t wIdxNext;
 	uint8_t *qEltPtr, *qItemPtr;
 	struct q_desc_t *q = qPool[qHandle];
+#ifdef DEBUG
 	uint8_t wIdxPrev = q->wIdx;
+#endif
 
 	/** Get queue's mutex to write into FIFO
 	 */

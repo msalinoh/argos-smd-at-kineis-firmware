@@ -6,7 +6,7 @@ var indexSectionsWithContent =
   3: "km",
   4: "bcdefilmprst",
   5: "km",
-  6: "dikmrst",
+  6: "dfikmrst",
   7: "km",
   8: "gkmt"
 };

@@ -95,7 +95,7 @@ static bool MGR_AT_CMD_parseStreamCb(uint8_t *pu8_RxBuffer, int16_t *pi16_nbRxVa
 
 	char C = (char)(pu8_RxBuffer[*pi16_nbRxValidChar - 1]);
 	/* Process buffer only once termination caracter has been found */
-	if (C != '\n')
+	if (C != '\r')
 	  return false;
 
 	/* AT cmd starts with 'AT+' and ends with '\r\n'. Minimum packet length is ("AT+\r\n") */
@@ -117,7 +117,8 @@ static bool MGR_AT_CMD_parseStreamCb(uint8_t *pu8_RxBuffer, int16_t *pi16_nbRxVa
 
 	/* Find last characters of the frame : '\r\n' */
 	for (idxEnd = idxStart + 2; idxEnd <= *pi16_nbRxValidChar; idxEnd++) {
-		if (pu8_RxBuffer[idxEnd - 2] == '\r' && pu8_RxBuffer[idxEnd - 1] == '\n') {
+		if ((pu8_RxBuffer[idxEnd - 2] == '\r' && pu8_RxBuffer[idxEnd - 1] == '\n') ||
+		    (pu8_RxBuffer[idxEnd - 1] == '\r')){
 			isEOLdetected = true;
 			break;
 		}

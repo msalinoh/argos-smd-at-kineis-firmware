@@ -75,6 +75,7 @@ enum KNS_MAC_srvcEvtId_t {
 	KNS_MAC_DL_ACK,        /**< downlink message received: acknowledge */
 	KNS_MAC_SAT_DETECTED,  /**< SATellite detection complete */
 	KNS_MAC_SAT_LOST,      /**< SATellite lost */
+	KNS_MAC_SAT_DETECT_TIMEOUT,  /**< SATellite detection timeout */
 	KNS_MAC_RF_ABORTED,    /**< RF action fully aborted */
 	KNS_MAC_OK,            /**< generic status telling OK to command */
 	KNS_MAC_ERROR          /**< generic error event */
@@ -120,6 +121,18 @@ struct KNS_MAC_appEvt_t {
 	/* ---- SRV-Cto-MAC events ---- */
 
 /**
+ * @struct KNS_MAC_SATDET_ctxt_t
+ * @brief SATellite DETected event context structure
+ *
+ * All useful parameters needed when reporting satellite detection
+ */
+struct KNS_MAC_SATDET_ctxt_t {
+	uint32_t detected_freq;
+	uint32_t detect_duration;
+	float rssi;
+};
+
+/**
  * @struct KNS_MAC_TX_cplt_ctxt_t
  * @brief TX-done/TX-timeout event context structure
  *
@@ -132,13 +145,14 @@ struct KNS_MAC_TX_cplt_ctxt_t {
 
 /**
  * @struct KNS_MAC_RX_frm_ctxt_t
- * @brief RX-frameè-received event context structure
+ * @brief RX-frame-received event context structure
  *
  * All useful parameters needed when some frame is received
  */
 struct KNS_MAC_RX_frm_ctxt_t {
 	uint8_t data[DL_FRM_SZ];
 	uint16_t data_bitlen;
+	float rssi;
 };
 
 /**
@@ -166,7 +180,9 @@ struct KNS_MAC_srvcEvt_t {
 	enum KNS_MAC_appEvtId_t app_evt; /**< original APP event which triggered this.
 					  * Correctly set for KNS_MAC_OK and KNS_MAC_ERROR evt
 					  */
+	enum KNS_status_t status; /** Kineis stack status, may not be valid on all events */
 	union {
+		struct KNS_MAC_SATDET_ctxt_t satdet_ctxt; /**< satellite detection notification context */
 		struct KNS_MAC_TX_cplt_ctxt_t tx_ctxt; /**< TX-complete notification context
 							 * Also set in case of KNS_MAC_OK and
 							 * KNS_MAC_ERROR evt

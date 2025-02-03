@@ -1,8 +1,14 @@
 var group___k_n_s___s_r_v =
 [
+    [ "\u202AKNS_SATDET_ctxt_t", "db/ddd/struct_k_n_s___s_a_t_d_e_t__ctxt__t.html", [
+      [ "\u202Adl_freq", "db/ddd/struct_k_n_s___s_a_t_d_e_t__ctxt__t.html#a55e804bea4fccd3bd62a80b33e94cee5", null ],
+      [ "\u202Adl_rssi", "db/ddd/struct_k_n_s___s_a_t_d_e_t__ctxt__t.html#abd4a1be3e5d317cc7a34f3182fd264ab", null ],
+      [ "\u202Adl_rx_det_duration", "db/ddd/struct_k_n_s___s_a_t_d_e_t__ctxt__t.html#ab2d5fbaf43604b85bf6c23a9c10a1cc7", null ]
+    ] ],
     [ "\u202AKNS_RX_frm_ctxt_t", "d4/d14/struct_k_n_s___r_x__frm__ctxt__t.html", [
       [ "\u202Adata", "d4/d14/struct_k_n_s___r_x__frm__ctxt__t.html#a3cdfa68121b128aaf14f4d91ce4db335", null ],
-      [ "\u202Adata_bitlen", "d4/d14/struct_k_n_s___r_x__frm__ctxt__t.html#a70027cebfc6eca401cd95ec44f53027d", null ]
+      [ "\u202Adata_bitlen", "d4/d14/struct_k_n_s___r_x__frm__ctxt__t.html#a70027cebfc6eca401cd95ec44f53027d", null ],
+      [ "\u202Adl_rssi", "d4/d14/struct_k_n_s___r_x__frm__ctxt__t.html#abd4a1be3e5d317cc7a34f3182fd264ab", null ]
     ] ],
     [ "\u202AKNS_SRVC_evt_t", "d3/d4e/struct_k_n_s___s_r_v_c__evt__t.html", [
       [ "\u202Aid", "d3/d4e/struct_k_n_s___s_r_v_c__evt__t.html#aeb6961e4a8fb2fc4acc8301469c17ca4", null ]
@@ -12,7 +18,8 @@ var group___k_n_s___s_r_v =
       [ "\u202Asf", "d1/d73/struct_k_n_s___t_x__cfg__t.html#a1e7634bb486a16e714f4f05ca84feeb2", null ]
     ] ],
     [ "\u202AKNS_RX_cfg_t", "d8/dcc/struct_k_n_s___r_x__cfg__t.html", [
-      [ "\u202AisRfAlreadyOn", "d8/dcc/struct_k_n_s___r_x__cfg__t.html#aa3bf86788613743192288583cea81fc3", null ]
+      [ "\u202AisRfAlreadyOn", "d8/dcc/struct_k_n_s___r_x__cfg__t.html#aa3bf86788613743192288583cea81fc3", null ],
+      [ "\u202AisSatDetectOnly", "d8/dcc/struct_k_n_s___r_x__cfg__t.html#a9f8f81fe43ed799b2f8c4669c61e3e53", null ]
     ] ],
     [ "\u202ADL_FRM_BITLEN", "d7/d1a/group___k_n_s___s_r_v.html#ga4d7d03b6d4ba72c65188333ece2e4481", null ],
     [ "\u202ADL_FRM_SZ", "d7/d1a/group___k_n_s___s_r_v.html#gab4f20aba1132900f3e09e000178f11ab", null ],
@@ -26,6 +33,7 @@ var group___k_n_s___s_r_v =
       [ "\u202AKNS_SRVC_RX_TIMEOUT", "d7/d1a/group___k_n_s___s_r_v.html#ggafd65cad8a896bf995b163eaaa200d3a7a749609d55e1f3cda16841093554c8099", null ],
       [ "\u202AKNS_SRVC_SAT_DETECTED", "d7/d1a/group___k_n_s___s_r_v.html#ggafd65cad8a896bf995b163eaaa200d3a7acada39299cb8a9d0eebe2299660a554a", null ],
       [ "\u202AKNS_SRVC_SAT_LOST", "d7/d1a/group___k_n_s___s_r_v.html#ggafd65cad8a896bf995b163eaaa200d3a7af18050f3f3c96ff7f6ad15e66c48a64f", null ],
+      [ "\u202AKNS_SRVC_SAT_DETECT_TIMEOUT", "d7/d1a/group___k_n_s___s_r_v.html#ggafd65cad8a896bf995b163eaaa200d3a7a03f86609dc8c2870480901d6bba4133d", null ],
       [ "\u202AKNS_SRVC_RF_ABORTED", "d7/d1a/group___k_n_s___s_r_v.html#ggafd65cad8a896bf995b163eaaa200d3a7ac7a7f1c1a2d5d0a74b397ef5d785a2fe", null ],
       [ "\u202AKNS_SRVC_ERROR", "d7/d1a/group___k_n_s___s_r_v.html#ggafd65cad8a896bf995b163eaaa200d3a7abbec0737b4281017c34a1712baad5c95", null ]
     ] ],

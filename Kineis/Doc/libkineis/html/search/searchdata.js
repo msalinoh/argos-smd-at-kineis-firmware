@@ -6,7 +6,7 @@ var indexSectionsWithContent =
   3: "_kmv",
   4: "abcdefiklmnpqrstuw",
   5: "ekm",
-  6: "deikmrst",
+  6: "defikmrst",
   7: "km",
   8: "gklmot"
 };

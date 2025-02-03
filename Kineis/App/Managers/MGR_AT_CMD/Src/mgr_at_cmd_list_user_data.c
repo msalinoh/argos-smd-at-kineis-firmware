@@ -23,6 +23,7 @@
 #include "kineis_sw_conf.h"  // for assert include below and ERROR_RETURN_T type
 #include KINEIS_SW_ASSERT_H
 #include "mgr_log.h"
+
 #ifdef USE_TX_LED // Light on a GPIO when TX occurs
 #include "main.h"
 #endif
@@ -62,8 +63,6 @@ static void MGR_LOG_array(__attribute__((unused)) uint8_t *data, uint16_t len)
 	MGR_LOG_DEBUG_RAW("\r\n");
 }
 
-#ifdef USE_RX_STACK
-__attribute__((unused))
 /** @brief This function converts kineis stack status into AT cmd error code
  *
  * param[in] knsStatus: KNS libraries status
@@ -103,7 +102,6 @@ static enum ERROR_RETURN_T convKnsStatusToAtErr(enum KNS_status_t knsStatus)
 	break;
 	}
 }
-#endif
 
 /** @brief Handle new TX data, this is the core function of AT+TX cmd
  *
@@ -569,13 +567,15 @@ enum KNS_status_t MGR_AT_CMD_macEvtProcess(void)
 	break;
 	case (KNS_MAC_SAT_DETECTED):
 //		MGR_LOG_DEBUG("MGR_AT_CMD SAT detect callback reached\r\n");
-		bMGR_AT_CMD_sendResponse(ATCMD_RSP_SATDET, NULL);
+		bMGR_AT_CMD_sendResponse(ATCMD_RSP_SATDET, (void *)&(srvcEvt.satdet_ctxt));
 		cbStatus = KNS_STATUS_OK;
 	break;
 	case (KNS_MAC_SAT_LOST):
-		MGR_LOG_DEBUG("MGR_AT_CMD SAT lost callback reached\r\n");
-		/** @todo add SAT lost reply over AT CMD? To be implemented */
-		//bMGR_AT_CMD_sendResponse(ATCMD_RSP_SATLOST, NULL);
+		bMGR_AT_CMD_sendResponse(ATCMD_RSP_SATLOST, NULL);
+		cbStatus = KNS_STATUS_OK;
+	break;
+	case (KNS_MAC_SAT_DETECT_TIMEOUT):
+		bMGR_AT_CMD_sendResponse(ATCMD_RSP_SATDETTO, NULL);
 		cbStatus = KNS_STATUS_OK;
 	break;
 #endif
@@ -590,7 +590,7 @@ enum KNS_status_t MGR_AT_CMD_macEvtProcess(void)
 	break;
 	case (KNS_MAC_ERROR):
 //		MGR_LOG_DEBUG("MGR_AT_CMD MAC reported ERROR to previous command.\r\n");
-		bMGR_AT_CMD_logFailedMsg(ERROR_UNKNOWN);
+		bMGR_AT_CMD_logFailedMsg(convKnsStatusToAtErr(srvcEvt.status));
 		if (srvcEvt.app_evt == KNS_MAC_SEND_DATA)
 			USERDATA_txFifoRemoveElt(spUserDataMsg);/* Free as host notified */
 		cbStatus = KNS_STATUS_ERROR;

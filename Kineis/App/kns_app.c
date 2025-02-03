@@ -100,21 +100,16 @@ static void MGR_LOG_array(__attribute__((unused)) uint8_t *data, uint16_t len)
 		MGR_LOG_DEBUG_RAW("%02X", data[i]);
 	MGR_LOG_DEBUG_RAW("\r\n");
 }
-/** @brief At end of standalone APP test, generate TEST status
- *
- * @return true if data is correctly processed, false otherwise
+
+/** @brief Start MAC profile for the standalone application
  */
-
-/* Public functions ----------------------------------------------------------*/
-
-void KNS_APP_stdln_init(__attribute__((unused)) void *context)
+static void KNS_APP_stdln_startMacPrfl(void)
 {
 	enum KNS_status_t status;
 	struct KNS_MAC_appEvt_t appEvt;
 
-	kns_assert(context == NULL);
-
 	/** Initialize Kineis MAC profile */
+	MGR_LOG_DEBUG("[%s %d]\r\n", __func__, __LINE__);
 	appEvt.id =  KNS_MAC_INIT;
 	appEvt.init_prfl_ctxt.id = KNS_MAC_PRFL_NONE;
 #ifdef USE_MAC_PRFL_BASIC
@@ -132,6 +127,28 @@ void KNS_APP_stdln_init(__attribute__((unused)) void *context)
 		kns_assert(0);
 	}
 }
+
+/** @brief Stop MAC profile for the standalone application
+ */
+static void KNS_APP_stdln_stopMacPrfl(void)
+{
+	enum KNS_status_t status;
+	struct KNS_MAC_appEvt_t appEvt;
+
+	/** Initialize Kineis MAC profile */
+	MGR_LOG_DEBUG("[%s %d]\r\n", __func__, __LINE__);
+	appEvt.id =  KNS_MAC_INIT;
+	appEvt.init_prfl_ctxt.id = KNS_MAC_PRFL_NONE;
+
+	status = KNS_Q_push(KNS_Q_DL_APP2MAC, (void *)&appEvt);
+	if (status != KNS_STATUS_OK) {
+		MGR_LOG_DEBUG("[ERROR] Cannot initialize MAC protocol: Error code 0x%x\r\n", status);
+		MGR_LOG_DEBUG("[ERROR] Check protocol capabilities of the build and/or config.\r\n");
+		kns_assert(0);
+	}
+}
+
+/* Public functions ----------------------------------------------------------*/
 
 void KNS_APP_stdln_loop(void)
 {
@@ -158,7 +175,39 @@ void KNS_APP_stdln_loop(void)
 	uint8_t buffer_tx[KNS_MAC_USRDATA_MAXLEN];
 
 	switch (state) {
-	case 0: { /** Send data event */
+	case 0: { /** Init MAC profile */
+		KNS_APP_stdln_startMacPrfl();
+		state++;
+		return;
+	}
+	case 1: { /** Wait for Kineis stack replying:
+		   *  * OK to Init
+		   */
+		enum KNS_status_t status = KNS_STATUS_OK;
+		struct KNS_MAC_srvcEvt_t srvcEvt;
+
+		for (status = KNS_Q_pop(KNS_Q_UL_MAC2APP, (void *)&srvcEvt);
+		     status != KNS_STATUS_QEMPTY;
+		     status = KNS_Q_pop(KNS_Q_UL_MAC2APP, (void *)&srvcEvt)) {
+			if (status == KNS_STATUS_OK) {
+				switch (srvcEvt.id) {
+				case (KNS_MAC_OK):
+					MGR_LOG_DEBUG("[%s] MAC profile init OK\r\n", __func__);
+					state++;
+					break;
+				case (KNS_MAC_ERROR):
+					MGR_LOG_DEBUG("[%s] MAC profile error\r\n", __func__);
+					TEST_FAIL();
+					break;
+				default:
+					TEST_FAIL();
+					break;
+				}
+			}
+		}
+		return;
+	}
+	case 2: { /** Send data event */
 		struct KNS_CFG_radio_t device_radio_cfg;
 
 		/** Initialize buffer with random data */
@@ -201,10 +250,10 @@ void KNS_APP_stdln_loop(void)
 		state++; /* go to next state, and return to let higher task to process event */
 		return;
 	}
-	case 1: { /** Wait for Kineis stack replying:
-	 	   *  * OK to send frame
-	 	   *  * TX done for previous transmit
-	 	   */
+	case 3: { /** Wait for Kineis stack replying:
+		   *  * OK to send frame
+		   *  * TX done for previous transmit
+		   */
 		enum KNS_status_t status = KNS_STATUS_OK;
 		struct KNS_MAC_srvcEvt_t srvcEvt;
 
@@ -226,6 +275,10 @@ void KNS_APP_stdln_loop(void)
 					MGR_LOG_array(srvcEvt.tx_ctxt.data,
 						(srvcEvt.tx_ctxt.data_bitlen+7)>>3);
 					TEST_PASS();
+					/** Exit MAC as test succedded. It should reply OK at next
+					 * step
+					 */
+					KNS_APP_stdln_stopMacPrfl();
 					state++;
 					break;
 				case (KNS_MAC_TX_TIMEOUT):
@@ -256,7 +309,35 @@ void KNS_APP_stdln_loop(void)
 		}
 		return;
 	}
-	case 2: { /** Wait for Kineis stack replying:*/
+	case 4: { /** Wait for Kineis stack replying:
+		   *  * OK to Init
+		   */
+		enum KNS_status_t status = KNS_STATUS_OK;
+		struct KNS_MAC_srvcEvt_t srvcEvt;
+
+		for (status = KNS_Q_pop(KNS_Q_UL_MAC2APP, (void *)&srvcEvt);
+		     status != KNS_STATUS_QEMPTY;
+		     status = KNS_Q_pop(KNS_Q_UL_MAC2APP, (void *)&srvcEvt)) {
+			if (status == KNS_STATUS_OK) {
+				switch (srvcEvt.id) {
+				case (KNS_MAC_OK):
+					MGR_LOG_DEBUG("[%s] OK from MAC\r\n", __func__);
+					state++;
+					break;
+				case (KNS_MAC_ERROR):
+					MGR_LOG_DEBUG("[%s] MAC ERROR\r\n", __func__);
+					TEST_FAIL();
+					state++;
+					break;
+				default:
+					TEST_FAIL();
+					break;
+				}
+			}
+		}
+		return;
+	}
+	case 5: { /** Wait for Kineis stack replying:*/
 		break;
 	}
 	default:

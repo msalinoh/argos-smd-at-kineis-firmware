@@ -66,11 +66,27 @@ enum KNS_SRVC_eventId_t {
 	KNS_SRVC_RX_TIMEOUT,    /**< RX window timeout */
 	KNS_SRVC_SAT_DETECTED,  /**< SATellite detection complete */
 	KNS_SRVC_SAT_LOST,      /**< SATellite lost */
+	KNS_SRVC_SAT_DETECT_TIMEOUT,  /**< SATellite detection timeout reached */
 	KNS_SRVC_RF_ABORTED,    /**< RF action fully aborted */
 	KNS_SRVC_ERROR          /**< generic error event */
 };
 
 /* Structures ---------------------------------------------------------------------------------- */
+
+/**
+ * @struct KNS_SATDET_ctxt_t
+ * @brief RX-frame-received event context structure
+ *
+ * All useful parameters needed when a satellite is detected:
+ * * downlink frequency in Hz
+ * * duration needed to detect
+ * * received signal strength (RSSI) in dBFs
+ */
+struct KNS_SATDET_ctxt_t {
+	uint32_t dl_freq;
+	uint32_t dl_rx_det_duration;
+	float dl_rssi;
+};
 
 /**
  * @struct KNS_RX_frm_ctxt_t
@@ -81,6 +97,7 @@ enum KNS_SRVC_eventId_t {
 struct KNS_RX_frm_ctxt_t {
 	uint8_t data[DL_FRM_SZ];
 	uint16_t data_bitlen;
+	float dl_rssi;
 };
 
 /**
@@ -93,6 +110,7 @@ struct KNS_SRVC_evt_t {
 	enum KNS_SRVC_eventId_t id;
 	union {
 #ifdef USE_RX_STACK // Rx event are only usefull in KIM2 which support downlink
+		struct KNS_SATDET_ctxt_t satdet_ctxt; /**< SAT DETECTion notification context*/
 		struct KNS_RX_frm_ctxt_t rx_ctxt; /**< RX-frame-received notification context*/
 #endif
 	};
@@ -117,11 +135,9 @@ struct KNS_TX_cfg_t {
  * @brief RX configuration structure
  *
  * @todo May need to add RX window length once KNS_MAC upper layer is supported
- *
- * All parameters requested to define radio RX configuration. So far, it contains:
- * * RX ISR callbacks
  */
 struct KNS_RX_cfg_t {
+	bool isSatDetectOnly; /**< just perform a one-shot-sat-detectsion */
 	bool isRfAlreadyOn;	/**< tells RF chip is said to be already ON before starting RX,
 				  * In case already-ON, no need to do POWER ON nor waiting for
 				  * TCXOWU.

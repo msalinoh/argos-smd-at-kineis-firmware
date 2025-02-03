@@ -1,24 +1,25 @@
 <map id="KNS_APP_gui_loop" name="KNS_APP_gui_loop">
-<area shape="rect" id="node1" title="This fct is the application expected to run in front of the GUI." alt="" coords="5,248,148,275"/>
-<area shape="rect" id="node2" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#ga9cef55cf869d8f8c3eaf6a49ca61b5d2" title="Decode and exectue AT cmd if valid." alt="" coords="215,63,398,89"/>
-<area shape="rect" id="node7" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#ga1a39b3c9cd76d50537a8bc42087ed46f" title="Fct used to retreive and process event coming from kineis stack as answers to AT commands." alt="" coords="196,248,417,275"/>
-<area shape="rect" id="node22" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#gae0ad7a2cd1228d268e28d2fd9fcd4411" title="API used to get next AT command stored in internal fifo." alt="" coords="211,299,402,325"/>
-<area shape="rect" id="node3" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#ga3d564aff9653e8bdc572d189093f1acc" title="Log in debug interface a failed message." alt="" coords="469,63,685,89"/>
-<area shape="rect" id="node5" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#ga00f586ef524b455b8324900358922b2b" title="Identifies AT command and its type (AT+XYZ=... or AT+XYZ=? or AT+XYZ? mode)" alt="" coords="484,8,671,35"/>
+<area shape="rect" id="node1" title="This fct is the application expected to run in front of the GUI." alt="" coords="5,271,148,297"/>
+<area shape="rect" id="node2" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#ga9cef55cf869d8f8c3eaf6a49ca61b5d2" title="Decode and exectue AT cmd if valid." alt="" coords="215,64,398,91"/>
+<area shape="rect" id="node7" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#ga1a39b3c9cd76d50537a8bc42087ed46f" title="Fct used to retreive and process event coming from kineis stack as answers to AT commands." alt="" coords="196,271,417,297"/>
+<area shape="rect" id="node23" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#gae0ad7a2cd1228d268e28d2fd9fcd4411" title="API used to get next AT command stored in internal fifo." alt="" coords="211,321,402,348"/>
+<area shape="rect" id="node3" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#ga3d564aff9653e8bdc572d189093f1acc" title="Log in debug interface a failed message." alt="" coords="469,64,685,91"/>
+<area shape="rect" id="node5" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#ga00f586ef524b455b8324900358922b2b" title="Identifies AT command and its type (AT+XYZ=... or AT+XYZ=? or AT+XYZ? mode)" alt="" coords="484,7,671,33"/>
 <area shape="rect" id="node4" href="$d8/d62/group___m_c_u___a_p_p___w_r_a_p_p_e_r_s.html#gae14ee3e1d2a9b459c0d89c451a4bc470" title="Send AT CMD response to console." alt="" coords="1016,144,1200,171"/>
 <area shape="rect" id="node6" href="$d8/da3/group___s_t_r_u_t_i_l_s.html#gae730bd1326c8ae1ceefe014b119ad407" title="Compare 2 strings." alt="" coords="797,5,908,32"/>
 <area shape="rect" id="node8" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#gabef580da46cf82ca74ba3e5217cf3ffa" title=": Log in debug interface a succeed message" alt="" coords="737,224,968,251"/>
-<area shape="rect" id="node9" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#gae5c3c3791220ed4687558e8681648a0d" title=": This function writes in UART the response of specific command" alt="" coords="465,121,689,148"/>
-<area shape="rect" id="node11" href="$d1/ddb/group___k_n_s___q.html#ga200d86f8adcbe9365bcec0cc085c91c0" title="This function is used to pop next element from a queue." alt="" coords="529,324,626,351"/>
-<area shape="rect" id="node12" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#gacc929e5b70f2d6fefaa89d8aabf18773" title="Set/clear a GPIO around transmission." alt="" coords="528,375,627,401"/>
-<area shape="rect" id="node13" href="$db/d4f/group___u_s_e_r___d_a_t_a.html#ga7bf3cf40b0f5041d24a722e26347c83d" title="get first element which contains the expected payload" alt="" coords="471,425,683,452"/>
-<area shape="rect" id="node14" href="$db/d4f/group___u_s_e_r___d_a_t_a.html#ga029850e8ca80a3be9b099582f5c7488a" title="flush TX fifo" alt="" coords="493,476,662,503"/>
-<area shape="rect" id="node19" href="$db/d4f/group___u_s_e_r___d_a_t_a.html#gac0082e264a11102f05874ef9f0609e26" title="get first element of the TX Fifo" alt="" coords="485,172,669,199"/>
-<area shape="rect" id="node20" href="$db/d4f/group___u_s_e_r___d_a_t_a.html#ga4d20835dbc4b21f645ff55eed7d93216" title="Delete an element from the TX fifo." alt="" coords="475,273,680,300"/>
+<area shape="rect" id="node9" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#gae5c3c3791220ed4687558e8681648a0d" title=": This function writes in UART the response of specific command" alt="" coords="465,119,689,145"/>
+<area shape="rect" id="node11" href="$d8/d11/mgr__at__cmd__list__user__data_8c.html#ga3cafca118878601afaac95a1b3dc75af" title="This function converts kineis stack status into AT cmd error code." alt="" coords="495,321,659,348"/>
+<area shape="rect" id="node12" href="$d1/ddb/group___k_n_s___q.html#ga200d86f8adcbe9365bcec0cc085c91c0" title="This function is used to pop next element from a queue." alt="" coords="529,372,626,399"/>
+<area shape="rect" id="node13" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#gacc929e5b70f2d6fefaa89d8aabf18773" title="Set/clear a GPIO around transmission." alt="" coords="528,423,627,449"/>
+<area shape="rect" id="node14" href="$db/d4f/group___u_s_e_r___d_a_t_a.html#ga7bf3cf40b0f5041d24a722e26347c83d" title="get first element which contains the expected payload" alt="" coords="471,473,683,500"/>
+<area shape="rect" id="node15" href="$db/d4f/group___u_s_e_r___d_a_t_a.html#ga029850e8ca80a3be9b099582f5c7488a" title="flush TX fifo" alt="" coords="493,524,662,551"/>
+<area shape="rect" id="node20" href="$db/d4f/group___u_s_e_r___d_a_t_a.html#gac0082e264a11102f05874ef9f0609e26" title="get first element of the TX Fifo" alt="" coords="485,169,669,196"/>
+<area shape="rect" id="node21" href="$db/d4f/group___u_s_e_r___d_a_t_a.html#ga4d20835dbc4b21f645ff55eed7d93216" title="Delete an element from the TX fifo." alt="" coords="475,271,680,297"/>
 <area shape="rect" id="node10" href="$d8/d62/group___m_c_u___a_p_p___w_r_a_p_p_e_r_s.html#gaf6858a5591eaf9e21e59a15188ff6f13" title="Write content of a binary data buffer as AT cmd response." alt="" coords="761,107,945,149"/>
-<area shape="rect" id="node15" href="$d9/d2f/group___k_i_n_e_i_s___s_w___c_o_n_f.html#ga858c122b744e5d185b5abac307aae807" title="Enter critical section." alt="" coords="1051,476,1165,503"/>
-<area shape="rect" id="node16" href="$d9/d2f/group___k_i_n_e_i_s___s_w___c_o_n_f.html#ga58b477bfcd987dcd7b733b98ab692fdc" title="Exit critical section." alt="" coords="1055,400,1161,427"/>
-<area shape="rect" id="node17" href="$db/d4f/group___u_s_e_r___d_a_t_a.html#ga7c272898faf1448391a80b578d9acf45" title="count number of elements in TX fifo" alt="" coords="755,476,950,503"/>
-<area shape="rect" id="node18" href="$db/d4f/group___u_s_e_r___d_a_t_a.html#gafba02bd8b2e6ebad0b2f38b72e40ec21" title="Log content of the TX fifo." alt="" coords="774,375,931,401"/>
-<area shape="rect" id="node21" href="$db/d4f/group___u_s_e_r___d_a_t_a.html#ga532418c0e3adad36946ba9d346a163f4" title="check the element is pointing on a valid address, i.e. one from sUserDataTxFifoBuf buffer" alt="" coords="763,275,942,301"/>
+<area shape="rect" id="node16" href="$d9/d2f/group___k_i_n_e_i_s___s_w___c_o_n_f.html#ga858c122b744e5d185b5abac307aae807" title="Enter critical section." alt="" coords="1051,524,1165,551"/>
+<area shape="rect" id="node17" href="$d9/d2f/group___k_i_n_e_i_s___s_w___c_o_n_f.html#ga58b477bfcd987dcd7b733b98ab692fdc" title="Exit critical section." alt="" coords="1055,448,1161,475"/>
+<area shape="rect" id="node18" href="$db/d4f/group___u_s_e_r___d_a_t_a.html#ga7c272898faf1448391a80b578d9acf45" title="count number of elements in TX fifo" alt="" coords="755,524,950,551"/>
+<area shape="rect" id="node19" href="$db/d4f/group___u_s_e_r___d_a_t_a.html#gafba02bd8b2e6ebad0b2f38b72e40ec21" title="Log content of the TX fifo." alt="" coords="774,423,931,449"/>
+<area shape="rect" id="node22" href="$db/d4f/group___u_s_e_r___d_a_t_a.html#ga532418c0e3adad36946ba9d346a163f4" title="check the element is pointing on a valid address, i.e. one from sUserDataTxFifoBuf buffer" alt="" coords="763,275,942,301"/>
 </map>

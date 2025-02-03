@@ -42,7 +42,6 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "i2c.h"
 #include "usart.h"
 #include "rtc.h"
 #include "subghz.h"
@@ -63,10 +62,6 @@
 
 #if defined(USE_STDALONE_APP) && defined(USE_GUI_APP)
 #error "USE_STDALONE_APP/USE_GUI_APP: Cannot build FW with both APPs, select only one."
-#endif
-
-#if defined(USE_GUI_APP) && (defined(LPM_STANDBY_ENABLED) || defined (LPM_SHUTDOWN_ENABLED))
-#warning "GUI_APP compiled with STANDBY/SHUTDOWN LPM: Ensure a wakeup pin (PB3, PC13) is available to exit LPM before sending a new AT command to the device."
 #endif
 
 #include "stm32wlxx_it.h"
@@ -133,6 +128,49 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+
+/**
+ * @brief Fill-up heap and stack RAM space to track overflows (with 0x55555555 and 0xAAAAAAAA)
+ */
+void mspFillup(void)
+{
+  extern uint8_t _end; /* Symbol defined in the linker script */
+  extern uint8_t _estack; /* Symbol defined in the linker script */
+  extern uint32_t _Min_Stack_Size; /* Symbol defined in the linker script */
+  uint32_t *stack_lower_limit = (uint32_t*)((uint32_t)&_estack - (uint32_t)&_Min_Stack_Size);
+  uint32_t *stack_upper_limit = (uint32_t*)__get_MSP();
+  uint32_t *heap_lower_limit = (uint32_t*)((uint32_t)&_end);
+
+  /* Paint heap */
+  for (
+       heap_lower_limit = (uint32_t*)((uint32_t)&_end);
+       heap_lower_limit < stack_lower_limit;
+       heap_lower_limit++)
+  {
+    *(heap_lower_limit) = 0x55555555;
+  }
+  /* Paint stack */
+  for (
+       stack_lower_limit = (uint32_t*)((uint32_t)&_estack - (uint32_t)&_Min_Stack_Size);
+       stack_lower_limit < stack_upper_limit;
+       stack_lower_limit++)
+  {
+    *(stack_lower_limit) = 0xAAAAAAAA;
+  }
+}
+
+/**
+ * @brief Check stack limit, in a way to track overflows (0xAAAAAAAA)
+ */
+void assertMspOverflow(void)
+{
+  extern uint8_t _estack; /* Symbol defined in the linker script */
+  extern uint32_t _Min_Stack_Size; /* Symbol defined in the linker script */
+  uint32_t *stack_lower_limit = (uint32_t*)((uint32_t)&_estack - (uint32_t)&_Min_Stack_Size);
+
+  assert_param( *(stack_lower_limit) == 0xAAAAAAAA );
+}
+
 /**
  * @brief IDLE task to be registered in OS
  *
@@ -159,6 +197,7 @@ static void IDLE_task(void)
 {
 
   /* ---- KINEIS GUI APP ------------------------------------------------------------------------ */
+  assertMspOverflow();
 
 #ifdef USE_GUI_APP
   GPIO_InitTypeDef GPIO_InitStruct = {0};
@@ -175,8 +214,6 @@ static void IDLE_task(void)
   {
     /** wait wakeup pin to turn low (unplug debugger or by user) */
     while(HAL_GPIO_ReadPin(EXT_WKUP_BUTTON_GPIO_Port, EXT_WKUP_BUTTON_Pin) == GPIO_PIN_SET) {
-
-	  //MGR_LOG_DEBUG("==== WAKEUP BUTTON SET ====\r\n");
       if (KNS_Q_isEvtInSomeQ() || MGR_AT_CMD_isPendingAt())
         return;
     }
@@ -251,6 +288,8 @@ int main(void)
   /* USER CODE BEGIN 1 */
   bool bIsWakeUpFromReset = false;
 
+  mspFillup();
+
   /** Check if reset was triggered by nRST external pin
    *
    * @note This pin is also set when POWERing ON on the device or when debugger is plugged in
@@ -314,7 +353,6 @@ int main(void)
   MX_SUBGHZ_Init();
   MX_TIM16_Init();
   MX_RTC_Init();
-  MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
 
 #ifdef DEBUG
@@ -378,7 +416,7 @@ int main(void)
       MGR_LOG_DEBUG("==== WAKEUP from RESET ====\r\n");
     else
       MGR_LOG_DEBUG("==== WAKEUP from POWER OFF ====\r\n");
-    MGR_LOG_DEBUG("Running build done at %s %s, versions:\r\n", __DATE__, __TIME__);
+    MGR_LOG_DEBUG("Running build, versions:\r\n");
     MGR_LOG_DEBUG("- FW            %s\r\n", uc_fw_vers_commit_id);
     MGR_LOG_DEBUG("- libkineis.a   %s\r\n", libkineis_info);
     MGR_LOG_DEBUG("- libknsrf_wl.a %s\r\n", libknsrf_wl_info);
@@ -409,7 +447,6 @@ int main(void)
    * @note The Idle task is required to call the low power mode managment only
    * */
 #if defined(USE_STDALONE_APP)
-  KNS_APP_stdln_init(NULL);
   assert_param(KNS_OS_registerTask(KNS_OS_TASK_APP, KNS_APP_stdln_loop) == KNS_STATUS_OK);
   //assert_param(KNS_OS_registerTask(KNS_OS_TASK_APP, KNS_APP_stdalone_stressTest) == KNS_STATUS_OK);
 #elif defined (USE_GUI_APP)
@@ -438,7 +475,7 @@ int main(void)
   default:
   /** Start from RESET or POWER OFF, log few indications (FW version, Kineis MAc protocol info) */
 #if defined (USE_GUI_APP)
-    MCU_AT_CONSOLE_send("+FW=%s,%s_%s\r\n", uc_fw_vers_commit_id, __DATE__, __TIME__);
+    MCU_AT_CONSOLE_send("+FW=%s\r\n", uc_fw_vers_commit_id);
 #endif
     break;
   }

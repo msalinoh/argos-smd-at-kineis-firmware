@@ -1,8 +1,10 @@
 <map id="KNS_APP_stdln_loop" name="KNS_APP_stdln_loop">
-<area shape="rect" id="node1" title="This fct is a very basic standalone application." alt="" coords="5,107,160,133"/>
-<area shape="rect" id="node2" href="$dd/d41/group___k_n_s___a_p_p.html#ga36f229bbda63818246ec86181b1fdd42" title=" " alt="" coords="241,5,348,32"/>
-<area shape="rect" id="node3" href="$d0/d54/group___k_n_s___c_f_g.html#ga3538adccf668070211abc09f59a68bce" title="Get the Kineis radio configuration." alt="" coords="208,56,381,83"/>
-<area shape="rect" id="node4" href="$d1/ddb/group___k_n_s___q.html#ga200d86f8adcbe9365bcec0cc085c91c0" title="This function is used to pop next element from a queue." alt="" coords="246,107,343,133"/>
-<area shape="rect" id="node5" href="$d1/ddb/group___k_n_s___q.html#gac9a2be7939be73c32fd7eefb0d3ab3b3" title="This function is used to push an element into a queue." alt="" coords="243,157,347,184"/>
-<area shape="rect" id="node6" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#gaa9d6835fa67d6e39b880e04688f7ece9" title="Log array of uint8_t." alt="" coords="231,208,359,235"/>
+<area shape="rect" id="node1" title="This fct is a very basic standalone application." alt="" coords="5,157,160,184"/>
+<area shape="rect" id="node2" href="$dd/d41/group___k_n_s___a_p_p.html#ga36f229bbda63818246ec86181b1fdd42" title=" " alt="" coords="258,5,365,32"/>
+<area shape="rect" id="node3" href="$dd/d41/group___k_n_s___a_p_p.html#ga43590921208185253a9503500d5d70d1" title="Start MAC profile for the standalone application." alt="" coords="208,56,415,83"/>
+<area shape="rect" id="node4" href="$d1/ddb/group___k_n_s___q.html#gac9a2be7939be73c32fd7eefb0d3ab3b3" title="This function is used to push an element into a queue." alt="" coords="463,107,567,133"/>
+<area shape="rect" id="node5" href="$dd/d41/group___k_n_s___a_p_p.html#ga4bb02cc43d1bdbd739a38f4ddea0e82b" title="Stop MAC profile for the standalone application." alt="" coords="209,157,413,184"/>
+<area shape="rect" id="node6" href="$d0/d54/group___k_n_s___c_f_g.html#ga3538adccf668070211abc09f59a68bce" title="Get the Kineis radio configuration." alt="" coords="225,208,398,235"/>
+<area shape="rect" id="node7" href="$d1/ddb/group___k_n_s___q.html#ga200d86f8adcbe9365bcec0cc085c91c0" title="This function is used to pop next element from a queue." alt="" coords="263,259,360,285"/>
+<area shape="rect" id="node8" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#gafe57cb4db4c278d9f302a4d5b41e3025" title="Log array of uint8_t." alt="" coords="247,309,375,336"/>
 </map>

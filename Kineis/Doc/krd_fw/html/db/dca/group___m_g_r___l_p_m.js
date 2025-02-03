@@ -32,6 +32,7 @@ var group___m_g_r___l_p_m =
       [ "\u202ALOW_POWER_MODE_SHUTDOWN", "db/dca/group___m_g_r___l_p_m.html#gga6e0e2f99368c5130619220b7cad6262fadd750536ea6b8e88885f81070300f866", null ]
     ] ],
     [ "\u202A__attribute__", "db/dca/group___m_g_r___l_p_m.html#ga9dff9827dd2b415ecdb4eff4e3d4c530", null ],
+    [ "\u202A__attribute__", "db/dca/group___m_g_r___l_p_m.html#ga5e3c04e1820c16433ff591dde81e7449", null ],
     [ "\u202AeMGR_LPM_clientRequest", "db/dca/group___m_g_r___l_p_m.html#ga64b281d5b49b69bcc99344d5dd614493", null ],
     [ "\u202AGPIO_DisableAllToAnalogInput", "db/dca/group___m_g_r___l_p_m.html#ga2a7197f71c2bd57494778d45b8e3dab2", null ],
     [ "\u202AKSTK_lpmNotifEnter", "db/dca/group___m_g_r___l_p_m.html#ga38c3a4fcd42e43c751b3f44e8cff9959", null ],
@@ -64,7 +65,6 @@ var group___m_g_r___l_p_m =
     [ "\u202AvMGR_LPM_enterSleep", "db/dca/group___m_g_r___l_p_m.html#gae9eed692d36867fa1fa8d825e57d3926", null ],
     [ "\u202AvMGR_LPM_enterStandBy", "db/dca/group___m_g_r___l_p_m.html#gacba2a0ba5b0d79aee8e65edc76451e48", null ],
     [ "\u202AvMGR_LPM_enterStop", "db/dca/group___m_g_r___l_p_m.html#ga394c596cc344e87c088527daba299c8d", null ],
-    [ "\u202Alpm_config", "db/dca/group___m_g_r___l_p_m.html#ga11bd3dd601f6883075a82116bd3e50dd", null ],
     [ "\u202Alpm_config", "db/dca/group___m_g_r___l_p_m.html#ga11bd3dd601f6883075a82116bd3e50dd", null ],
     [ "\u202AmgrLpmClientNbr", "db/dca/group___m_g_r___l_p_m.html#ga0fe1db58b385c23b2893cfed0b526eee", null ],
     [ "\u202AmgrLpmClientTab", "db/dca/group___m_g_r___l_p_m.html#ga968bc59387f001213cc900b4b6d3e0fa", null ],

@@ -8,6 +8,7 @@ var kns__app_8c =
     [ "\u202AKNS_APP_assert_failed", "dd/d41/group___k_n_s___a_p_p.html#gac565cd421546157c7f2ef1615e51cf73", null ],
     [ "\u202AKNS_APP_gui_init", "dd/d41/group___k_n_s___a_p_p.html#ga255c1dfa836e65189f22594678e9f616", null ],
     [ "\u202AKNS_APP_gui_loop", "dd/d41/group___k_n_s___a_p_p.html#ga06543de003a98e82570c572ce5e1240c", null ],
-    [ "\u202AKNS_APP_stdln_init", "dd/d41/group___k_n_s___a_p_p.html#ga7f6fc13a3df7e1c584e0afc7f85c2a1b", null ],
-    [ "\u202AKNS_APP_stdln_loop", "dd/d41/group___k_n_s___a_p_p.html#ga7dcd894e8e120e17325f7801d136d938", null ]
+    [ "\u202AKNS_APP_stdln_loop", "dd/d41/group___k_n_s___a_p_p.html#ga7dcd894e8e120e17325f7801d136d938", null ],
+    [ "\u202AKNS_APP_stdln_startMacPrfl", "dd/d41/group___k_n_s___a_p_p.html#ga43590921208185253a9503500d5d70d1", null ],
+    [ "\u202AKNS_APP_stdln_stopMacPrfl", "dd/d41/group___k_n_s___a_p_p.html#ga4bb02cc43d1bdbd739a38f4ddea0e82b", null ]
 ];

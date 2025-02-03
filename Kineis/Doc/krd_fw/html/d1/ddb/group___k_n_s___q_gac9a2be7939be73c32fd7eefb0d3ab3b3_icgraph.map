@@ -1,9 +1,10 @@
 <map id="KNS_Q_push" name="KNS_Q_push">
-<area shape="rect" id="node1" title="This function is used to push an element into a queue." alt="" coords="535,81,639,108"/>
-<area shape="rect" id="node2" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#gaaa9bdf10c9ac69ef778eea22f8225343" title="Handle new TX data, this is the core function of AT+TX cmd." alt="" coords="236,5,487,32"/>
-<area shape="rect" id="node4" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#gacc6b6479b50b0c5aed24b2e62448bde0" title="Process AT command &quot;AT+KMAC&quot; get/set the Kineis MAC profile." alt="" coords="259,56,463,83"/>
-<area shape="rect" id="node5" href="$dd/d41/group___k_n_s___a_p_p.html#ga7f6fc13a3df7e1c584e0afc7f85c2a1b" title="At end of standalone APP test, generate TEST status." alt="" coords="287,107,435,133"/>
-<area shape="rect" id="node7" href="$dd/d41/group___k_n_s___a_p_p.html#ga7dcd894e8e120e17325f7801d136d938" title="This fct is a very basic standalone application." alt="" coords="284,157,439,184"/>
-<area shape="rect" id="node3" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#ga0a4332fc4f8bad99c421588fe542a2bd" title="Process AT command &quot;AT+TX&quot; send user data." alt="" coords="5,5,188,32"/>
-<area shape="rect" id="node6" href="$d0/d29/main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="The application entry point." alt="" coords="69,132,124,159"/>
+<area shape="rect" id="node1" title="This function is used to push an element into a queue." alt="" coords="637,107,741,133"/>
+<area shape="rect" id="node2" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#gaaa9bdf10c9ac69ef778eea22f8225343" title="Handle new TX data, this is the core function of AT+TX cmd." alt="" coords="339,5,589,32"/>
+<area shape="rect" id="node4" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#gacc6b6479b50b0c5aed24b2e62448bde0" title="Process AT command &quot;AT+KMAC&quot; get/set the Kineis MAC profile." alt="" coords="362,56,566,83"/>
+<area shape="rect" id="node5" href="$dd/d41/group___k_n_s___a_p_p.html#ga7dcd894e8e120e17325f7801d136d938" title="This fct is a very basic standalone application." alt="" coords="122,157,277,184"/>
+<area shape="rect" id="node7" href="$dd/d41/group___k_n_s___a_p_p.html#ga43590921208185253a9503500d5d70d1" title="Start MAC profile for the standalone application." alt="" coords="361,157,567,184"/>
+<area shape="rect" id="node8" href="$dd/d41/group___k_n_s___a_p_p.html#ga4bb02cc43d1bdbd739a38f4ddea0e82b" title="Stop MAC profile for the standalone application." alt="" coords="362,208,566,235"/>
+<area shape="rect" id="node3" href="$d0/d0f/group___m_g_r___a_t___c_m_d.html#ga0a4332fc4f8bad99c421588fe542a2bd" title="Process AT command &quot;AT+TX&quot; send user data." alt="" coords="108,5,291,32"/>
+<area shape="rect" id="node6" href="$d0/d29/main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="The application entry point." alt="" coords="5,157,60,184"/>
 </map>

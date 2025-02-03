@@ -21,13 +21,19 @@ var group___k_n_s___m_a_c =
       [ "\u202Aid", "d4/d98/struct_k_n_s___m_a_c__app_evt__t.html#a89b37437db8f989cd642aca11972e96f", null ],
       [ "\u202Ainit_prfl_ctxt", "d4/d98/struct_k_n_s___m_a_c__app_evt__t.html#a8fdd6bbcae417fa82ed6768c6aa9495a", null ]
     ] ],
+    [ "\u202AKNS_MAC_SATDET_ctxt_t", "d5/d52/struct_k_n_s___m_a_c___s_a_t_d_e_t__ctxt__t.html", [
+      [ "\u202Adetect_duration", "d5/d52/struct_k_n_s___m_a_c___s_a_t_d_e_t__ctxt__t.html#a4d3207e079958dd1d02bfbd433b2d88c", null ],
+      [ "\u202Adetected_freq", "d5/d52/struct_k_n_s___m_a_c___s_a_t_d_e_t__ctxt__t.html#a70accdd87b042bc54e47b39783f5228e", null ],
+      [ "\u202Arssi", "d5/d52/struct_k_n_s___m_a_c___s_a_t_d_e_t__ctxt__t.html#a48c3cb61512cfefe098e42d984653ef0", null ]
+    ] ],
     [ "\u202AKNS_MAC_TX_cplt_ctxt_t", "d6/da7/struct_k_n_s___m_a_c___t_x__cplt__ctxt__t.html", [
       [ "\u202Adata", "d6/da7/struct_k_n_s___m_a_c___t_x__cplt__ctxt__t.html#aa11a1fa4191f6aad427c2d6cca17a2f9", null ],
       [ "\u202Adata_bitlen", "d6/da7/struct_k_n_s___m_a_c___t_x__cplt__ctxt__t.html#a70027cebfc6eca401cd95ec44f53027d", null ]
     ] ],
     [ "\u202AKNS_MAC_RX_frm_ctxt_t", "d6/df0/struct_k_n_s___m_a_c___r_x__frm__ctxt__t.html", [
       [ "\u202Adata", "d6/df0/struct_k_n_s___m_a_c___r_x__frm__ctxt__t.html#a3cdfa68121b128aaf14f4d91ce4db335", null ],
-      [ "\u202Adata_bitlen", "d6/df0/struct_k_n_s___m_a_c___r_x__frm__ctxt__t.html#a70027cebfc6eca401cd95ec44f53027d", null ]
+      [ "\u202Adata_bitlen", "d6/df0/struct_k_n_s___m_a_c___r_x__frm__ctxt__t.html#a70027cebfc6eca401cd95ec44f53027d", null ],
+      [ "\u202Arssi", "d6/df0/struct_k_n_s___m_a_c___r_x__frm__ctxt__t.html#a48c3cb61512cfefe098e42d984653ef0", null ]
     ] ],
     [ "\u202AKNS_MAC_RX_dl_msg_ctxt_t", "de/dd2/struct_k_n_s___m_a_c___r_x__dl__msg__ctxt__t.html", [
       [ "\u202Abc_mc", "de/dd2/struct_k_n_s___m_a_c___r_x__dl__msg__ctxt__t.html#a4539adcd64d830fc366ddb63a846c952", null ],
@@ -39,6 +45,8 @@ var group___k_n_s___m_a_c =
       [ "\u202Aid", "d1/d8a/struct_k_n_s___m_a_c__srvc_evt__t.html#ab65ec23ed8975b8b4ceb9103b66e7070", null ],
       [ "\u202Amsg_ctxt", "d1/d8a/struct_k_n_s___m_a_c__srvc_evt__t.html#a1393e73f198d58e3452af1448c108ca5", null ],
       [ "\u202Arx_ctxt", "d1/d8a/struct_k_n_s___m_a_c__srvc_evt__t.html#a7b63d2191004ac0768afa6b764dd0ab4", null ],
+      [ "\u202Asatdet_ctxt", "d1/d8a/struct_k_n_s___m_a_c__srvc_evt__t.html#adf63d404d51dc8d737b3fc189c139ffa", null ],
+      [ "\u202Astatus", "d1/d8a/struct_k_n_s___m_a_c__srvc_evt__t.html#af159c57e2d686b3976b89590615d6cd8", null ],
       [ "\u202Atx_ctxt", "d1/d8a/struct_k_n_s___m_a_c__srvc_evt__t.html#af2baadd225aad913ed978e95ac4f621e", null ]
     ] ],
     [ "\u202AKNS_MAC_infraEvt_t", "dc/d0b/struct_k_n_s___m_a_c__infra_evt__t.html", [
@@ -73,6 +81,7 @@ var group___k_n_s___m_a_c =
       [ "\u202AKNS_MAC_DL_ACK", "df/dbc/group___k_n_s___m_a_c.html#gga7f0ef07515c67b901308bc51617cf13ca0024f53043f8bc11f6bc22de2c7b04d9", null ],
       [ "\u202AKNS_MAC_SAT_DETECTED", "df/dbc/group___k_n_s___m_a_c.html#gga7f0ef07515c67b901308bc51617cf13ca635a05fff4170849fe5da1ed28f316e3", null ],
       [ "\u202AKNS_MAC_SAT_LOST", "df/dbc/group___k_n_s___m_a_c.html#gga7f0ef07515c67b901308bc51617cf13ca66f31da363f8097511064df663f5ad40", null ],
+      [ "\u202AKNS_MAC_SAT_DETECT_TIMEOUT", "df/dbc/group___k_n_s___m_a_c.html#gga7f0ef07515c67b901308bc51617cf13ca81d1a0257245f4c3abaae30def443ff8", null ],
       [ "\u202AKNS_MAC_RF_ABORTED", "df/dbc/group___k_n_s___m_a_c.html#gga7f0ef07515c67b901308bc51617cf13caa824106345995608e436c46779ea39f5", null ],
       [ "\u202AKNS_MAC_OK", "df/dbc/group___k_n_s___m_a_c.html#gga7f0ef07515c67b901308bc51617cf13cacba727e269bc6350fbcd5ddc72461c44", null ],
       [ "\u202AKNS_MAC_ERROR", "df/dbc/group___k_n_s___m_a_c.html#gga7f0ef07515c67b901308bc51617cf13caa9bcaee4754cb38bce07b46cf8be437c", null ]
