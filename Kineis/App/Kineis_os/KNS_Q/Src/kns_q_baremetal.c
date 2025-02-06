@@ -124,7 +124,7 @@ enum KNS_status_t KNS_Q_pop(enum KNS_Q_handle_t qHandle, void *qItem)
 	uint8_t *qEltPtr, *qItemPtr;
 	struct q_desc_t *q = qPool[qHandle];
 #if (defined(VERBOSE))
-	uint8_t rIdxPrev = q->rIdx;
+	uint8_t rIdxPrev __attribute__((unused)) = q->rIdx;
 #endif
 
 	/** Report current is empty if some event prensent in some higher-priority queues.
