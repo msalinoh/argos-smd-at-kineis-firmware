@@ -252,7 +252,6 @@ enum KNS_status_t MGR_SPI_CMD_macEvtProcess(void)
 		 */
 		if (spUserDataMsg->u8Attr.sf == ATTR_MAIL_REQUEST) {
 			//TODO no service used for the moment
-			//Set_TX_LED(0);
 		} else {
 			/** @todo Should check integrity between data reported by event
 			 * above and the one stored in user data buffer
@@ -261,10 +260,9 @@ enum KNS_status_t MGR_SPI_CMD_macEvtProcess(void)
 			 * * notify host with AT cmd response then
 			 * * free element from user data buffer.
 			 */
-			macStatus = MAC_TX_DONE;
 			USERDATA_txFifoRemoveElt(spUserDataMsg);/* Free as host notified */
-			//Set_TX_LED(0);
 		}
+		macStatus = MAC_TX_DONE;
 		cbStatus = KNS_STATUS_OK;
 		break;
 	case (KNS_MAC_TXACK_DONE):
@@ -275,19 +273,12 @@ enum KNS_status_t MGR_SPI_CMD_macEvtProcess(void)
 		 * Send +TX= instead of +TACK=, meaning this is the real end of TX data
 		 * transmission
 		 */
-		macStatus = MAC_TXACK_DONE;
-
 		USERDATA_txFifoRemoveElt(spUserDataMsg);/* Free as host notified */
-		//Set_TX_LED(0);
+		macStatus = MAC_TXACK_DONE;
 		cbStatus = KNS_STATUS_OK;
 		break;
 	case (KNS_MAC_TX_TIMEOUT):
 		MGR_LOG_DEBUG("MGR_SPI_CMD TX_TIMEOUT callback reached\r\n");
-//		MGR_LOG_DEBUG("TX TIMEOUT for usrdata (%d bits = %d bytes + %d bits): 0X",
-//			srvcEvt.tx_ctxt.data_bitlen,
-//			srvcEvt.tx_ctxt.data_bitlen>>3,
-//			srvcEvt.tx_ctxt.data_bitlen&0x07);
-//		MGR_LOG_array(srvcEvt.tx_ctxt.data, (srvcEvt.tx_ctxt.data_bitlen+7)>>3);
 		kns_assert(spUserDataMsg->bIsToBeTransmit);
 		/** @todo Should check integrity between data reported by event above and
 		 * the one stored in user data buffer
@@ -296,28 +287,20 @@ enum KNS_status_t MGR_SPI_CMD_macEvtProcess(void)
 		 * * notify host with AT cmd response then
 		 * * free element from user data buffer.
 		 */
-		macStatus = MAC_TX_TIMEOUT;
 		USERDATA_txFifoRemoveElt(spUserDataMsg);/* Free as host notified */
-//		Set_TX_LED(0);
+		macStatus = MAC_TX_TIMEOUT;
 		cbStatus = KNS_STATUS_TIMEOUT;
 		break;
 	case (KNS_MAC_TXACK_TIMEOUT):
 		MGR_LOG_DEBUG("MGR_SPI_CMD TXACK_TIMEOUT callback reached\r\n");
 		kns_assert(spUserDataMsg->bIsToBeTransmit);
-		macStatus = MAC_TXACK_TIMEOUT;
 		USERDATA_txFifoRemoveElt(spUserDataMsg);/* Free as host notified */
-		//Set_TX_LED(0);
+		macStatus = MAC_TXACK_TIMEOUT;
 		cbStatus = KNS_STATUS_TIMEOUT;
 		break;
 	case (KNS_MAC_RX_ERROR):  /**< RX error during TRX frame, report TX failure then */
 		MGR_LOG_DEBUG("MGR_SPI_CMD RX ERROR callback reached\r\n");
 		if (spUserDataMsg->bIsToBeTransmit) {
-//			MGR_LOG_DEBUG("RX enable ERROR (%d bits = %d bytes + %d bits): 0x",
-//				srvcEvt.tx_ctxt.data_bitlen,
-//				srvcEvt.tx_ctxt.data_bitlen>>3,
-//				srvcEvt.tx_ctxt.data_bitlen&0x07);
-//			MGR_LOG_array(srvcEvt.tx_ctxt.data,
-//				(srvcEvt.tx_ctxt.data_bitlen+7)>>3);
 			/** @todo Should check integrity between data reported by event
 			 * above and the one stored in user data buffer
 			 *
@@ -325,9 +308,8 @@ enum KNS_status_t MGR_SPI_CMD_macEvtProcess(void)
 			 * * notify host with AT cmd response then
 			 * * free element from user data buffer.
 			 */
-			macStatus = MAC_RX_ERROR;
 			USERDATA_txFifoRemoveElt(spUserDataMsg);/* Free as host notified */
-			//Set_TX_LED(0);
+			macStatus = MAC_RX_ERROR;
 			cbStatus = KNS_STATUS_TR_ERR;
 		} else {
 			MGR_LOG_DEBUG("MGR_SPI_CMD RX callback reached\r\n");
@@ -343,11 +325,6 @@ enum KNS_status_t MGR_SPI_CMD_macEvtProcess(void)
 		 * as no BC was available on board (protocol to be discussed)
 		 */
 		MGR_LOG_DEBUG("MGR_SPI_CMD RX timeout callback reached\r\n");
-//		MGR_LOG_DEBUG("ERROR: no DL frm for (%d bits = %d bytes + %d bits): 0x",
-//			srvcEvt.tx_ctxt.data_bitlen,
-//			srvcEvt.tx_ctxt.data_bitlen>>3,
-//			srvcEvt.tx_ctxt.data_bitlen&0x07);
-//		MGR_LOG_array(srvcEvt.tx_ctxt.data, (srvcEvt.tx_ctxt.data_bitlen+7)>>3);
 		/** @todo Should check integrity between data reported by event above and
 		 * the one stored in user data buffer
 		 *
@@ -355,25 +332,22 @@ enum KNS_status_t MGR_SPI_CMD_macEvtProcess(void)
 		 * * notify host with AT cmd response then
 		 * * free element from user data buffer.
 		 */
-		macStatus = MAC_RX_TIMEOUT;
 		USERDATA_txFifoRemoveElt(spUserDataMsg);/* Free as host notified */
-		//Set_TX_LED(0);
+		macStatus = MAC_RX_TIMEOUT;
 		cbStatus = KNS_STATUS_TIMEOUT;
 	break;
 	case (KNS_MAC_OK):
 		MGR_LOG_DEBUG("MGR_SPI_CMD MAC reported OK to previous command.\r\n");
-		macStatus = MAC_OK;
-		if (srvcEvt.app_evt == KNS_MAC_SEND_DATA)
-			//Set_TX_LED(1);
 		if (srvcEvt.app_evt == KNS_MAC_STOP_SEND_DATA)
 			kns_assert(USERDATA_txFifoFlush() == true);
+		macStatus = MAC_OK;
 		cbStatus = KNS_STATUS_OK;
 	break;
 	case (KNS_MAC_ERROR):
 		MGR_LOG_DEBUG("MGR_SPI_CMD MAC reported ERROR to previous command.\r\n");
-		macStatus = MAC_ERROR;
 		if (srvcEvt.app_evt == KNS_MAC_SEND_DATA)
 			USERDATA_txFifoRemoveElt(spUserDataMsg);/* Free as host notified */
+		macStatus = MAC_ERROR;
 		cbStatus = KNS_STATUS_ERROR;
 	break;
 	default:

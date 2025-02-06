@@ -24,7 +24,7 @@ TARGET = argos-smd-at-kineis-firmware
 # building variables
 ######################################
 # debug build?
-DEBUG = 1
+DEBUG = 0
 VERBOSE = 1
 USE_BAREMETAL = 1
 
