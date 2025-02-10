@@ -65,6 +65,7 @@ extern SPI_Buffer rxBuf;
 extern SPI_Buffer txBuf;
 
 typedef enum {
+    SPICMD_UNKNOWN,
     SPICMD_INIT,                // Register SPI command manager
     SPICMD_IDLE,                // Idle waiting TX request
     SPICMD_PROCESS_CMD,         // Process incoming command

@@ -84,6 +84,19 @@ bool bMGR_SPI_CMD_READFIRMWARE_cmd(SPI_Buffer *rx, SPI_Buffer *tx);
  */
 bool bMGR_SPI_CMD_READADDRESS_cmd(SPI_Buffer *rx, SPI_Buffer *tx);
 
+/** @brief
+ *
+ *
+ * @return true if command is correctly received and processed, false if error
+ */
+bool bMGR_SPI_CMD_WRITEADDRESSREQ_cmd(SPI_Buffer *rx, SPI_Buffer *tx);
+
+/** @brief
+ *
+ *
+ * @return true if command is correctly received and processed, false if error
+ */
+bool bMGR_SPI_CMD_WRITEADDRESS_cmd(SPI_Buffer *rx, SPI_Buffer *tx);
 
 /** @brief
  *
@@ -92,6 +105,19 @@ bool bMGR_SPI_CMD_READADDRESS_cmd(SPI_Buffer *rx, SPI_Buffer *tx);
  */
 bool bMGR_SPI_CMD_READID_cmd(SPI_Buffer *rx, SPI_Buffer *tx);
 
+/** @brief
+ *
+ *
+ * @return true if command is correctly received and processed, false if error
+ */
+bool bMGR_SPI_CMD_WRITEIDREQ_cmd(SPI_Buffer *rx, SPI_Buffer *tx);
+
+/** @brief
+ *
+ *
+ * @return true if command is correctly received and processed, false if error
+ */
+bool bMGR_SPI_CMD_WRITEID_cmd(SPI_Buffer *rx, SPI_Buffer *tx);
 
 /** @brief
  *
@@ -149,4 +175,31 @@ bool bMGR_SPI_CMD_WRITELPMREQ_cmd(SPI_Buffer *rx, SPI_Buffer *tx);
  * @return true if command is correctly received and processed, false if error
  */
 bool bMGR_SPI_CMD_WRITELPM_cmd(SPI_Buffer *rx, SPI_Buffer *tx);
+
+/** @brief
+ *
+ *
+ * @return true if command is correctly received and processed, false if error
+ */
+bool bMGR_SPI_CMD_READSECKEY_cmd(SPI_Buffer *rx, SPI_Buffer *tx);
+
+/** @brief
+ *
+ *
+ * @return true if command is correctly received and processed, false if error
+ */
+bool bMGR_SPI_CMD_WRITESECKEYREQ_cmd(SPI_Buffer *rx, SPI_Buffer *tx);
+
+/** @brief
+ *
+ *
+ * @return true if command is correctly received and processed, false if error
+ */
+bool bMGR_SPI_CMD_WRITESECKEY_cmd(SPI_Buffer *rx, SPI_Buffer *tx);
+/** @brief
+ *
+ *
+ * @return true if command is correctly received and processed, false if error
+ */
+bool bMGR_SPI_CMD_READSPIMACSTATE_cmd(SPI_Buffer *rx, SPI_Buffer *tx);
 #endif /* __MGR_SPI_CMD_LIST_GENERAL_H */

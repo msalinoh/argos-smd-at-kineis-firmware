@@ -58,8 +58,8 @@ static int8_t MGR_SPI_CMD_parseStreamCb(SPI_Buffer *rx, SPI_Buffer *tx)
 	{
 		cmdInProgress = rx->data[0];
 
-		// Do not update
-		if (cmdInProgress == CMD_SPI_STATUS){
+		// Store SPI state before to handle cmd in TX in case we want to read current spi state
+		if ((cmdInProgress == CMD_SPI_STATUS) || (cmdInProgress == CMD_READ_SPIMAC_STATE)){
 			tx->data[0] = spiState;
 		}
 		spiState = SPICMD_PROCESS_CMD;
@@ -82,14 +82,6 @@ static bool MGR_SPI_CMD_process_cmd(uint8_t cmd)
 	MGR_LOG_DEBUG("%s:: Process %u \r\n",__func__, cmd);
 	if ((cmd > 0) && cmd < SPICMD_MAX_COUNT)
 	{
-//		if ((cas_spicmd_list_array[cmdInProgress].next_cmd != cmd) &&
-//				(cas_spicmd_list_array[cmdInProgress].next_cmd != CMD_NONE))
-//		{
-//			MGR_LOG_DEBUG("Command %u was waiting but received %u, previous command canceled\r\n",
-//				cas_spicmd_list_array[cmd].next_cmd,
-//				cmd);
-//		}
-
 		ret = cas_spicmd_list_array[cmd].f_ht_cmd_fun_proc(&rxBuf, &txBuf);
 
 	} else {
@@ -319,8 +311,8 @@ enum KNS_status_t MGR_SPI_CMD_macEvtProcess(void)
 		}
 	break;
 	case (KNS_MAC_RX_TIMEOUT): /**< RX window reached during TRX, report failure then */
-		/** @attention so far, TX failure is reported upon TRX RX timeout when:
-		 * * no DL-ACK received for a TX requesting ACK (this case is fine)
+	/** @attention so far, TX failure is reported upon TRX RX timeout when:
+	 * * no DL-ACK received for a TX requesting ACK (this case is fine)
 		 * * no DL-BC received for a TX mail request. Actually this may really occur
 		 * as no BC was available on board (protocol to be discussed)
 		 */

@@ -30,6 +30,7 @@
 #include "mgr_log.h"
 #include "mgr_at_cmd_list_user_data.h"
 #include "lpm.h"
+#include "mcu_nvm.h"
 
 
 /* Functions -----------------------------------------------------------------*/
@@ -90,7 +91,8 @@ bool bMGR_SPI_CMD_SPISTATE_cmd(SPI_Buffer *rx, SPI_Buffer *tx)
 {
 	HAL_StatusTypeDef ret = HAL_OK;
 
-	//tx->data[0] = spiState; // do not write spiState, at this step it should be CMD_IN_PROGRESS
+	// Already written in MGR_SPI_CMD_parseStreamCB to read value before to update it (proces required)
+	//tx->data[0] = spiState; 
 	tx->next_req = 1;
 	rx->next_req = 1;
 	ret = bMGR_SPI_DRIVER_writeread();
@@ -156,6 +158,129 @@ bool bMGR_SPI_CMD_READADDRESS_cmd(SPI_Buffer *rx, SPI_Buffer *tx)
 		return false;
 	}
 }
+bool bMGR_SPI_CMD_WRITEADDRESSREQ_cmd(SPI_Buffer *rx, SPI_Buffer *tx)
+{
+	// Give size
+	HAL_StatusTypeDef ret = HAL_OK;
+	tx->data[0] = rx->data[0];
+	rx->next_req = CMD_WRITEADDRESS_WAIT_LEN;
+	ret = bMGR_SPI_DRIVER_read();
+
+	//Reset tx/rx state if MAC_OK
+	if (ret == HAL_OK)
+	{
+		return true;
+	} else {
+		return false;
+	}
+}
+
+bool bMGR_SPI_CMD_WRITEADDRESS_cmd(SPI_Buffer *rx, SPI_Buffer *tx)
+{
+	HAL_StatusTypeDef ret = HAL_OK;
+	if (MCU_NVM_setAddr(&(rx->data[1])) != KNS_STATUS_OK)
+	{
+		MGR_LOG_DEBUG("Faile to write ADDR=%02x%02x%02x%02x\r\n", rx->data[1], rx->data[2],
+								  rx->data[3], rx->data[4]);
+	} else {
+		MGR_LOG_DEBUG("Set new ADDR=%02x%02x%02x%02x\r\n", rx->data[1], rx->data[2],
+								  rx->data[3], rx->data[4]);
+	}
+	rx->next_req = 1;
+	ret = bMGR_SPI_DRIVER_read();
+
+	//Reset tx/rx state if MAC_OK
+	if (ret == HAL_OK)
+	{
+		return true;
+	} else {
+		return false;
+	}
+}
+
+bool bMGR_SPI_CMD_READSECKEY_cmd(SPI_Buffer *rx, SPI_Buffer *tx) {
+	HAL_StatusTypeDef ret = HAL_OK;
+
+	uint8_t dev_seckey[DSK_BYTE_LENGTH];
+	if (MCU_AES_get_device_sec_key(dev_seckey) != KNS_STATUS_OK)
+	{
+		return bMGR_SPI_CMD_logFailedMsg(ERROR_UNKNOWN, tx);
+	}
+	memcpy(&tx->data[0], dev_seckey, DSK_BYTE_LENGTH);
+	tx->next_req = DSK_BYTE_LENGTH;
+	ret = bMGR_SPI_DRIVER_writeread();
+	//Reset tx/rx state if MAC_OK
+	if (ret == HAL_OK)
+	{
+		return true;
+	} else {
+		return false;
+	}
+
+}
+
+bool bMGR_SPI_CMD_WRITESECKEYREQ_cmd(SPI_Buffer *rx, SPI_Buffer *tx) {
+	HAL_StatusTypeDef ret = HAL_OK;
+	tx->data[0] = rx->data[0];
+	rx->next_req = CMD_WRITESECKEY_WAIT_LEN;
+	ret = bMGR_SPI_DRIVER_read();
+
+	//Reset tx/rx state if MAC_OK
+	if (ret == HAL_OK)
+	{
+		return true;
+	} else {
+		return false;
+	}
+}
+
+bool bMGR_SPI_CMD_WRITESECKEY_cmd(SPI_Buffer *rx, SPI_Buffer *tx) {
+	HAL_StatusTypeDef ret = HAL_OK;
+	char sec_key_str[33];
+	for (int i = 0; i < 16; i++) {
+		sprintf(&sec_key_str[i * 2], "%02x", rx->data[i+1]);
+	}
+	sec_key_str[32] = '\0';
+	if (MCU_AES_set_device_sec_key(&(rx->data[1])) != KNS_STATUS_OK)
+	{
+		MGR_LOG_DEBUG("Failed to write SECKEY=%s\r\n",sec_key_str);
+	} else {
+		MGR_LOG_DEBUG("Set new SECKEY=%s\r\n", sec_key_str);
+	}
+	rx->next_req = 1;
+	ret = bMGR_SPI_DRIVER_read();
+
+	//Reset tx/rx state if MAC_OK
+	if (ret == HAL_OK)
+	{
+		return true;
+	} else {
+		return false;
+	}
+
+}
+
+
+bool bMGR_SPI_CMD_READSPIMACSTATE_cmd(SPI_Buffer *rx, SPI_Buffer *tx){
+
+	HAL_StatusTypeDef ret = HAL_OK;
+
+	// Already written in MGR_SPI_CMD_parseStreamCB to read value before to update it (proces required)
+	//tx->data[0] = spiState; 
+	tx->data[1] = macStatus;
+	tx->next_req = 2;
+	rx->next_req = 1;
+	ret = bMGR_SPI_DRIVER_writeread();
+	//Reset tx/rx state if MAC_OK
+	if (ret == HAL_OK)
+	{
+		// reset Mac status after read if
+		macStatus = MAC_OK;
+		return true;
+	} else {
+		return false;
+	}
+}
 
 bool bMGR_SPI_CMD_READID_cmd(SPI_Buffer *rx, SPI_Buffer *tx)
 {
@@ -173,6 +298,51 @@ bool bMGR_SPI_CMD_READID_cmd(SPI_Buffer *rx, SPI_Buffer *tx)
 	memcpy(&tx->data[0], &dev_id, tx->next_req);
 
 	ret = bMGR_SPI_DRIVER_writeread();
+	//Reset tx/rx state if MAC_OK
+	if (ret == HAL_OK)
+	{
+		return true;
+	} else {
+		return false;
+	}
+}
+
+bool bMGR_SPI_CMD_WRITEIDREQ_cmd(SPI_Buffer *rx, SPI_Buffer *tx)
+{
+	// Give size
+	HAL_StatusTypeDef ret = HAL_OK;
+	tx->data[0] = rx->data[0];
+	rx->next_req = CMD_WRITEID_WAIT_LEN;
+	ret = bMGR_SPI_DRIVER_read();
+
+	//Reset tx/rx state if MAC_OK
+	if (ret == HAL_OK)
+	{
+		return true;
+	} else {
+		return false;
+	}
+}
+
+bool bMGR_SPI_CMD_WRITEID_cmd(SPI_Buffer *rx, SPI_Buffer *tx)
+{
+	HAL_StatusTypeDef ret = HAL_OK;
+
+//	uint32_t dev_id = (rx->data[1] << 24 ) |
+//					  (rx->data[2] << 16) |
+//					  (rx->data[3] << 8) |
+//					  (rx->data[4] << 0);
+	uint32_t dev_id = 0;
+	memcpy(&dev_id, &(rx->data[1]), sizeof(uint32_t));
+	if (MCU_NVM_setID(&dev_id) != KNS_STATUS_OK)
+	{
+		MGR_LOG_DEBUG("[ERROR] failed to set ID\r\n");
+	} else {
+		MGR_LOG_DEBUG("New id : %u\r\n", dev_id);
+	}
+	rx->next_req = 1;
+	ret = bMGR_SPI_DRIVER_read();
+
 	//Reset tx/rx state if MAC_OK
 	if (ret == HAL_OK)
 	{

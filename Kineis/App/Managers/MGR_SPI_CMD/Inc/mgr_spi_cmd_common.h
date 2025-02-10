@@ -28,6 +28,7 @@ extern "C" {
 /* Defines ------------------------------------------------------------------*/
 
 typedef enum {
+    MAC_UNKNOWN       = 0x00,
     MAC_OK            = 0x01,
     MAC_TX_DONE       = 0x02,
     MAC_TX_SIZE_ERROR = 0x03,

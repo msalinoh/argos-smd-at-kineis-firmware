@@ -31,7 +31,7 @@
 /**
  * This variable contains last GIT commit ID
  */
-#define FW_VERSION_LENGTH 32  // Define the fixed length
+#define FW_VERSION_LENGTH 128  // Define the fixed length
 
 extern const char uc_fw_vers_commit_id[FW_VERSION_LENGTH];
 
