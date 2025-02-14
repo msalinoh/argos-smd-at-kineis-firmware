@@ -53,12 +53,14 @@ void MCU_MISC_turn_on_pa()
 
 
 	/* GPIO Ports Clock Enable */
-	__HAL_RCC_GPIOA_CLK_ENABLE();
+	__HAL_RCC_GPIOC_CLK_ENABLE();
 
 	/*Configure GPIO pin Output Level */
 	HAL_GPIO_WritePin(PA_PSU_EN_GPIO_Port, PA_PSU_EN_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(PA_PSU_SEL_GPIO_Port, PA_PSU_SEL_Pin, GPIO_PIN_SET);
 
 
+	//Already defined in MX_GPIO_INIT
 	/*Configure GPIO pin : PtPin */
 	GPIO_InitStruct.Pin = PA_PSU_EN_Pin;
 	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
@@ -67,7 +69,14 @@ void MCU_MISC_turn_on_pa()
 	HAL_GPIO_Init(PA_PSU_EN_GPIO_Port, &GPIO_InitStruct);
 
 
+	GPIO_InitStruct.Pin = PA_PSU_SEL_Pin;
+	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+	GPIO_InitStruct.Pull = GPIO_NOPULL;
+	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+	HAL_GPIO_Init(PA_PSU_SEL_GPIO_Port, &GPIO_InitStruct);
 
+	HAL_GPIO_WritePin(PA_PSU_SEL_GPIO_Port, PA_PSU_SEL_Pin, GPIO_PIN_SET);
+	DELAY_MS(10);
 	HAL_GPIO_WritePin(PA_PSU_EN_GPIO_Port, PA_PSU_EN_Pin, GPIO_PIN_SET);
 	DELAY_MS(MCU_PA_BOOTDELAY_MS);
 #endif
@@ -80,13 +89,20 @@ void MCU_MISC_turn_off_pa()
 	GPIO_InitTypeDef GPIO_InitStruct = {0};
 
 	HAL_GPIO_WritePin(PA_PSU_EN_GPIO_Port, PA_PSU_EN_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(PA_PSU_SEL_GPIO_Port, PA_PSU_SEL_Pin, GPIO_PIN_RESET);
 
 
 	/*Configure GPIO pin : PtPin */
 	GPIO_InitStruct.Pin = PA_PSU_EN_Pin;
 	GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
 	GPIO_InitStruct.Pull = GPIO_NOPULL;
-	HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+	HAL_GPIO_Init(PA_PSU_EN_GPIO_Port, &GPIO_InitStruct);
+
+	/*Configure GPIO pin : PtPin */
+	GPIO_InitStruct.Pin = PA_PSU_SEL_Pin;
+	GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
+	GPIO_InitStruct.Pull = GPIO_NOPULL;
+	HAL_GPIO_Init(PA_PSU_SEL_GPIO_Port, &GPIO_InitStruct);
 #endif
 }
 

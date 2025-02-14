@@ -67,6 +67,8 @@ void SystemClock_Config(void);
 //#define PA_PSU_EN_Pin GPIO_PIN_8
 #define PA_PSU_EN_GPIO_Port GPIOC
 //#define PA_PSU_EN_GPIO_Port GPIOA
+#define PA_PSU_SEL_Pin GPIO_PIN_1
+#define PA_PSU_SEL_GPIO_Port GPIOC
 
 /* USER CODE BEGIN Private defines */
 
