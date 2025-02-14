@@ -30,6 +30,7 @@
 #include "mgr_spi_cmd_list_general.h"
 #include "mgr_spi_cmd_list.h"
 #include "kns_cfg.h"
+#include "mcu_misc.h"
 /* Defines --------------------------------------------------------------------------------------*/
 
 
@@ -223,6 +224,7 @@ enum KNS_status_t MGR_SPI_CMD_macEvtProcess(void)
 			if (srvcEvt.app_evt == KNS_MAC_SEND_DATA) {
 				spUserDataMsg = USERDATA_txFifoFindPayload(srvcEvt.tx_ctxt.data,
 					srvcEvt.tx_ctxt.data_bitlen);
+				MCU_MISC_TCXO_Force_State(false);
 				kns_assert(spUserDataMsg != NULL);
 				macStatus = MAC_ERROR;
 			}
@@ -254,6 +256,7 @@ enum KNS_status_t MGR_SPI_CMD_macEvtProcess(void)
 			 */
 			USERDATA_txFifoRemoveElt(spUserDataMsg);/* Free as host notified */
 		}
+		MCU_MISC_TCXO_Force_State(false);
 		macStatus = MAC_TX_DONE;
 		cbStatus = KNS_STATUS_OK;
 		break;
@@ -265,6 +268,7 @@ enum KNS_status_t MGR_SPI_CMD_macEvtProcess(void)
 		 * Send +TX= instead of +TACK=, meaning this is the real end of TX data
 		 * transmission
 		 */
+		MCU_MISC_TCXO_Force_State(false);
 		USERDATA_txFifoRemoveElt(spUserDataMsg);/* Free as host notified */
 		macStatus = MAC_TXACK_DONE;
 		cbStatus = KNS_STATUS_OK;
@@ -279,12 +283,14 @@ enum KNS_status_t MGR_SPI_CMD_macEvtProcess(void)
 		 * * notify host with AT cmd response then
 		 * * free element from user data buffer.
 		 */
+		MCU_MISC_TCXO_Force_State(false);
 		USERDATA_txFifoRemoveElt(spUserDataMsg);/* Free as host notified */
 		macStatus = MAC_TX_TIMEOUT;
 		cbStatus = KNS_STATUS_TIMEOUT;
 		break;
 	case (KNS_MAC_TXACK_TIMEOUT):
 		MGR_LOG_DEBUG("MGR_SPI_CMD TXACK_TIMEOUT callback reached\r\n");
+		MCU_MISC_TCXO_Force_State(false);
 		kns_assert(spUserDataMsg->bIsToBeTransmit);
 		USERDATA_txFifoRemoveElt(spUserDataMsg);/* Free as host notified */
 		macStatus = MAC_TXACK_TIMEOUT;

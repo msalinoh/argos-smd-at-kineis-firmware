@@ -21,9 +21,6 @@
 #include "mgr_spi_cmd_list_general.h"
 //#include "mgr_spi_cmd_list_user_data.h"
 /* @todo PRODEV-69: remove specific flag when HW setting check is implemented on all platforms */
-#if defined(KRD_FW_MP) ||  defined(KRD_FW_LP)
-#include "mcu_misc.h" // use to check RF HW setting vers radio confoguration
-#endif
 #include "kns_cfg.h"
 #include "lpm.h" // used for AT+LPM command all is hardcoded so far
 #include "build_info.h"
@@ -31,6 +28,7 @@
 #include "mgr_at_cmd_list_user_data.h"
 #include "lpm.h"
 #include "mcu_nvm.h"
+#include "mcu_misc.h"
 
 
 /* Functions -----------------------------------------------------------------*/
@@ -182,6 +180,7 @@ bool bMGR_SPI_CMD_WRITEADDRESS_cmd(SPI_Buffer *rx, SPI_Buffer *tx)
 	{
 		MGR_LOG_DEBUG("Faile to write ADDR=%02x%02x%02x%02x\r\n", rx->data[1], rx->data[2],
 								  rx->data[3], rx->data[4]);
+        return bMGR_SPI_CMD_logFailedMsg(ERROR_PARAMETER_FORMAT, tx);
 	} else {
 		MGR_LOG_DEBUG("Set new ADDR=%02x%02x%02x%02x\r\n", rx->data[1], rx->data[2],
 								  rx->data[3], rx->data[4]);
@@ -244,6 +243,7 @@ bool bMGR_SPI_CMD_WRITESECKEY_cmd(SPI_Buffer *rx, SPI_Buffer *tx) {
 	if (MCU_AES_set_device_sec_key(&(rx->data[1])) != KNS_STATUS_OK)
 	{
 		MGR_LOG_DEBUG("Failed to write SECKEY=%s\r\n",sec_key_str);
+        return bMGR_SPI_CMD_logFailedMsg(ERROR_PARAMETER_FORMAT, tx);
 	} else {
 		MGR_LOG_DEBUG("Set new SECKEY=%s\r\n", sec_key_str);
 	}
@@ -337,6 +337,7 @@ bool bMGR_SPI_CMD_WRITEID_cmd(SPI_Buffer *rx, SPI_Buffer *tx)
 	if (MCU_NVM_setID(&dev_id) != KNS_STATUS_OK)
 	{
 		MGR_LOG_DEBUG("[ERROR] failed to set ID\r\n");
+        return bMGR_SPI_CMD_logFailedMsg(ERROR_PARAMETER_FORMAT, tx);
 	} else {
 		MGR_LOG_DEBUG("New id : %u\r\n", dev_id);
 	}
@@ -511,6 +512,67 @@ bool bMGR_SPI_CMD_WRITELPM_cmd(SPI_Buffer *rx, SPI_Buffer *tx)
 	lpm_config.allowedLPMbitmap = lpm;
 	tx->data[0] = rx->data[0];
 	rx->next_req = 1; // Only waiting profile id for the moment
+	ret = bMGR_SPI_DRIVER_read();
+
+	//Reset tx/rx state if MAC_OK
+	if (ret == HAL_OK)
+	{
+		return true;
+	} else {
+		return false;
+	}
+}
+
+bool bMGR_SPI_CMD_READTCXO_cmd(SPI_Buffer *rx, SPI_Buffer *tx)
+{
+	HAL_StatusTypeDef ret = HAL_OK;
+
+	uint32_t tcxo_ms;
+	MCU_MISC_TCXO_get_warmup(&tcxo_ms);
+	tx->next_req = sizeof(tcxo_ms);
+	memcpy(&tx->data[0], &tcxo_ms, tx->next_req);
+
+	ret = bMGR_SPI_DRIVER_writeread();
+	//Reset tx/rx state if MAC_OK
+	if (ret == HAL_OK)
+	{
+		return true;
+	} else {
+		return false;
+	}
+}
+
+bool bMGR_SPI_CMD_WRITETCXOREQ_cmd(SPI_Buffer *rx, SPI_Buffer *tx)
+{
+	// Give size
+	HAL_StatusTypeDef ret = HAL_OK;
+	tx->data[0] = rx->data[0];
+	rx->next_req = CMD_WRITETCXO_WAIT_LEN;
+	ret = bMGR_SPI_DRIVER_read();
+
+	//Reset tx/rx state if MAC_OK
+	if (ret == HAL_OK)
+	{
+		return true;
+	} else {
+		return false;
+	}
+}
+
+bool bMGR_SPI_CMD_WRITETCXO_cmd(SPI_Buffer *rx, SPI_Buffer *tx)
+{
+	HAL_StatusTypeDef ret = HAL_OK;
+
+	uint32_t tcxo_ms = 0;
+	memcpy(&tcxo_ms, &(rx->data[1]), sizeof(uint32_t));
+	if (tcxo_ms >30000) {
+		// Invalid value: outside the allowed range
+		MGR_LOG_DEBUG("[ERROR] TCXO Warmup time in ms should be between 0 to 30 000\r\n");
+        return bMGR_SPI_CMD_logFailedMsg(ERROR_PARAMETER_FORMAT, tx);
+	}
+	MCU_MISC_TCXO_set_warmup(tcxo_ms);
+	MGR_LOG_DEBUG("Set TCXO warmup ms to %u\r\n", tcxo_ms);
+	rx->next_req = 1;
 	ret = bMGR_SPI_DRIVER_read();
 
 	//Reset tx/rx state if MAC_OK

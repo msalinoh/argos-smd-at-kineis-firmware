@@ -23,10 +23,9 @@
 #include "kineis_sw_conf.h"  // for assert include below and ERROR_RETURN_T type
 #include KINEIS_SW_ASSERT_H
 #include "mgr_log.h"
+#include "mcu_misc.h"
 
-#ifdef USE_TX_LED // Light on a GPIO when TX occurs
 #include "main.h"
-#endif
 
 /* Private macro -------------------------------------------------------------*/
 
@@ -143,6 +142,10 @@ static bool bMGR_AT_CMD_handleNewTxData(uint8_t *pu8_cmdParamString, const char 
 		}
 	};
 
+	MCU_MISC_TCXO_Force_State(true);
+	uint32_t tcxo_warmup_ms = 0;
+	MCU_MISC_TCXO_get_warmup(&tcxo_warmup_ms);
+	HAL_Delay(tcxo_warmup_ms);
 	spUserDataMsg = USERDATA_txFifoReserveElt();
 	if (spUserDataMsg != NULL) {
 
@@ -395,6 +398,7 @@ enum KNS_status_t MGR_AT_CMD_macEvtProcess(void)
 		if (srvcEvt.app_evt == KNS_MAC_SEND_DATA) {
 			spUserDataMsg = USERDATA_txFifoFindPayload(srvcEvt.tx_ctxt.data,
 				srvcEvt.tx_ctxt.data_bitlen);
+			MCU_MISC_TCXO_Force_State(false);
 			kns_assert(spUserDataMsg != NULL);
 		}
 	break;
@@ -411,6 +415,7 @@ enum KNS_status_t MGR_AT_CMD_macEvtProcess(void)
 //			srvcEvt.tx_ctxt.data_bitlen>>3,
 //			srvcEvt.tx_ctxt.data_bitlen&0x07);
 //		MGR_LOG_array(srvcEvt.tx_ctxt.data, (srvcEvt.tx_ctxt.data_bitlen+7)>>3);
+		MCU_MISC_TCXO_Force_State(false);
 		kns_assert(spUserDataMsg->bIsToBeTransmit);
 		/** Upon TX done of a mail request message, it means some DL_BC was received
 		 * Thus, UL ACK of DL_BC will transmitted by lower layer internally just
@@ -447,6 +452,7 @@ enum KNS_status_t MGR_AT_CMD_macEvtProcess(void)
 		else
 			bMGR_AT_CMD_sendResponse(ATCMD_RSP_TXACKOK, NULL);
 
+		MCU_MISC_TCXO_Force_State(false);
 		USERDATA_txFifoRemoveElt(spUserDataMsg);/* Free as host notified */
 		Set_TX_LED(0);
 		cbStatus = KNS_STATUS_OK;
@@ -458,6 +464,7 @@ enum KNS_status_t MGR_AT_CMD_macEvtProcess(void)
 //			srvcEvt.tx_ctxt.data_bitlen>>3,
 //			srvcEvt.tx_ctxt.data_bitlen&0x07);
 //		MGR_LOG_array(srvcEvt.tx_ctxt.data, (srvcEvt.tx_ctxt.data_bitlen+7)>>3);
+		MCU_MISC_TCXO_Force_State(false);
 		kns_assert(spUserDataMsg->bIsToBeTransmit);
 		/** @todo Should check integrity between data reported by event above and
 		 * the one stored in user data buffer
@@ -473,6 +480,7 @@ enum KNS_status_t MGR_AT_CMD_macEvtProcess(void)
 	break;
 	case (KNS_MAC_TXACK_TIMEOUT):
 //		MGR_LOG_DEBUG("MGR_AT_CMD TXACK_TIMEOUT callback reached\r\n");
+		MCU_MISC_TCXO_Force_State(false);
 		kns_assert(spUserDataMsg->bIsToBeTransmit);
 		bMGR_AT_CMD_sendResponse(ATCMD_RSP_TXACKNOTOK, NULL);
 		USERDATA_txFifoRemoveElt(spUserDataMsg);/* Free as host notified */

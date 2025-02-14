@@ -1,12 +1,15 @@
-/* SPDX-License-Identifier: no SPDX license */
 /**
  * @file mgr_spi_cmd_common.h
- * @author Kineis
- * @brief header file for common part of the AT cmd manager
+ * @brief Header file for the common part of the SPI command manager.
+ *
+ * This file includes the necessary declarations and prototypes used by the AT command manager to interact with the SPI driver.
+ * It defines common error handling, logging functions, and low-level SPI operations.
+ *
+ * @author
  */
 
 /**
- * @addtogroup MGR_AT_CMD
+ * @addtogroup MGR_SPI_CMD
  * @{
  */
 
@@ -25,34 +28,67 @@ extern "C" {
 #include "kineis_sw_conf.h" // get ERROR_RETURN_T types
 #include "mcu_spi_driver.h"
 #include "kns_mac.h"
+
 /* Defines ------------------------------------------------------------------*/
 
+/**
+ * @brief Enumeration of MAC statuses.
+ *
+ * This enumeration defines various status codes related to the MAC (Media Access Control) layer operations.
+ */
 typedef enum {
-    MAC_UNKNOWN       = 0x00,
-    MAC_OK            = 0x01,
-    MAC_TX_DONE       = 0x02,
-    MAC_TX_SIZE_ERROR = 0x03,
-    MAC_TXACK_DONE    = 0x04,
-    MAC_TX_TIMEOUT    = 0x05,
-    MAC_TXACK_TIMEOUT = 0x06,
-    MAC_RX_ERROR      = 0x07,
-    MAC_RX_TIMEOUT    = 0x08,
-    MAC_ERROR         = 0x09
+    MAC_UNKNOWN       = 0x00, /**< Unknown MAC status. */
+    MAC_OK            = 0x01, /**< MAC operation successful. */
+    MAC_TX_DONE       = 0x02, /**< Transmission completed. */
+    MAC_TX_SIZE_ERROR = 0x03, /**< Error due to incorrect transmission size. */
+    MAC_TXACK_DONE    = 0x04, /**< Transmission with acknowledgment completed. */
+    MAC_TX_TIMEOUT    = 0x05, /**< Transmission timed out. */
+    MAC_TXACK_TIMEOUT = 0x06, /**< Acknowledgment timeout after transmission. */
+    MAC_RX_ERROR      = 0x07, /**< Error during reception. */
+    MAC_RX_TIMEOUT    = 0x08, /**< Reception timed out. */
+    MAC_ERROR         = 0x09  /**< General MAC error. */
 } MACStatus;
-extern MACStatus macStatus;
-//extern enum KNS_MAC_srvcEvtId_t macStatus;
-/* functions prototypes -----------------------------------------------------*/
 
-/** @brief Log in debug interface a failed message
+extern MACStatus macStatus;
+
+/* Functions prototypes -----------------------------------------------------*/
+
+/**
+ * @brief Log a failed message to the debug interface.
  *
- * @param[in] eErrorType : the error type
+ * This function logs an error message corresponding to the provided error type using the SPI transmit buffer.
  *
- * @return : always return false
+ * @param[in] eErrorType The error type as defined by the ERROR_RETURN_T enumeration.
+ * @param[out] tx Pointer to the SPI transmit buffer used to send the log message.
+ *
+ * @return Always returns false to indicate an error condition.
  */
 bool bMGR_SPI_CMD_logFailedMsg(enum ERROR_RETURN_T eErrorType, SPI_Buffer *tx);
 
+/**
+ * @brief Read data using the SPI_Read_IT command.
+ *
+ * This function initiates a non-blocking read operation on the SPI interface using the SPI_Read_IT command.
+ * It waits for a specific amount of data defined by the SPI_Buffer size.
+ *
+ * @return The byte read from the SPI interface. In case of an error, the returned value may indicate an error condition.
+ */
 uint8_t bMGR_SPI_DRIVER_read();
+
+/**
+ * @brief Perform a simultaneous write and read operation using the TransmitRead_IT command.
+ *
+ * This function initiates a non-blocking write/read operation on the SPI interface using the TransmitRead_IT command.
+ * It transmits data while simultaneously reading the response, with the operation size defined by the SPI_Buffer.
+ *
+ * @return The byte read from the SPI interface after performing the write operation. In case of an error, the returned value may indicate an error condition.
+ */
 uint8_t bMGR_SPI_DRIVER_writeread();
+
+#ifdef __cplusplus
+}
+#endif
+
 #endif /* __MGR_SPI_CMD_COMMON_H */
 
 /**

@@ -1,18 +1,20 @@
 /* SPDX-License-Identifier: no SPDX license */
 /**
  * @file mgr_spi_cmd.h
- * @author  Arribada
- * @brief SPI driver cmd parser
- */
-
-/**
- * @page mgr_at_cmd_page AT commands manager
+ * @brief SPI driver command parser.
  *
- * The AT cmd manager is in charge of parsing an incoming data stream and extract commands. Then
- * call the corresponding handler.
+ * This module is responsible for parsing an incoming SPI data stream, extracting commands,
+ * and calling the corresponding handlers.
  *
- * @section mgr_at_cmd_subpages Sub-pages
+ * @page mgr_spi_cmd_page SPI commands manager
  *
+ * The SPI command manager is in charge of parsing an incoming data stream and extracting commands.
+ * It then calls the corresponding handler to process each command.
+ *
+ * @section mgr_spi_cmd_subpages Sub-pages
+ * Additional sub-pages can be used to document specific subsets of SPI commands.
+ *
+ * @author Arribada
  */
 
 /**
@@ -28,7 +30,6 @@
 extern "C" {
 #endif
 
-
 /* Includes ------------------------------------------------------------------*/
 #include <stdbool.h>
 #include <stdio.h>
@@ -37,51 +38,54 @@ extern "C" {
 #include "mcu_spi_driver.h"
 #include "mgr_spi_cmd_list.h"
 
-#define CMD_IT_TIMEOUT 1000
-extern CmdValue cmdInProgress;
-/*Functions ------------------------------------------------------------------*/
+/* Defines -------------------------------------------------------------------*/
+#define CMD_IT_TIMEOUT 1000      /**< Timeout in milliseconds for SPI command processing interrupts */
 
+/* Extern Variables ----------------------------------------------------------*/
+extern CmdValue cmdInProgress;   /**< Current SPI command in progress */
+
+/* Functions -----------------------------------------------------------------*/
 
 /**
- * @brief main API used to start AT command Manager
+ * @brief Start the SPI command manager.
  *
- * This function will internally call MCU wrapper to start AT CMD console (such as UART RX isr
- * enabling)
+ * This is the main API used to start the SPI command manager. Internally, it calls the MCU wrapper
+ * to start the SPI command console (e.g., enabling SPI RX interrupts) and prepares the system to process
+ * incoming SPI commands.
  *
- * @param[in] context some handler on required HW setting.
- *            @note this handler will be directly sent as is, to MCU wrappers. Thus application can
- *            change its type as per needs.
+ * @param[in] context Handler or pointer to the required hardware settings.
+ *                    This context is passed directly to the MCU wrappers, allowing the application
+ *                    to customize its type as needed.
  *
- * @retval true if AT command manager is correctly started, false otherwise
+ * @retval true if the SPI command manager is successfully started, false otherwise.
  */
 bool MGR_SPI_CMD_start(void *context);
 
-//bool MGR_AT_SPI_CMD_start(void *context);
 /**
- * @brief API used to check there is some AT command in internal fifo
+ * @brief Process events from the Kineis stack as responses to SPI commands.
  *
- * @retval true if there is some AT command in fifo, false otherwise
- */
-//bool MGR_AT_CMD_isPendingAt(void);
-
-/**
- * @brief API used to get next AT command stored in internal fifo
+ * This function retrieves and processes events coming from the Kineis stack as answers to SPI commands.
+ * It typically handles events such as TX-done, TX-timeout, RX-timeout, and in some cases RX events like
+ * frame reception or downlink messages.
  *
- * @retval Pointer to the AT cmd to be decoded
- */
-//uint8_t *MGR_AT_CMD_popNextAt(void);
-
-/**
- * @brief Fct used to retreive and process event coming from kineis stack as answers to AT commands
- *
- * Typically, this is about processing TX events such as TX-done, TX-timeout, RX-timeout in case of
- * TRX. In case of KIM2 HW, it is also about RX events such as RX-frame-received, DL-msg-received.
- *
- * @retval KNS_STATUS_OK if TX DONE or KNS_STATUS_TIMEOUT if timeout reached, else KNS_STATUS_ERROR
+ * @retval KNS_STATUS_OK if the TX is completed successfully,
+ *         KNS_STATUS_TIMEOUT if a timeout is reached,
+ *         or KNS_STATUS_ERROR if an error occurred.
  */
 enum KNS_status_t MGR_SPI_CMD_macEvtProcess(void);
 
+/**
+ * @brief Handle state transitions for the SPI command manager.
+ *
+ * This function is responsible for processing and updating the internal state of the SPI command manager.
+ * It should be called regularly to ensure proper state management and timely processing of SPI commands.
+ */
 void MGR_SPI_CMD_state_handler(void);
+
+#ifdef __cplusplus
+}
+#endif
+
 #endif /* __MGR_SPI_CMD_H */
 
 /**

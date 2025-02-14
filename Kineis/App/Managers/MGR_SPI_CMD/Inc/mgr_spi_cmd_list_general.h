@@ -1,8 +1,12 @@
 /* SPDX-License-Identifier: no SPDX license */
 /**
  * @file mgr_at_cmd_list_general.h
- * @author  Kineis
- * @brief subset of AT commands concerning general purpose (get ID, FW version, ...)
+ * @author
+ * @brief Subset of AT commands concerning general purpose operations (e.g., get ID, firmware version, etc.)
+ *
+ * This header file declares functions that handle SPI commands for general device management such as
+ * retrieving version information, reading configurations, and writing parameters like addresses, IDs,
+ * and security keys.
  */
 
 /**
@@ -17,189 +21,350 @@
 /* Includes ------------------------------------------------------------------*/
 #include "mgr_at_cmd_common.h"
 #include "mcu_spi_driver.h"
-/* Define value --------------------------------------------------------------*/
 
+/* Define value --------------------------------------------------------------*/
 
 /* Extern variable -----------------------------------------------------------*/
 /* Functions -----------------------------------------------------------------*/
 
-
-/** @brief
+/**
+ * @brief Retrieve the firmware version of the device.
  *
+ * This function processes the SPI command to obtain the current firmware version of the device.
  *
- * @return true if command is correctly received and processed, false if error
+ * @param rx Pointer to the SPI receive buffer containing the command.
+ * @param tx Pointer to the SPI transmit buffer where the version information will be written.
+ *
+ * @return true if the command is correctly received and processed, false otherwise.
  */
 bool bMGR_SPI_CMD_VERSION_cmd(SPI_Buffer *rx, SPI_Buffer *tx);
 
-/** @brief
+/**
+ * @brief Process a generic read command.
  *
+ * This function handles the SPI command to read data or configuration from the device.
  *
- * @return true if command is correctly received and processed, false if error
+ * @param rx Pointer to the SPI receive buffer containing the command details.
+ * @param tx Pointer to the SPI transmit buffer where the requested data will be sent.
+ *
+ * @return true if the command is correctly received and processed, false otherwise.
  */
 bool bMGR_SPI_CMD_READ_cmd(SPI_Buffer *rx, SPI_Buffer *tx);
 
-
-/** @brief
+/**
+ * @brief Ping the device to verify connectivity.
  *
+ * This function processes the SPI command that pings the device, allowing the caller to confirm the device is responsive.
  *
- * @return true if command is correctly received and processed, false if error
+ * @param rx Pointer to the SPI receive buffer containing the ping command.
+ * @param tx Pointer to the SPI transmit buffer where the ping response will be sent.
+ *
+ * @return true if the command is correctly received and processed, false otherwise.
  */
 bool bMGR_SPI_CMD_PING_cmd(SPI_Buffer *rx, SPI_Buffer *tx);
 
-/** @brief
+/**
+ * @brief Retrieve the MAC status of the device.
  *
+ * This function processes the SPI command to get the status of the device's MAC (Media Access Control) layer.
  *
- * @return true if command is correctly received and processed, false if error
+ * @param rx Pointer to the SPI receive buffer containing the command.
+ * @param tx Pointer to the SPI transmit buffer where the MAC status information will be written.
+ *
+ * @return true if the command is correctly received and processed, false otherwise.
  */
 bool bMGR_SPI_CMD_MACSTATUS_cmd(SPI_Buffer *rx, SPI_Buffer *tx);
 
-
-/** @brief
+/**
+ * @brief Retrieve the SPI state of the device.
  *
+ * This function processes the SPI command to obtain the current state of the SPI interface or the device as it relates to SPI communications.
  *
- * @return true if command is correctly received and processed, false if error
+ * @param rx Pointer to the SPI receive buffer containing the command.
+ * @param tx Pointer to the SPI transmit buffer where the state information will be sent.
+ *
+ * @return true if the command is correctly received and processed, false otherwise.
  */
 bool bMGR_SPI_CMD_SPISTATE_cmd(SPI_Buffer *rx, SPI_Buffer *tx);
 
-/** @brief
+/**
+ * @brief Retrieve the SPI driver version.
  *
+ * This function processes the SPI command to get the version information of the SPI driver or interface.
  *
- * @return true if command is correctly received and processed, false if error
+ * @param rx Pointer to the SPI receive buffer containing the command.
+ * @param tx Pointer to the SPI transmit buffer where the SPI version information will be written.
+ *
+ * @return true if the command is correctly received and processed, false otherwise.
  */
 bool bMGR_SPI_CMD_READSPIVERSION_cmd(SPI_Buffer *rx, SPI_Buffer *tx);
 
-
-/** @brief
+/**
+ * @brief Retrieve the firmware details of the device.
  *
+ * This function processes the SPI command to obtain detailed firmware information.
  *
- * @return true if command is correctly received and processed, false if error
+ * @param rx Pointer to the SPI receive buffer containing the command.
+ * @param tx Pointer to the SPI transmit buffer where the firmware details will be sent.
+ *
+ * @return true if the command is correctly received and processed, false otherwise.
  */
 bool bMGR_SPI_CMD_READFIRMWARE_cmd(SPI_Buffer *rx, SPI_Buffer *tx);
 
-
-/** @brief
+/**
+ * @brief Read the device address.
  *
+ * This function processes the SPI command to read the current address assigned to the device.
  *
- * @return true if command is correctly received and processed, false if error
+ * @param rx Pointer to the SPI receive buffer containing the command.
+ * @param tx Pointer to the SPI transmit buffer where the address will be sent.
+ *
+ * @return true if the command is correctly received and processed, false otherwise.
  */
 bool bMGR_SPI_CMD_READADDRESS_cmd(SPI_Buffer *rx, SPI_Buffer *tx);
 
-/** @brief
+/**
+ * @brief Initiate a request to write a new device address.
  *
+ * This function processes the SPI command that initiates the process for writing a new address to the device.
  *
- * @return true if command is correctly received and processed, false if error
+ * @param rx Pointer to the SPI receive buffer containing the request command.
+ * @param tx Pointer to the SPI transmit buffer where the request acknowledgment will be sent.
+ *
+ * @return true if the command is correctly received and processed, false otherwise.
  */
 bool bMGR_SPI_CMD_WRITEADDRESSREQ_cmd(SPI_Buffer *rx, SPI_Buffer *tx);
 
-/** @brief
+/**
+ * @brief Write a new device address.
  *
+ * This function processes the SPI command to update the device's address following a valid write address request.
  *
- * @return true if command is correctly received and processed, false if error
+ * @param rx Pointer to the SPI receive buffer containing the new address data.
+ * @param tx Pointer to the SPI transmit buffer where the result of the write operation will be sent.
+ *
+ * @return true if the command is correctly received and processed, false otherwise.
  */
 bool bMGR_SPI_CMD_WRITEADDRESS_cmd(SPI_Buffer *rx, SPI_Buffer *tx);
 
-/** @brief
+/**
+ * @brief Read the device identification number.
  *
+ * This function processes the SPI command to retrieve the device ID.
  *
- * @return true if command is correctly received and processed, false if error
+ * @param rx Pointer to the SPI receive buffer containing the command.
+ * @param tx Pointer to the SPI transmit buffer where the device ID will be sent.
+ *
+ * @return true if the command is correctly received and processed, false otherwise.
  */
 bool bMGR_SPI_CMD_READID_cmd(SPI_Buffer *rx, SPI_Buffer *tx);
 
-/** @brief
+/**
+ * @brief Initiate a request to write a new device ID.
  *
+ * This function processes the SPI command that initiates the procedure for updating the device ID.
  *
- * @return true if command is correctly received and processed, false if error
+ * @param rx Pointer to the SPI receive buffer containing the request.
+ * @param tx Pointer to the SPI transmit buffer where the acknowledgment of the request will be sent.
+ *
+ * @return true if the command is correctly received and processed, false otherwise.
  */
 bool bMGR_SPI_CMD_WRITEIDREQ_cmd(SPI_Buffer *rx, SPI_Buffer *tx);
 
-/** @brief
+/**
+ * @brief Write a new device identification number.
  *
+ * This function processes the SPI command to update the device's ID after a valid write request.
  *
- * @return true if command is correctly received and processed, false if error
+ * @param rx Pointer to the SPI receive buffer containing the new ID data.
+ * @param tx Pointer to the SPI transmit buffer where the result of the write operation will be sent.
+ *
+ * @return true if the command is correctly received and processed, false otherwise.
  */
 bool bMGR_SPI_CMD_WRITEID_cmd(SPI_Buffer *rx, SPI_Buffer *tx);
 
-/** @brief
+/**
+ * @brief Read the device serial number.
  *
+ * This function processes the SPI command to retrieve the device's serial number.
  *
- * @return true if command is correctly received and processed, false if error
+ * @param rx Pointer to the SPI receive buffer containing the command.
+ * @param tx Pointer to the SPI transmit buffer where the serial number will be sent.
+ *
+ * @return true if the command is correctly received and processed, false otherwise.
  */
 bool bMGR_SPI_CMD_READSN_cmd(SPI_Buffer *rx, SPI_Buffer *tx);
 
-
-/** @brief
+/**
+ * @brief Read the radio configuration.
  *
+ * This function processes the SPI command to obtain the current radio configuration settings of the device.
  *
- * @return true if command is correctly received and processed, false if error
+ * @param rx Pointer to the SPI receive buffer containing the command.
+ * @param tx Pointer to the SPI transmit buffer where the radio configuration data will be written.
+ *
+ * @return true if the command is correctly received and processed, false otherwise.
  */
 bool bMGR_SPI_CMD_READRCONF_cmd(SPI_Buffer *rx, SPI_Buffer *tx);
 
-/** @brief
+/**
+ * @brief Initiate a request to write new radio configuration settings.
  *
+ * This function processes the SPI command that starts the process of updating the device's radio configuration.
  *
- * @return true if command is correctly received and processed, false if error
+ * @param rx Pointer to the SPI receive buffer containing the request command.
+ * @param tx Pointer to the SPI transmit buffer where the acknowledgment will be sent.
+ *
+ * @return true if the command is correctly received and processed, false otherwise.
  */
 bool bMGR_SPI_CMD_WRITERCONFREQ_cmd(SPI_Buffer *rx, SPI_Buffer *tx);
 
-/** @brief
+/**
+ * @brief Write new radio configuration settings.
  *
+ * This function processes the SPI command to update the device's radio configuration after a valid write request.
  *
- * @return true if command is correctly received and processed, false if error
+ * @param rx Pointer to the SPI receive buffer containing the new configuration data.
+ * @param tx Pointer to the SPI transmit buffer where the result of the write operation will be sent.
+ *
+ * @return true if the command is correctly received and processed, false otherwise.
  */
 bool bMGR_SPI_CMD_WRITERCONF_cmd(SPI_Buffer *rx, SPI_Buffer *tx);
 
-/** @brief
+/**
+ * @brief Save the current radio configuration to nonvolatile memory.
  *
+ * This function processes the SPI command to store the active radio configuration settings,
+ * ensuring they persist after a reset.
  *
- * @return true if command is correctly received and processed, false if error
+ * @param rx Pointer to the SPI receive buffer containing the command.
+ * @param tx Pointer to the SPI transmit buffer where the operation result will be sent.
+ *
+ * @return true if the command is correctly received and processed, false otherwise.
  */
 bool bMGR_SPI_CMD_SAVERCONF_cmd(SPI_Buffer *rx, SPI_Buffer *tx);
 
-/** @brief
+/**
+ * @brief Read the low power mode (LPM) configuration.
  *
+ * This function processes the SPI command to retrieve the current low power mode settings of the device.
  *
- * @return true if command is correctly received and processed, false if error
+ * @param rx Pointer to the SPI receive buffer containing the command.
+ * @param tx Pointer to the SPI transmit buffer where the LPM configuration will be written.
+ *
+ * @return true if the command is correctly received and processed, false otherwise.
  */
 bool bMGR_SPI_CMD_READLPM_cmd(SPI_Buffer *rx, SPI_Buffer *tx);
 
-/** @brief
+/**
+ * @brief Initiate a request to write new low power mode (LPM) settings.
  *
+ * This function processes the SPI command that initiates the procedure for updating the device's low power mode configuration.
  *
- * @return true if command is correctly received and processed, false if error
+ * @param rx Pointer to the SPI receive buffer containing the request.
+ * @param tx Pointer to the SPI transmit buffer where the acknowledgment will be sent.
+ *
+ * @return true if the command is correctly received and processed, false otherwise.
  */
 bool bMGR_SPI_CMD_WRITELPMREQ_cmd(SPI_Buffer *rx, SPI_Buffer *tx);
 
-/** @brief
+/**
+ * @brief Write new low power mode (LPM) settings.
  *
+ * This function processes the SPI command to update the device's low power mode configuration after a valid write request.
  *
- * @return true if command is correctly received and processed, false if error
+ * @param rx Pointer to the SPI receive buffer containing the new LPM settings.
+ * @param tx Pointer to the SPI transmit buffer where the result of the operation will be sent.
+ *
+ * @return true if the command is correctly received and processed, false otherwise.
  */
 bool bMGR_SPI_CMD_WRITELPM_cmd(SPI_Buffer *rx, SPI_Buffer *tx);
 
-/** @brief
+/**
+ * @brief Read the security key from the device.
  *
+ * This function processes the SPI command to retrieve the current security key used for secure operations.
  *
- * @return true if command is correctly received and processed, false if error
+ * @param rx Pointer to the SPI receive buffer containing the command.
+ * @param tx Pointer to the SPI transmit buffer where the security key will be sent.
+ *
+ * @return true if the command is correctly received and processed, false otherwise.
  */
 bool bMGR_SPI_CMD_READSECKEY_cmd(SPI_Buffer *rx, SPI_Buffer *tx);
 
-/** @brief
+/**
+ * @brief Initiate a request to write a new security key.
  *
+ * This function processes the SPI command that starts the process of updating the device's security key.
  *
- * @return true if command is correctly received and processed, false if error
+ * @param rx Pointer to the SPI receive buffer containing the request.
+ * @param tx Pointer to the SPI transmit buffer where the acknowledgment will be sent.
+ *
+ * @return true if the command is correctly received and processed, false otherwise.
  */
 bool bMGR_SPI_CMD_WRITESECKEYREQ_cmd(SPI_Buffer *rx, SPI_Buffer *tx);
 
-/** @brief
+/**
+ * @brief Write a new security key to the device.
  *
+ * This function processes the SPI command to update the device's security key after a valid write request.
  *
- * @return true if command is correctly received and processed, false if error
+ * @param rx Pointer to the SPI receive buffer containing the new security key data.
+ * @param tx Pointer to the SPI transmit buffer where the result of the write operation will be sent.
+ *
+ * @return true if the command is correctly received and processed, false otherwise.
  */
 bool bMGR_SPI_CMD_WRITESECKEY_cmd(SPI_Buffer *rx, SPI_Buffer *tx);
-/** @brief
+
+/**
+ * @brief Read the state of the SPI MAC configuration.
  *
+ * This function processes the SPI command to retrieve the current state or configuration of the SPI MAC.
  *
- * @return true if command is correctly received and processed, false if error
+ * @param rx Pointer to the SPI receive buffer containing the command.
+ * @param tx Pointer to the SPI transmit buffer where the MAC state information will be sent.
+ *
+ * @return true if the command is correctly received and processed, false otherwise.
  */
 bool bMGR_SPI_CMD_READSPIMACSTATE_cmd(SPI_Buffer *rx, SPI_Buffer *tx);
+
+/**
+ * @brief Write TCXO calibration or configuration data.
+ *
+ * This function processes the SPI command to update the Temperature Compensated Crystal Oscillator (TCXO)
+ * calibration or configuration settings.
+ *
+ * @param rx Pointer to the SPI receive buffer containing the new TCXO data.
+ * @param tx Pointer to the SPI transmit buffer where the result of the write operation will be sent.
+ *
+ * @return true if the command is correctly received and processed, false otherwise.
+ */
+bool bMGR_SPI_CMD_WRITETCXO_cmd(SPI_Buffer *rx, SPI_Buffer *tx);
+
+/**
+ * @brief Initiate a request to write new TCXO configuration data.
+ *
+ * This function processes the SPI command that starts the procedure for updating the TCXO settings.
+ *
+ * @param rx Pointer to the SPI receive buffer containing the request.
+ * @param tx Pointer to the SPI transmit buffer where the acknowledgment will be sent.
+ *
+ * @return true if the command is correctly received and processed, false otherwise.
+ */
+bool bMGR_SPI_CMD_WRITETCXOREQ_cmd(SPI_Buffer *rx, SPI_Buffer *tx);
+
+/**
+ * @brief Read the TCXO configuration or calibration settings.
+ *
+ * This function processes the SPI command to retrieve the current settings of the Temperature Compensated Crystal Oscillator (TCXO).
+ *
+ * @param rx Pointer to the SPI receive buffer containing the command.
+ * @param tx Pointer to the SPI transmit buffer where the TCXO configuration data will be sent.
+ *
+ * @return true if the command is correctly received and processed, false otherwise.
+ */
+bool bMGR_SPI_CMD_READTCXO_cmd(SPI_Buffer *rx, SPI_Buffer *tx);
+
 #endif /* __MGR_SPI_CMD_LIST_GENERAL_H */
+
+/** @} */

@@ -34,6 +34,7 @@ enum  atcmd_idx_t {
 	AT_RCONF,        /**< Get/Set radio configuration command */
 	AT_SAVE_RCONF,   /**< Save radio configuration into Flash command */
 	AT_LPM,          /**< Get/Set low power mode command */
+	AT_TCXO_WU,      /**< Get/Set TCXO Warm up in ms */
 
 	// User data commands
 	AT_TX,           /**< Index for TX commands */

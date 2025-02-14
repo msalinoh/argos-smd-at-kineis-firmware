@@ -176,6 +176,23 @@ bool bMGR_AT_CMD_SAVE_RCONF_cmd(uint8_t *pu8_cmdParamString, enum atcmd_type_t e
  */
 bool bMGR_AT_CMD_LPM_cmd(uint8_t *pu8_cmdParamString, enum atcmd_type_t e_exec_mode);
 
+/** @brief Set/Get TCXO warmup time in ms
+ *
+ * 1) "AT+TCXO_WU=<Time in MS> will configure the expected Warmup time for the TCXO.
+ *
+ * @attention Warmup is not asynchronous, it will block the context so don't used it in ISR context
+ *
+ * 2) "AT+TCXO=?" will reply the TCXO time configured
+ *
+ * Response format: "+TCXO=<ms>" depending on your implementation.
+ *
+ * @param[in] pu8_cmdParamString: string containing AT command
+ * @param[in] e_exec_mode: type of the command (status command or action command)
+ *
+ * @return true if command is correctly received and processed, false if error
+ */
+bool bMGR_AT_CMD_TCXO_cmd(uint8_t *pu8_cmdParamString, enum atcmd_type_t e_exec_mode);
+
 #endif /* __MGR_AT_CMD_LIST_GENERAL_H */
 /**
  * @}

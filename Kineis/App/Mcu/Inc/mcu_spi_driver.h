@@ -1,34 +1,32 @@
 /* SPDX-License-Identifier: no SPDX license */
 /**
- * @file    mcu_at_console.h
- * @author  Kinéis
- * @brief   MCU wrapper for AT CMD console
- */
-
-/**
- * @page mcu_at_console_page MCU wrapper: AT CMD console
+ * @file    mcu_spi_console.h
+ * @brief   MCU wrapper for SPI console.
  *
- * This console is used to communicate At commands and responses with the device.
- * Depending on your application need, it could be based on UART link, I2c and so on.
+ * This console is used to communicate SPI commands and responses with the device.
+ * Depending on your application needs, it could be based on a UART link, I2C, or other interfaces.
  *
  * **Reception**
  *
- * On reception side, this wrapper should handle incoming ASCII character as a data stream.
- * The client of this wrapper should register a callback which will be invoked each time a new
- * character is received.
+ * On the reception side, this wrapper should handle incoming data as a stream of ASCII characters.
+ * The client of this wrapper must register a callback that is invoked each time new data is received.
  *
  * **Transmission**
  *
- * On transmission side, it is possible to send strings on same base as classic printf fucntion.
- * A specific API is also available to send the content of a binary buffer. It shold convert binary
- * data into ASCII printable strings.
+ * On the transmission side, it is possible to send formatted strings similarly to printf.
+ * A dedicated API is also available to send the content of a binary buffer by converting binary data
+ * into ASCII printable strings.
+ *
+ * @note The client's callback function will be invoked in interrupt context and must therefore execute quickly.
+ *
+ * @author Arribada
  */
 
 /**
  * @addtogroup MCU_APP_WRAPPERS
- * @brief MCU wrapper used by Kineis Application example.
+ * @brief MCU wrappers used by the Kineis Application example.
  *
- * One has to implement API as per its microcontroller and its platform ressources.
+ * One must implement these APIs according to the microcontroller and available platform resources.
  * @{
  */
 
@@ -44,7 +42,7 @@ extern "C" {
 #include <stdbool.h>
 #include <stdint.h>
 
-#include "kns_app_conf.h" // for STM32 HAL include on UART
+#include "kns_app_conf.h" // for STM32 HAL includes on UART
 #include STM32_HAL_H
 
 #ifdef USE_HDA4
@@ -55,76 +53,114 @@ extern "C" {
 #define RXBUF_SIZE 256
 #endif
 
+/**
+ * @brief Structure representing an SPI data buffer.
+ */
 typedef struct {
-    uint8_t *data;   // Pointer to the data buffer
-    uint16_t size;      // Current size of data in the buffer
-    uint8_t next_req; // Number of elements to read/send next
+    uint8_t *data;      /**< Pointer to the data buffer */
+    uint16_t size;      /**< Current size of valid data in the buffer */
+    uint8_t next_req;   /**< Number of elements expected to be read/sent next */
 } SPI_Buffer;
 
-extern SPI_Buffer rxBuf;
-extern SPI_Buffer txBuf;
+extern SPI_Buffer rxBuf;   /**< Global SPI reception buffer */
+extern SPI_Buffer txBuf;   /**< Global SPI transmission buffer */
 
+/**
+ * @brief Enumeration of SPI console states.
+ */
 typedef enum {
-    SPICMD_UNKNOWN,
-    SPICMD_INIT,                // Register SPI command manager
-    SPICMD_IDLE,                // Idle waiting TX request
-    SPICMD_PROCESS_CMD,         // Process incoming command
-    SPICMD_WAITING_RX,          // Waiting for RX data with specified length
-    SPICMD_WAITING_TX,          // Waiting for TX data to be sent
-    SPICMD_WAITING_MAC_EVT,     // Waiting for MAC event (e.g., TX done, RX done)
-    SPICMD_ERROR                // Error state
+    SPICMD_UNKNOWN,           /**< Unknown state */
+    SPICMD_INIT,              /**< SPI console initialization state */
+    SPICMD_IDLE,              /**< Idle state, waiting for a TX request */
+    SPICMD_PROCESS_CMD,       /**< Processing an incoming command */
+    SPICMD_WAITING_RX,        /**< Waiting for RX data of a specified length */
+    SPICMD_WAITING_TX,        /**< Waiting for TX data to be sent */
+    SPICMD_WAITING_MAC_EVT,   /**< Waiting for a MAC event (e.g., TX done, RX done) */
+    SPICMD_ERROR              /**< Error state */
 } SpiState;
 
-extern SpiState spiState;
+extern SpiState spiState;         /**< Current state of the SPI console */
+extern uint32_t startTickTimeout; /**< Timeout tick value for SPI operations */
 
-extern uint32_t startTickTimeout;
 /* Functions prototypes ------------------------------------------------------*/
 
-/** @brief Start AT CMD console for AT cmd reception
+/**
+ * @brief Start the SPI console for command reception.
  *
- * It registers client's callback used to treat the received data stream. The callback will be
- * called each a new character is received.
+ * This function registers a client's callback used to process the incoming SPI data stream.
+ * The callback is invoked each time new data is received.
  *
- * @attention This callback may be called under interrupt context. thus, it must not last too long.
+ * @attention The callback may be executed in an interrupt context, so it must execute quickly.
  *
- * The format of client's callback is:
- @verbatim
-bool (*rx_evt_cb)(uint8_t *pu8_RxBuffer, int16_t *pi16_nbRxValidChar));
- @endverbatim
- * At each received character, the callback is said to consume data, it updates the buffer pointer
- * and the number-of-valid-char reduced by what was consummed.
- * * [in/out] pu8_RxBuffer pointer to the data (update internally if some characters are consummed
- * * [in/out] pi16_nbRxValidChar number of valid/remaining char
+ * The format of the client's callback is:
+ * @code
+ * int8_t (*rx_spi_evt_cb)(SPI_Buffer *rx, SPI_Buffer *tx);
+ * @endcode
+ * The callback should process the received data in the SPI_Buffer and update the buffer as necessary.
  *
- * @param[in] context pointer which may be usefull to configure console (e.g. UART handle)
- * @param[in] rx_evt_cb pointer to callback invoked at each RX event, i.e. at each received char
- * @return true if console is correcly started, false otherwise.
+ * @param[in] context Pointer to a context object (e.g., an SPI handle) that may be used to configure the console.
+ * @param[in] rx_spi_evt_cb Pointer to the callback function invoked on each SPI reception event.
+ *
+ * @return true if the SPI console is successfully started, false otherwise.
  */
 bool MCU_SPI_DRIVER_register(void *context,
 		int8_t (*rx_spi_evt_cb)(SPI_Buffer *rx, SPI_Buffer *tx));
 
-/** @brief Send AT CMD response to console
+/**
+ * @brief Send an SPI command response to the console.
  *
- * This function is used to print AT command's response on AT console.
- * The prototype is same as printf. Depending on your needs, this function may only implement
- * limited functionnality of printf (`man 3 printf` onlinux to get detailled description).
+ * This function sends a formatted string as an SPI command response. It functions similarly to printf,
+ * and may implement only a subset of printf functionality.
  *
- * @note This could be redirected to printf if available in your application
+ * @note This function can be redirected to a standard printf if available in your application.
  *
- * @param[in] format refer to printf manual pages
+ * @param[in] format Format string (see printf documentation for details).
+ * @param[in] ... Additional arguments corresponding to the format.
  */
 void MCU_SPI_DRIVER_send(const char *format, ...);
 
-HAL_StatusTypeDef MCU_SPI_DRIVER_read();
-HAL_StatusTypeDef MCU_SPI_DRIVER_writeread();
-/** @brief Write content of a binary data buffer as AT cmd response
+/**
+ * @brief Perform an SPI read operation.
  *
- * @param[in] pu8_inDataBuff: pointer to data buffer
- * @param[in] u16_dataLenBit: length of data buffer in bit
+ * This function initiates a read operation on the SPI interface.
+ *
+ * @return HAL status of the read operation.
+ */
+HAL_StatusTypeDef MCU_SPI_DRIVER_read();
+
+/**
+ * @brief Perform a simultaneous SPI write and read operation.
+ *
+ * This function initiates a write/read operation on the SPI interface.
+ *
+ * @return HAL status of the write/read operation.
+ */
+HAL_StatusTypeDef MCU_SPI_DRIVER_writeread();
+
+/**
+ * @brief Send the content of a binary data buffer as an SPI command response.
+ *
+ * This function converts the binary data into an ASCII representation and sends it via the SPI console.
+ *
+ * @param[in] pu8_inDataBuff Pointer to the binary data buffer.
+ * @param[in] u16_dataLenBit Length of the data buffer in bits.
  */
 void MCU_SPI_DRIVER_send_dataBuf(uint8_t *pu8_inDataBuff, uint16_t u16_dataLenBit);
 
+/**
+ * @brief Reset the SPI interface.
+ *
+ * This function resets the SPI interface using the provided SPI handle.
+ *
+ * @param[in] hspi Pointer to the SPI handle.
+ *
+ * @return true if the SPI interface is successfully reset, false otherwise.
+ */
 bool MCU_SPI_DRIVER_reset(SPI_HandleTypeDef *hspi);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* __MCU_SPI_CONSOLE_H */
 

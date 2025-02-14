@@ -29,6 +29,7 @@
 #include <stdint.h>
 #include "kns_types.h"
 
+#define MCU_PA_BOOTDELAY_MS 100 
 /* Structures ----------------------------------------------------------------------------------- */
 
 /** @attention Structure below is platform specific, it may not fit your needs
@@ -89,6 +90,36 @@ void MCU_MISC_turn_off_pa();
  * @return Status @ref KNS_status_t
  */
 enum KNS_status_t MCU_MISC_getSettingsHwRf(int8_t rf_level_dBm, void* rfSettings);
+
+/**
+ * @brief Force enable or disable the TCXO.
+ *
+ * This function forces the state of the Temperature Compensated Crystal Oscillator (TCXO).
+ * When the TCXO is forced to be enabled, it will be activated; when forced to be disabled,
+ * it will be turned off regardless of automatic control.
+ *
+ * @param[in] enable Set to true to force-enable the TCXO, or false to force-disable it.
+ */
+void MCU_MISC_TCXO_Force_State(bool enable);
+
+/**
+ * @brief Set the warmup time for the TCXO.
+ *
+ * This function configures the warmup duration required by the TCXO after it is enabled.
+ * The warmup time ensures that the oscillator stabilizes before being used.
+ *
+ * @param[in] time_ms Warmup time in milliseconds.
+ */
+void MCU_MISC_TCXO_set_warmup(uint32_t time_ms);
+
+/**
+ * @brief Retrieve the current TCXO warmup time.
+ *
+ * This function retrieves the current warmup time setting for the TCXO.
+ *
+ * @param[out] time_ms Pointer to a variable where the warmup time (in milliseconds) will be stored.
+ */
+void MCU_MISC_TCXO_get_warmup(uint32_t *time_ms);
 
 #endif /* MCU_MISC_H_ */
 

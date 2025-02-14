@@ -24,14 +24,13 @@
 #include "kineis_sw_conf.h"  // for assert include below and ERROR_RETURN_T type
 #include KINEIS_SW_ASSERT_H
 #include "mgr_log.h"
-
+#include "mcu_misc.h"
 #ifdef USE_TX_LED // Light on a GPIO when TX occurs
 #include "main.h"
 #endif
 
 uint16_t userTxPayloadSize;
 /* Private macro -------------------------------------------------------------*/
-
 /* Private functions ----------------------------------------------------------*/
 
 /** @brief  Set/clear a GPIO around transmission
@@ -179,7 +178,10 @@ bool bMGR_SPI_CMD_WRITETX_cmd(SPI_Buffer *rx, SPI_Buffer *tx)
 		}
 	};
 
-
+	MCU_MISC_TCXO_Force_State(true);
+	uint32_t tcxo_warmup_ms = 0;
+	MCU_MISC_TCXO_get_warmup(&tcxo_warmup_ms);
+	HAL_Delay(tcxo_warmup_ms);
 	spUserDataMsg = USERDATA_txFifoReserveElt();
 	if (spUserDataMsg != NULL) {
 

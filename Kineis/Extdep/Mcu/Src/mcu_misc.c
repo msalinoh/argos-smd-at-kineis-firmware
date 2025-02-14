@@ -32,6 +32,7 @@
  * BNE  <ADDR>     : 1 cycle
  */
 //#define DELAY_MS(time_ms) HAL_Delay(time_ms)
+static uint32_t tcxo_warmup_time_ms = 2000;
 extern uint32_t SystemCoreClock;
 #define FOR_LOOP_CYCLE_NB 4
 #define DELAY_MS(time_ms) \
@@ -68,7 +69,7 @@ void MCU_MISC_turn_on_pa()
 
 
 	HAL_GPIO_WritePin(PA_PSU_EN_GPIO_Port, PA_PSU_EN_Pin, GPIO_PIN_SET);
-	DELAY_MS(10);
+	DELAY_MS(MCU_PA_BOOTDELAY_MS);
 #endif
 }
 
@@ -123,6 +124,35 @@ enum KNS_status_t MCU_MISC_getSettingsHwRf(int8_t rf_level_dBm, void* rfSettings
 		return KNS_STATUS_BAD_SETTING;
 
 	return KNS_STATUS_OK;
+}
+
+void MCU_MISC_TCXO_Force_State(bool enable)
+{
+    RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+
+    /* Get the Oscillators configuration according to the internal RCC registers */
+    HAL_RCC_GetOscConfig(&RCC_OscInitStruct);
+    RCC_OscInitStruct.OscillatorType |= RCC_OSCILLATORTYPE_HSE;
+
+    if (enable) {
+        RCC_OscInitStruct.HSEState = RCC_HSE_BYPASS_PWR;
+    }
+    else {
+        RCC_OscInitStruct.HSEState = RCC_HSE_OFF;
+    }
+
+    if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)  {
+            Error_Handler();
+    }
+    return;
+}
+void MCU_MISC_TCXO_set_warmup(uint32_t time_ms) {
+	tcxo_warmup_time_ms = time_ms;
+    return;
+}
+void MCU_MISC_TCXO_get_warmup(uint32_t *time_ms) {
+	*time_ms = tcxo_warmup_time_ms;
+	return;
 }
 
 /**

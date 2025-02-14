@@ -323,6 +323,45 @@ bool bMGR_AT_CMD_LPM_cmd(uint8_t *pu8_cmdParamString __attribute__((unused)),
 	return false;
 }
 
+bool bMGR_AT_CMD_TCXO_cmd(uint8_t *pu8_cmdParamString __attribute__((unused)),
+	enum atcmd_type_t e_exec_mode)
+{
+	uint32_t tcxo_ms;
+	if (e_exec_mode == ATCMD_STATUS_MODE) {
+		MCU_MISC_TCXO_get_warmup(&tcxo_ms);
+		MCU_AT_CONSOLE_send("+TCXO=%d\r\n", tcxo_ms);
+		return true;
+	} else if (e_exec_mode == ATCMD_ACTION_MODE) {
+		uint16_t nbChar;
+		while(pu8_cmdParamString[strlen((char*)pu8_cmdParamString) - 1] == '\r' ||
+				pu8_cmdParamString[strlen((char*)pu8_cmdParamString) - 1] == '\n')
+		{
+			pu8_cmdParamString[strlen((char*)pu8_cmdParamString) - 1] = '\0';
+		}
+
+			MGR_LOG_DEBUG("%s",__func__);
+			nbChar = strlen((char*)pu8_cmdParamString+11);
+			if (nbChar > 5)
+			{
+				MGR_LOG_DEBUG("[ERROR] Invalid TCXO MS length, max value is 30 000ms\r\n");	
+				return bMGR_AT_CMD_logFailedMsg(ERROR_INCOMPATIBLE_VALUE);
+			}
+			
+			u16MGR_AT_CMD_convertAsciiToInt32(pu8_cmdParamString + 11, &tcxo_ms);
+
+			if (tcxo_ms > 30000)
+			{
+				MGR_LOG_DEBUG("[ERROR] Invalid ID TCXO Warmup time, should be less than 30 000ms\r\n");
+				return bMGR_AT_CMD_logFailedMsg(ERROR_INCOMPATIBLE_VALUE);
+			}
+
+			MCU_MISC_TCXO_set_warmup(tcxo_ms);
+			return bMGR_AT_CMD_logSucceedMsg();	
+	} else {
+		return bMGR_AT_CMD_logFailedMsg(ERROR_UNKNOWN_AT_CMD);
+	}
+}
+
 /**
  * @}
  */

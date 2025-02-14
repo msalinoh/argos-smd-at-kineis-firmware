@@ -34,6 +34,7 @@ const struct atcmd_desc_t cas_atcmd_list_array[ATCMD_MAX_COUNT] = {
 	{ "AT+RCONF",         8, bMGR_AT_CMD_RCONF_cmd},
 	{ "AT+SAVE_RCONF",   13, bMGR_AT_CMD_SAVE_RCONF_cmd},
 	{ "AT+LPM",           6, bMGR_AT_CMD_LPM_cmd},
+	{ "AT+TCXO_WU",      10, bMGR_AT_CMD_TCXO_cmd},
 
 	/**< User data commands */
 	{ "AT+TX",            5, bMGR_AT_CMD_TX_cmd},
