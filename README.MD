@@ -29,7 +29,7 @@ This firmware requires proper configuration of **credentials** and **radio setti
 Misconfigured settings may lead to improper operation or device malfunction.  
 
 
-- Contact Kinéis to obtain the required credentials (ID, address, secret key) for the stack.
+- Contact CLS group (user office) to obtain the required credentials (ID, address, secret key) for the stack.
 - Securely store the credentials. The provided package stores them in RAM/FLASH without protection.
 - Update `device_id` and `address` in the `mcu_nvm.c` file.
 
@@ -38,7 +38,7 @@ Note: Currently, the ID must be changed at build time. A command to modify it wi
 
 #### Radio Configuration Management
 
-- Obtain radio configuration binary files from Kinéis or used one defined into mcu_nvm.c file.
+- Obtain radio configuration binary files from CLS group (user office) or used one defined into mcu_nvm.c file.
 - Store configuration data securely. In the provided package, the configuration is hardcoded as a byte table in `mcu_nvm.c`.
 - Alternatively:
   - Use the `AT+RCONF=` command.
