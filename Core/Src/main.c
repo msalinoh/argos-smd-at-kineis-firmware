@@ -44,7 +44,9 @@
 #include "main.h"
 #include "usart.h"
 #include "rtc.h"
+#if defined(USE_SPI_DRIVER)
 #include "spi.h"
+#endif
 #include "subghz.h"
 #include "tim.h"
 #include "gpio.h"
@@ -356,7 +358,9 @@ int main(void)
   MX_SUBGHZ_Init();
   MX_TIM16_Init();
   MX_RTC_Init();
+#if defined(USE_SPI_DRIVER)
   MX_SPI1_Init();
+#endif
   /* USER CODE BEGIN 2 */
 
 #ifdef DEBUG

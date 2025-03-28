@@ -64,9 +64,7 @@ void SystemClock_Config(void);
 #define EXT_WKUP_BUTTON_Pin GPIO_PIN_13
 #define EXT_WKUP_BUTTON_GPIO_Port GPIOB
 #define PA_PSU_EN_Pin GPIO_PIN_0
-//#define PA_PSU_EN_Pin GPIO_PIN_8
 #define PA_PSU_EN_GPIO_Port GPIOC
-//#define PA_PSU_EN_GPIO_Port GPIOA
 #define PA_PSU_SEL_Pin GPIO_PIN_1
 #define PA_PSU_SEL_GPIO_Port GPIOC
 
