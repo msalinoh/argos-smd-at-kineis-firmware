@@ -163,9 +163,6 @@ enum KNS_status_t MCU_NVM_setRadioConfZone(void *ConfZonePtr, uint16_t ConfZoneS
 		return status;
 	}
 
-	// Update the runtime copy too
-	memcpy(radioConfZone, ConfZonePtr, FLASH_RADIOCONF_BYTE_SIZE);
-
 	return KNS_STATUS_OK;
 }
 
