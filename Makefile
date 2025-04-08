@@ -429,7 +429,7 @@ $(BUILD_INFO_FILE): $(OBJECTS)
 	@echo "-- Build file build_info.c --"
 	@echo '#include "build_info.h"'                            > $(BUILD_INFO_FILE)
 	@echo ''                                                   >> $(BUILD_INFO_FILE)
-	@printf 'const char uc_fw_vers_commit_id[] = \"'           >> $(BUILD_INFO_FILE)
+	@printf 'const char uc_fw_vers_commit_id[] = "'           >> $(BUILD_INFO_FILE)
 	@printf '$(current_repo_commit)'                          >> $(BUILD_INFO_FILE)
 	@echo "!$(current_repo_status)!"
 	@if [ -n "$(current_repo_status)" ]; then                                         \
