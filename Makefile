@@ -429,19 +429,19 @@ $(BUILD_INFO_FILE): $(OBJECTS)
 	@echo "-- Build file build_info.c --"
 	@echo '#include "build_info.h"'                            > $(BUILD_INFO_FILE)
 	@echo ''                                                   >> $(BUILD_INFO_FILE)
-	@echo -n 'const char uc_fw_vers_commit_id[] = "'           >> $(BUILD_INFO_FILE)
-	@echo -n '$(current_repo_commit)'                          >> $(BUILD_INFO_FILE)
+	@printf 'const char uc_fw_vers_commit_id[] = \"'           >> $(BUILD_INFO_FILE)
+	@printf '$(current_repo_commit)'                          >> $(BUILD_INFO_FILE)
 	@echo "!$(current_repo_status)!"
 	@if [ -n "$(current_repo_status)" ]; then                                         \
-		echo -n '*'                                        >> $(BUILD_INFO_FILE); \
+		printf '*'                                        >> $(BUILD_INFO_FILE); \
 	fi
 	@if [ -n "$(BUILD_VERSION)" ]; then                                               \
-		echo -n '_$(BUILD_VERSION)'                        >> $(BUILD_INFO_FILE); \
+		printf '_$(BUILD_VERSION)'                        >> $(BUILD_INFO_FILE); \
 	fi
 	@if [ -n "$(LIB_VERSIONS)" ]; then                                               \
-		echo -n ',$(LIB_VERSIONS)'                        >> $(BUILD_INFO_FILE); \
+		printf ',$(LIB_VERSIONS)'                        >> $(BUILD_INFO_FILE); \
 	fi
-	@echo -n ',$(BUILD_DATE)'                                  >> $(BUILD_INFO_FILE)
+	@printf ',$(BUILD_DATE)'                                  >> $(BUILD_INFO_FILE)
 	@echo '";'                                                 >> $(BUILD_INFO_FILE)
 
 
